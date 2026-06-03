@@ -1,13 +1,21 @@
 ---
-import Anchor from '@/components/Anchor/Anchor';
-import Layout from '@/layouts/Layout.astro';
-import { formatLink } from '@/lib/utils';
-import Text from '@/components/Text/Text';
-import List from '@/components/List/List';
+// Libreries
 import { Image } from 'astro:assets';
-import Cards from '@/components/Cards/Cards';
+// Components
+import Anchor from '@/components/Anchor/Anchor.astro';
+import Text from '@/components/Text/Text.astro';
+import List from '@/components/List/List.astro';
+import ListItem from '@/components/List/ListItem.astro';
+import Cards from '@/components/Cards/Cards.astro';
 import Collapse from '@/components/Collapse/Collapse.astro';
+// Layout
+import Layout from '@/layouts/Layout.astro';
+// Utils
+import { formatLink } from '@/lib/utils';
 import type { ProjectType } from '@/lib/types';
+// Assets
+import cloudImg from '@/assets/ascii-art-cloud.png';
+import computerImg from '@/assets/ascii-art-computer.png';
 
 const aboutList = [
 	'<strong class="block">Learn</strong> to use Git and GitHub professionally',
@@ -68,9 +76,9 @@ const projects: ProjectType[] = [
 			id="hero_section"
 			class="flex flex-col justify-start items-start w-full min-h-dvh mt-12 md:pt-12"
 		>
-			<Text.H1 className="max-w-4xl mb-4 col-start-1 col-end-12 row-start-1 row-end-5 z-10">
+			<Text variant="h1" className="max-w-4xl mb-4 col-start-1 col-end-12 row-start-1 row-end-5 z-10">
 				Open Source projects made by students, for students.
-			</Text.H1>
+			</Text>
 
 			<div class="flex flex-wrap flex-row justify-between w-full gap-4">
 				<div class="flex flex-col items-start justify-center space-y-4 shrink-0">
@@ -89,7 +97,7 @@ const projects: ProjectType[] = [
 					</Anchor>
 				</div>
 				<Image
-					src="/public/ascii-art-cloud.png"
+					src={cloudImg}
 					alt="Cloud ASCII art"
 					class="object-cover md:mr-auto md:ml-auto"
 					inferSize={true}
@@ -104,25 +112,25 @@ const projects: ProjectType[] = [
 			class="mb-12 w-full flex flex-row flex-wrap md:flex-nowrap items-start justify-center gap-x-12"
 		>
 			<div class="flex flex-col w-full space-y-12">
-				<Text.H2>What is <br /> LibreCourseUY</Text.H2>
+				<Text variant="h2">What is <br /> LibreCourseUY</Text>
 				<div class="space-y-12">
 					<h3 class="text-4xl">Our mision</h3>
 					<List className="w-fit">
 						{
 							aboutList.map((item, i) => (
-								<List.Li
+								<ListItem
 									className="first:border-t border-b border-neutral-700 p-6 flex flex-row justify-start items-center gap-6"
 								>
 									<span class="mr-3 text-sm">{String(i + 1).padStart(2, '0')}</span>
 									<span set:html={item} />
-								</List.Li>
+								</ListItem>
 							))
 						}
 					</List>
 				</div>
 			</div>
 			<Image
-				src="/public/ascii-art-computer.png"
+				src={computerImg}
 				alt="Cloud ASCII art"
 				class="aspect-video object-cover mt-12 self-center"
 				inferSize={true}
@@ -133,8 +141,8 @@ const projects: ProjectType[] = [
 		</section>
 		<section id="projects" class="min-h-dvh mt-12 overflow" >
 		<div class="space-y-12">
-			<Text.H2>Our Projects</Text.H2>
-			<Text.P>Projects made by studients that shows their <br />knowledge in multiple areas</Text.P>
+			<Text variant="h2">Our Projects</Text>
+			<Text variant="p">Projects made by studients that shows their <br />knowledge in multiple areas</Text>
 			<div class="space-y-6">
 				{
 					projects.map((project, i) => (
@@ -149,16 +157,17 @@ const projects: ProjectType[] = [
 		</section>
 		<section id='faq'>
 			<div class="max-w-200 mx-auto px-10 pt-16 pb-24 space-y-12">
-				<Text.H1> Got questions? </Text.H1>
+				<Text variant="h1"> Got questions? </Text>
 				<div class="[&_.faq-item:last-child]:border-b [&_.faq-item:last-child]:border-white/10">
 					<Collapse
 						question="¿Es gratis?"
 						open
 					>
-						Sí, es completamente gratis aprender y unirte a nuestra comunidad. Únete en nuestro <Text.A
+						Sí, es completamente gratis aprender y unirte a nuestra comunidad. Únete en nuestro <Text
+							variant="a"
 							link={formatLink(importantLinks.discordCommunity)}
 							className="text-emphasis-secondary hover:underline"
-							>discord aquí</Text.A
+							>discord aquí</Text
 						>.
 					</Collapse>
 

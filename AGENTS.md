@@ -2,7 +2,7 @@
 
 ## Project
 
-Astro 5 + React + TypeScript website template.
+Astro 5 + TypeScript website template.
 
 ## Quick Commands
 
@@ -19,7 +19,7 @@ Astro 5 + React + TypeScript website template.
 
 ```
 src/
-├── components/   # React (.tsx) components
+├── components/   # Astro (.astro) components
 ├── layouts/      # Astro layouts
 ├── lib/          # Utilities (cn, etc.)
 ├── pages/        # Route pages (.astro)
@@ -29,7 +29,7 @@ src/
 ## Conventions
 
 - **Class merging**: Use `cn()` from `@/lib/utils` (tailwind-merge + clsx) — never raw template literals for conditional classes.
-- **React components**: `.tsx` extension, use `client:load` (eager) or `client:visible` (lazy) directives in Astro.
+- **Astro components**: `.astro` extension, use Astro fetch/frontmatter for data and server rendering.
 - **Path alias**: `@/` maps to `src/` (configured in `tsconfig.json`).
 - **SEO**: Add `<Layout title="..." description="...">` on every page — it wraps astro-seo's `<SEO>`.
 - **Fonts**: Import Fontsource CSS in layout frontmatter (e.g. `@fontsource/inter/400.css`).
@@ -40,10 +40,9 @@ src/
 
 | File | What it wires |
 |------|---------------|
-| `astro.config.mjs` | React, Tailwind, Sitemap, Partytown integrations |
-| `tailwind.config.mjs` | Content paths for class scanning |
+| `astro.config.mjs` | Tailwind, Sitemap, Partytown integrations |
 | `tsconfig.json` | Strict mode, `@/*` path alias |
-| `.eslintrc.cjs` | ESLint (TS + Astro + JSX a11y + Prettier) |
+| `.eslintrc.cjs` | ESLint (TS + Astro + Prettier) |
 | `.prettierrc` | Prettier with `prettier-plugin-astro` |
 
 ## Framework Notes
@@ -55,4 +54,4 @@ src/
 ## Toolchain Quirks
 
 - `prettier-plugin-astro` is required for `.astro` formatting — it will not format `.astro` files without being listed in `.prettierrc` plugins.
-- ESLint's `astro-eslint-parser` is configured only for `*.astro` files via the overrides block — `.ts/.tsx` files use the `@typescript-eslint/parser` normally.
+- ESLint's `astro-eslint-parser` is configured only for `*.astro` files via the overrides block — `.ts` files use the `@typescript-eslint/parser` normally.

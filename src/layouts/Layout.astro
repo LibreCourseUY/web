@@ -5,7 +5,7 @@ import '@fontsource/inter/900.css';
 import { SEO } from 'astro-seo';
 import '@/styles/globals.css';
 import { cn } from '@/lib/utils';
-import Navbar from '@/components/Navbar/Navbar';
+import Navbar from '@/components/Navbar/Navbar.astro';
 
 export interface Props {
   title: string;
@@ -27,7 +27,7 @@ const { title, description } = Astro.props;
     />
   </head>
   <body class={cn("bg-background font-sans text-emphasis antialiased max-w-max")}>
-    <Navbar pathname={Astro.url.pathname} className='hidden md:flex' client:load />
+    <Navbar pathname={Astro.url.pathname} className='hidden md:flex' />
     <div class='mx-12 md:mx-24'>
       <slot />
     </div>

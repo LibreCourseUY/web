@@ -1,0 +1,42 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { cn, formatLink } from '@/lib/utils';
+
+type ValidTags = 'h1' | 'h2' | 'p' | 'a';
+
+interface BaseProps {
+	className?: string;
+}
+
+type Props =
+	| (BaseProps & { variant: 'h1' | 'h2' | 'p'; link?: never; openInTab?: never } & HTMLAttributes<
+				'h1' | 'h2' | 'p'
+			>)
+	| (BaseProps & { variant: 'a'; link?: string; openInTab?: boolean } & HTMLAttributes<'a'>);
+
+const { variant, className, link, openInTab, ...props } = Astro.props;
+const Tag = variant as ValidTags;
+
+const styles = {
+	h1: 'text-6xl text-start',
+	h2: 'text-5xl wrap-break-word text-start',
+	p: 'text-2xl text-start',
+	a: 'text-2xl text-start text-emphasis-secondary',
+};
+
+const isAnchor = Tag === 'a';
+const extraAttributes = isAnchor
+	? {
+			href: formatLink(link || ''),
+			target: openInTab ? '_blank' : undefined,
+		}
+	: {};
+---
+
+<Tag
+	class={cn(styles[Tag], className)}
+	{...extraAttributes}
+	{...props as any}
+>
+	<slot />
+</Tag>

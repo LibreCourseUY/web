@@ -1,5 +1,5 @@
 ---
-import Text from '@/components/Text/Text';
+import Text from '@/components/Text/Text.astro';
 interface Props {
 	question: string;
 	open?: boolean;
@@ -15,7 +15,7 @@ const { question, open = false } = Astro.props;
       transition-colors duration-200 hover:text-emphasis/80"
 		aria-expanded={open ? 'true' : 'false'}
 	>
-		<span><Text.P>{question}</Text.P></span>
+		<span><Text variant="p">{question}</Text></span>
 		<span
 			class="faq-icon shrink-0 font-mono text-lg text-neutral-700/45
         transition-[transform,color] duration-300 ease-in-out
@@ -31,9 +31,9 @@ const { question, open = false } = Astro.props;
       max-h-0 group-[.open]:max-h-48
       transition-[max-height] duration-350 ease-in-out"
 	>
-		<Text.P className="pb-5 text-emphasis/80 leading-7">
+		<Text variant="p" className="pb-5 text-emphasis/80 leading-7">
 			<slot />
-		</Text.P>
+		</Text>
 	</div>
 </div>
 
