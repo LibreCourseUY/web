@@ -1,0 +1,205 @@
+---
+import Anchor from '@/components/Anchor/Anchor';
+import Layout from '@/layouts/Layout.astro';
+import { cn, formatLink } from '@/lib/utils';
+import Text from '@/components/Text/Text';
+import List from '@/ui/List/List';
+import { Image } from 'astro:assets';
+import Cards from '@/ui/Cards/Cards';
+import Collapse from '@/ui/Collapse/Collapse.astro';
+
+const aboutList = [
+	'<strong class="block">Learn</strong> to use Git and GitHub professionally',
+	'<strong class="block">Contribute</strong> to open source projects',
+	'<strong class="block">Build</strong> practical skills for their future careers',
+	'<strong class="block">Connect</strong> with other students and form study groups',
+];
+
+type ProjectType = {
+	title: string;
+	description: string;
+	autor: {
+		name: string;
+		link: string;
+	};
+	image?: string | null;
+	stack: string[];
+	pj_link: string;
+};
+
+const importantLinks = {
+	discordCommunity: "https://discord.gg/ZrtwyxcQ",
+}
+
+const projects: ProjectType[] = [
+	{
+		title: 'fingcomms',
+		description: 'A directory for student groups and study partners at the Faculty of Engineering.',
+		autor: {
+			name: 'emiliano',
+			link: 'https://github.com/emiliano-gandini-outeda',
+		},
+		image: null,
+		stack: ['FastAPI', 'Vue.js', 'SQLiteDocker'],
+		pj_link: 'https://github.com/LibreCourseUY/fingcomms',
+	},
+	{
+		title: 'fingDB',
+		description:
+			'Centralized database API containing course information, prerequisites, and career data.',
+		autor: {
+			name: 'emiliano',
+			link: 'https://github.com/emiliano-gandini-outeda',
+		},
+		image: null,
+		stack: ['Python', 'FastAPI', 'PostgreSQL', 'SQLAlchemy'],
+		pj_link: 'https://github.com/LibreCourseUY/fingDB',
+	},
+	{
+		title: 'FingMap',
+		description:
+			'Interactive map of the Faculty of Engineering campus to help new students navigate.',
+		autor: {
+			name: 'emiliano',
+			link: 'https://github.com/emiliano-gandini-outeda',
+		},
+		image: null,
+		stack: ['Vue.js3', 'Leaflet', 'Vite', 'JavaScript'],
+		pj_link: 'https://github.com/LibreCourseUY/fingmap',
+	},
+];
+---
+
+<Layout
+	title="LibreCourseUY"
+	description="Welcome to LibreCourseUY, a platform for free and open educational resources."
+>
+	<main class="flex min-h-screen flex-col items-start justify-center">
+		<section
+			id="hero_section"
+			class="flex flex-col justify-start items-start w-full min-h-dvh mt-12 md:pt-12"
+		>
+			<Text.H1 className="max-w-4xl mb-4 col-start-1 col-end-12 row-start-1 row-end-5 z-10">
+				Open Source projects made by students, for students.
+			</Text.H1>
+
+			<div class="flex flex-wrap flex-row justify-between w-full gap-4">
+				<div class="flex flex-col items-start justify-center space-y-4 shrink-0">
+					<Anchor
+						className="font-bold whitespace-nowrap"
+						href="https://github.com/LibreCourseUY"
+					>
+						GitHub
+					</Anchor>
+					<Anchor
+						className="font-bold whitespace-nowrap"
+						href="https://github.com/LibreCourseUY"
+						disabled
+					>
+						Start Contributing
+					</Anchor>
+				</div>
+				<Image
+					src="/public/ascii-art-cloud.png"
+					alt="Cloud ASCII art"
+					class="object-cover md:mr-auto md:ml-auto"
+					inferSize={true}
+					loading="eager"
+					width={980}
+					height={300}
+				/>
+			</div>
+		</section>
+		<section
+			id="about"
+			class="mb-12 w-full flex flex-row flex-wrap md:flex-nowrap items-start justify-center gap-x-12"
+		>
+			<div class="flex flex-col w-full space-y-12">
+				<Text.H2>What is <br /> LibreCourseUY</Text.H2>
+				<div class="space-y-12">
+					<h3 class="text-4xl">Our mision</h3>
+					<List className="w-fit">
+						{
+							aboutList.map((item, i) => {
+								return (
+									<List.Li
+										className={cn(
+											'first:border-t border-b border-neutral-700 p-6 flex flex-row justify-start items-center gap-6',
+										)}
+										set:html={
+											`<span class='mr-3 text-sm'>${String(i + 1).padStart(2, '0')}</span></List.Li>` +
+											`<span class="">` +
+											item +
+											'</span>'
+										}
+									/>
+								);
+							})
+						}
+					</List>
+				</div>
+			</div>
+			<Image
+				src="/public/ascii-art-computer.png"
+				alt="Cloud ASCII art"
+				class="aspect-video object-cover mt-12 self-center"
+				inferSize={true}
+				loading="lazy"
+				width={720}
+				height={380}
+			/>
+		</section>
+		<section id="projects" class="min-h-dvh mt-12 overflow" >
+		<div class="space-y-12">
+			<Text.H2>Our Projects</Text.H2>
+			<Text.P>Projects made by studients that shows their <br />knowledge in multiple areas</Text.P>
+			<div class="space-y-6">
+				{
+					projects.map((project, i) => (
+						<Cards
+							{...project}
+							index={i}
+						/>
+					))
+				}
+			</div>
+		</div>
+		</section>
+		<section id='faq'>
+			<div class="max-w-200 mx-auto px-10 pt-16 pb-24 space-y-12">
+				<Text.H1> Got questions? </Text.H1>
+				<div class="[&_.faq-item:last-child]:border-b [&_.faq-item:last-child]:border-white/10">
+					<Collapse
+						question="¿Es gratis?"
+						open
+					>
+						Sí, es completamente gratis aprender y unirte a nuestra comunidad. Únete en nuestro <Text.A
+							link={formatLink(importantLinks.discordCommunity)}
+							className="text-emphasis-secondary hover:underline"
+							>discord aquí</Text.A
+						>.
+					</Collapse>
+
+					<Collapse question="¿Debo hablar inglés?">
+						No es un requisito obligatorio, pero el contenido técnico está parcialmente en inglés ya
+						que es el idioma de la industria.
+					</Collapse>
+
+					<Collapse question="¿Solo está disponible en Uruguay?">
+						No, LibreCourseUY está disponible para cualquier persona hispanohablante de
+						Latinoamérica y el mundo.
+					</Collapse>
+
+					<Collapse question="¿Necesito saber programar?">
+						No es necesario. Comenzamos desde cero y te guiamos paso a paso en el mundo del
+						desarrollo de software.
+					</Collapse>
+				</div>
+			</div>
+		</section>
+		<footer class='min-h-64 flex flex-row gap-x-12 justify-end items-end pb-12'>
+			<span class="text-emphasis/60">Libre<span>Course</span>UY</span>
+			<span class="footer-copy">© 2026 — Open Source Education</span>
+		</footer>
+	</main>
+</Layout>

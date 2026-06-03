@@ -1,0 +1,35 @@
+---
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/700.css';
+import '@fontsource/inter/900.css';
+import { SEO } from 'astro-seo';
+import '@/styles/globals.css';
+import { cn } from '@/lib/utils';
+import Navbar from '@/ui/Navbar/Navbar';
+
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <SEO
+      title={title}
+      description={description}
+    />
+  </head>
+  <body class={cn("bg-background font-sans text-emphasis antialiased max-w-max")}>
+    <Navbar pathname={Astro.url.pathname} className='hidden md:flex' client:load />
+    <div class='mx-12 md:mx-24'>
+      <slot />
+    </div>
+  </body>
+</html>
