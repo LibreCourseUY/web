@@ -9,23 +9,32 @@ interface AnchorProps {
 }
 
 export default function Anchor({ href, children, className, disabled }: AnchorProps) {
+  if (disabled) {
+    return (
+      <span
+        className={cn(
+          styles.disabled,
+          styles.anchor,
+          "relative text-2xl text-emphasis-secondary/60 cursor-default",
+          className,
+        )}
+      >
+        {children}
+      </span>
+    );
+  }
+
   return (
     <a
-      href={!disabled ? href : undefined}
+      href={href}
       target='_blank'
       className={cn(
-				disabled && cn(styles.disabled),
         styles.anchor,
-				"relative text-2xl text-emphasis-secondary",
-        disabled ? "cursor-default text-emphasis-secondary/60" : "cursor-pointer hover:text-emphasis-secondary/80",
+        "relative text-2xl text-emphasis-secondary cursor-pointer hover:text-emphasis-secondary/80",
         className,
       )}
     >
-      <button className={cn(
-        'cursor-pointer disabled:cursor-default'
-      )} disabled={disabled}>
       {children}
-        </button>
     </a>
   );
 }

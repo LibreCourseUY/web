@@ -1,12 +1,13 @@
 ---
 import Anchor from '@/components/Anchor/Anchor';
 import Layout from '@/layouts/Layout.astro';
-import { cn, formatLink } from '@/lib/utils';
+import { formatLink } from '@/lib/utils';
 import Text from '@/components/Text/Text';
-import List from '@/ui/List/List';
+import List from '@/components/List/List';
 import { Image } from 'astro:assets';
-import Cards from '@/ui/Cards/Cards';
-import Collapse from '@/ui/Collapse/Collapse.astro';
+import Cards from '@/components/Cards/Cards';
+import Collapse from '@/components/Collapse/Collapse.astro';
+import type { ProjectType } from '@/lib/types';
 
 const aboutList = [
 	'<strong class="block">Learn</strong> to use Git and GitHub professionally',
@@ -14,18 +15,6 @@ const aboutList = [
 	'<strong class="block">Build</strong> practical skills for their future careers',
 	'<strong class="block">Connect</strong> with other students and form study groups',
 ];
-
-type ProjectType = {
-	title: string;
-	description: string;
-	autor: {
-		name: string;
-		link: string;
-	};
-	image?: string | null;
-	stack: string[];
-	pj_link: string;
-};
 
 const importantLinks = {
 	discordCommunity: "https://discord.gg/ZrtwyxcQ",
@@ -120,21 +109,14 @@ const projects: ProjectType[] = [
 					<h3 class="text-4xl">Our mision</h3>
 					<List className="w-fit">
 						{
-							aboutList.map((item, i) => {
-								return (
-									<List.Li
-										className={cn(
-											'first:border-t border-b border-neutral-700 p-6 flex flex-row justify-start items-center gap-6',
-										)}
-										set:html={
-											`<span class='mr-3 text-sm'>${String(i + 1).padStart(2, '0')}</span></List.Li>` +
-											`<span class="">` +
-											item +
-											'</span>'
-										}
-									/>
-								);
-							})
+							aboutList.map((item, i) => (
+								<List.Li
+									className="first:border-t border-b border-neutral-700 p-6 flex flex-row justify-start items-center gap-6"
+								>
+									<span class="mr-3 text-sm">{String(i + 1).padStart(2, '0')}</span>
+									<span set:html={item} />
+								</List.Li>
+							))
 						}
 					</List>
 				</div>

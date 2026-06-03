@@ -9,7 +9,7 @@
 
 @theme {
   --color-background: var(--background);
-  --color-emphasis: var(--emphasis);
+  --color-emphasis: var(--color-emphasis);
   --color-emphasis-secondary: var(--color-emphasis-secondary);
 }
 

@@ -1,18 +1,7 @@
 import Text from '@/components/Text/Text';
-import { cn, formatLink, twstr } from '@/lib/utils';
+import { cn, twstr } from '@/lib/utils';
+import type { ProjectType } from '@/lib/types';
 import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
-
-type ProjectType = {
-	title: string;
-	description: string;
-	autor: {
-		name: string;
-		link: string;
-	};
-	image?: string | null;
-	stack: string[];
-	pj_link: string;
-};
 
 type GenericProps = {
 	className?: string;
