@@ -1,9 +1,13 @@
 ---
+// Libreries
+import { Image } from 'astro:assets';
+// Components
+import Text from '@/components/Text/Text.astro';
+// Utils
 import { cn } from '@/lib/utils';
 import type { ProjectType } from '@/lib/types';
-import Text from '@/components/Text/Text.astro';
+// Assets
 import githubSVG from '@/assets/gh.svg';
-import { Image } from 'astro:assets';
 
 export interface Props extends ProjectType {
   className?: string;
