@@ -1,0 +1,8 @@
+.git
+.gitignore
+.astro
+node_modules
+dist
+.pnpm-store
+.github
+*.md
