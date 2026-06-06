@@ -26,6 +26,7 @@ const aboutList = [
 
 const importantLinks = {
 	discordCommunity: 'https://discord.gg/ZrtwyxcQ',
+	github: 'https://github.com/LibreCourseUY',
 };
 
 const projects: ProjectType[] = [
@@ -205,7 +206,7 @@ const projects: ProjectType[] = [
 							<span>
 								<Text variant="p">
 									Contribute on
-									<Anchor href={formatLink('https://github.com/LibreCourseUY')}>GitHub</Anchor>
+									<Anchor href={formatLink(importantLinks.github)}>GitHub</Anchor>
 								</Text>
 							</span>
 
@@ -215,7 +216,7 @@ const projects: ProjectType[] = [
 								<span class="mr-3 text-sm">{String(1).padStart(2, '0')}</span>
 								<Text variant="p"
 									>Join on our
-									<Anchor href={formatLink('https://discord.gg/ZrtwyxcQ')}>Discord</Anchor>
+									<Anchor href={formatLink(importantLinks.discordCommunity)}>Discord</Anchor>
 									server</Text
 								>
 							</ListItem>
