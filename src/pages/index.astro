@@ -18,51 +18,52 @@ import cloudImg from '@/assets/ascii-art-cloud.png';
 import computerImg from '@/assets/ascii-art-computer.png';
 
 const aboutList = [
-	'<strong class="block">Learn</strong> to use Git and GitHub professionally',
-	'<strong class="block">Contribute</strong> to open source projects',
-	'<strong class="block">Build</strong> practical skills for their future careers',
-	'<strong class="block">Connect</strong> with other students and form study groups',
+	'<strong class="block">Non-profit</strong> FOSS community based in Uruguay.',
+	'<strong class="block">Built for developers at every level </strong>from first commit to seasoned contributor.',
+	'Open tools, open curriculum, open processes.',
+	'<strong class="block">Growing the next generation </strong>of open source contributors in Latin America.',
 ];
 
 const importantLinks = {
-	discordCommunity: "https://discord.gg/ZrtwyxcQ",
-}
+	discordCommunity: 'https://discord.gg/ZrtwyxcQ',
+};
 
 const projects: ProjectType[] = [
 	{
-		title: 'fingcomms',
-		description: 'A directory for student groups and study partners at the Faculty of Engineering.',
+		title: 'Inkfing',
+		description:
+			"simple extension that allows Fing (Facultad de Ingeniería, UdelaR) students to give their day to day web apps a refreshed dark-mode. It's designed to help incoming students find study partners and collaborative projects to work on.",
 		autor: {
-			name: 'emiliano',
+			name: 'emiliano-gandini',
 			link: 'https://github.com/emiliano-gandini-outeda',
 		},
 		image: null,
-		stack: ['FastAPI', 'Vue.js', 'SQLiteDocker'],
-		pj_link: 'https://github.com/LibreCourseUY/fingcomms',
+		stack: ['HTML', 'CSS', 'JS', 'Manifest V3'],
+		pj_link: 'https://github.com/LibreCourseUY/Inkfing',
 	},
 	{
-		title: 'fingDB',
+		title: 'UruAPI',
 		description:
-			'Centralized database API containing course information, prerequisites, and career data.',
+			"is a wrapper around datosuruguay.com and exposes Uruguay's daily-updated economic indicators in a clean, JSON-friendly format.",
 		autor: {
-			name: 'emiliano',
-			link: 'https://github.com/emiliano-gandini-outeda',
+			name: 'emiliano-gandini',
+			link: 'https://github.com/LibreCourseUY/UruAPI',
 		},
 		image: null,
-		stack: ['Python', 'FastAPI', 'PostgreSQL', 'SQLAlchemy'],
+		stack: ['Python', 'FastAPI', 'Docker'],
 		pj_link: 'https://github.com/LibreCourseUY/fingDB',
 	},
 	{
-		title: 'FingMap',
+		title: 'KanBan generator',
 		description:
-			'Interactive map of the Faculty of Engineering campus to help new students navigate.',
+			'A highly configurable React component that accepts an array of columns and an array of cards with generic metadata, and supports drag-and-drop interactions between columns.',
 		autor: {
-			name: 'emiliano',
-			link: 'https://github.com/emiliano-gandini-outeda',
+			name: 'kevin-ramirez',
+			link: 'https://github.com/Kevin-Ramirez127',
 		},
 		image: null,
-		stack: ['Vue.js3', 'Leaflet', 'Vite', 'JavaScript'],
-		pj_link: 'https://github.com/LibreCourseUY/fingmap',
+		stack: ['React', 'Tailwind', 'Vite', 'Typescript'],
+		pj_link: 'https://github.com/LibreCourseUY/kanBan-generator',
 	},
 ];
 ---
@@ -76,7 +77,10 @@ const projects: ProjectType[] = [
 			id="hero_section"
 			class="flex flex-col justify-start items-start w-full min-h-dvh mt-12 md:pt-12"
 		>
-			<Text variant="h1" className="max-w-4xl mb-4 col-start-1 col-end-12 row-start-1 row-end-5 z-10">
+			<Text
+				variant="h1"
+				className="max-w-4xl mb-4 col-start-1 col-end-12 row-start-1 row-end-5 z-10"
+			>
 				Open Source projects made by students, for students.
 			</Text>
 
@@ -118,9 +122,7 @@ const projects: ProjectType[] = [
 					<List className="w-fit">
 						{
 							aboutList.map((item, i) => (
-								<ListItem
-									className="first:border-t border-b border-neutral-700 p-6 flex flex-row justify-start items-center gap-6"
-								>
+								<ListItem className="first:border-t border-b border-neutral-700 p-6 flex flex-row justify-start items-center gap-6">
 									<span class="mr-3 text-sm">{String(i + 1).padStart(2, '0')}</span>
 									<span set:html={item} />
 								</ListItem>
@@ -139,56 +141,90 @@ const projects: ProjectType[] = [
 				height={380}
 			/>
 		</section>
-		<section id="projects" class="min-h-dvh mt-12 overflow" >
-		<div class="space-y-12">
-			<Text variant="h2">Our Projects</Text>
-			<Text variant="p">Projects made by studients that shows their <br />knowledge in multiple areas</Text>
-			<div class="space-y-6">
-				{
-					projects.map((project, i) => (
-						<Cards
-							{...project}
-							index={i}
-						/>
-					))
-				}
+		<section
+			id="projects"
+			class="min-h-dvh mt-12 overflow"
+		>
+			<div class="space-y-12">
+				<Text variant="h2">Our Projects</Text>
+				<Text variant="p"
+					>Projects made by studients that shows their <br />knowledge in multiple areas</Text
+				>
+				<div class="space-y-6">
+					{
+						projects.map((project, i) => (
+							<Cards
+								{...project}
+								index={i}
+							/>
+						))
+					}
+				</div>
 			</div>
-		</div>
 		</section>
-		<section id='faq'>
+		<section id="faq">
 			<div class="max-w-200 pt-16 pb-24 space-y-12">
 				<Text variant="h1"> Got questions? </Text>
 				<div class="[&_.faq-item:last-child]:border-b [&_.faq-item:last-child]:border-white/10">
 					<Collapse
-						question="¿Es gratis?"
+						question="What is LibreCourseUY?"
 						open
 					>
-						Sí, es completamente gratis aprender y unirte a nuestra comunidad. Únete en nuestro <Text
-							variant="a"
-							link={formatLink(importantLinks.discordCommunity)}
-							className="text-emphasis-secondary hover:underline"
-							>discord aquí</Text
-						>.
+						A non-profit initiative based in Uruguay that helps programmers, from aspiring
+						developers to seasoned professionals, contribute to Free and Open Source Software.
 					</Collapse>
 
-					<Collapse question="¿Debo hablar inglés?">
-						No es un requisito obligatorio, pero el contenido técnico está parcialmente en inglés ya
-						que es el idioma de la industria.
+					<Collapse question="Who can join?">
+						Anyone, for free. Members are expected to follow our Code of Conduct, and those who wish
+						to contribute must sign the CLA.
 					</Collapse>
 
-					<Collapse question="¿Solo está disponible en Uruguay?">
-						No, LibreCourseUY está disponible para cualquier persona hispanohablante de
-						Latinoamérica y el mundo.
+					<Collapse question="What does LibreCourseUY offer?">
+						A strong developer community with common goals, a space to learn and grow your career,
+						and real projects worth putting on your CV.
 					</Collapse>
 
-					<Collapse question="¿Necesito saber programar?">
-						No es necesario. Comenzamos desde cero y te guiamos paso a paso en el mundo del
-						desarrollo de software.
+					<Collapse question="How do I get started?">
+						Read the Code of Conduct, then browse our First Issues list or find a repo you want to
+						contribute to. If you're new, check out our Introductory Guide. It covers how to
+						collaborate, learn, and get involved.
+					</Collapse>
+
+					<Collapse question="Why is everything in English?">
+						Open source is a global conversation, and English is its common language. Writing
+						issues, PRs, and documentation in English makes your contributions accessible to the
+						entire FOSS community, not just Spanish speakers. It also prepares you for real-world
+						collaboration on any project, anywhere.
+					</Collapse>
+
+					<Collapse question="Where can I find LibreCourseUY?">
+						<ListItem
+							className="first:border-t border-b border-neutral-700 p-6 flex flex-row justify-start items-center gap-6"
+						>
+							<span class="mr-3 text-sm">{String(1).padStart(2, '0')}</span>
+							<span>
+								<Text variant="p">
+									Contribute on
+									<Anchor href={formatLink('https://github.com/LibreCourseUY')}>GitHub</Anchor>
+								</Text>
+							</span>
+
+							<ListItem
+								className="first:border-t border-b border-neutral-700 p-6 flex flex-row justify-start items-center gap-6"
+							>
+								<span class="mr-3 text-sm">{String(1).padStart(2, '0')}</span>
+								<Text variant="p"
+									>Join on our
+									<Anchor href={formatLink('https://discord.gg/ZrtwyxcQ')}>Discord</Anchor>
+									server</Text
+								>
+							</ListItem>
+						</ListItem>
 					</Collapse>
 				</div>
 			</div>
 		</section>
-		<footer class='min-h-64 flex flex-row gap-x-12 justify-end items-end pb-12'>
+		<footer class="min-h-64 flex flex-row gap-x-12 justify-end items-end pb-12">
 			<span class="text-emphasis/60">Libre<span>Course</span>UY</span>
 			<span class="footer-copy">© 2026 — Open Source Education</span>
 		</footer>
