@@ -37,7 +37,7 @@ const colorIndex =
 
 <div
   class={cn(
-    "flex flex-row gap-4 rounded-lg border border-neutral-700 p-4",
+    "flex flex-row items-center gap-4 rounded-lg border border-neutral-700 p-4",
     className,
   )}
 >
@@ -54,7 +54,7 @@ const colorIndex =
       <div
         class={cn(
           default_colors[colorIndex],
-          "w-52 h-52 flex justify-center items-center",
+          "hidden md:flex w-24 h-24 md:w-52 md:h-52 justify-center items-center",
         )}
       >
         <Image
