@@ -26,20 +26,3 @@ jobs:
           push: true
           provenance: false
           tags: ghcr.io/librecourseuy/${{ github.event.repository.name }}:latest
-
-      - name: Trigger Watchtower
-        run: |
-          curl -s \
-            -H "Authorization: Bearer ${{ secrets.WATCHTOWER_TOKEN }}" \
-            http://${{ secrets.VPS_IP }}:8080/v1/update
-
-      - name: Trigger Watchtower via SSH tunnel
-        uses: appleboy/ssh-action@v1
-        with:
-          host: ${{ secrets.VPS_IP }}
-          username: deploy
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            curl -s -X POST \
-              -H "Authorization: Bearer ${{ secrets.WATCHTOWER_TOKEN }}" \
-              http://localhost:8080/v1/update
