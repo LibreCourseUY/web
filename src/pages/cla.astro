@@ -1,0 +1,298 @@
+---
+// Components
+import Anchor from '@/components/Anchor/Anchor.astro';
+import List from '@/components/List/List.astro';
+import ListItem from '@/components/List/ListItem.astro';
+import Text from '@/components/Text/Text.astro';
+// Layout
+import Layout from '@/layouts/Layout.astro';
+---
+
+<Layout
+	title="Contributor License Agreement — LibreCourseUY"
+	description="LibreCourseUY Contributor License Agreement — terms for contributing to our open source projects."
+>
+	<main class="flex min-h-screen flex-col items-start justify-center">
+		<section class="flex flex-col justify-start items-start w-full min-h-dvh mt-12 md:pt-12">
+			<Text
+				variant="h1"
+				className="max-w-4xl mb-4"
+			>
+				Contributor License Agreement (CLA)</Text
+			>
+			<div class="space-y-12 w-full max-w-4xl">
+				<div class="space-y-4">
+					<p class="text-2xl text-emphasis">LibreCourseUY</p>
+					<p class="text-sm text-emphasis/60">
+						<strong>Last updated:</strong> February 28, 2026<br />
+						<strong>Version:</strong> 2.0
+					</p>
+				</div>
+
+				<hr class="border-neutral-700" />
+
+				<div class="space-y-4">
+					<Text variant="h2">Preamble</Text>
+					<Text variant="p">
+						LibreCourseUY is an open community dedicated to improving access to knowledge and
+						building useful open resources in the public interest.
+					</Text>
+					<Text variant="p">
+						The project welcomes contributions from students, teachers, developers, researchers, and
+						the general public. It is community-led, independent, and not an official channel of any
+						university, faculty, government body, or private institution.
+					</Text>
+					<Text variant="p">
+						This CLA governs the legal terms under which contributions are submitted and accepted.
+						Community behavior, collaboration norms, and identity rules may also be governed by
+						other project documents, including <code>CONTRIBUTING.md</code>,
+						<code>CODE_OF_CONDUCT.md</code>, and <code>TRADEMARK.md</code>.
+					</Text>
+				</div>
+
+				<hr class="border-neutral-700" />
+
+				<div class="space-y-4">
+					<Text variant="h2">1. What counts as a Contribution</Text>
+					<Text variant="p">
+						A <strong>Contribution</strong> is any material intentionally submitted for inclusion in LibreCourseUY,
+						including source code, documentation, design assets, scripts, translations, datasets, configuration,
+						media, or other copyrightable material.
+					</Text>
+					<Text variant="p">
+						Casual conversation, general feedback, or discussion that is not clearly intended for
+						inclusion in the project does not count as a Contribution.
+					</Text>
+				</div>
+
+				<hr class="border-neutral-700" />
+
+				<div class="space-y-4">
+					<Text variant="h2">2. Your representations</Text>
+					<Text variant="p"> By submitting a Contribution, you represent that: </Text>
+					<List className="list-disc pl-6">
+						<ListItem>
+							<Text variant="p">you have the legal authority to submit it;</Text>
+						</ListItem>
+						<ListItem>
+							<Text variant="p">
+								you are the original author, or you have sufficient rights and permission to submit
+								it under this Agreement;
+							</Text>
+						</ListItem>
+						<ListItem>
+							<Text variant="p"
+								>the Contribution does not knowingly infringe third-party rights;</Text
+							>
+						</ListItem>
+						<ListItem>
+							<Text variant="p"
+								>the Contribution does not include confidential or restricted material;</Text
+							>
+						</ListItem>
+						<ListItem>
+							<Text variant="p">
+								the Contribution does not violate employment, academic, institutional, or
+								contractual obligations that apply to you; and
+							</Text>
+						</ListItem>
+						<ListItem>
+							<Text variant="p">
+								the Contribution does not introduce license conflicts with the repository's stated
+								license, unless maintainers expressly approve it in writing.
+							</Text>
+						</ListItem>
+					</List>
+					<Text variant="p">
+						If you contribute as part of your job, internship, scholarship, funded research, or
+						institutional role, you also represent that you have the authority to do so.
+					</Text>
+				</div>
+
+				<hr class="border-neutral-700" />
+
+				<div class="space-y-4">
+					<Text variant="h2">3. License grant</Text>
+					<Text variant="p">
+						Unless a repository clearly states otherwise, accepted Contributions are incorporated
+						under the repository's license, which will normally be the <strong>MIT License</strong>.
+					</Text>
+					<Text variant="p">
+						You grant LibreCourseUY and downstream recipients a perpetual, worldwide, non-exclusive,
+						irrevocable, royalty-free license to use, reproduce, modify, distribute, sublicense, and
+						otherwise exercise the rights necessary to include and distribute your Contribution
+						under the repository's applicable license.
+					</Text>
+					<Text variant="p">
+						This Agreement does <strong>not</strong> transfer your entire copyright ownership unless there
+						is a separate written agreement that says so.
+					</Text>
+				</div>
+
+				<hr class="border-neutral-700" />
+
+				<div class="space-y-4">
+					<Text variant="h2">4. Patent license</Text>
+					<Text variant="p">
+						If your Contribution includes patentable subject matter that you control, you grant a
+						worldwide, non-exclusive, irrevocable, royalty-free patent license to the extent
+						necessary to use, modify, and distribute the Contribution as part of the project under
+						the applicable repository license.
+					</Text>
+				</div>
+
+				<hr class="border-neutral-700" />
+
+				<div class="space-y-4">
+					<Text variant="h2">5. No trademark or institutional license</Text>
+					<Text variant="p">This Agreement does not grant rights to use:</Text>
+					<List className="list-disc pl-6">
+						<ListItem>
+							<Text variant="p">the name <strong>LibreCourseUY</strong>;</Text>
+						</ListItem>
+						<ListItem>
+							<Text variant="p">repository or organization names;</Text>
+						</ListItem>
+						<ListItem>
+							<Text variant="p">project logos or visual identity;</Text>
+						</ListItem>
+						<ListItem>
+							<Text variant="p">third-party trademarks; or</Text>
+						</ListItem>
+						<ListItem>
+							<Text variant="p">
+								the names, logos, seals, or institutional identity of universities, faculties,
+								public agencies, or private entities.
+							</Text>
+						</ListItem>
+					</List>
+					<Text variant="p"
+						>Open source licensing and trademark permission are different things.</Text
+					>
+				</div>
+
+				<hr class="border-neutral-700" />
+
+				<div class="space-y-4">
+					<Text variant="h2">6. Commits and acceptance workflow</Text>
+					<Text variant="p">
+						LibreCourseUY may require cryptographically signed commits for traceability and
+						attribution. Signed commits help verify identity and integrity, but they do
+						<strong>not</strong> by themselves replace explicit acceptance of this CLA when the project
+						requires a separate acceptance step.
+					</Text>
+					<Text variant="p"
+						>This CLA is accepted when you confirm it through a project-approved electronic
+						mechanism, such as:</Text
+					>
+					<List className="list-disc pl-6">
+						<ListItem>
+							<Text variant="p">an explicit acceptance comment on a pull request;</Text>
+						</ListItem>
+						<ListItem>
+							<Text variant="p">a checkbox or web form;</Text>
+						</ListItem>
+						<ListItem>
+							<Text variant="p">a CLA bot or similar workflow; or</Text>
+						</ListItem>
+						<ListItem>
+							<Text variant="p"
+								>another clear electronic acceptance method chosen by the maintainers.</Text
+							>
+						</ListItem>
+					</List>
+					<Text variant="p">
+						The project may refuse to merge Contributions until that acceptance is recorded.
+					</Text>
+				</div>
+
+				<hr class="border-neutral-700" />
+
+				<div class="space-y-4">
+					<Text variant="h2">7. No employment or compensation</Text>
+					<Text variant="p">Submitting a Contribution does not create:</Text>
+					<List className="list-disc pl-6">
+						<ListItem><Text variant="p">employment;</Text></ListItem>
+						<ListItem><Text variant="p">compensation rights;</Text></ListItem>
+						<ListItem><Text variant="p">partnership;</Text></ListItem>
+						<ListItem><Text variant="p">agency;</Text></ListItem>
+						<ListItem><Text variant="p">institutional representation; or</Text></ListItem>
+						<ListItem
+							><Text variant="p">authority to act on behalf of LibreCourseUY.</Text></ListItem
+						>
+					</List>
+				</div>
+
+				<hr class="border-neutral-700" />
+
+				<div class="space-y-4">
+					<Text variant="h2">8. Warranty disclaimer and limitation of liability</Text>
+					<Text variant="p">
+						Unless required by law, Contributions and project materials are provided
+						<strong>"AS IS"</strong>, without warranties of any kind, express or implied, including
+						merchantability, fitness for a particular purpose, and non-infringement.
+					</Text>
+					<Text variant="p">
+						To the fullest extent permitted by law, LibreCourseUY and its maintainers are not liable
+						for direct, indirect, incidental, special, exemplary, or consequential damages arising
+						from the use, distribution, or inability to use the project or any Contribution.
+					</Text>
+				</div>
+
+				<hr class="border-neutral-700" />
+
+				<div class="space-y-4">
+					<Text variant="h2">9. Irrevocability</Text>
+					<Text variant="p">
+						Once a Contribution is accepted and merged, the rights granted under this Agreement are
+						irrevocable, except in cases of material misrepresentation or lack of authority to grant
+						those rights.
+					</Text>
+					<Text variant="p">
+						Removing content later from a repository does not automatically revoke rights already
+						granted for existing copies, forks, releases, or prior distributions.
+					</Text>
+				</div>
+
+				<hr class="border-neutral-700" />
+
+				<div class="space-y-4">
+					<Text variant="h2">10. Changes to this Agreement</Text>
+					<Text variant="p">
+						LibreCourseUY may update this CLA in the future. New versions apply only to
+						Contributions submitted after the new version takes effect, unless a contributor
+						expressly agrees otherwise.
+					</Text>
+				</div>
+
+				<hr class="border-neutral-700" />
+
+				<div class="space-y-4">
+					<Text variant="h2">11. Severability</Text>
+					<Text variant="p">
+						If any part of this Agreement is held invalid or unenforceable, the remaining provisions
+						remain in effect.
+					</Text>
+				</div>
+
+				<hr class="border-neutral-700" />
+
+				<div class="space-y-4">
+					<Text variant="h2">12. Governing law</Text>
+					<Text variant="p">
+						This Agreement is governed by the laws of the Oriental Republic of Uruguay, excluding
+						conflict-of-law rules, unless mandatory law requires otherwise.
+					</Text>
+					<Text variant="p">
+						Any dispute arising from this Agreement will be submitted to the competent courts of
+						Montevideo, Uruguay, unless mandatory law requires otherwise.
+					</Text>
+				</div>
+			</div>
+		</section>
+		<footer class="min-h-64 flex flex-row gap-x-12 justify-end items-end pb-12">
+			<span class="text-emphasis/60">Libre<span>Course</span>UY</span>
+			<span class="footer-copy">© 2026 — Open Source Education</span>
+		</footer>
+	</main>
+</Layout>
