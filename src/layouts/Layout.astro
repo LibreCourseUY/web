@@ -30,8 +30,8 @@ const { title, description } = Astro.props;
       description={description}
     />
   </head>
-  <body class={cn("bg-background font-sans text-emphasis antialiased max-w-max")}>
-    <Navbar pathname={Astro.url.pathname} className='hidden md:flex' />
+  <body class={cn("bg-background font-sans text-emphasis antialiased max-w-[100vw] overflow-x-hidden")}>
+    <Navbar pathname={Astro.url.pathname} />
     <div class='mx-12 md:mx-24'>
       <slot />
     </div>
