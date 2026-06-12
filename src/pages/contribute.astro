@@ -1,0 +1,423 @@
+---
+import Anchor from '@/components/Anchor/Anchor.astro';
+import List from '@/components/List/List.astro';
+import ListItem from '@/components/List/ListItem.astro';
+import Text from '@/components/Text/Text.astro';
+import Layout from '@/layouts/Layout.astro';
+import { formatLink } from '@/lib/utils';
+---
+
+<Layout
+	title="Contribute — LibreCourseUY"
+	description="Learn how to contribute to LibreCourseUY open source projects."
+>
+	<main class="flex min-h-screen flex-col items-start justify-center">
+		<section class="flex flex-col justify-start items-start w-full min-h-dvh mt-12 md:pt-12">
+			<div class="space-y-12 w-full max-w-4xl">
+				<div class="space-y-12">
+					<Text variant="h1">How to Contribute</Text>
+					<Text
+						variant="p"
+						className="ml-4"
+					>
+						We welcome contributions from everyone! Whether you're a beginner or experienced
+						developer, there's a place for you in LibrecourseUY.
+					</Text>
+				</div>
+
+				<hr class="border-neutral-700" />
+
+				<div class="space-y-8">
+					<Text variant="h2">Why Contribute?</Text>
+					<div class="flex flex-col gap-8 ml-4">
+						<div class="space-y-4">
+							<Text variant="h3">Learn New Skills</Text>
+							<Text variant="p"
+								>Work with real technologies used in the industry: Python, FastAPI, Vue.js, Git, and
+								more.</Text
+							>
+						</div>
+						<div class="space-y-4">
+							<Text variant="h3">Build Your Portfolio</Text>
+							<Text variant="p"
+								>Add meaningful open source contributions to your CV and GitHub profile.</Text
+							>
+						</div>
+						<div class="space-y-4">
+							<Text variant="h3">Join the Community</Text>
+							<Text variant="p"
+								>Connect with other students and developers who share your interests.</Text
+							>
+						</div>
+						<div class="space-y-4">
+							<Text variant="h3">Help Others</Text>
+							<Text variant="p"
+								>Your contributions help incoming students navigate their engineering journey.</Text
+							>
+						</div>
+					</div>
+				</div>
+
+				<hr class="border-neutral-700" />
+
+				<div class="space-y-4">
+					<Text variant="h2">Getting Started</Text>
+					<Text variant="p">New to open source? Here's how to start:</Text>
+
+					<div class="p-4 border border-neutral-700 rounded space-y-4 ml-4">
+						<Text variant="p">
+							<strong class="underline">Important:</strong> Before contributing, read and make sure you
+							agree with the license of the repository you want to contribute to. Each project has its
+							own license that defines how you can use, modify, and distribute the code. You can find
+							it in the LICENSE file in the repository.
+						</Text>
+					</div>
+
+					<div class="p-4 border border-neutral-700 rounded space-y-4 ml-4">
+						<Text variant="p">
+							<strong class="underline">Required:</strong> You must accept our
+							<Anchor href="/cla">Contributor License Agreement (CLA)</Anchor>. By submitting a Pull
+							Request with cryptographically signed commits, you acknowledge and agree to the CLA
+							terms. All commits must be signed with GPG.
+						</Text>
+					</div>
+
+					<div class="space-y-6">
+						<div class="space-y-4">
+							<List className="w-fit">
+								<ListItem
+									className="border-t border-b border-neutral-700 p-6 flex flex-row-reverse md:flex-row justify-start items-center gap-6"
+								>
+									<span class="mr-3 text-sm">{String(1).padStart(2, '0')}</span>
+									<span class="space-y-4">
+										<Text
+											variant="h3"
+											className="font-semibold"
+											className="font-semibold"
+											>Explore the Projects</Text
+										>
+										<Text variant="p"
+											>Visit our Projects page to understand what we build. Pick a project that
+											interests you!</Text
+										>
+									</span>
+								</ListItem>
+
+								<ListItem
+									className="border-b border-neutral-700 p-6 flex flex-row-reverse md:flex-row justify-start items-center gap-6"
+								>
+									<span class="mr-3 text-sm">{String(2).padStart(2, '0')}</span>
+									<span class="space-y-4">
+										<Text
+											variant="h3"
+											className="font-semibold"
+											>The Basics</Text
+										>
+										<Text variant="p"
+											>Check our Git Guide to learn how to use Git and GitHub properly.</Text
+										>
+									</span>
+								</ListItem>
+
+								<ListItem
+									className="border-b border-neutral-700 p-6 flex flex-row-reverse md:flex-row justify-start items-center gap-6"
+								>
+									<span class="mr-3 text-sm">{String(3).padStart(2, '0')}</span>
+									<span class="space-y-4">
+										<Text
+											variant="h3"
+											className="font-semibold"
+											>Find an Issue</Text
+										>
+										<Text variant="p"
+											>Look for issues labeled "good first issue" on our GitHub repositories. These
+											are beginner-friendly tasks.</Text
+										>
+									</span>
+								</ListItem>
+
+								<ListItem className="p-6 flex flex-row-reverse md:flex-row justify-start items-center gap-6">
+									<span class="mr-3 text-sm">{String(4).padStart(2, '0')}</span>
+									<span class="space-y-4">
+										<Text
+											variant="h3"
+											className="font-semibold"
+											>Ask Questions</Text
+										>
+										<Text variant="p"
+											>Don't hesitate to ask questions in the Issues section. We're here to help you
+											learn!</Text
+										>
+									</span>
+								</ListItem>
+							</List>
+						</div>
+					</div>
+				</div>
+
+				<hr class="border-neutral-700" />
+
+				<div class="space-y-4">
+					<Text variant="h2">Contribution Process</Text>
+					<Text variant="p">Follow these steps to make your first contribution:</Text>
+
+					<div class="space-y-6">
+						<div class="space-y-4">
+							<List className="w-fit">
+								<ListItem
+									className="border-t border-b border-neutral-700 p-6 flex flex-row-reverse md:flex-row justify-start items-center gap-6"
+								>
+									<span class="mr-3 text-sm">{String(1).padStart(2, '0')}</span>
+									<span class="space-y-4">
+										<Text
+											variant="h3"
+											className="font-semibold"
+											>Fork the Repository</Text
+										>
+										<Text variant="p"
+											>Click the "Fork" button on the GitHub repository to create your own copy of
+											the project.</Text
+										>
+									</span>
+								</ListItem>
+
+								<ListItem
+									className="border-b border-neutral-700 p-6 flex flex-row-reverse md:flex-row justify-start items-center gap-6"
+								>
+									<span class="mr-3 text-sm">{String(2).padStart(2, '0')}</span>
+									<span class="space-y-4">
+										<Text
+											variant="h3"
+											className="font-semibold"
+											>Clone Your Fork</Text
+										>
+										<Text variant="p">Download your forked repository to your local machine.</Text>
+										<code class="block p-3 bg-neutral-900 rounded text-sm"
+											>git clone https://github.com/YOUR_USERNAME/project.git</code
+										>
+									</span>
+								</ListItem>
+
+								<ListItem
+									className="border-b border-neutral-700 p-6 flex flex-row-reverse md:flex-row justify-start items-center gap-6"
+								>
+									<span class="mr-3 text-sm">{String(3).padStart(2, '0')}</span>
+									<span class="space-y-4">
+										<Text
+											variant="h3"
+											className="font-semibold"
+											>Create a Branch</Text
+										>
+										<Text variant="p"
+											>Create a new branch for your changes. Don't work directly on main!</Text
+										>
+										<code class="block p-3 bg-neutral-900 rounded text-sm"
+											>git checkout -b feature/your-feature</code
+										>
+									</span>
+								</ListItem>
+
+								<ListItem
+									className="border-b border-neutral-700 p-6 flex flex-row-reverse md:flex-row justify-start items-center gap-6"
+								>
+									<span class="mr-3 text-sm">{String(4).padStart(2, '0')}</span>
+									<span class="space-y-4">
+										<Text
+											variant="h3"
+											className="font-semibold"
+											>Make Changes</Text
+										>
+										<Text variant="p"
+											>Edit the code, add features, or fix bugs. Make sure your changes work
+											correctly.</Text
+										>
+									</span>
+								</ListItem>
+
+								<ListItem
+									className="border-b border-neutral-700 p-6 flex flex-row-reverse md:flex-row justify-start items-center gap-6"
+								>
+									<span class="mr-3 text-sm">{String(5).padStart(2, '0')}</span>
+									<span class="space-y-4">
+										<Text
+											variant="h3"
+											className="font-semibold"
+											>Commit Your Changes</Text
+										>
+										<Text variant="p">Save your changes with a descriptive commit message.</Text>
+										<code class="block p-3 bg-neutral-900 rounded text-sm"
+											>git add . && git commit -m "feat: description of changes"</code
+										>
+									</span>
+								</ListItem>
+
+								<ListItem
+									className="border-b border-neutral-700 p-6 flex flex-row-reverse md:flex-row justify-start items-center gap-6"
+								>
+									<span class="mr-3 text-sm">{String(6).padStart(2, '0')}</span>
+									<span class="space-y-4">
+										<Text
+											variant="h3"
+											className="font-semibold"
+											>Push to GitHub</Text
+										>
+										<Text variant="p">Upload your changes to your forked repository.</Text>
+										<code class="block p-3 bg-neutral-900 rounded text-sm"
+											>git push origin feature/your-feature</code
+										>
+									</span>
+								</ListItem>
+
+								<ListItem className="p-6 flex flex-row-reverse md:flex-row justify-start items-center gap-6">
+									<span class="mr-3 text-sm">{String(7).padStart(2, '0')}</span>
+									<span class="space-y-4">
+										<Text
+											variant="h3"
+											className="font-semibold"
+											>Create Pull Request</Text
+										>
+										<Text variant="p"
+											>Go to the original repository and create a Pull Request. Describe your
+											changes and submit!</Text
+										>
+									</span>
+								</ListItem>
+							</List>
+						</div>
+					</div>
+				</div>
+
+				<hr class="border-neutral-700" />
+
+				<div class="space-y-12">
+					<Text variant="h2">Contribution Guidelines</Text>
+
+					<div class="space-y-8 ml-4">
+						<Text variant="h3">Code Standards</Text>
+						<List className="list-disc pl-6 space-y-4">
+							<ListItem><Text variant="p">Write clean, readable code</Text></ListItem>
+							<ListItem><Text variant="p">Add comments for complex logic</Text></ListItem>
+							<ListItem><Text variant="p">Follow existing code style conventions</Text></ListItem>
+							<ListItem><Text variant="p">Test your changes before submitting</Text></ListItem>
+						</List>
+					</div>
+
+					<div class="space-y-4">
+						<Text variant="h3">Any Language is Welcome</Text>
+						<div class="space-y-6 ml-4">
+							<Text variant="p">
+								You don't have to use the same languages already in the project! Want to add a Rust
+								API to fingcomms (built with FastAPI)? Go ahead! Want to create a Python CLI tool
+								for fingmap (built with Vue)? Be our guest!
+							</Text>
+							<Text variant="p">
+								We believe in <strong>polyglot development</strong>. If your language or framework
+								is better suited for the job, use it. We'll figure out how to integrate it.
+							</Text>
+							<div class="p-4 border border-neutral-700 rounded space-y-4">
+								<Text variant="p">
+									<strong>Example:</strong> fingcomms is built with FastAPI (Python) + Vue.js, but if
+									you want to add a Rust microservice for image processing or a Go CLI tool for data export,
+									that's exactly what we want to see!
+								</Text>
+							</div>
+						</div>
+					</div>
+
+					<div class="space-y-4">
+						<Text variant="h3">Commit Messages</Text>
+						<div class="ml-4">
+							<Text variant="p">We use Conventional Commits format:</Text>
+							<code class="block p-3 bg-neutral-900 rounded text-sm">type: description</code>
+							<List className="list-disc pl-6">
+								<ListItem><Text variant="p"><code>feat:</code> New feature</Text></ListItem>
+								<ListItem><Text variant="p"><code>fix:</code> Bug fix</Text></ListItem>
+								<ListItem><Text variant="p"><code>docs:</code> Documentation</Text></ListItem>
+								<ListItem
+									><Text variant="p"><code>refactor:</code> Code restructuring</Text></ListItem
+								>
+							</List>
+						</div>
+					</div>
+
+					<div class="space-y-4">
+						<Text variant="h3"
+							>Signed Commits <strong class="underline font-medium">(Required)</strong></Text
+						>
+						<Text variant="p">
+							All commits must be signed. This is a <strong class="underline"
+								>mandatory requirement</strong
+							> for contributing.
+						</Text>
+						<div class="space-y-4">
+							<Text variant="h4">Why Signed Commits?</Text>
+							<List className="list-disc pl-6 ml-4">
+								<ListItem
+									><Text variant="p"
+										><strong>Security</strong>: Verifies that you are who you claim to be</Text
+									></ListItem
+								>
+								<ListItem
+									><Text variant="p"
+										><strong>Integrity</strong>: Guarantees the commit wasn't modified after
+										creation</Text
+									></ListItem
+								>
+								<ListItem
+									><Text variant="p"
+										><strong>Trust</strong>: Other contributors know changes genuinely come from you</Text
+									></ListItem
+								>
+								<ListItem
+									><Text variant="p"
+										><strong>Professionalism</strong>: Industry best practice for open source
+										projects</Text
+									></ListItem
+								>
+							</List>
+						</div>
+						<Text variant="p">Set up your SSH key following our Git Guide.</Text>
+						<code class="block p-3 bg-neutral-900 rounded text-sm ml-4"
+							>git config --global commit.gpgsign true</code
+						>
+					</div>
+
+					<div class="space-y-4">
+						<Text variant="h3">Pull Request Requirements</Text>
+						<List className="list-disc pl-6 ml-4">
+							<ListItem><Text variant="p">Describe what you changed and why</Text></ListItem>
+							<ListItem><Text variant="p">Include screenshots for UI changes</Text></ListItem>
+							<ListItem><Text variant="p">Test that everything works</Text></ListItem>
+							<ListItem><Text variant="p">Be responsive to feedback</Text></ListItem>
+						</List>
+					</div>
+				</div>
+
+				<hr class="border-neutral-700" />
+
+				<div class="space-y-6">
+					<Text variant="h2">Have Questions?</Text>
+					<div class='ml-4 space-y-4'>
+						<Text variant="p">We're here to help! You can:</Text>
+						<div class="flex flex-col flex-wrap gap-4">
+							<Text variant="p">
+								Open an Issue — Ask questions on
+								<Anchor href={formatLink('https://github.com/LibrecourseUY/fingcomms/issues')}
+									>GitHub</Anchor
+								>
+							</Text>
+							<Text variant="p">
+								Find us on our
+								<Anchor href={formatLink('https://discord.gg/ZrtwyxcQ')}>Discord server</Anchor>
+							</Text>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<footer class="min-h-64 flex flex-row gap-x-12 justify-end items-end pb-12">
+			<span class="text-emphasis/60">Libre<span>Course</span>UY</span>
+			<span class="footer-copy">© 2026 — Open Source Education</span>
+		</footer>
+	</main>
+</Layout>
