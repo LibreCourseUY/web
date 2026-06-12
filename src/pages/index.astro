@@ -199,28 +199,30 @@ const projects: ProjectType[] = [
 					</Collapse>
 
 					<Collapse question="Where can I find LibreCourseUY?">
-						<ListItem
-							className="first:border-t border-b border-neutral-700 p-6 flex flex-row justify-start items-center gap-6"
-						>
-							<span class="mr-3 text-sm">{String(1).padStart(2, '0')}</span>
-							<span>
-								<Text variant="p">
-									Contribute on
-									<Anchor href={formatLink(importantLinks.github)}>GitHub</Anchor>
-								</Text>
-							</span>
-
+						<List>
 							<ListItem
 								className="first:border-t border-b border-neutral-700 p-6 flex flex-row justify-start items-center gap-6"
 							>
 								<span class="mr-3 text-sm">{String(1).padStart(2, '0')}</span>
-								<Text variant="p"
-									>Join on our
-									<Anchor href={formatLink(importantLinks.discordCommunity)}>Discord</Anchor>
-									server</Text
+								<span>
+									<Text variant="p">
+										Contribute on
+										<Anchor href={formatLink(importantLinks.github)}>GitHub</Anchor>
+									</Text>
+								</span>
+
+								<ListItem
+									className="first:border-t border-b border-neutral-700 p-6 flex flex-row justify-start items-center gap-6"
 								>
+									<span class="mr-3 text-sm">{String(1).padStart(2, '0')}</span>
+									<Text variant="p"
+										>Join on our
+										<Anchor href={formatLink(importantLinks.discordCommunity)}>Discord</Anchor>
+										server</Text
+									>
+								</ListItem>
 							</ListItem>
-						</ListItem>
+						</List>
 					</Collapse>
 				</div>
 			</div>
