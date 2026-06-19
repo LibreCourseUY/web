@@ -22,7 +22,7 @@ const route = [
 <div
   class={cn(
     className,
-    "h-16 w-dvw bg-background/95 px-12 lg:px-24 sticky top-0 backdrop-blur-sm z-50",
+    "h-16 w-dvw bg-background/95 px-6 md:px-12 lg:px-24 sticky top-0 backdrop-blur-sm z-50 flex items-center justify-center",
   )}
 >
   <div
@@ -34,10 +34,10 @@ const route = [
       </b>
     </span>
 
-    <div class="flex flex-row items-center gap-4">
+    <div class="hidden md:flex flex-row items-center gap-4">
       <ul class="flex flex-row gap-4">
         {route.map((item, _, arr) => (
-          <li key={item.name}>
+          <li>
             <a
               class={cn(
                 "text-sm font-bold inline-block",
@@ -63,5 +63,93 @@ const route = [
         En
       </button>
     </div>
+
+    <button
+      id="mobile-menu-toggle"
+      class="md:hidden relative flex flex-col justify-center items-center w-8 h-8 z-50 group"
+    >
+      <span class="absolute w-7 h-0.5 bg-emphasis rounded-full transition-transform duration-300 -translate-y-1 group-[.is-open]:translate-y-0 group-[.is-open]:rotate-45"></span>
+      <span class="absolute w-7 h-0.5 bg-emphasis rounded-full transition-transform duration-300 translate-y-1 group-[.is-open]:translate-y-0 group-[.is-open]:-rotate-45"></span>
+    </button>
   </div>
 </div>
+
+<div
+  id="mobile-menu-overlay"
+  class="fixed inset-0 z-[90] flex flex-col bg-background px-6 pt-24 pb-4 transition-transform duration-500 ease-in-out -translate-y-full"
+>
+  <div class="flex flex-1 flex-col items-center justify-start gap-8 pt-8 pb-32">
+    <ul class="flex flex-col items-center gap-8">
+      {route.map((item) => (
+        <li>
+          <a
+            class={cn(
+              "text-2xl font-bold tracking-wide transition-colors",
+              pathname === item.href
+                ? "text-emphasis/60"
+                : "text-emphasis hover:text-emphasis/80",
+            )}
+            href={item.href}
+          >
+            {item.name}
+          </a>
+        </li>
+      ))}
+    </ul>
+    <button
+      disabled
+      class="bg-emphasis mt-4 px-8 py-3 rounded-full font-bold text-background cursor-pointer disabled:cursor-not-allowed transition-transform hover:scale-105 active:scale-95"
+    >
+      En
+    </button>
+  </div>
+</div>
+
+<script>
+  function setupMobileMenu() {
+    const toggleBtn = document.getElementById('mobile-menu-toggle');
+    const overlay = document.getElementById('mobile-menu-overlay');
+
+    if (!toggleBtn || !overlay) return;
+
+    let isOpen = false;
+
+    const toggleMenu = () => {
+      isOpen = !isOpen;
+      if (isOpen) {
+        overlay.classList.remove('-translate-y-full');
+        overlay.classList.add('translate-y-0');
+        toggleBtn.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+      } else {
+        overlay.classList.add('-translate-y-full');
+        overlay.classList.remove('translate-y-0');
+        toggleBtn.classList.remove('is-open');
+        document.body.style.overflow = '';
+      }
+    };
+
+    toggleBtn.addEventListener('click', toggleMenu);
+
+    // closes menu once a link is clicked
+    const links = overlay.querySelectorAll('a');
+    links.forEach(link => {
+      link.addEventListener('click', () => {
+        if (isOpen) toggleMenu();
+      });
+    });
+  }
+
+  setupMobileMenu();
+
+  document.addEventListener('astro:page-load', setupMobileMenu);
+</script>
+
+<style>
+  #mobile-menu-toggle.is-open .line-1 {
+    transform: translateY(0) rotate(45deg);
+  }
+  #mobile-menu-toggle.is-open .line-2 {
+    transform: translateY(0) rotate(-45deg);
+  }
+</style>
