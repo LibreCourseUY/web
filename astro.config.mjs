@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 import partytown from '@astrojs/partytown';
 
 export default defineConfig({
-  site: 'https://example.com',
+  site: 'https://librecourse.uy/',
   vite: {
     plugins: [tailwind()],
   },

@@ -48,11 +48,11 @@ const projects: ProjectType[] = [
 			"is a wrapper around datosuruguay.com and exposes Uruguay's daily-updated economic indicators in a clean, JSON-friendly format.",
 		autor: {
 			name: 'emiliano-gandini',
-			link: 'https://github.com/LibreCourseUY/UruAPI',
+			link: 'https://github.com/emiliano-gandini-outeda',
 		},
 		image: null,
 		stack: ['Python', 'FastAPI', 'Docker'],
-		pj_link: 'https://github.com/LibreCourseUY/fingDB',
+		pj_link: 'https://github.com/LibreCourseUY/UruAPI',
 	},
 	{
 		title: 'KanBan generator',
@@ -82,7 +82,7 @@ const projects: ProjectType[] = [
 				variant="h1"
 				className="max-w-4xl mb-4 col-start-1 col-end-12 row-start-1 row-end-5 z-10"
 			>
-				Open Source projects made by students, for students.
+				Build in public. Become open source.
 			</Text>
 
 			<div class="flex flex-wrap flex-row justify-between w-full gap-4">
@@ -95,8 +95,8 @@ const projects: ProjectType[] = [
 					</Anchor>
 					<Anchor
 						className="font-bold whitespace-nowrap"
-						href="https://github.com/LibreCourseUY"
-						disabled
+						href="/contribute/"
+						openInTab
 					>
 						Start Contributing
 					</Anchor>
@@ -114,7 +114,7 @@ const projects: ProjectType[] = [
 		</section>
 		<section
 			id="about"
-			class="mb-12 w-full flex flex-row flex-wrap md:flex-nowrap items-start justify-center gap-x-12"
+			class="mb-12 w-full flex flex-row flex-wrap lg:flex-nowrap items-start justify-center gap-x-12"
 		>
 			<div class="flex flex-col w-full space-y-12">
 				<Text variant="h2">What is <br /> LibreCourseUY</Text>
@@ -138,7 +138,7 @@ const projects: ProjectType[] = [
 				class="aspect-video object-cover mt-12 self-center"
 				inferSize={true}
 				loading="lazy"
-				width={720}
+				width={620}
 				height={380}
 			/>
 		</section>
@@ -199,35 +199,37 @@ const projects: ProjectType[] = [
 					</Collapse>
 
 					<Collapse question="Where can I find LibreCourseUY?">
-						<ListItem
-							className="first:border-t border-b border-neutral-700 p-6 flex flex-row justify-start items-center gap-6"
-						>
-							<span class="mr-3 text-sm">{String(1).padStart(2, '0')}</span>
-							<span>
-								<Text variant="p">
-									Contribute on
-									<Anchor href={formatLink(importantLinks.github)}>GitHub</Anchor>
-								</Text>
-							</span>
-
+						<List>
 							<ListItem
 								className="first:border-t border-b border-neutral-700 p-6 flex flex-row justify-start items-center gap-6"
 							>
 								<span class="mr-3 text-sm">{String(1).padStart(2, '0')}</span>
-								<Text variant="p"
-									>Join on our
-									<Anchor href={formatLink(importantLinks.discordCommunity)}>Discord</Anchor>
-									server</Text
+								<span>
+									<Text variant="p">
+										Contribute on
+										<Anchor href={formatLink(importantLinks.github)}>GitHub</Anchor>
+									</Text>
+								</span>
+
+								<ListItem
+									className="first:border-t border-b border-neutral-700 p-6 flex flex-row justify-start items-center gap-6"
 								>
+									<span class="mr-3 text-sm">{String(1).padStart(2, '0')}</span>
+									<Text variant="p"
+										>Join on our
+										<Anchor href={formatLink(importantLinks.discordCommunity)}>Discord</Anchor>
+										server</Text
+									>
+								</ListItem>
 							</ListItem>
-						</ListItem>
+						</List>
 					</Collapse>
 				</div>
 			</div>
 		</section>
 		<footer class="min-h-64 flex flex-row gap-x-12 justify-end items-end pb-12">
 			<span class="text-emphasis/60">Libre<span>Course</span>UY</span>
-			<span class="footer-copy">© 2026 — Open Source Education</span>
+			<span class="footer-copy">© 2026 | Open Source Education</span>
 		</footer>
 	</main>
 </Layout>

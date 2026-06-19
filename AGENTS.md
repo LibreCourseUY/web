@@ -28,13 +28,13 @@ src/
 
 ## Conventions
 
-- **Class merging**: Use `cn()` from `@/lib/utils` (tailwind-merge + clsx) — never raw template literals for conditional classes.
+- **Class merging**: Use `cn()` from `@/lib/utils` (tailwind-merge + clsx) never raw template literals for conditional classes.
 - **Astro components**: `.astro` extension, use Astro fetch/frontmatter for data and server rendering.
 - **Path alias**: `@/` maps to `src/` (configured in `tsconfig.json`).
-- **SEO**: Add `<Layout title="..." description="...">` on every page — it wraps astro-seo's `<SEO>`.
+- **SEO**: Add `<Layout title="..." description="...">` on every page, it wraps astro-seo's `<SEO>`.
 - **Fonts**: Import Fontsource CSS in layout frontmatter (e.g. `@fontsource/inter/400.css`).
 - **Images**: Use Astro's built-in `<Image />` from `astro:assets` for optimized images (no extra package needed).
-- **Dark mode**: Tailwind `dark:` variants work out of the box — no class switching is configured by default.
+- **Dark mode**: Tailwind `dark:` variants work out of the box, no class switching is configured by default.
 
 ## Config Files
 
@@ -47,11 +47,11 @@ src/
 
 ## Framework Notes
 
-- **Partytown** is configured with `forward: ['dataLayer.push']` — uncomment/add analytics forwarding in `astro.config.mjs`.
-- **Sitemap** auto-generates at build from `src/pages/` routes — the `site` URL in `astro.config.mjs` must be updated before production.
-- **astro-seo** provides an `<SEO>` component with Open Graph, Twitter card, and JSON-LD props — see `src/layouts/Layout.astro` for basic usage; extend as needed.
+- **Partytown** is configured with `forward: ['dataLayer.push']`, uncomment/add analytics forwarding in `astro.config.mjs`.
+- **Sitemap** auto-generates at build from `src/pages/` routes, the `site` URL in `astro.config.mjs` must be updated before production.
+- **astro-seo** provides an `<SEO>` component with Open Graph, Twitter card, and JSON-LD props, see `src/layouts/Layout.astro` for basic usage; extend as needed.
 
 ## Toolchain Quirks
 
-- `prettier-plugin-astro` is required for `.astro` formatting — it will not format `.astro` files without being listed in `.prettierrc` plugins.
-- ESLint's `astro-eslint-parser` is configured only for `*.astro` files via the overrides block — `.ts` files use the `@typescript-eslint/parser` normally.
+- `prettier-plugin-astro` is required for `.astro` formatting, it will not format `.astro` files without being listed in `.prettierrc` plugins.
+- ESLint's `astro-eslint-parser` is configured only for `*.astro` files via the overrides block, `.ts` files use the `@typescript-eslint/parser` normally.
