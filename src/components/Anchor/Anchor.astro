@@ -6,9 +6,10 @@ export interface Props {
   className?: string;
   href?: string;
   disabled?: boolean;
+  openInTab?: boolean;
 }
 
-const { href, className, disabled } = Astro.props;
+const { href, className, disabled, openInTab=false } = Astro.props;
 ---
 
 <style>
@@ -35,7 +36,7 @@ const { href, className, disabled } = Astro.props;
   ) : (
     <a
       href={href}
-      target="_blank"
+      target={openInTab ? "_self" : "_blank"}
       class={cn("anchor relative text-2xl text-emphasis-secondary cursor-pointer hover:text-emphasis-secondary/80", className)}
     >
       <slot />
