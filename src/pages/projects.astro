@@ -1,0 +1,29 @@
+---
+// src/pages/projects.astro
+import Layout from '@/layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import type { ProjectsGitHubType } from '@/lib/types';
+import RepoCard from '@/components/RepoCard/RepoCard.astro';
+
+const projects = (await getCollection('projects')) as ProjectsGitHubType[];
+
+const filterProjects = ['.github', 'libreblog', 'scripts', 'initial-Challenges', 'web'];
+---
+
+<Layout
+	title="Projects | LibreCourseUY"
+	description="Explore all projects from LibreCourseUY."
+>
+	<main class="mx-auto px-4 py-12 space-y-6">
+		<h1 class="text-4xl font-bold">Projects</h1>
+		<p class="text-neutral-400">Repositories from the LibreCourseUY GitHub organization.</p>
+
+		<div class='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-12'>
+			{
+				projects
+					.filter(({ data }) => !filterProjects.includes(data.name) && data.description)
+					.map(({ data }) => <RepoCard {...data} />)
+			}
+		</div>
+	</main>
+</Layout>
