@@ -59,7 +59,7 @@ const MAX_TOPICS = 5;
 	<div
 		class="mt-auto flex flex-wrap items-center gap-3.5 border-t border-neutral-700 pt-3 text-xs text-neutral-400"
 	>
-		{language && <span>{language}</span>}
+		{language && <span class='underline text-emphasis'>{language}</span>}
 		{
 			stars !== undefined && stars > 0 && (
 				<span class="flex items-center gap-1">
@@ -68,7 +68,7 @@ const MAX_TOPICS = 5;
 						width="13"
 						height="13"
 						viewBox="0 0 24 24"
-						fill="none"
+						fill="yellow"
 						stroke="currentColor"
 						stroke-width="1.5"
 						stroke-linecap="round"
