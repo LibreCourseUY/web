@@ -4,6 +4,7 @@ import '@fontsource/inter/400.css';
 import '@fontsource/inter/700.css';
 import '@fontsource/inter/900.css';
 import { SEO } from 'astro-seo';
+import { ClientRouter } from 'astro:transitions';
 // Components
 import Navbar from '@/components/Navbar/Navbar.astro';
 // Utils
@@ -25,12 +26,13 @@ const { title, description } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <ClientRouter />
     <SEO
       title={title}
       description={description}
     />
   </head>
-  <body class={cn("bg-background font-sans text-emphasis antialiased max-w-[100vw] overflow-x-hidden")}>
+  <body class={cn("bg-background font-sans text-emphasis antialiased max-w-[100vw] overflow-x-hidden")} transition:animate="fade">
     <Navbar pathname={Astro.url.pathname} />
     <div class='mx-12 md:mx-24'>
       <slot />
