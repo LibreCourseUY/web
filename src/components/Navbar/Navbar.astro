@@ -44,7 +44,7 @@ const route = [
                 arr.at(-1)?.name === item.name
                   ? "pr-0 border-r-0"
                   : "pr-3 border-r border-neutral-700",
-                pathname === item.href
+                pathname === item.href || pathname === `${item.href}/`
                   ? "text-emphasis/60 font-normal"
                   : "text-emphasis hover:text-emphasis/80",
               )}
