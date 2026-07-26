@@ -1,25 +1,37 @@
-// src/content/config.ts
 import { defineCollection, z } from 'astro:content';
 
 const projects = defineCollection({
   loader: async () => {
-    const res = await fetch('https://api.github.com/orgs/LibreCourseUY/repos?per_page=100&sort=updated', {
-      headers: {
-        Authorization: `Bearer ${import.meta.env.GITHUB_TOKEN}`,
-        Accept: 'application/vnd.github+json',
-      },
-    });
-    const repos = await res.json();
-    return repos.map((repo: any) => ({
-      id: repo.name,
-      name: repo.name,
-      description: repo.description,
-      url: repo.html_url,
-      stars: repo.stargazers_count,
-      language: repo.language,
-      updatedAt: repo.updated_at,
-      topics: repo.topics,
-    }));
+    try {
+      const res = await fetch('https://api.github.com/orgs/LibreCourseUY/repos?per_page=100&sort=updated', {
+        headers: {
+          Authorization: `Bearer ${import.meta.env.GITHUB_TOKEN}`,
+          Accept: 'application/vnd.github+json',
+        },
+      });
+      if (!res.ok) {
+        console.warn(`GitHub API error: ${res.status} ${res.statusText}`);
+        return [];
+      }
+      const repos: any[] = await res.json();
+      if (!Array.isArray(repos)) {
+        console.warn(`Unexpected GitHub API response: ${JSON.stringify(repos)}`);
+        return [];
+      }
+      return repos.map((repo: any) => ({
+        id: repo.name,
+        name: repo.name,
+        description: repo.description,
+        url: repo.html_url,
+        stars: repo.stargazers_count,
+        language: repo.language,
+        updatedAt: repo.updated_at,
+        topics: repo.topics,
+      }));
+    } catch (err) {
+      console.warn('Failed to fetch GitHub repos:', err);
+      return [];
+    }
   },
   schema: z.object({
     name: z.string(),
