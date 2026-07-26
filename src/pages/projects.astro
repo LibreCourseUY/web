@@ -1,11 +1,20 @@
 ---
 // src/pages/projects.astro
 import Layout from '@/layouts/Layout.astro';
-import { getCollection } from 'astro:content';
 import type { ProjectsGitHubType } from '@/lib/types';
 import RepoCard from '@/components/RepoCard/RepoCard.astro';
 
-const projects = (await getCollection('projects')) as ProjectsGitHubType[];
+const projects: ProjectsGitHubType[] = [
+  { id: 'UruAPI', collection: 'projects', data: { name: 'UruAPI', description: "API wrapping datosuruguay.com, programmatic access to Uruguay's daily economic indicators: exchange rates, inflation (IPC), fuel & transit prices, and more, all from official sources.", url: 'https://github.com/LibreCourseUY/UruAPI', stars: 3, language: 'Python', updatedAt: '2026-07-22T10:36:45Z', topics: ['api', 'uruguay', 'economics', 'exchange-rates', 'inflation', 'fuel-prices', 'datosuruguay'] } },
+  { id: 'ArgosUY', collection: 'projects', data: { name: 'ArgosUY', description: 'ArgosUY is an open-source platform that indexes the GitHub ecosystem of Uruguay, users, organizations, repositories, and individual commits, stores it in ClickHouse, and exposes a FastAPI backend.', url: 'https://github.com/LibreCourseUY/ArgosUY', stars: 0, language: 'Dockerfile', updatedAt: '2026-07-03T01:01:27Z', topics: ['uruguay', 'github-ecosystem', 'clickhouse', 'fastapi', 'open-source'] } },
+  { id: 'fingcomms', collection: 'projects', data: { name: 'fingcomms', description: 'Directory for student groups.', url: 'https://github.com/LibreCourseUY/fingcomms', stars: 2, language: 'HTML', updatedAt: '2026-06-30T02:15:09Z', topics: [] } },
+  { id: 'react-components', collection: 'projects', data: { name: 'react-components', description: 'react-components [LibreCourseUY] es un ecosistema colaborativo diseñado para desarrolladores que están dando sus primeros pasos en React. El objetivo no es solo construir componentes, sino aprender el flujo de trabajo profesional: desde la creación de componentes hasta la gestión de Pull Requests y el mantenimiento de una biblioteca compartida.', url: 'https://github.com/LibreCourseUY/react-components', stars: 1, language: 'TypeScript', updatedAt: '2026-06-10T17:43:07Z', topics: ['react', 'components', 'learning', 'collaborative'] } },
+  { id: 'Inkfing', collection: 'projects', data: { name: 'Inkfing', description: 'A dark-mode extension targeting FING specific websites\\apps', url: 'https://github.com/LibreCourseUY/Inkfing', stars: 6, language: 'CSS', updatedAt: '2026-06-06T21:16:04Z', topics: [] } },
+  { id: 'PolyAPI', collection: 'projects', data: { name: 'PolyAPI', description: 'PolyAPI is a polyglot API architecture that demonstrates how to build production-ready APIs using multiple programming languages, each contributing isolated, well-defined modules.', url: 'https://github.com/LibreCourseUY/PolyAPI', stars: 0, language: 'Python', updatedAt: '2026-06-01T22:07:50Z', topics: ['api', 'polyglot', 'microservices', 'architecture'] } },
+  { id: 'fingDB', collection: 'projects', data: { name: 'fingDB', description: 'Centralized site with course information, prerequisites, and career data.', url: 'https://github.com/LibreCourseUY/fingDB', stars: 3, language: 'HTML', updatedAt: '2026-06-01T22:07:50Z', topics: ['education', 'courses', 'university'] } },
+  { id: 'librecourseuy.github.io', collection: 'projects', data: { name: 'librecourseuy.github.io', description: 'The LibrecourseUY community portal. Git guides, how to contribute, documentation, and projects.', url: 'https://github.com/LibreCourseUY/librecourseuy.github.io', stars: 5, language: 'Vue', updatedAt: '2026-05-13T04:09:20Z', topics: ['community', 'documentation', 'portal'] } },
+  { id: 'fingmap', collection: 'projects', data: { name: 'fingmap', description: 'Interactive map of the Faculty of Engineering campus.', url: 'https://github.com/LibreCourseUY/fingmap', stars: 4, language: 'Vue', updatedAt: '2026-05-13T04:09:19Z', topics: ['map', 'interactive', 'campus'] } },
+];
 
 const filterProjects = ['.github', 'libreblog', 'scripts', 'initial-Challenges', 'web'];
 ---
@@ -18,7 +27,7 @@ const filterProjects = ['.github', 'libreblog', 'scripts', 'initial-Challenges',
 		<h1 class="text-4xl font-bold">Projects</h1>
 		<p class="text-neutral-400">Repositories from the LibreCourseUY GitHub organization.</p>
 
-		<div class='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-12'>
+		<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-12">
 			{
 				projects
 					.filter(({ data }) => !filterProjects.includes(data.name) && data.description)
