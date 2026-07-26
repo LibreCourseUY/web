@@ -10,8 +10,8 @@ RUN pnpm install --frozen-lockfile
 
 COPY . .
 
-ARG GH_TOKEN
-ENV GH_TOKEN=$GH_TOKEN
+ARG GITHUB_TOKEN
+ENV GITHUB_TOKEN=$GITHUB_TOKEN
 
 RUN pnpm build
 
