@@ -9,6 +9,10 @@ COPY package.json ./
 RUN pnpm install --frozen-lockfile
 
 COPY . .
+
+ARG GITHUB_TOKEN
+ENV GITHUB_TOKEN=$GITHUB_TOKEN
+
 RUN pnpm build
 
 FROM nginx:stable-alpine AS runner

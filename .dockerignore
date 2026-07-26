@@ -6,3 +6,4 @@ dist
 .pnpm-store
 .github
 *.md
+.astro/
