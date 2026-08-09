@@ -3,43 +3,35 @@
 import { cn } from '@/lib/utils';
 
 export interface Props {
-  className?: string;
-  href?: string;
-  disabled?: boolean;
-  openInTab?: boolean;
+	className?: string;
+	href?: string;
+	disabled?: boolean;
+	openInTab?: boolean;
 }
 
-const { href, className, disabled, openInTab=false } = Astro.props;
+const { href, className, disabled, openInTab = false } = Astro.props;
 ---
 
-<style>
-  .anchor:hover::after { opacity: .8; }
-  .disabled.anchor:hover::after { opacity: 1; }
-  .anchor::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background-color: var(--color-emphasis-secondary);
-  }
-</style>
-
 {
-  disabled ? (
-    <span
-      class={cn("anchor disabled relative text-2xl text-emphasis-secondary/60 cursor-default", className)}
-    >
-      <slot />
-    </span>
-  ) : (
-    <a
-      href={href}
-      target={openInTab ? "_self" : "_blank"}
-      class={cn("anchor relative text-2xl text-emphasis-secondary cursor-pointer hover:text-emphasis-secondary/80", className)}
-    >
-      <slot />
-    </a>
-  )
+	disabled ? (
+		<span
+			class={cn(
+				'anchor disabled relative text-2xl text-emphasis-secondary/60 cursor-default',
+				className,
+			)}
+		>
+			<slot />
+		</span>
+	) : (
+		<a
+			href={href}
+			target={openInTab ? '_self' : '_blank'}
+			class={cn(
+				'anchor relative text-2xl text-emphasis-secondary cursor-pointer hover:text-emphasis-secondary/80',
+				className,
+			)}
+		>
+			<slot />
+		</a>
+	)
 }
