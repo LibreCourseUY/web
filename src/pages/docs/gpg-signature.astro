@@ -1,0 +1,494 @@
+---
+// Components
+import Anchor from '@/components/Anchor/Anchor.astro';
+import Text from '@/components/Text/Text.astro';
+// Layout
+import Layout from '@/layouts/Layout.astro';
+
+const code = {
+  apt: `apt update
+apt install gnupg -y`,
+  dnf: `dnf update -y
+dnf install gnupg2 -y`,
+  pacman: `pacman -S gnupg`,
+  brew: `brew install gnupg`,
+  version: `gpg --version`,
+  versionOutput: `[user@linux ~]$ gpg --version
+gpg (GnuPG) 2.4.9
+libgcrypt 1.12.2
+Copyright (C) 2025 g10 Code GmbH
+License GNU GPL-3.0-or-later <https://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Home: /home/user/.gnupg
+Supported algorithms:
+Pubkey: RSA, ELG, DSA, ECDH, ECDSA, EDDSA
+Cipher: IDEA, 3DES, CAST5, BLOWFISH, AES, AES192, AES256, TWOFISH,
+    CAMELLIA128, CAMELLIA192, CAMELLIA256
+Hash: SHA1, RIPEMD160, SHA256, SHA384, SHA512, SHA224
+Compression: Uncompressed, ZIP, ZLIB, BZIP2`,
+  generate: `gpg --full-generate-key`,
+  keyPrompt: `[user@linux ~]$ gpg --full-generate-key
+gpg (GnuPG) 2.4.9; Copyright (C) 2025 g10 Code GmbH
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Please select what kind of key you want:
+    (1) RSA and RSA
+    (2) DSA and Elgamal
+    (3) DSA (sign only)
+    (4) RSA (sign only)
+    (9) ECC (sign and encrypt) *default*
+    (10) ECC (sign only)
+    (14) Existing key from card
+Your selection? `,
+  curve: `Please select which elliptic curve you want:
+    (1) Curve 25519 *default*
+    (4) NIST P-384
+    (6) Brainpool P-256
+Your selection?`,
+  validityPrompt: `Please specify how long the key should be valid.
+        0 = key does not expire
+    <n>  = key expires in n days
+    <n>w = key expires in n weeks
+    <n>m = key expires in n months
+    <n>y = key expires in n years
+Key is valid for? (0)`,
+  confirmExpiry: `Key does not expire at all
+Is this correct? (y/N)`,
+  realName: `GnuPG needs to construct a user ID to identify your key.
+
+Real name:`,
+  emailPrompt: `Email address:`,
+  commentPrompt: `Comment:`,
+  created: `We need to generate a lot of random bytes. It is a good idea to perform
+some other action (type on the keyboard, move the mouse, utilize the
+disks) during the prime generation; this gives the random number
+generator a better chance to gain enough entropy.
+We need to generate a lot of random bytes. It is a good idea to perform
+some other action (type on the keyboard, move the mouse, utilize the
+disks) during the prime generation; this gives the random number
+generator a better chance to gain enough entropy.
+gpg: directory '/home/user/.gnupg/openpgp-revocs.d' created
+gpg: revocation certificate stored as '/home/user/.gnupg/openpgp-revocs.d/532E183AC87324997E2A064EC4D02E34E0956389.rev'
+public and secret key created and signed.
+
+pub   ed25519 2026-08-28 [SC]
+      532E183AC87324997E2A064EC4D02E34E0956389
+uid                      user <user@example.com>
+sub   cv25519 2026-08-28 [E]`,
+  gitIdentity: `git config --global user.name "Your Name"
+git config --global user.email "you@example.com"`,
+  signingKey: `git config --global user.signingkey C4D02E34E0956389`,
+  enableSign: `git config --global commit.gpgsign true`,
+  commitSingle: `git commit -S -m "Your commit message"`,
+  verifyLog: `git log --show-signature`,
+  gpgProgram: `git config --global gpg.program "C:\\Program Files (x86)\\GnuPG\\bin\\gpg.exe"`,
+  listSecret: `gpg --list-secret-keys --keyid-format=long`,
+  listSecretOutput: `[keyboxd]
+---------
+sec   ed25519/C4D02E34E0956389 2026-08-28 [SC]
+      532E183AC87324997E2A064EC4D02E34E0956389
+uid                 [ultimate] user <user@example.com>
+ssb   cv25519/88E544D3D639D488 2026-08-28 [E]`,
+  exportKey: `gpg --armor --export C4D02E34E0956389
+# Prints the GPG key ID, in ASCII armor format`,
+  pushTest: `git add .
+git commit -m "Test signed commit"
+git push`,
+  noreplyEmail: `git config --global user.email "<id>+<username>@users.noreply.github.com"`,
+} as const;
+
+const fingerprint = '532E183AC87324997E2A064EC4D02E34E0956389';
+const keyId = 'C4D02E34E0956389';
+---
+
+<style>
+	code {
+		overflow-x: auto;
+	}
+</style>
+
+<Layout
+  title="GPG Signature Guide | LibreCourseUY"
+  description="Learn how to install GPG, generate a signing key pair, sign your Git commits, and verify them on GitHub."
+>
+  <main class="flex min-h-screen flex-col items-start justify-center">
+    <section class="flex flex-col justify-start items-start w-full min-h-dvh mt-12 md:pt-12">
+      <div class="space-y-12 w-full max-w-4xl">
+        <div class="space-y-12">
+          <Text variant="h1">GPG Signature</Text>
+          <Text variant="p">
+            A GPG signature is a way to cryptographically prove that a file or a commit really comes
+            from you. This guide walks you through installing GPG, creating a signing key pair,
+            signing your Git commits, and adding your public key to GitHub so your commits show up
+            as "Verified".
+          </Text>
+        </div>
+
+        <div class="space-y-2 ml-4 border border-neutral-700 p-6 space-y-4">
+          <Text variant="h3">Index</Text>
+          <ul>
+            <li>
+              <Anchor openInTab href="#installing-gpg">Installing GPG</Anchor>
+            </li>
+            <li>
+              <Anchor openInTab href="#creating-a-signature">Creating a signature</Anchor>
+            </li>
+            <li>
+              <Anchor openInTab href="#signing-git-commits">
+                Signing Git commits with your gpg signature</Anchor
+              >
+            </li>
+            <li>
+              <Anchor openInTab href="#commit-signature-verification">
+                Commit signature verification on GitHub</Anchor
+              >
+            </li>
+          </ul>
+        </div>
+
+        <hr class="border-neutral-700" />
+
+        <div class="space-y-8">
+          <Text variant="h2" id="installing-gpg"> Installing GPG </Text>
+
+          <div class="space-y-4">
+            <Text variant="h3">Windows</Text>
+            <Text variant="p">
+              Download Gpg4win at{' '}
+              <Anchor href="https://gnupg.org/download/index.html#binary">gnupg.org</Anchor>.
+            </Text>
+          </div>
+
+          <div class="space-y-4">
+            <Text variant="h3">Linux</Text>
+
+            <div class="space-y-4 ml-4">
+              <Text variant="h4">Debian/Ubuntu</Text>
+              <code
+                class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+                set:text={code.apt}
+              />
+            </div>
+
+            <div class="space-y-4 ml-4">
+              <Text variant="h4">Fedora/RedHat</Text>
+              <code
+                class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+                set:text={code.dnf}
+              />
+            </div>
+
+            <div class="space-y-4 ml-4">
+              <Text variant="h4">Arch</Text>
+              <Text variant="p">
+                gnupg should already be installed on your system as it is a dependency of pacman (
+                <Anchor href="https://wiki.archlinux.org/title/GnuPG">ArchWiki</Anchor>).
+              </Text>
+              <code
+                class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+                set:text={code.pacman}
+              />
+            </div>
+          </div>
+
+          <div class="space-y-4">
+            <Text variant="h3">macOS</Text>
+            <Text variant="p">
+              If you don't have Homebrew installed, install it first at{' '}
+              <Anchor href="https://brew.sh">brew.sh</Anchor>, then run:
+            </Text>
+            <code
+              class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+              set:text={code.brew}
+            />
+          </div>
+        </div>
+
+        <hr class="border-neutral-700" />
+
+        <div class="space-y-8">
+          <Text variant="h2" id="creating-a-signature"> Creating a signature </Text>
+
+          <div class="space-y-4">
+            <Text variant="h3">Checking if gpg is installed</Text>
+            <Text variant="p">Open your terminal and run:</Text>
+            <code
+              class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+              set:text={code.version}
+            />
+            <Text variant="p">It should output:</Text>
+            <code
+              class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+              set:text={code.versionOutput}
+            />
+            <Text variant="p"
+              >After checking GPG is installed correctly, we should start creating a key.</Text
+            >
+          </div>
+
+          <div class="space-y-4">
+            <Text variant="h3">Start creating your key pairs</Text>
+            <code
+              class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+              set:text={code.generate}
+            />
+
+            <div class="p-4 border border-neutral-700 rounded space-y-4">
+              <Text variant="p">
+                <strong class="underline">Heads up:</strong> this is an interactive wizard. It will ask
+                you several questions and then a separate passphrase prompt. That passphrase prompt may
+                open as its own window (a "pinentry" popup) — just type your passphrase there. On a server
+                without a graphical interface it will instead ask you in the terminal.
+              </Text>
+            </div>
+
+            <Text variant="p">
+              It should display a prompt to specify what kind of key you want, press{' '}
+              <code class="p-1 bg-neutral-900 rounded text-sm">Enter</code> to continue with the default
+              or select what kind you want.
+            </Text>
+            <code
+              class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+              set:text={code.keyPrompt}
+            />
+
+            <Text variant="p">
+              At the prompt, select which elliptic curve you want, press{' '}
+              <code class="p-1 bg-neutral-900 rounded text-sm">Enter</code> to continue with the default
+              or select what you want.
+            </Text>
+            <code
+              class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+              set:text={code.curve}
+            />
+
+            <Text variant="p">
+              Then when it asks you to specify the expiry time, press{' '}
+              <code class="p-1 bg-neutral-900 rounded text-sm">Enter</code> to continue with the default
+              or select what you want.
+            </Text>
+            <code
+              class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+              set:text={code.validityPrompt}
+            />
+
+            <Text variant="p">
+              If you entered <code class="p-1 bg-neutral-900 rounded text-sm">0</code> or{' '}
+              <code class="p-1 bg-neutral-900 rounded text-sm">Enter</code>, then you should type{
+                ' '
+              }
+              <code class="p-1 bg-neutral-900 rounded text-sm">y</code> to confirm it.
+            </Text>
+            <code
+              class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+              set:text={code.confirmExpiry}
+            />
+
+            <Text variant="p">Input your real name</Text>
+            <code
+              class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+              set:text={code.realName}
+            />
+
+            <Text variant="p">Email address (use the verified email for GitHub)</Text>
+            <code
+              class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+              set:text={code.emailPrompt}
+            />
+
+            <Text variant="p">Enter comment or leave empty</Text>
+            <code
+              class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+              set:text={code.commentPrompt}
+            />
+
+            <div class="rounded-lg border border-neutral-700 p-6 space-y-2">
+              <Text variant="p">
+                After all of this confirm that the inputted info is correct, if yes type{' '}
+                <code class="p-1 bg-neutral-900 rounded text-sm">O</code> and continue. It should open
+                a prompt to type your passphrase (use a secure passphrase).
+              </Text>
+
+              <Text variant="p">Once finished it should generate your own gpg signature.</Text>
+
+              <p class="text-xs font-semibold uppercase text-emphasis-secondary">Output:</p>
+              <code
+                class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+                set:text={code.created}
+              />
+            </div>
+
+            <Text variant="p">
+              Note the two numbers at the end of the output:{' '}
+              <code class="p-1 bg-neutral-900 rounded text-sm">{fingerprint}</code> is your key's full
+              <strong>fingerprint</strong>, and{' '}
+              <code class="p-1 bg-neutral-900 rounded text-sm">{keyId}</code> is the <strong
+                >key ID</strong
+              >{' '}
+              — it's simply the last 16 characters of the fingerprint. You'll use the key ID later when
+              telling Git which key to sign with.
+            </Text>
+          </div>
+        </div>
+
+        <hr class="border-neutral-700" />
+
+        <div class="space-y-8">
+          <Text variant="h2" id="signing-git-commits">
+            Signing Git commits with your gpg signature
+          </Text>
+
+          <Text variant="p"
+            >Now that we have our key, we need to tell Git to use it to sign our commits.</Text
+          >
+          <Text variant="p">
+            First, make sure Git knows who you are. The email you use here must match the email
+            address you used in the GPG key (and the verified email on your GitHub account),
+            otherwise GitHub will not show your commits as "Verified":
+          </Text>
+          <code
+            class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+            set:text={code.gitIdentity}
+          />
+
+          <Text variant="p">
+            Next, configure Git to use the GPG key we generated. Replace{' '}
+            <code class="p-1 bg-neutral-900 rounded text-sm">{keyId}</code> with the key ID from your
+            own output (the last 16 characters of your fingerprint):
+          </Text>
+          <code
+            class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+            set:text={code.signingKey}
+          />
+
+          <Text variant="p">Enable signing for all commits by default:</Text>
+          <code
+            class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+            set:text={code.enableSign}
+          />
+
+          <Text variant="p">
+            Now every commit you make will be signed. To sign a single commit explicitly, use the{
+              ' '
+            }
+            <code class="p-1 bg-neutral-900 rounded text-sm">-S</code> flag:
+          </Text>
+          <code
+            class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+            set:text={code.commitSingle}
+          />
+
+          <Text variant="p">To verify that your commits are signed, use:</Text>
+          <code
+            class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+            set:text={code.verifyLog}
+          />
+
+          <div class="p-4 border border-neutral-700 rounded space-y-4">
+            <Text variant="p">
+              <strong class="underline">Windows only:</strong> if Git can't find Gpg4win's{' '}
+              <code class="p-1 bg-neutral-900 rounded text-sm">gpg</code> binary, tell Git where it lives
+              (adjust the path to your install):
+            </Text>
+            <code
+              class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+              set:text={code.gpgProgram}
+            />
+          </div>
+        </div>
+
+        <hr class="border-neutral-700" />
+
+        <div class="space-y-8">
+          <Text variant="h2" id="commit-signature-verification">
+            Commit signature verification on GitHub
+          </Text>
+
+          <Text variant="p">Run:</Text>
+          <code
+            class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+            set:text={code.listSecret}
+          />
+          <code
+            class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+            set:text={code.listSecretOutput}
+          />
+
+          <Text variant="p">
+            From the list of GPG keys, copy the key ID (the 16-character one) you'd like to use. In
+            this example, the GPG key ID is <strong>{keyId}</strong>:
+          </Text>
+          <code
+            class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+            set:text={code.exportKey}
+          />
+
+          <Text variant="p">
+            Copy your GPG key, beginning with{' '}
+            <code class="p-1 bg-neutral-900 rounded text-sm"
+              >-----BEGIN PGP PUBLIC KEY BLOCK-----</code
+            >{' '}
+            and ending with{' '}
+            <code class="p-1 bg-neutral-900 rounded text-sm"
+              >-----END PGP PUBLIC KEY BLOCK-----</code
+            >.
+          </Text>
+          <Text variant="p">
+            Add it on GitHub following this{' '}
+            <Anchor
+              href="https://docs.github.com/en/authentication/managing-commit-signature-verification/adding-a-gpg-key-to-your-github-account#adding-a-gpg-key"
+              >guide</Anchor
+            >.
+          </Text>
+        </div>
+
+        <hr class="border-neutral-700" />
+
+        <div class="space-y-8">
+          <Text variant="h2">Verify it worked</Text>
+          <div class="space-y-4 ml-4">
+            <div class="space-y-4">
+              <Text variant="p">
+                <strong>1. Push a signed commit.</strong> Make a signed commit (or any commit, since signing
+                is now enabled by default) and push it to GitHub:
+              </Text>
+              <code
+                class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+                set:text={code.pushTest}
+              />
+            </div>
+            <div class="space-y-4">
+              <Text variant="p">
+                <strong>2. Check the badge.</strong> Open the commit on GitHub. You should see a green
+                <strong>Verified</strong> badge next to your commit.
+              </Text>
+            </div>
+          </div>
+
+          <div class="space-y-4">
+            <Text variant="p">
+              If the commit shows as "Unverified", the most common cause is an email mismatch.
+              GitHub only shows "Verified" for commits made with a verified email address. To avoid
+              this, you can use GitHub's noreply email instead of your personal one:
+            </Text>
+            <code
+              class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+              set:text={code.noreplyEmail}
+            />
+            <Text variant="p">
+              You can find your own noreply address on GitHub under{' '}
+              <strong>Settings → Emails</strong>.
+            </Text>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="min-h-64 flex flex-row gap-x-12 justify-end items-end pb-12">
+      <span class="text-emphasis/60">Libre<span>Course</span>UY</span>
+      <span class="footer-copy">© 2026 | Open Source Education</span>
+    </footer>
+  </main>
+</Layout>

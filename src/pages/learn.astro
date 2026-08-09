@@ -1,0 +1,405 @@
+---
+// Components
+import Anchor from '@/components/Anchor/Anchor.astro';
+import List from '@/components/List/List.astro';
+import ListItem from '@/components/List/ListItem.astro';
+import Text from '@/components/Text/Text.astro';
+// Layout
+import Layout from '@/layouts/Layout.astro';
+// Utils
+import { formatLink } from '@/lib/utils';
+
+const deepwiki = 'https://deepwiki.com';
+const discord = 'https://discord.gg/ZrtwyxcQ';
+
+const scope = [
+	{
+		title: 'Learn in community!',
+		description: `Join our <a href="${discord}" target="_blank" class="underline text-emphasis-secondary">Discord</a>, where you will find a community to learn open source together`,
+	},
+	{
+		title: 'Programming Languages',
+		description: 'Python, JavaScript, Rust, Go, C, Java, and more',
+	},
+	{
+		title: 'Frameworks',
+		description: 'React, Vue, FastAPI, Django, Express, Spring, and more',
+	},
+	{
+		title: 'Tools & Technologies',
+		description: 'Git, Docker, PostgreSQL, MongoDB, AWS, Linux, and more',
+	},
+];
+
+const recommendations = [
+	{
+		title: 'Web Development',
+		items: [
+			{
+				name: 'JavaScript + React',
+				badge: 'Popular',
+				description: 'Most popular, huge community, infinite resources',
+			},
+			{
+				name: 'Python + FastAPI',
+				badge: 'Easy',
+				description: 'Great for APIs, easy syntax, very readable',
+			},
+		],
+	},
+	{
+		title: 'Systems & Low-Level',
+		items: [
+			{
+				name: 'Rust',
+				badge: 'Modern',
+				description: 'Modern, safe, great for learning systems programming',
+			},
+			{
+				name: 'C',
+				badge: 'Foundation',
+				description: 'Foundation of everything, understand how computers work',
+			},
+		],
+	},
+	{
+		title: 'Mobile Development',
+		items: [
+			{
+				name: 'React Native',
+				badge: 'Cross-platform',
+				description: 'Use JavaScript for iOS and Android',
+			},
+			{
+				name: 'Flutter (Dart)',
+				badge: 'Beautiful',
+				description: "Google's framework, beautiful UIs",
+			},
+		],
+	},
+	{
+		title: 'Data & AI',
+		items: [
+			{
+				name: 'Python',
+				badge: 'Top',
+				description: 'The language for AI/ML, easiest for data science',
+			},
+			{
+				name: 'Julia',
+				badge: 'Growing',
+				description: 'Growing fast in scientific computing',
+			},
+		],
+	},
+	{
+		title: 'Automation & Scripting',
+		items: [
+			{
+				name: 'Python',
+				badge: 'Versatile',
+				description: 'Scripts, automation, dev tools, APIs, everything',
+			},
+			{
+				name: 'JavaScript',
+				badge: 'Browser',
+				description: 'Browser automation, Node.js scripts, web scrapers',
+			},
+			{
+				name: 'Bash',
+				badge: 'System',
+				description: 'Shell scripting, Linux automation, CLI tools',
+			},
+			{
+				name: 'Go',
+				badge: 'Fast',
+				description: 'High-performance scripts, CLI tools, automation',
+			},
+		],
+	},
+	{
+		title: 'Other Languages',
+		items: [
+			{
+				name: 'Ruby',
+				badge: 'Trending',
+				description: 'Elegant syntax, great for web development with Rails',
+			},
+			{
+				name: 'TypeScript',
+				badge: 'Web',
+				description: 'JavaScript with types, great for large web apps',
+			},
+			{
+				name: 'Java',
+				badge: 'Enterprise',
+				description: 'Industry standard, Android, enterprise backends',
+			},
+			{
+				name: 'C#',
+				badge: 'Game',
+				description: 'Game development (Unity), Windows apps, .NET',
+			},
+		],
+	},
+];
+
+const phases = [
+	{
+		number: '01',
+		title: 'Quick Context',
+		description: `Watch a short tutorial (no more than 2 hours) to understand the basic syntax and structure of the language or tool. Don't try to learn everything, just get enough context to understand what you're looking at.`,
+		example: `You want to learn Python. Watch a 1-hour "Python for beginners" video to understand variables, loops, functions, and basic data structures. That's it. Don't finish the entire course.`,
+	},
+	{
+		number: '02',
+		title: 'Build Something Real',
+		description: `Find a project to work on or a repository to contribute to. Just start doing it, even if you don't know anything. Learn by using documentation, forums, and search engines. No tutorials. Figure it out yourself.`,
+		example: `You want to contribute to fingcomms. Clone the repo, try to understand the code, make a small change, and push it. When you encounter an error, search on Stack Overflow, read the FastAPI docs, ask in the community`,
+	},
+	{
+		number: '03',
+		title: 'Ask for Help',
+		description: `If you get truly stuck, reach out to more experienced developers through the community groups. This is the "assisted" part of assisted autonomy.`,
+		example: `You've been stuck on the same error for 2+ hours. You've searched everywhere and nothing works. That's when you ask for help in the LibrecourseUY Discord or group chats.`,
+	},
+];
+
+const resources = [
+	{
+		priority: '1',
+		title: 'Official Documentation',
+		description: 'MDN, Python Docs, Rust Docs, always start here',
+	},
+	{
+		priority: '2',
+		title: 'Community Forums',
+		description: 'Stack Overflow, Reddit (r/learnprogramming), community Discord',
+	},
+	{
+		priority: '3',
+		title: 'Tutorials',
+		description: 'Only when you need quick context (limit to 2 hours max)',
+	},
+];
+
+const startOptions = [
+	{
+		title: 'Personal Challenges',
+		description: 'Language-agnostic projects to learn coding',
+		href: '/',
+	},
+	{
+		title: 'Our Projects',
+		description: 'Contribute to real LibrecourseUY projects',
+		href: '/projects',
+	},
+	{
+		title: 'Documentation',
+		description: 'Essential resources and guides',
+		href: '/docs',
+	},
+];
+---
+
+<Layout
+	title="How to Learn | LibreCourseUY"
+	description="Our philosophy for learning programming effectively: assisted autonomy, quick context, building real things, and asking for help."
+>
+	<main class="flex min-h-screen flex-col items-start justify-center">
+		<section class="flex flex-col justify-start items-start w-full min-h-dvh mt-12 md:pt-12">
+			<div class="space-y-12 w-full max-w-4xl">
+				<div class="space-y-12">
+					<Text variant="h1">How to Learn</Text>
+					<Text
+						variant="p"
+						className=""
+					>
+						Our philosophy for learning programming effectively.
+					</Text>
+				</div>
+
+				<hr class="border-neutral-700" />
+
+				<div class="space-y-8">
+					<Text variant="h2">The Approach</Text>
+
+					{
+						phases.map((phase) => (
+							<div class="rounded-lg border border-neutral-700 p-6 space-y-4">
+								<div class="flex flex-row items-center gap-4">
+									<span class="text-sm text-emphasis/60 font-bold">{phase.number}</span>
+									<Text
+										variant="h3"
+										className="font-semibold"
+									>
+										{phase.title}
+									</Text>
+								</div>
+								<Text variant="p">{phase.description}</Text>
+								<div class="p-4 border border-neutral-700 rounded space-y-2">
+									<p class="text-xs font-semibold uppercase text-emphasis-secondary">Example:</p>
+									<Text variant="p">{phase.example}</Text>
+								</div>
+							</div>
+						))
+					}
+				</div>
+
+				<hr class="border-neutral-700" />
+
+				<div class="space-y-8">
+					<div class="space-y-4">
+						<Text variant="h2">What Can You Learn?</Text>
+						<Text variant="p"
+							>This approach works for <strong>anything</strong> in programming:</Text
+						>
+					</div>
+					<div class="grid grid-cols-1 md:grid-cols-2 gap-4 ml-4">
+						{
+							scope.map((item) => (
+								<div class="rounded-lg border border-neutral-700 p-6 space-y-2">
+									<h4
+										class="text-lg font-bold"
+										set:html={item.title}
+									/>
+									<p
+										class="text-sm text-neutral-400"
+										set:html={item.description}
+									/>
+								</div>
+							))
+						}
+					</div>
+					<div class="p-4 border border-neutral-700 rounded space-y-2 ml-4">
+						<Text variant="p">
+							The key is: <strong>context first → build real stuff → ask for help when stuck</strong
+							>
+						</Text>
+					</div>
+				</div>
+
+				<hr class="border-neutral-700" />
+
+				<div class="space-y-4">
+					<Text variant="h2">What is DeepWiki?</Text>
+					<Text variant="p">
+						<Anchor href={formatLink(deepwiki)}>DeepWiki</Anchor>
+						is an AI-powered documentation tool that automatically generates comprehensive documentation
+						for your codebase. It creates API references, architecture diagrams, and code explanations.
+					</Text>
+					<Text variant="p">
+						We use DeepWiki across all our projects to help you understand the codebase faster.
+						Check the
+						<Anchor href="/projects">Projects</Anchor>
+						page for DeepWiki links to each repository.
+					</Text>
+					<div class="p-4 border border-neutral-700 rounded space-y-4">
+						<Text variant="p">
+							<strong class="underline">Why it's useful:</strong> When you're trying to contribute to
+							a new project, DeepWiki helps you understand the codebase structure, API endpoints, and
+							how different components connect, exactly when you need it.
+						</Text>
+					</div>
+				</div>
+
+				<hr class="border-neutral-700" />
+
+				<div class="space-y-4">
+					<Text variant="h2">Assisted Autonomy</Text>
+					<Text variant="p">
+						We believe in <strong>assisted autonomy</strong>, a learning approach that balances
+						independence with guidance. This method builds real, lasting skills rather than
+						temporary copy-paste knowledge.
+					</Text>
+					<Text variant="p">
+						<strong>DeepWiki</strong> (deepwiki.dev) is an AI-powered documentation service that automatically
+						generates comprehensive documentation for GitHub repositories. It analyzes code and creates
+						API references, architecture diagrams, and code explanations.
+					</Text>
+				</div>
+
+				<hr class="border-neutral-700" />
+
+				<div class="space-y-8">
+					<div class="space-y-4">
+						<Text variant="h2">Recommended for Beginners</Text>
+						<Text variant="p">Start with these languages and frameworks based on your goals:</Text>
+					</div>
+
+					{
+						recommendations.map((section) => (
+							<div class="space-y-4">
+								<Text
+									variant="h3"
+									className="font-semibold"
+								>
+									{section.title}
+								</Text>
+								<div class="grid grid-cols-1 md:grid-cols-2 gap-4 ml-4">
+									{section.items.map((item) => (
+										<div class="rounded-lg border border-neutral-700 p-4 space-y-2">
+											<div class="flex justify-between items-center gap-4">
+												<h4 class="text-lg font-bold">{item.name}</h4>
+												<span class="shrink-0 text-xs font-bold uppercase text-background bg-emphasis px-2 py-0.5 rounded-full">
+													{item.badge}
+												</span>
+											</div>
+											<p class="text-sm text-neutral-400">{item.description}</p>
+										</div>
+									))}
+								</div>
+							</div>
+						))
+					}
+				</div>
+
+				<hr class="border-neutral-700" />
+
+				<div class="space-y-4">
+					<Text variant="h2">Resources</Text>
+					<Text variant="p">Use these to learn (in this order):</Text>
+					<List className="w-fit ml-4">
+						{
+							resources.map((item) => (
+								<ListItem className="first:border-t border-b border-neutral-700 p-6 flex flex-row justify-start items-center gap-6">
+									<span class="shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-emphasis text-background text-sm font-bold">
+										{item.priority}
+									</span>
+									<span class="space-y-2">
+										<strong>{item.title}</strong>
+										<Text variant="p">{item.description}</Text>
+									</span>
+								</ListItem>
+							))
+						}
+					</List>
+				</div>
+
+				<div class="space-y-8">
+					<div class="space-y-4">
+						<Text variant="h2">Ready to Start?</Text>
+						<Text variant="p">Pick a language and start building:</Text>
+					</div>
+					<div class="grid grid-cols-1 md:grid-cols-3 gap-4 ml-4">
+						{
+							startOptions.map((item) => (
+								<Anchor
+									href={item.href}
+									className="flex flex-col items-center justify-center gap-2 rounded-lg border border-emphasis/60 p-6 text-center hover:border-emphasis text-emphasis/80 hover:text-emphasis"
+								>
+									<h4 class="text-lg font-bold">{item.title}</h4>
+									<p class="text-sm text-neutral-400">{item.description}</p>
+								</Anchor>
+							))
+						}
+					</div>
+				</div>
+			</div>
+		</section>
+		<footer class="min-h-64 flex flex-row gap-x-12 justify-end items-end pb-12">
+			<span class="text-emphasis/60">Libre<span>Course</span>UY</span>
+			<span class="footer-copy">© 2026 | Open Source Education</span>
+		</footer>
+	</main>
+</Layout>
