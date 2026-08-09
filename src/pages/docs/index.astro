@@ -1,0 +1,215 @@
+---
+// Components
+import Anchor from '@/components/Anchor/Anchor.astro';
+import Text from '@/components/Text/Text.astro';
+// Layout
+import Layout from '@/layouts/Layout.astro';
+
+const currentPath = Astro.url.pathname.replace(/\/$/, '');
+const targetHrefFromThisPath = (path: string): string => `${currentPath}/${path}`;
+
+const categories = [
+	{
+		title: 'LibreCourse Documentation',
+		items: [
+			{
+				name: 'GPG Signature',
+				description:
+					'A secure digital stamp that proves a file or message (or git commit) is real and yours.',
+				href: targetHrefFromThisPath('gpg-signature'),
+			},
+		],
+	},
+	{
+		title: 'Official Documentation',
+		items: [
+			{
+				name: 'MDN Web Docs',
+				description: 'Complete documentation for HTML, CSS, JavaScript and web APIs',
+				href: 'https://developer.mozilla.org/',
+			},
+			{
+				name: 'GitHub Docs',
+				description: 'Everything about Git, GitHub and collaboration',
+				href: 'https://docs.github.com/',
+			},
+			{
+				name: 'Git Docs',
+				description: 'Official Git documentation',
+				href: 'https://git-scm.com/doc',
+			},
+			{
+				name: 'Python Docs',
+				description: 'Official Python documentation',
+				href: 'https://docs.python.org/3/',
+			},
+			{
+				name: 'Rust Docs',
+				description: 'Rust programming language documentation',
+				href: 'https://docs.rs/',
+			},
+			{
+				name: 'Docker Docs',
+				description: 'Containerization platform documentation',
+				href: 'https://docs.docker.com/',
+			},
+		],
+	},
+	{
+		title: 'Commit Signing',
+		items: [
+			{
+				name: 'GitHub Verification Docs',
+				description: 'Official GitHub documentation on commit signature verification',
+				href: 'https://docs.github.com/en/authentication/managing-commit-signature-verification',
+			},
+		],
+	},
+	{
+		title: 'API & Reference',
+		items: [
+			{
+				name: 'DevDocs',
+				description: 'API documentation browser with unified search',
+				href: 'https://devdocs.io/',
+			},
+			{
+				name: 'HackTerms',
+				description: 'Dictionary of programming terms',
+				href: 'https://hackterms.com/',
+			},
+			{
+				name: 'Stack Overflow',
+				description: 'Community Q&A platform',
+				href: 'https://stackoverflow.com/',
+			},
+			{
+				name: 'Postman',
+				description: 'API testing and development platform',
+				href: 'https://www.postman.com/',
+			},
+			{
+				name: 'RapidAPI',
+				description: 'API marketplace for public APIs',
+				href: 'https://rapidapi.com/',
+			},
+		],
+	},
+	{
+		title: 'Learning Resources',
+		items: [
+			{
+				name: 'freeCodeCamp',
+				description: 'Free coding curriculum and certifications',
+				href: 'https://www.freecodecamp.org/',
+			},
+			{
+				name: 'Codecademy',
+				description: 'Interactive programming courses',
+				href: 'https://www.codecademy.com/',
+			},
+			{
+				name: 'Udemy',
+				description: 'Online courses platform',
+				href: 'https://www.udemy.com/',
+			},
+			{
+				name: 'Coursera',
+				description: 'University-level courses online',
+				href: 'https://www.coursera.org/',
+			},
+			{
+				name: 'Exercism',
+				description: 'Coding exercises with mentorship',
+				href: 'https://exercism.org/',
+			},
+			{
+				name: 'LeetCode',
+				description: 'Programming practice and interview prep',
+				href: 'https://leetcode.com/',
+			},
+		],
+	},
+	{
+		title: 'Tools',
+		items: [
+			{
+				name: 'Pro Git Book',
+				description: 'Free online book covering everything about Git',
+				href: 'https://git-scm.com/book/en/v2',
+			},
+			{
+				name: 'GitHub Skills',
+				description: 'Interactive courses from GitHub',
+				href: 'https://github.com/skills',
+			},
+			{
+				name: 'Learn Git Branching',
+				description: 'Interactive visual git tutorial',
+				href: 'https://learngitbranching.js.org/',
+			},
+			{
+				name: 'RegExr',
+				description: 'Regular expression testing tool',
+				href: 'https://regexr.com/',
+			},
+			{
+				name: 'JSON Formatter',
+				description: 'JSON validation and formatting',
+				href: 'https://jsonformatter.org/',
+			},
+			{
+				name: 'Crontab Guru',
+				description: 'Cron schedule expression editor',
+				href: 'https://crontab.guru/',
+			},
+		],
+	},
+];
+---
+
+<Layout
+	title="Documentation | LibreCourseUY"
+	description="Essential resources for your daily development workflow: official docs, commit signing, API references, learning resources, and tools."
+>
+	<main class="flex min-h-screen flex-col items-start justify-center">
+		<section class="flex flex-col justify-start items-start w-full min-h-dvh mt-12 md:pt-12">
+			<div class="space-y-12 w-full max-w-4xl">
+				<div class="space-y-12">
+					<Text variant="h1">Documentation</Text>
+					<Text
+						variant="p"
+						className="md:ml-4"
+					>
+						Essential resources for your daily development workflow.
+					</Text>
+				</div>
+
+				<hr class="border-neutral-700" />
+
+				{
+					categories.map((category) => (
+						<div class="space-y-8">
+							<Text variant="h2">{category.title}</Text>
+							<div class="grid grid-cols-1 md:grid-cols-2 gap-4 ml-4">
+								{category.items.map((item) => (
+									<Anchor
+										href={item.href}
+										className="rounded-lg border text-emphasis/80 hover:text-emphasis border-emphasis/60 hover:border-emphasis/80 p-6 space-y-2 cursor-pointer"
+									>
+										<h4 class="text-lg font-bold">{item.name}</h4>
+										<p class="text-sm text-neutral-300">{item.description}</p>
+									</Anchor>
+								))}
+							</div>
+						</div>
+					))
+				}
+			</div>
+		</section>
+		<footer class="min-h-64 flex flex-row gap-x-12 justify-end items-end pb-12">
+			<span class="text-emphasis/60">Libre<span>Course</span>UY</span>
+			<span class="footer-copy">© 2026 | Open Source Education</span>
+		</footer>
+	</main>
+</Layout>
