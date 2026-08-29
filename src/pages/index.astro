@@ -14,6 +14,7 @@ import Layout from '@/layouts/Layout.astro';
 import { formatLink } from '@/lib/utils';
 import type { ProjectType } from '@/lib/types';
 // Assets
+import heroIcon from '@/assets/hero_icon.png';
 import cloudImg from '@/assets/ascii-art-cloud.png';
 import computerImg from '@/assets/ascii-art-computer.png';
 
@@ -76,47 +77,84 @@ const projects: ProjectType[] = [
 	<main class="flex min-h-screen flex-col items-start justify-center">
 		<section
 			id="hero_section"
-			class="flex flex-col justify-start items-start w-full min-h-dvh mt-12 md:pt-12"
+			class="relative w-screen left-1/2 -translate-x-1/2 min-h-[80vh] flex items-center justify-center py-16 md:py-24 lg:py-32 overflow-hidden"
 		>
-			<Text
-				variant="h1"
-				className="max-w-4xl mb-4 col-start-1 col-end-12 row-start-1 row-end-5 z-10"
-			>
-				Build in public. Become open source.
-			</Text>
-
-			<div class="flex flex-wrap flex-row justify-between w-full gap-4">
-				<div class="flex flex-col items-start justify-center space-y-4 shrink-0">
+			<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-emphasis-secondary/10 via-transparent to-transparent" />
+			<Image
+				src={cloudImg}
+				alt=""
+				class="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none select-none"
+				inferSize={true}
+				loading="eager"
+			/>
+			
+			<div class="relative z-10 flex flex-col items-center justify-center w-full px-6 text-center">
+				<div class="mb-8 md:mb-10 flex items-center justify-center w-24 sm:w-28 md:w-32 lg:w-40">
+					<Image
+						src={heroIcon}
+						alt="LibreCourseUY Hero Icon"
+						class="w-full h-full object-cover"
+						inferSize={true}
+						loading="eager"
+					/>
+				</div>
+				
+				<Text
+					variant="h1"
+					className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl max-w-6xl mb-6 text-center"
+				>
+					Build in public.<br />
+					<span class="text-emphasis-secondary">Become open source.</span>
+				</Text>
+				
+				<Text variant="p" className="max-w-2xl mb-10 text-emphasis/70 text-lg text-center md:text-xl">
+					A non-profit FOSS community from Uruguay growing the next generation of open source contributors in Latin America.
+				</Text>
+				
+				<div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
 					<Anchor
-						className="font-bold whitespace-nowrap"
-						href="https://github.com/LibreCourseUY"
-					>
-						GitHub
-					</Anchor>
-					<Anchor
-						className="font-bold whitespace-nowrap"
+						className="px-8 py-3 rounded-lg bg-emphasis-secondary text-background font-semibold hover:bg-emphasis-secondary/90 transition-colors whitespace-nowrap"
 						href="/contribute/"
-						openInTab
 					>
 						Start Contributing
 					</Anchor>
+					<Anchor
+						className="px-8 py-3 rounded-lg border border-emphasis/20 text-emphasis font-semibold hover:bg-emphasis/5 hover:border-emphasis/40 transition-colors whitespace-nowrap"
+						href="https://github.com/LibreCourseUY"
+					>
+						View on GitHub
+					</Anchor>
 				</div>
-				<Image
-					src={cloudImg}
-					alt="Cloud ASCII art"
-					class="object-cover md:mr-auto md:ml-auto"
-					inferSize={true}
-					loading="eager"
-					width={980}
-					height={300}
-				/>
+				
+				<div class="flex items-center justify-center gap-8 text-emphasis/50 text-sm font-medium">
+					<a href="https://discord.gg/placeholder" class="hover:text-emphasis-secondary transition-colors flex items-center gap-2">
+						<svg class="w-5 h-5" xmlns="http://w3.org" viewBox="0 0 127.14 96.36">
+							<path fill="#5865F2" d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.79,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.68,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.81,11.1,105.25,105.25,0,0,0,32.22-16.15c2.62-27.28-4.48-51.2-21.16-76.14ZM42.45,65.69C36.18,65.69,31,60,31,53s5.18-12.71,11.45-12.71S53.9,46,53.9,53,48.73,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.23,60,73.23,53s5.18-12.71,11.46-12.71S96.16,46,96.16,53,91,65.69,84.69,65.69Z"/>
+						</svg>
+
+						Discord
+					</a>
+					<span class="hidden sm:inline">·</span>
+					<a href="https://github.com/LibreCourseUY" class="hover:text-emphasis-secondary transition-colors flex items-center gap-2">
+						<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+							<path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+						</svg>
+						GitHub
+					</a>
+				</div>
+			</div>
+			
+			<div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+				<svg class="w-6 h-6 text-emphasis/40" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+				</svg>
 			</div>
 		</section>
 		<section
 			id="about"
 			class="mb-12 w-full flex flex-row flex-wrap lg:flex-nowrap items-start justify-center gap-x-12"
 		>
-			<div class="flex flex-col w-full space-y-12">
+			<div class="flex flex-col w-full space-y-12 mt-12">
 				<Text variant="h2">What is <br /> LibreCourseUY</Text>
 				<div class="space-y-12">
 					<h3 class="text-4xl">Our mision</h3>

@@ -19,8 +19,14 @@ type Props =
 const { variant, className, link, openInTab, ...props } = Astro.props;
 const Tag = variant as ValidTags;
 
+const hasSizeClass = /(^|\s)text-(xs|sm|base|lg|xl|2xl|3xl|4xl|5xl|6xl|7xl|8xl|9xl)\b/.test(
+	className ?? '',
+);
+
+const defaultSize = hasSizeClass ? '' : 'text-6xl md:text-8xl lg:text-9xl';
+
 const styles = {
-	h1: 'text-5xl md:text-6xl text-start',
+	h1: `${defaultSize} font-black tracking-tight text-start`,
 	h2: 'text-4xl md:text-5xl wrap-break-word text-start',
 	h3: 'text-3xl md:text-4xl wrap-break-word text-start',
 	h4: 'text-2xl md:text-3xl wrap-break-word text-start',

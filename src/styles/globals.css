@@ -4,6 +4,9 @@
   html {
     font-family: 'Inter', system-ui, sans-serif;
   }
+  h1 {
+    font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  }
 }
 
 @theme {
