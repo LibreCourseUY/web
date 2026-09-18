@@ -45,7 +45,7 @@ const MAX_TOPICS = 5;
 		topics.length > 0 && (
 			<div class="flex flex-wrap gap-1">
 				{topics.toSpliced(MAX_TOPICS, topics.length-1).map((topic) => (
-					<span class="max-w-full break-all border border-line px-1.5 py-0.5 text-[0.7rem] uppercase tracking-wide text-muted">
+					<span class="max-w-full break-all border border-line px-1.5 py-0.5 text-xs text-muted">
 						[{topic}]
 					</span>
 				))}
