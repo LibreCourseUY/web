@@ -65,12 +65,13 @@ export async function onRequest({ env, request }: Context): Promise<Response> {
       function renderTurnstile() {
         turnstile.render('#turnstile', {
           action: 'join-discord',
+          appearance: 'always',
           sitekey: '${env.TURNSTILE_SITE_KEY}',
           theme: document.documentElement.classList.contains('dark') ? 'dark' : 'light'
         });
       }
     </script>
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer onload="renderTurnstile()"></script>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=renderTurnstile" defer></script>
     <style>
       :root { color-scheme: light; --background: #f5f5f0; --color-emphasis: #17171a; --color-emphasis-secondary: #106654; --color-surface: #ffffff; --color-line: #dededa; --color-muted: #63635c; font-family: Inter, system-ui, sans-serif; }
       .dark { color-scheme: dark; --background: #101010; --color-emphasis: #f7f7f0; --color-emphasis-secondary: #5ec2af; --color-surface: #191919; --color-line: #2e2e2b; --color-muted: #9f9f96; }
