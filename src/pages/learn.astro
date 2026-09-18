@@ -208,9 +208,10 @@ const startOptions = [
 	description="Our philosophy for learning programming effectively: assisted autonomy, quick context, building real things, and asking for help."
 >
 	<main class="flex min-h-screen flex-col items-start justify-center">
-		<section class="flex flex-col justify-start items-start w-full min-h-dvh mt-12 md:pt-12">
+		<section class="flex flex-col justify-start items-start w-full min-h-[calc(100dvh-4rem)] pt-12 pb-12">
 			<div class="space-y-12 w-full max-w-4xl">
 				<div class="space-y-12">
+					<p class="term-eyebrow">&gt;_ Learn</p>
 					<Text variant="h1">How to Learn</Text>
 					<Text
 						variant="p"
@@ -229,7 +230,9 @@ const startOptions = [
 						phases.map((phase) => (
 							<div class="rounded-lg border border-line p-6 space-y-4">
 								<div class="flex flex-row items-center gap-4">
-									<span class="text-sm text-emphasis/60 font-bold">{phase.number}</span>
+									<span class="text-xs font-bold tracking-[0.2em] text-emphasis-secondary"
+										>[{phase.number}]</span
+									>
 									<Text
 										variant="h3"
 										className="font-semibold"
@@ -342,8 +345,8 @@ const startOptions = [
 										<div class="rounded-lg border border-line p-4 space-y-2">
 											<div class="flex justify-between items-center gap-4">
 												<h4 class="text-lg font-bold">{item.name}</h4>
-												<span class="shrink-0 text-xs font-bold uppercase text-background bg-emphasis px-2 py-0.5 rounded-full">
-													{item.badge}
+												<span class="shrink-0 border border-line px-1.5 py-0.5 text-[0.65rem] font-bold uppercase tracking-wide text-muted">
+													[{item.badge}]
 												</span>
 											</div>
 											<p class="text-sm text-muted">{item.description}</p>
@@ -364,7 +367,7 @@ const startOptions = [
 						{
 							resources.map((item) => (
 								<ListItem className="first:border-t border-b border-line p-6 flex flex-row justify-start items-center gap-6">
-									<span class="shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-emphasis text-background text-sm font-bold">
+									<span class="shrink-0 w-8 h-8 flex items-center justify-center border border-emphasis-secondary text-sm font-bold text-emphasis-secondary">
 										{item.priority}
 									</span>
 									<span class="space-y-2">

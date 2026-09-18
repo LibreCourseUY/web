@@ -82,8 +82,10 @@ export async function onRequest({ env, request }: Context): Promise<Response> {
       .eyebrow { margin: 0 0 1rem; color: var(--color-emphasis-secondary); font-size: .72rem; font-weight: 700; letter-spacing: .12em; }
       h1 { margin: 0 0 .75rem; font-family: 'Space Grotesk', Inter, system-ui, sans-serif; font-size: clamp(2rem, 7vw, 2.75rem); line-height: 1; letter-spacing: -.05em; }
       p { margin: 0 0 1.5rem; color: var(--color-muted); line-height: 1.5; }
-      button { width: 100%; margin-top: 1rem; padding: .8rem 1rem; border: 0; border-radius: .5rem; background: var(--color-emphasis-secondary); color: var(--background); font: inherit; font-weight: 700; cursor: pointer; transition: opacity .2s; }
-      button:hover { opacity: .85; }
+      button { width: 100%; margin-top: 1rem; display: inline-flex; align-items: center; justify-content: center; gap: .5rem; padding: .8rem 1rem; border: 1px solid var(--color-emphasis-secondary); background: transparent; color: var(--color-emphasis-secondary); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .875rem; font-weight: 700; letter-spacing: .08em; cursor: pointer; transition: background-color .2s, color .2s; }
+      button .prompt { transition: transform .2s; }
+      button:hover { background: var(--color-emphasis-secondary); color: var(--background); }
+      button:hover .prompt { transform: translateX(2px); }
       button:focus-visible { outline: 2px solid var(--color-emphasis-secondary); outline-offset: 3px; }
       .error { color: #b42318; }
       .dark .error { color: #ffb4ab; }
@@ -97,7 +99,7 @@ export async function onRequest({ env, request }: Context): Promise<Response> {
       ${showError ? '<p class="error">Verification failed. Please try again.</p>' : ''}
       <form method="post">
         <div id="turnstile"></div>
-        <button type="submit">Continue to Discord</button>
+        <button type="submit"><span class="prompt" aria-hidden="true">&gt;_</span><span>CONTINUE_TO_DISCORD</span></button>
       </form>
     </main>
   </body>

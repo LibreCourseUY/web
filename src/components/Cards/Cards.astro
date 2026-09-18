@@ -26,10 +26,10 @@ const {
 } = Astro.props;
 
 const default_colors = [
-  "bg-blue-100 dark:bg-blue-950",
-  "bg-green-100 dark:bg-green-950",
-  "bg-amber-100 dark:bg-amber-950",
-  "bg-emerald-100 dark:bg-emerald-950",
+  "bg-surface-strong",
+  "bg-surface-strong",
+  "bg-surface-strong",
+  "bg-surface-strong",
 ];
 const colorIndex =
   !index && index !== 0 ? 1 : index % default_colors.length;
@@ -37,7 +37,7 @@ const colorIndex =
 
 <div
   class={cn(
-    "flex flex-row items-center gap-4 rounded-xl border border-line bg-surface p-4",
+    "flex min-w-0 flex-row items-center gap-4 border border-line bg-surface p-4 transition-colors hover:border-emphasis-secondary/60",
     className,
   )}
 >
@@ -48,13 +48,13 @@ const colorIndex =
         width={208}
         height={208}
         alt={title}
-        class="w-52 h-52 object-cover"
+        class="h-24 w-24 shrink-0 object-cover md:h-36 md:w-36"
       />
     ) : (
       <div
         class={cn(
           default_colors[colorIndex],
-          "hidden md:flex w-24 h-24 md:w-52 md:h-52 justify-center items-center",
+          "hidden md:flex w-24 h-24 md:w-36 md:h-36 shrink-0 justify-center items-center",
         )}
       >
         <Image
@@ -67,9 +67,9 @@ const colorIndex =
     )
   }
 
-  <div class="flex flex-1 flex-col justify-center gap-y-3">
-    <div class="flex justify-between items-center w-full">
-      <h3 class="text-lg font-bold">{title}</h3>
+  <div class="flex min-w-0 flex-1 flex-col justify-center gap-y-3">
+    <div class="flex w-full items-center justify-between gap-2">
+      <h3 class="min-w-0 break-words text-lg font-bold">{title}</h3>
       <Text
         variant="a"
         aria-label='projct link'
@@ -88,22 +88,20 @@ const colorIndex =
       </Text>
     </div>
 
-    <p class="text-sm text-muted">{description}</p>
+    <p class="break-words text-sm text-muted">{description}</p>
 
-    <div class="justify-between flex items-center">
-      <div class="flex flex-wrap gap-2 mt-1">
+    <div class="flex flex-wrap items-center justify-between gap-2">
+      <div class="mt-1 flex flex-wrap gap-2">
         {stack.map((tech) => (
-          <span
-            class="bg-transparent ring-1 ring-line px-2 py-0.5 text-xs text-muted"
-          >
-            {tech}
+          <span class="max-w-full break-all border border-line px-1.5 py-0.5 text-[0.7rem] uppercase tracking-wide text-muted">
+            [{tech}]
           </span>
         ))}
       </div>
       <Text
         variant="a"
         link={autor.link}
-        className="text-xs hover:underline text-emphasis-secondary"
+        className="shrink-0 text-xs hover:underline text-emphasis-secondary"
       >
         @{autor.name.toLocaleLowerCase()}
       </Text>

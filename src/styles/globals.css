@@ -3,7 +3,7 @@
 
 @layer base {
   html {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
     scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
   }
@@ -39,6 +39,7 @@
   .hero-enter > *:nth-child(3) { animation-delay: 0.19s; }
   .hero-enter > *:nth-child(4) { animation-delay: 0.26s; }
   .hero-enter > *:nth-child(5) { animation-delay: 0.33s; }
+  .hero-enter > *:nth-child(6) { animation-delay: 0.4s; }
 
   html.js main > section:not(:first-child) {
     opacity: 0;
@@ -93,11 +94,6 @@
     }
   }
 
-  main > section:not(:first-child) {
-    content-visibility: auto;
-    contain-intrinsic-size: auto 800px;
-  }
-
   @media (prefers-contrast: more) {
     :root {
       --background: #ffffff;
@@ -117,6 +113,16 @@
 }
 
 @theme {
+  --font-sans: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+  --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+  --radius-xs: 0px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --radius-4xl: 0px;
   --color-background: var(--background);
   --color-emphasis: var(--color-emphasis);
   --color-emphasis-secondary: var(--color-emphasis-secondary);
@@ -159,4 +165,42 @@
     --color-line: #2e2e2b;
     --color-muted: #9f9f96;
   }
+}
+
+/* Terminal treatment (unlayered so it wins over utility layers) */
+.rounded,
+.rounded-sm,
+.rounded-md,
+.rounded-lg,
+.rounded-xl,
+.rounded-2xl,
+.rounded-3xl {
+  border-radius: 0;
+}
+
+code {
+  border-radius: 0;
+}
+
+code.block {
+  border-left: 2px solid var(--color-emphasis-secondary);
+}
+
+hr {
+  border-style: dashed;
+}
+
+main h2::before {
+  content: '## ';
+  color: var(--color-emphasis-secondary);
+}
+
+.term-eyebrow {
+  display: block;
+  margin-bottom: 1rem;
+  color: var(--color-emphasis-secondary);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
 }
