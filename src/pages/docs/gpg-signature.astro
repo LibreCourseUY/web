@@ -128,7 +128,7 @@ const keyId = 'C4D02E34E0956389';
           </Text>
         </div>
 
-        <div class="space-y-2 ml-4 border border-neutral-700 p-6 space-y-4">
+        <div class="space-y-2 ml-4 border border-line p-6 space-y-4">
           <Text variant="h3">Index</Text>
           <ul>
             <li>
@@ -150,7 +150,7 @@ const keyId = 'C4D02E34E0956389';
           </ul>
         </div>
 
-        <hr class="border-neutral-700" />
+        <hr class="border-line" />
 
         <div class="space-y-8">
           <Text variant="h2" id="installing-gpg"> Installing GPG </Text>
@@ -169,7 +169,7 @@ const keyId = 'C4D02E34E0956389';
             <div class="space-y-4 ml-4">
               <Text variant="h4">Debian/Ubuntu</Text>
               <code
-                class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+                class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
                 set:text={code.apt}
               />
             </div>
@@ -177,7 +177,7 @@ const keyId = 'C4D02E34E0956389';
             <div class="space-y-4 ml-4">
               <Text variant="h4">Fedora/RedHat</Text>
               <code
-                class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+                class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
                 set:text={code.dnf}
               />
             </div>
@@ -189,7 +189,7 @@ const keyId = 'C4D02E34E0956389';
                 (<Anchor href="https://wiki.archlinux.org/title/GnuPG">ArchWiki</Anchor>).
               </Text>
               <code
-                class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+                class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
                 set:text={code.pacman}
               />
             </div>
@@ -202,13 +202,13 @@ const keyId = 'C4D02E34E0956389';
               <Anchor href="https://brew.sh">brew.sh</Anchor>, then run:
             </Text>
             <code
-              class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+              class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
               set:text={code.brew}
             />
           </div>
         </div>
 
-        <hr class="border-neutral-700" />
+        <hr class="border-line" />
 
         <div class="space-y-8">
           <Text variant="h2" id="creating-a-signature"> Creating a signature </Text>
@@ -217,12 +217,12 @@ const keyId = 'C4D02E34E0956389';
             <Text variant="h3">Checking if gpg is installed</Text>
             <Text variant="p">Open your terminal and run:</Text>
             <code
-              class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+              class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
               set:text={code.version}
             />
             <Text variant="p">It should output:</Text>
             <code
-              class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+              class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
               set:text={code.versionOutput}
             />
             <Text variant="p"
@@ -233,11 +233,11 @@ const keyId = 'C4D02E34E0956389';
           <div class="space-y-4">
             <Text variant="h3">Start creating your key pairs</Text>
             <code
-              class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+              class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
               set:text={code.generate}
             />
 
-            <div class="p-4 border border-neutral-700 rounded space-y-4">
+            <div class="p-4 border border-line rounded space-y-4">
               <Text variant="p">
                 <strong class="underline">Heads up:</strong> this is an interactive wizard. It will ask
                 you several questions and then a separate passphrase prompt. That passphrase prompt may
@@ -248,68 +248,68 @@ const keyId = 'C4D02E34E0956389';
 
             <Text variant="p">
               It should display a prompt to specify what kind of key you want, press{' '}
-              <code class="p-1 bg-neutral-900 rounded text-sm">Enter</code> to continue with the default
+              <code class="p-1 bg-surface border border-line rounded text-sm">Enter</code> to continue with the default
               or select what kind you want.
             </Text>
             <code
-              class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+              class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
               set:text={code.keyPrompt}
             />
 
             <Text variant="p">
               At the prompt, select which elliptic curve you want, press{' '}
-              <code class="p-1 bg-neutral-900 rounded text-sm">Enter</code> to continue with the default
+              <code class="p-1 bg-surface border border-line rounded text-sm">Enter</code> to continue with the default
               or select what you want.
             </Text>
             <code
-              class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+              class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
               set:text={code.curve}
             />
 
             <Text variant="p">
               Then when it asks you to specify the expiry time, press{' '}
-              <code class="p-1 bg-neutral-900 rounded text-sm">Enter</code> to continue with the default
+              <code class="p-1 bg-surface border border-line rounded text-sm">Enter</code> to continue with the default
               or select what you want.
             </Text>
             <code
-              class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+              class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
               set:text={code.validityPrompt}
             />
 
             <Text variant="p">
-              If you entered <code class="p-1 bg-neutral-900 rounded text-sm">0</code> or{' '}
-              <code class="p-1 bg-neutral-900 rounded text-sm">Enter</code>, then you should type{
+              If you entered <code class="p-1 bg-surface border border-line rounded text-sm">0</code> or{' '}
+              <code class="p-1 bg-surface border border-line rounded text-sm">Enter</code>, then you should type{
                 ' '
               }
-              <code class="p-1 bg-neutral-900 rounded text-sm">y</code> to confirm it.
+              <code class="p-1 bg-surface border border-line rounded text-sm">y</code> to confirm it.
             </Text>
             <code
-              class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+              class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
               set:text={code.confirmExpiry}
             />
 
             <Text variant="p">Input your real name</Text>
             <code
-              class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+              class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
               set:text={code.realName}
             />
 
             <Text variant="p">Email address (use the verified email for GitHub)</Text>
             <code
-              class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+              class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
               set:text={code.emailPrompt}
             />
 
             <Text variant="p">Enter comment or leave empty</Text>
             <code
-              class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+              class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
               set:text={code.commentPrompt}
             />
 
-            <div class="rounded-lg border border-neutral-700 p-6 space-y-2">
+            <div class="rounded-lg border border-line p-6 space-y-2">
               <Text variant="p">
                 After all of this confirm that the inputted info is correct, if yes type{' '}
-                <code class="p-1 bg-neutral-900 rounded text-sm">O</code> and continue. It should open
+                <code class="p-1 bg-surface border border-line rounded text-sm">O</code> and continue. It should open
                 a prompt to type your passphrase (use a secure passphrase).
               </Text>
 
@@ -317,16 +317,16 @@ const keyId = 'C4D02E34E0956389';
 
               <p class="text-xs font-semibold uppercase text-emphasis-secondary">Output:</p>
               <code
-                class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+                class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
                 set:text={code.created}
               />
             </div>
 
             <Text variant="p">
               Note the two numbers at the end of the output:{' '}
-              <code class="p-1 bg-neutral-900 rounded text-sm">{fingerprint}</code> is your key's full
+              <code class="p-1 bg-surface border border-line rounded text-sm">{fingerprint}</code> is your key's full
               <strong>fingerprint</strong>, and{' '}
-              <code class="p-1 bg-neutral-900 rounded text-sm">{keyId}</code> is the <strong
+              <code class="p-1 bg-surface border border-line rounded text-sm">{keyId}</code> is the <strong
                 >key ID</strong
               >{' '}
               - it's simply the last 16 characters of the fingerprint. You'll use the key ID later when
@@ -335,7 +335,7 @@ const keyId = 'C4D02E34E0956389';
           </div>
         </div>
 
-        <hr class="border-neutral-700" />
+        <hr class="border-line" />
 
         <div class="space-y-8">
           <Text variant="h2" id="signing-git-commits">
@@ -351,23 +351,23 @@ const keyId = 'C4D02E34E0956389';
             otherwise GitHub will not show your commits as "Verified":
           </Text>
           <code
-            class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+            class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
             set:text={code.gitIdentity}
           />
 
           <Text variant="p">
             Next, configure Git to use the GPG key we generated. Replace{' '}
-            <code class="p-1 bg-neutral-900 rounded text-sm">{keyId}</code> with the key ID from your
+            <code class="p-1 bg-surface border border-line rounded text-sm">{keyId}</code> with the key ID from your
             own output (the last 16 characters of your fingerprint):
           </Text>
           <code
-            class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+            class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
             set:text={code.signingKey}
           />
 
           <Text variant="p">Enable signing for all commits by default:</Text>
           <code
-            class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+            class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
             set:text={code.enableSign}
           />
 
@@ -375,33 +375,33 @@ const keyId = 'C4D02E34E0956389';
             Now every commit you make will be signed. To sign a single commit explicitly, use the{
               ' '
             }
-            <code class="p-1 bg-neutral-900 rounded text-sm">-S</code> flag:
+            <code class="p-1 bg-surface border border-line rounded text-sm">-S</code> flag:
           </Text>
           <code
-            class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+            class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
             set:text={code.commitSingle}
           />
 
           <Text variant="p">To verify that your commits are signed, use:</Text>
           <code
-            class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+            class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
             set:text={code.verifyLog}
           />
 
-          <div class="p-4 border border-neutral-700 rounded space-y-4">
+          <div class="p-4 border border-line rounded space-y-4">
             <Text variant="p">
               <strong class="underline">Windows only:</strong> if Git can't find Gpg4win's{' '}
-              <code class="p-1 bg-neutral-900 rounded text-sm">gpg</code> binary, tell Git where it lives
+              <code class="p-1 bg-surface border border-line rounded text-sm">gpg</code> binary, tell Git where it lives
               (adjust the path to your install):
             </Text>
             <code
-              class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+              class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
               set:text={code.gpgProgram}
             />
           </div>
         </div>
 
-        <hr class="border-neutral-700" />
+        <hr class="border-line" />
 
         <div class="space-y-8">
           <Text variant="h2" id="commit-signature-verification">
@@ -410,11 +410,11 @@ const keyId = 'C4D02E34E0956389';
 
           <Text variant="p">Run:</Text>
           <code
-            class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+            class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
             set:text={code.listSecret}
           />
           <code
-            class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+            class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
             set:text={code.listSecretOutput}
           />
 
@@ -423,17 +423,17 @@ const keyId = 'C4D02E34E0956389';
             this example, the GPG key ID is <strong>{keyId}</strong>:
           </Text>
           <code
-            class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+            class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
             set:text={code.exportKey}
           />
 
           <Text variant="p">
             Copy your GPG key, beginning with{' '}
-            <code class="p-1 bg-neutral-900 rounded text-sm"
+            <code class="p-1 bg-surface border border-line rounded text-sm"
               >-----BEGIN PGP PUBLIC KEY BLOCK-----</code
             >{' '}
             and ending with{' '}
-            <code class="p-1 bg-neutral-900 rounded text-sm"
+            <code class="p-1 bg-surface border border-line rounded text-sm"
               >-----END PGP PUBLIC KEY BLOCK-----</code
             >.
           </Text>
@@ -446,7 +446,7 @@ const keyId = 'C4D02E34E0956389';
           </Text>
         </div>
 
-        <hr class="border-neutral-700" />
+        <hr class="border-line" />
 
         <div class="space-y-8">
           <Text variant="h2">Verify it worked</Text>
@@ -457,7 +457,7 @@ const keyId = 'C4D02E34E0956389';
                 is now enabled by default) and push it to GitHub:
               </Text>
               <code
-                class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+                class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
                 set:text={code.pushTest}
               />
             </div>
@@ -476,7 +476,7 @@ const keyId = 'C4D02E34E0956389';
               this, you can use GitHub's noreply email instead of your personal one:
             </Text>
             <code
-              class="block p-3 bg-neutral-900 rounded text-sm whitespace-pre"
+              class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
               set:text={code.noreplyEmail}
             />
             <Text variant="p">

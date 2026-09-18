@@ -26,7 +26,7 @@ import { formatLink } from '@/lib/utils';
 					</Text>
 				</div>
 
-				<hr class="border-neutral-700" />
+				<hr class="border-line" />
 
 				<div class="space-y-8">
 					<Text variant="h2">Why Contribute?</Text>
@@ -59,13 +59,13 @@ import { formatLink } from '@/lib/utils';
 					</div>
 				</div>
 
-				<hr class="border-neutral-700" />
+				<hr class="border-line" />
 
 				<div class="space-y-4">
 					<Text variant="h2">Getting Started</Text>
 					<Text variant="p">New to open source? Here's how to start:</Text>
 
-					<div class="p-4 border border-neutral-700 rounded space-y-4 ml-4">
+					<div class="p-4 border border-line rounded space-y-4 ml-4">
 						<Text variant="p">
 							<strong class="underline">Important:</strong> Before contributing, read and make sure you
 							agree with the license of the repository you want to contribute to. Each project has its
@@ -74,7 +74,7 @@ import { formatLink } from '@/lib/utils';
 						</Text>
 					</div>
 
-					<div class="p-4 border border-neutral-700 rounded space-y-4 ml-4">
+					<div class="p-4 border border-line rounded space-y-4 ml-4">
 						<Text variant="p">
 							<strong class="underline">Required:</strong> You must accept our
 							<Anchor href="/cla">Contributor License Agreement (CLA)</Anchor>. By submitting a Pull
@@ -87,13 +87,12 @@ import { formatLink } from '@/lib/utils';
 						<div class="space-y-4">
 							<List className="w-fit">
 								<ListItem
-									className="border-t border-b border-neutral-700 p-6 flex flex-row-reverse md:flex-row justify-start items-center gap-6"
+									className="border-t border-b border-line p-6 flex flex-row-reverse md:flex-row justify-start items-center gap-6"
 								>
 									<span class="mr-3 text-sm">{String(1).padStart(2, '0')}</span>
 									<span class="space-y-4">
 										<Text
 											variant="h3"
-											className="font-semibold"
 											className="font-semibold"
 											>Explore the Projects</Text
 										>
@@ -105,7 +104,7 @@ import { formatLink } from '@/lib/utils';
 								</ListItem>
 
 								<ListItem
-									className="border-b border-neutral-700 p-6 flex flex-row-reverse md:flex-row justify-start items-center gap-6"
+									className="border-b border-line p-6 flex flex-row-reverse md:flex-row justify-start items-center gap-6"
 								>
 									<span class="mr-3 text-sm">{String(2).padStart(2, '0')}</span>
 									<span class="space-y-4">
@@ -121,7 +120,7 @@ import { formatLink } from '@/lib/utils';
 								</ListItem>
 
 								<ListItem
-									className="border-b border-neutral-700 p-6 flex flex-row-reverse md:flex-row justify-start items-center gap-6"
+									className="border-b border-line p-6 flex flex-row-reverse md:flex-row justify-start items-center gap-6"
 								>
 									<span class="mr-3 text-sm">{String(3).padStart(2, '0')}</span>
 									<span class="space-y-4">
@@ -156,7 +155,7 @@ import { formatLink } from '@/lib/utils';
 					</div>
 				</div>
 
-				<hr class="border-neutral-700" />
+				<hr class="border-line" />
 
 				<div class="space-y-4">
 					<Text variant="h2">Contribution Process</Text>
@@ -166,7 +165,7 @@ import { formatLink } from '@/lib/utils';
 						<div class="space-y-4">
 							<List className="w-fit">
 								<ListItem
-									className="border-t border-b border-neutral-700 p-6 flex flex-row-reverse md:flex-row justify-start items-center gap-6"
+									className="border-t border-b border-line p-6 flex flex-row-reverse md:flex-row justify-start items-center gap-6"
 								>
 									<span class="mr-3 text-sm">{String(1).padStart(2, '0')}</span>
 									<span class="space-y-4">
@@ -183,7 +182,7 @@ import { formatLink } from '@/lib/utils';
 								</ListItem>
 
 								<ListItem
-									className="border-b border-neutral-700 p-6 flex flex-row-reverse md:flex-row justify-start items-center gap-6"
+									className="border-b border-line p-6 flex flex-row-reverse md:flex-row justify-start items-center gap-6"
 								>
 									<span class="mr-3 text-sm">{String(2).padStart(2, '0')}</span>
 									<span class="space-y-4">
@@ -193,14 +192,14 @@ import { formatLink } from '@/lib/utils';
 											>Clone Your Fork</Text
 										>
 										<Text variant="p">Download your forked repository to your local machine.</Text>
-										<code class="block p-3 bg-neutral-900 rounded text-sm"
+										<code class="block p-3 bg-surface border border-line rounded text-sm"
 											>git clone https://github.com/YOUR_USERNAME/project.git</code
 										>
 									</span>
 								</ListItem>
 
 								<ListItem
-									className="border-b border-neutral-700 p-6 flex flex-row-reverse md:flex-row justify-start items-center gap-6"
+									className="border-b border-line p-6 flex flex-row-reverse md:flex-row justify-start items-center gap-6"
 								>
 									<span class="mr-3 text-sm">{String(3).padStart(2, '0')}</span>
 									<span class="space-y-4">
@@ -212,14 +211,14 @@ import { formatLink } from '@/lib/utils';
 										<Text variant="p"
 											>Create a new branch for your changes. Don't work directly on main!</Text
 										>
-										<code class="block p-3 bg-neutral-900 rounded text-sm"
+										<code class="block p-3 bg-surface border border-line rounded text-sm"
 											>git checkout -b feature/your-feature</code
 										>
 									</span>
 								</ListItem>
 
 								<ListItem
-									className="border-b border-neutral-700 p-6 flex flex-row-reverse md:flex-row justify-start items-center gap-6"
+									className="border-b border-line p-6 flex flex-row-reverse md:flex-row justify-start items-center gap-6"
 								>
 									<span class="mr-3 text-sm">{String(4).padStart(2, '0')}</span>
 									<span class="space-y-4">
@@ -236,7 +235,7 @@ import { formatLink } from '@/lib/utils';
 								</ListItem>
 
 								<ListItem
-									className="border-b border-neutral-700 p-6 flex flex-row-reverse md:flex-row justify-start items-center gap-6"
+									className="border-b border-line p-6 flex flex-row-reverse md:flex-row justify-start items-center gap-6"
 								>
 									<span class="mr-3 text-sm">{String(5).padStart(2, '0')}</span>
 									<span class="space-y-4">
@@ -246,14 +245,14 @@ import { formatLink } from '@/lib/utils';
 											>Commit Your Changes</Text
 										>
 										<Text variant="p">Save your changes with a descriptive commit message.</Text>
-										<code class="block p-3 bg-neutral-900 rounded text-sm"
+										<code class="block p-3 bg-surface border border-line rounded text-sm"
 											>git add . && git commit -m "feat: description of changes"</code
 										>
 									</span>
 								</ListItem>
 
 								<ListItem
-									className="border-b border-neutral-700 p-6 flex flex-row-reverse md:flex-row justify-start items-center gap-6"
+									className="border-b border-line p-6 flex flex-row-reverse md:flex-row justify-start items-center gap-6"
 								>
 									<span class="mr-3 text-sm">{String(6).padStart(2, '0')}</span>
 									<span class="space-y-4">
@@ -263,7 +262,7 @@ import { formatLink } from '@/lib/utils';
 											>Push to GitHub</Text
 										>
 										<Text variant="p">Upload your changes to your forked repository.</Text>
-										<code class="block p-3 bg-neutral-900 rounded text-sm"
+										<code class="block p-3 bg-surface border border-line rounded text-sm"
 											>git push origin feature/your-feature</code
 										>
 									</span>
@@ -288,7 +287,7 @@ import { formatLink } from '@/lib/utils';
 					</div>
 				</div>
 
-				<hr class="border-neutral-700" />
+				<hr class="border-line" />
 
 				<div class="space-y-12">
 					<Text variant="h2">Contribution Guidelines</Text>
@@ -315,7 +314,7 @@ import { formatLink } from '@/lib/utils';
 								We believe in <strong>polyglot development</strong>. If your language or framework
 								is better suited for the job, use it. We'll figure out how to integrate it.
 							</Text>
-							<div class="p-4 border border-neutral-700 rounded space-y-4">
+							<div class="p-4 border border-line rounded space-y-4">
 								<Text variant="p">
 									<strong>Example:</strong> fingcomms is built with FastAPI (Python) + Vue.js, but if
 									you want to add a Rust microservice for image processing or a Go CLI tool for data export,
@@ -329,7 +328,7 @@ import { formatLink } from '@/lib/utils';
 						<Text variant="h3">Commit Messages</Text>
 						<div class="ml-4">
 							<Text variant="p">We use Conventional Commits format:</Text>
-							<code class="block p-3 bg-neutral-900 rounded text-sm">type: description</code>
+							<code class="block p-3 bg-surface border border-line rounded text-sm">type: description</code>
 							<List className="list-disc pl-6">
 								<ListItem><Text variant="p"><code>feat:</code> New feature</Text></ListItem>
 								<ListItem><Text variant="p"><code>fix:</code> Bug fix</Text></ListItem>
@@ -378,7 +377,7 @@ import { formatLink } from '@/lib/utils';
 							</List>
 						</div>
 						<Text variant="p">Set up your SSH key following our Git Guide.</Text>
-						<code class="block p-3 bg-neutral-900 rounded text-sm ml-4"
+						<code class="block p-3 bg-surface border border-line rounded text-sm ml-4"
 							>git config --global commit.gpgsign true</code
 						>
 					</div>
@@ -394,7 +393,7 @@ import { formatLink } from '@/lib/utils';
 					</div>
 				</div>
 
-				<hr class="border-neutral-700" />
+				<hr class="border-line" />
 
 				<div class="space-y-6">
 					<Text variant="h2">Have Questions?</Text>

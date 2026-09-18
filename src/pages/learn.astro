@@ -220,14 +220,14 @@ const startOptions = [
 					</Text>
 				</div>
 
-				<hr class="border-neutral-700" />
+				<hr class="border-line" />
 
 				<div class="space-y-8">
 					<Text variant="h2">The Approach</Text>
 
 					{
 						phases.map((phase) => (
-							<div class="rounded-lg border border-neutral-700 p-6 space-y-4">
+							<div class="rounded-lg border border-line p-6 space-y-4">
 								<div class="flex flex-row items-center gap-4">
 									<span class="text-sm text-emphasis/60 font-bold">{phase.number}</span>
 									<Text
@@ -238,7 +238,7 @@ const startOptions = [
 									</Text>
 								</div>
 								<Text variant="p">{phase.description}</Text>
-								<div class="p-4 border border-neutral-700 rounded space-y-2">
+								<div class="p-4 border border-line rounded space-y-2">
 									<p class="text-xs font-semibold uppercase text-emphasis-secondary">Example:</p>
 									<Text variant="p">{phase.example}</Text>
 								</div>
@@ -247,7 +247,7 @@ const startOptions = [
 					}
 				</div>
 
-				<hr class="border-neutral-700" />
+				<hr class="border-line" />
 
 				<div class="space-y-8">
 					<div class="space-y-4">
@@ -259,20 +259,20 @@ const startOptions = [
 					<div class="grid grid-cols-1 md:grid-cols-2 gap-4 ml-4">
 						{
 							scope.map((item) => (
-								<div class="rounded-lg border border-neutral-700 p-6 space-y-2">
+								<div class="rounded-lg border border-line p-6 space-y-2">
 									<h4
 										class="text-lg font-bold"
 										set:html={item.title}
 									/>
 									<p
-										class="text-sm text-neutral-400"
+										class="text-sm text-muted"
 										set:html={item.description}
 									/>
 								</div>
 							))
 						}
 					</div>
-					<div class="p-4 border border-neutral-700 rounded space-y-2 ml-4">
+					<div class="p-4 border border-line rounded space-y-2 ml-4">
 						<Text variant="p">
 							The key is: <strong>context first → build real stuff → ask for help when stuck</strong
 							>
@@ -280,7 +280,7 @@ const startOptions = [
 					</div>
 				</div>
 
-				<hr class="border-neutral-700" />
+				<hr class="border-line" />
 
 				<div class="space-y-4">
 					<Text variant="h2">What is DeepWiki?</Text>
@@ -295,7 +295,7 @@ const startOptions = [
 						<Anchor href="/projects">Projects</Anchor>
 						page for DeepWiki links to each repository.
 					</Text>
-					<div class="p-4 border border-neutral-700 rounded space-y-4">
+					<div class="p-4 border border-line rounded space-y-4">
 						<Text variant="p">
 							<strong class="underline">Why it's useful:</strong> When you're trying to contribute to
 							a new project, DeepWiki helps you understand the codebase structure, API endpoints, and
@@ -304,7 +304,7 @@ const startOptions = [
 					</div>
 				</div>
 
-				<hr class="border-neutral-700" />
+				<hr class="border-line" />
 
 				<div class="space-y-4">
 					<Text variant="h2">Assisted Autonomy</Text>
@@ -320,7 +320,7 @@ const startOptions = [
 					</Text>
 				</div>
 
-				<hr class="border-neutral-700" />
+				<hr class="border-line" />
 
 				<div class="space-y-8">
 					<div class="space-y-4">
@@ -339,14 +339,14 @@ const startOptions = [
 								</Text>
 								<div class="grid grid-cols-1 md:grid-cols-2 gap-4 ml-4">
 									{section.items.map((item) => (
-										<div class="rounded-lg border border-neutral-700 p-4 space-y-2">
+										<div class="rounded-lg border border-line p-4 space-y-2">
 											<div class="flex justify-between items-center gap-4">
 												<h4 class="text-lg font-bold">{item.name}</h4>
 												<span class="shrink-0 text-xs font-bold uppercase text-background bg-emphasis px-2 py-0.5 rounded-full">
 													{item.badge}
 												</span>
 											</div>
-											<p class="text-sm text-neutral-400">{item.description}</p>
+											<p class="text-sm text-muted">{item.description}</p>
 										</div>
 									))}
 								</div>
@@ -355,7 +355,7 @@ const startOptions = [
 					}
 				</div>
 
-				<hr class="border-neutral-700" />
+				<hr class="border-line" />
 
 				<div class="space-y-4">
 					<Text variant="h2">Resources</Text>
@@ -363,7 +363,7 @@ const startOptions = [
 					<List className="w-fit ml-4">
 						{
 							resources.map((item) => (
-								<ListItem className="first:border-t border-b border-neutral-700 p-6 flex flex-row justify-start items-center gap-6">
+								<ListItem className="first:border-t border-b border-line p-6 flex flex-row justify-start items-center gap-6">
 									<span class="shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-emphasis text-background text-sm font-bold">
 										{item.priority}
 									</span>
@@ -390,7 +390,7 @@ const startOptions = [
 									className="flex flex-col items-center justify-center gap-2 rounded-lg border border-emphasis/60 p-6 text-center hover:border-emphasis text-emphasis/80 hover:text-emphasis"
 								>
 									<h4 class="text-lg font-bold">{item.title}</h4>
-									<p class="text-sm text-neutral-400">{item.description}</p>
+									<p class="text-sm text-muted">{item.description}</p>
 								</Anchor>
 							))
 						}

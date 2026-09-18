@@ -1,5 +1,15 @@
 import { defineCollection, z } from 'astro:content';
 
+interface GitHubRepo {
+  name: string;
+  description: string | null;
+  html_url: string;
+  stargazers_count: number;
+  language: string | null;
+  updated_at: string;
+  topics?: string[];
+}
+
 const projects = defineCollection({
   loader: async () => {
     try {
@@ -13,12 +23,12 @@ const projects = defineCollection({
         console.warn(`GitHub API error: ${res.status} ${res.statusText}`);
         return [];
       }
-      const repos: any[] = await res.json();
+      const repos = (await res.json()) as GitHubRepo[];
       if (!Array.isArray(repos)) {
         console.warn(`Unexpected GitHub API response: ${JSON.stringify(repos)}`);
         return [];
       }
-      return repos.map((repo: any) => ({
+      return repos.map((repo) => ({
         id: repo.name,
         name: repo.name,
         description: repo.description,
@@ -26,7 +36,7 @@ const projects = defineCollection({
         stars: repo.stargazers_count,
         language: repo.language,
         updatedAt: repo.updated_at,
-        topics: repo.topics,
+        topics: repo.topics ?? [],
       }));
     } catch (err) {
       console.warn('Failed to fetch GitHub repos:', err);

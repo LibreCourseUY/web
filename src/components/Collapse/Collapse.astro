@@ -9,7 +9,7 @@ interface Props {
 const { question, open = false } = Astro.props;
 ---
 
-<div class:list={['faq-item group border-t border-white/10', { open }]}>
+<div class:list={['faq-item group border-t border-line', { open }]}>
 	<button
 		class="faq-trigger w-full flex items-center justify-between gap-4 py-5 text-left cursor-pointer
       font-sans text-[15px] bg-transparent border-none
@@ -18,9 +18,9 @@ const { question, open = false } = Astro.props;
 	>
 		<span><Text variant="p">{question}</Text></span>
 		<span
-			class="faq-icon shrink-0 font-mono text-lg text-neutral-700/45
+			class="faq-icon shrink-0 font-mono text-lg text-muted/60
         transition-[transform,color] duration-300 ease-in-out
-        group-[.open]:rotate-45 group-hover:text-neutral-400"
+        group-[.open]:rotate-45 group-hover:text-emphasis"
 			aria-hidden="true"
 		>
 			+

@@ -19,10 +19,11 @@ const route = [
 ];
 ---
 
-<div
+<header
+  id="site-header"
   class={cn(
     className,
-    "h-16 w-dvw bg-background/95 px-6 md:px-12 lg:px-24 sticky top-0 backdrop-blur-sm z-100 flex items-center justify-center",
+    "h-16 w-dvw px-6 md:px-12 lg:px-24 sticky top-0 z-100 flex items-center justify-center",
   )}
 >
   <div
@@ -75,7 +76,7 @@ const route = [
       <span class="absolute w-7 h-0.5 bg-emphasis rounded-full transition-transform duration-300 translate-y-1 group-[.is-open]:translate-y-0 group-[.is-open]:-rotate-45"></span>
     </button>
   </div>
-</div>
+</header>
 
 <div
   id="mobile-menu-overlay"
@@ -174,16 +175,44 @@ const route = [
     });
   }
 
+  function setupHeader() {
+    const header = document.getElementById('site-header');
+    if (!header) return;
+
+    const onScroll = () => {
+      header.classList.toggle('is-scrolled', window.scrollY > 12);
+    };
+
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+
   setupThemeToggle();
   setupMobileMenu();
+  setupHeader();
 
   document.addEventListener('astro:page-load', () => {
     setupThemeToggle();
     setupMobileMenu();
+    setupHeader();
   });
 </script>
 
 <style>
+  #site-header {
+    border-bottom: 1px solid transparent;
+    transition:
+      background-color 0.4s ease,
+      border-color 0.4s ease,
+      box-shadow 0.4s ease;
+  }
+
+  #site-header.is-scrolled {
+    background-color: var(--background);
+    border-bottom-color: var(--color-line);
+    box-shadow: 0 16px 40px -32px rgb(0 0 0 / 0.55);
+  }
+
   #mobile-menu-toggle.is-open .line-1 {
     transform: translateY(0) rotate(45deg);
   }

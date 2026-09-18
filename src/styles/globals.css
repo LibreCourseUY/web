@@ -5,15 +5,77 @@
   html {
     font-family: 'Inter', system-ui, sans-serif;
     scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
   }
   h1, h2 {
     text-wrap: balance;
+    font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
   }
   body {
     transition: background-color 0.3s, color 0.3s;
   }
-  h1 {
-    font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  :where([id]) {
+    scroll-margin-top: 5.5rem;
+  }
+  ::selection {
+    background-color: var(--color-emphasis-secondary);
+    color: var(--background);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-emphasis-secondary);
+    outline-offset: 2px;
+  }
+
+  /* Entrance + scroll reveal (only when JS is available, to avoid FOUC) */
+  html.js main > section:first-child:not(#hero_section) {
+    animation: rise 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  }
+
+  .hero-enter > * {
+    animation: rise 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  }
+  .hero-enter > *:nth-child(1) { animation-delay: 0.05s; }
+  .hero-enter > *:nth-child(2) { animation-delay: 0.12s; }
+  .hero-enter > *:nth-child(3) { animation-delay: 0.19s; }
+  .hero-enter > *:nth-child(4) { animation-delay: 0.26s; }
+  .hero-enter > *:nth-child(5) { animation-delay: 0.33s; }
+
+  html.js main > section:not(:first-child) {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.7s cubic-bezier(0.22, 0.61, 0.36, 1),
+      transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+  html.js main > section:not(:first-child).is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .scroll-cue {
+    animation: cue 2.4s ease-in-out infinite;
+  }
+
+  @keyframes cue {
+    0%, 100% {
+      transform: translateY(0);
+      opacity: 0.45;
+    }
+    50% {
+      transform: translateY(6px);
+      opacity: 1;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -23,6 +85,11 @@
     *, *::before, *::after {
       transition-duration: 0.01ms !important;
       animation-duration: 0.01ms !important;
+    }
+    html.js main > section,
+    .hero-enter > * {
+      opacity: 1 !important;
+      transform: none !important;
     }
   }
 
@@ -36,11 +103,15 @@
       --background: #ffffff;
       --color-emphasis: #000000;
       --color-emphasis-secondary: #006644;
+      --color-line: #8a8a80;
+      --color-muted: #454540;
     }
     .dark {
       --background: #000000;
       --color-emphasis: #ffffff;
       --color-emphasis-secondary: #00ff88;
+      --color-line: #8a8a80;
+      --color-muted: #c9c9bd;
     }
   }
 }
@@ -49,24 +120,43 @@
   --color-background: var(--background);
   --color-emphasis: var(--color-emphasis);
   --color-emphasis-secondary: var(--color-emphasis-secondary);
+  --color-surface: var(--color-surface);
+  --color-surface-strong: var(--color-surface-strong);
+  --color-line: var(--color-line);
+  --color-muted: var(--color-muted);
 }
 
 :root {
+  color-scheme: light;
   --background: #f5f5f0;
-  --color-emphasis: #1a1a18;
-  --color-emphasis-secondary: #3a9a85;
+  --color-emphasis: #17171a;
+  --color-emphasis-secondary: #106654;
+  --color-surface: #ffffff;
+  --color-surface-strong: #ebeae3;
+  --color-line: #dededa;
+  --color-muted: #63635c;
 }
 
 .dark {
-  --background: #10100e;
-  --color-emphasis: #f9f9e9;
+  color-scheme: dark;
+  --background: #101010;
+  --color-emphasis: #f7f7f0;
   --color-emphasis-secondary: #5ec2af;
+  --color-surface: #191919;
+  --color-surface-strong: #24241f;
+  --color-line: #2e2e2b;
+  --color-muted: #9f9f96;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not(.light) {
-    --background: #10100e;
-    --color-emphasis: #f9f9e9;
+    color-scheme: dark;
+    --background: #101010;
+    --color-emphasis: #f7f7f0;
     --color-emphasis-secondary: #5ec2af;
+    --color-surface: #191919;
+    --color-surface-strong: #24241f;
+    --color-line: #2e2e2b;
+    --color-muted: #9f9f96;
   }
 }

@@ -186,7 +186,7 @@ const categories = [
 					</Text>
 				</div>
 
-				<hr class="border-neutral-700" />
+				<hr class="border-line" />
 
 				{
 					categories.map((category) => (
@@ -196,10 +196,10 @@ const categories = [
 								{category.items.map((item) => (
 									<Anchor
 										href={item.href}
-										className="rounded-lg border text-emphasis/80 hover:text-emphasis border-emphasis/60 hover:border-emphasis/80 p-6 space-y-2 cursor-pointer"
+										className="rounded-xl border bg-surface text-emphasis/80 hover:text-emphasis border-line hover:border-emphasis-secondary/60 p-6 space-y-2 cursor-pointer transition-colors"
 									>
 										<h4 class="text-lg font-bold">{item.name}</h4>
-										<p class="text-sm text-neutral-300">{item.description}</p>
+										<p class="text-sm text-muted">{item.description}</p>
 									</Anchor>
 								))}
 							</div>

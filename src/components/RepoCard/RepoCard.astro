@@ -24,7 +24,7 @@ const MAX_TOPICS = 5;
 	target="_blank"
 	rel="noopener noreferrer"
 	class:list={[
-		'group flex flex-col gap-3 rounded-lg border border-neutral-700 bg-neutral-900/50 p-4 no-underline transition-colors duration-150 hover:border-emphasis/60'
+		'group flex flex-col gap-3 rounded-xl border border-line bg-surface p-4 no-underline transition-colors duration-150 hover:border-emphasis-secondary/60'
 	]}
 >
 	<div class="flex items-center gap-2">
@@ -37,7 +37,7 @@ const MAX_TOPICS = 5;
 
 	{
 		description && (
-			<p class="line-clamp-2 text-sm leading-relaxed text-neutral-400">{description}</p>
+			<p class="line-clamp-2 text-sm leading-relaxed text-muted">{description}</p>
 		)
 	}
 
@@ -45,7 +45,7 @@ const MAX_TOPICS = 5;
 		topics.length > 0 && (
 			<div class="flex flex-wrap gap-1">
 				{topics.toSpliced(MAX_TOPICS, topics.length-1).map((topic) => (
-					<span class="rounded bg-neutral-800 px-1.5 py-0.5 text-[0.7rem] text-emphasis">
+					<span class="rounded bg-surface-strong px-1.5 py-0.5 text-[0.7rem] text-emphasis/80">
 						{topic}
 					</span>
 				))}
@@ -54,7 +54,7 @@ const MAX_TOPICS = 5;
 	}
 
 	<div
-		class="mt-auto flex flex-wrap items-center gap-3.5 border-t border-neutral-700 pt-3 text-xs text-neutral-400"
+		class="mt-auto flex flex-wrap items-center gap-3.5 border-t border-line pt-3 text-xs text-muted"
 	>
 		{language && <span class='underline text-emphasis'>{language}</span>}
 	</div>
