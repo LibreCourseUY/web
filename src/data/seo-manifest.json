@@ -2,7 +2,7 @@
   "/cla/": {
     "title": "Contributor License Agreement | LibreCourseUY",
     "canonical": "https://librecourse.uy/cla/",
-    "robots": "index,follow",
+    "robots": "index,follow,max-snippet:-1,max-image-preview:large",
     "og": {
       "type": "website",
       "title": "Contributor License Agreement | LibreCourseUY",
@@ -23,23 +23,46 @@
       "image:alt": "LibreCourseUY"
     },
     "description": "LibreCourseUY Contributor License Agreement, terms for contributing to our open source projects.",
-    "schema_jsonld": {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": "Contributor License Agreement | LibreCourseUY",
-      "url": "https://librecourse.uy/cla/",
-      "description": "LibreCourseUY Contributor License Agreement, terms for contributing to our open source projects.",
-      "image": "https://librecourse.uy/og.jpg",
-      "publisher": {
-        "@type": "Organization",
-        "name": "LibreCourseUY"
+    "schema_jsonld": [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Contributor License Agreement | LibreCourseUY",
+        "url": "https://librecourse.uy/cla/",
+        "description": "LibreCourseUY Contributor License Agreement, terms for contributing to our open source projects.",
+        "image": "https://librecourse.uy/og.jpg",
+        "datePublished": "2026-06-08",
+        "dateModified": "2026-09-18",
+        "publisher": {
+          "@type": "Organization",
+          "name": "LibreCourseUY",
+          "logo": "https://librecourse.uy/icon.png"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://librecourse.uy/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "CLA",
+            "item": "https://librecourse.uy/cla/"
+          }
+        ]
       }
-    }
+    ]
   },
   "/contribute/": {
     "title": "Contribute | LibreCourseUY",
     "canonical": "https://librecourse.uy/contribute/",
-    "robots": "index,follow",
+    "robots": "index,follow,max-snippet:-1,max-image-preview:large",
     "og": {
       "type": "website",
       "title": "Contribute | LibreCourseUY",
@@ -60,25 +83,52 @@
       "image:alt": "LibreCourseUY"
     },
     "description": "Learn how to contribute to LibreCourseUY open source projects.",
-    "schema_jsonld": {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": "Contribute | LibreCourseUY",
-      "url": "https://librecourse.uy/contribute/",
-      "description": "Learn how to contribute to LibreCourseUY open source projects.",
-      "image": "https://librecourse.uy/og.jpg",
-      "publisher": {
-        "@type": "Organization",
-        "name": "LibreCourseUY"
+    "schema_jsonld": [
+      {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "Contribute | LibreCourseUY",
+        "url": "https://librecourse.uy/contribute/",
+        "description": "Learn how to contribute to LibreCourseUY open source projects.",
+        "image": "https://librecourse.uy/og.jpg",
+        "datePublished": "2026-06-12",
+        "dateModified": "2026-09-18",
+        "author": {
+          "@type": "Person",
+          "name": "LibreCourseUY"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "LibreCourseUY",
+          "logo": "https://librecourse.uy/icon.png"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://librecourse.uy/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Contribute",
+            "item": "https://librecourse.uy/contribute/"
+          }
+        ]
       }
-    }
+    ]
   },
   "/docs/gpg-signature/": {
     "title": "GPG Signature Guide | LibreCourseUY",
     "canonical": "https://librecourse.uy/docs/gpg-signature/",
-    "robots": "index,follow",
+    "robots": "index,follow,max-snippet:-1,max-image-preview:large",
     "og": {
-      "type": "website",
+      "type": "article",
       "title": "GPG Signature Guide | LibreCourseUY",
       "description": "Learn how to install GPG, generate a signing key pair, sign your Git commits, and verify them on GitHub.",
       "url": "https://librecourse.uy/docs/gpg-signature/",
@@ -97,23 +147,56 @@
       "image:alt": "LibreCourseUY"
     },
     "description": "Learn how to install GPG, generate a signing key pair, sign your Git commits, and verify them on GitHub.",
-    "schema_jsonld": {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": "GPG Signature Guide | LibreCourseUY",
-      "url": "https://librecourse.uy/docs/gpg-signature/",
-      "description": "Learn how to install GPG, generate a signing key pair, sign your Git commits, and verify them on GitHub.",
-      "image": "https://librecourse.uy/og.jpg",
-      "publisher": {
-        "@type": "Organization",
-        "name": "LibreCourseUY"
+    "schema_jsonld": [
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "name": "GPG Signature Guide | LibreCourseUY",
+        "url": "https://librecourse.uy/docs/gpg-signature/",
+        "description": "Learn how to install GPG, generate a signing key pair, sign your Git commits, and verify them on GitHub.",
+        "image": "https://librecourse.uy/og.jpg",
+        "datePublished": "2026-08-08",
+        "dateModified": "2026-09-18",
+        "author": {
+          "@type": "Person",
+          "name": "LibreCourseUY"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "LibreCourseUY",
+          "logo": "https://librecourse.uy/icon.png"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://librecourse.uy/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Docs",
+            "item": "https://librecourse.uy/docs/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "GPG Signature",
+            "item": "https://librecourse.uy/docs/gpg-signature/"
+          }
+        ]
       }
-    }
+    ]
   },
   "/docs/": {
     "title": "Documentation | LibreCourseUY",
     "canonical": "https://librecourse.uy/docs/",
-    "robots": "index,follow",
+    "robots": "index,follow,max-snippet:-1,max-image-preview:large",
     "og": {
       "type": "website",
       "title": "Documentation | LibreCourseUY",
@@ -134,23 +217,46 @@
       "image:alt": "LibreCourseUY"
     },
     "description": "Essential resources for your daily development workflow: official docs, commit signing, API references, learning resources, and tools.",
-    "schema_jsonld": {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": "Documentation | LibreCourseUY",
-      "url": "https://librecourse.uy/docs/",
-      "description": "Essential resources for your daily development workflow: official docs, commit signing, API references, learning resources, and tools.",
-      "image": "https://librecourse.uy/og.jpg",
-      "publisher": {
-        "@type": "Organization",
-        "name": "LibreCourseUY"
+    "schema_jsonld": [
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Documentation | LibreCourseUY",
+        "url": "https://librecourse.uy/docs/",
+        "description": "Essential resources for your daily development workflow: official docs, commit signing, API references, learning resources, and tools.",
+        "image": "https://librecourse.uy/og.jpg",
+        "datePublished": "2026-08-08",
+        "dateModified": "2026-09-18",
+        "publisher": {
+          "@type": "Organization",
+          "name": "LibreCourseUY",
+          "logo": "https://librecourse.uy/icon.png"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://librecourse.uy/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Docs",
+            "item": "https://librecourse.uy/docs/"
+          }
+        ]
       }
-    }
+    ]
   },
   "/": {
     "title": "LibreCourseUY",
     "canonical": "https://librecourse.uy/",
-    "robots": "index,follow",
+    "robots": "index,follow,max-snippet:-1,max-image-preview:large",
     "og": {
       "type": "website",
       "title": "LibreCourseUY",
@@ -173,21 +279,85 @@
     "description": "Welcome to LibreCourseUY, a platform for free and open educational resources.",
     "schema_jsonld": {
       "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": "LibreCourseUY",
-      "url": "https://librecourse.uy/",
-      "description": "Welcome to LibreCourseUY, a platform for free and open educational resources.",
-      "image": "https://librecourse.uy/og.jpg",
-      "publisher": {
-        "@type": "Organization",
-        "name": "LibreCourseUY"
-      }
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://librecourse.uy/#website",
+          "name": "LibreCourseUY",
+          "url": "https://librecourse.uy/",
+          "description": "Welcome to LibreCourseUY, a platform for free and open educational resources.",
+          "image": "https://librecourse.uy/og.jpg",
+          "publisher": {
+            "@type": "Organization",
+            "name": "LibreCourseUY",
+            "logo": "https://librecourse.uy/icon.png",
+            "sameAs": [
+              "https://github.com/LibreCourseUY"
+            ]
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://librecourse.uy/#faq",
+          "url": "https://librecourse.uy/",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is LibreCourseUY?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "A non-profit initiative based in Uruguay that helps programmers, from aspiring developers to seasoned professionals, contribute to Free and Open Source Software."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Who can join?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Anyone, for free. Members are expected to follow our Code of Conduct, and those who wish to contribute must sign the CLA."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What does LibreCourseUY offer?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "A strong developer community with common goals, a space to learn and grow your career, and real projects worth putting on your CV."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How do I get started?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Read the Code of Conduct, then browse our First Issues list or find a repo you want to contribute to. If you're new, check out our Introductory Guide. It covers how to collaborate, learn, and get involved."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Why is everything in English?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Open source is a global conversation, and English is its common language. Writing issues, PRs, and documentation in English makes your contributions accessible to the entire FOSS community, not just Spanish speakers. It also prepares you for real-world collaboration on any project, anywhere."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Where can I find LibreCourseUY?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "{String(1).padStart(2, '0')} Contribute on GitHub {String(1).padStart(2, '0')} Join on our Discord server"
+              }
+            }
+          ]
+        }
+      ]
     }
   },
   "/learn/": {
     "title": "How to Learn | LibreCourseUY",
     "canonical": "https://librecourse.uy/learn/",
-    "robots": "index,follow",
+    "robots": "index,follow,max-snippet:-1,max-image-preview:large",
     "og": {
       "type": "website",
       "title": "How to Learn | LibreCourseUY",
@@ -208,23 +378,50 @@
       "image:alt": "LibreCourseUY"
     },
     "description": "Our philosophy for learning programming effectively: assisted autonomy, quick context, building real things, and asking for help.",
-    "schema_jsonld": {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": "How to Learn | LibreCourseUY",
-      "url": "https://librecourse.uy/learn/",
-      "description": "Our philosophy for learning programming effectively: assisted autonomy, quick context, building real things, and asking for help.",
-      "image": "https://librecourse.uy/og.jpg",
-      "publisher": {
-        "@type": "Organization",
-        "name": "LibreCourseUY"
+    "schema_jsonld": [
+      {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "How to Learn | LibreCourseUY",
+        "url": "https://librecourse.uy/learn/",
+        "description": "Our philosophy for learning programming effectively: assisted autonomy, quick context, building real things, and asking for help.",
+        "image": "https://librecourse.uy/og.jpg",
+        "datePublished": "2026-08-08",
+        "dateModified": "2026-09-18",
+        "author": {
+          "@type": "Person",
+          "name": "LibreCourseUY"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "LibreCourseUY",
+          "logo": "https://librecourse.uy/icon.png"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://librecourse.uy/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "How to Learn",
+            "item": "https://librecourse.uy/learn/"
+          }
+        ]
       }
-    }
+    ]
   },
   "/projects/": {
     "title": "Projects | LibreCourseUY",
     "canonical": "https://librecourse.uy/projects/",
-    "robots": "index,follow",
+    "robots": "index,follow,max-snippet:-1,max-image-preview:large",
     "og": {
       "type": "website",
       "title": "Projects | LibreCourseUY",
@@ -245,17 +442,40 @@
       "image:alt": "LibreCourseUY"
     },
     "description": "Explore all projects from LibreCourseUY.",
-    "schema_jsonld": {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": "Projects | LibreCourseUY",
-      "url": "https://librecourse.uy/projects/",
-      "description": "Explore all projects from LibreCourseUY.",
-      "image": "https://librecourse.uy/og.jpg",
-      "publisher": {
-        "@type": "Organization",
-        "name": "LibreCourseUY"
+    "schema_jsonld": [
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Projects | LibreCourseUY",
+        "url": "https://librecourse.uy/projects/",
+        "description": "Explore all projects from LibreCourseUY.",
+        "image": "https://librecourse.uy/og.jpg",
+        "datePublished": "2026-06-18",
+        "dateModified": "2026-09-18",
+        "publisher": {
+          "@type": "Organization",
+          "name": "LibreCourseUY",
+          "logo": "https://librecourse.uy/icon.png"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://librecourse.uy/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Projects",
+            "item": "https://librecourse.uy/projects/"
+          }
+        ]
       }
-    }
+    ]
   }
 }

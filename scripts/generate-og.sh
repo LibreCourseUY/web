@@ -25,4 +25,6 @@ trap 'rm -rf "$tmp"' EXIT
 	-strip -interlace Plane -quality 85 \
 	public/og.jpg
 
-echo "Wrote public/og.jpg"
+"$magick_bin" src/assets/hero_icon.png -resize 512x512 -background none -gravity center -extent 512x512 -strip public/icon.png
+
+echo "Wrote public/og.jpg and public/icon.png"
