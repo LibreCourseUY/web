@@ -133,7 +133,7 @@ export async function onRequest({ env, request }: Context): Promise<Response> {
       <form method="post">
         <div class="cf-turnstile" data-sitekey="${env.TURNSTILE_SITE_KEY}" data-action="join-discord" data-appearance="always" data-theme="light" data-error-callback="onTurnstileError"></div>
         <p id="turnstile-error" class="error" hidden></p>
-        <button type="submit"><span class="prompt" aria-hidden="true">~$</span><span>CONTINUE_TO_DISCORD</span></button>
+        <button type="submit"><span class="prompt" aria-hidden="true">~$</span><span>goto_discord.sh</span></button>
       </form>
     </main>
     <script>
