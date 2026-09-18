@@ -113,10 +113,11 @@ const projects: ProjectType[] = [
 				
 				<div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
 					<Anchor
-						className="px-8 py-3 rounded-full bg-emphasis-secondary text-background font-semibold hover:bg-emphasis-secondary/85 transition-colors whitespace-nowrap"
+						className="group inline-flex items-center gap-2 border border-emphasis-secondary px-4 py-3 font-mono text-sm font-bold tracking-[0.08em] text-emphasis-secondary transition-colors hover:bg-emphasis-secondary hover:text-background whitespace-nowrap"
 						href="/contribute/"
 					>
-						Start Contributing
+						<span aria-hidden="true" class="transition-transform group-hover:translate-x-0.5">&gt;_</span>
+						<span>START_CONTRIBUTING</span>
 					</Anchor>
 				</div>
 				
