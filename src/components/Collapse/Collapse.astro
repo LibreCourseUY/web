@@ -39,23 +39,26 @@ const { question, open = false } = Astro.props;
 </div>
 
 <script>
-	document.querySelectorAll<HTMLElement>('.faq-item').forEach((item) => {
-		const trigger = item.querySelector<HTMLButtonElement>('.faq-trigger');
+	function setupFaq() {
+		document.querySelectorAll<HTMLElement>('.faq-item').forEach((item) => {
+			const trigger = item.querySelector<HTMLButtonElement>('.faq-trigger');
 
-		trigger?.addEventListener('click', () => {
-			const isOpen = item.classList.contains('open');
+			trigger!.onclick = () => {
+				const isOpen = item.classList.contains('open');
 
-			// Cierra todos los items abiertos
-			document.querySelectorAll('.faq-item.open').forEach((el) => {
-				el.classList.remove('open');
-				el.querySelector<HTMLButtonElement>('.faq-trigger')?.setAttribute('aria-expanded', 'false');
-			});
+				document.querySelectorAll('.faq-item.open').forEach((el) => {
+					el.classList.remove('open');
+					el.querySelector<HTMLButtonElement>('.faq-trigger')?.setAttribute('aria-expanded', 'false');
+				});
 
-			// Abre el clickeado si estaba cerrado
-			if (!isOpen) {
-				item.classList.add('open');
-				trigger.setAttribute('aria-expanded', 'true');
-			}
+				if (!isOpen) {
+					item.classList.add('open');
+					trigger!.setAttribute('aria-expanded', 'true');
+				}
+			};
 		});
-	});
+	}
+
+	setupFaq();
+	document.addEventListener('astro:page-load', setupFaq);
 </script>

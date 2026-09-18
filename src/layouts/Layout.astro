@@ -1,12 +1,16 @@
 ---
 // Libreries
-import '@fontsource/inter/400.css';
-import '@fontsource/inter/700.css';
-import '@fontsource/inter/900.css';
-import '@fontsource/space-grotesk/500.css';
-import '@fontsource/space-grotesk/700.css';
+import '@fontsource/inter/latin-400.css';
+import '@fontsource/inter/latin-700.css';
+import '@fontsource/inter/latin-900.css';
+import '@fontsource/inter/latin-ext-400.css';
+import '@fontsource/inter/latin-ext-700.css';
+import '@fontsource/inter/latin-ext-900.css';
+import '@fontsource/space-grotesk/latin-500.css';
+import '@fontsource/space-grotesk/latin-700.css';
+import '@fontsource/space-grotesk/latin-ext-500.css';
+import '@fontsource/space-grotesk/latin-ext-700.css';
 import { SEO } from 'astro-seo';
-import { ClientRouter } from 'astro:transitions';
 // Components
 import Navbar from '@/components/Navbar/Navbar.astro';
 // Utils
@@ -26,15 +30,28 @@ const { title, description } = Astro.props;
 <html lang="en" class='scroll-smooth'>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#10100e" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f5f5f0" media="(prefers-color-scheme: light)" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <ClientRouter />
+    <link rel="manifest" href="/site.webmanifest" />
+    <script is:inline>
+      (function() {
+        var theme = localStorage.getItem('theme');
+        if (theme === 'dark') document.documentElement.classList.add('dark');
+        else if (theme === 'light') document.documentElement.classList.add('light');
+        else if (window.matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.classList.add('dark');
+      })();
+    </script>
     <SEO
       title={title}
       description={description}
+      twitter={{
+        card: 'summary',
+      }}
     />
   </head>
-  <body class={cn("bg-background font-sans text-emphasis antialiased max-w-[100vw] overflow-x-hidden")} transition:animate="fade">
+  <body class={cn("bg-background font-sans text-emphasis antialiased max-w-[100vw] overflow-x-hidden")}>
     <Navbar pathname={Astro.url.pathname} />
     <div class='mx-12 md:mx-24'>
       <slot />

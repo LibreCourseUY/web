@@ -1,0 +1,9 @@
+{
+  "name": "LibreCourseUY",
+  "short_name": "LibreCourseUY",
+  "description": "A non-profit FOSS community from Uruguay growing the next generation of open source contributors in Latin America.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#10100e",
+  "theme_color": "#5ec2af"
+}

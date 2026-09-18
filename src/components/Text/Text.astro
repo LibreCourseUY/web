@@ -1,7 +1,5 @@
 ---
-// Libreries
 import type { HTMLAttributes } from 'astro/types';
-// Utils
 import { cn, formatLink } from '@/lib/utils';
 
 type ValidTags = 'h1' | 'h2' | 'h3' | 'h4' | 'p' | 'a';
@@ -19,19 +17,13 @@ type Props =
 const { variant, className, link, openInTab, ...props } = Astro.props;
 const Tag = variant as ValidTags;
 
-const hasSizeClass = /(^|\s)text-(xs|sm|base|lg|xl|2xl|3xl|4xl|5xl|6xl|7xl|8xl|9xl)\b/.test(
-	className ?? '',
-);
-
-const defaultSize = hasSizeClass ? '' : 'text-6xl md:text-8xl lg:text-9xl';
-
 const styles = {
-	h1: `${defaultSize} font-black tracking-tight text-start`,
-	h2: 'text-4xl md:text-5xl wrap-break-word text-start',
-	h3: 'text-3xl md:text-4xl wrap-break-word text-start',
-	h4: 'text-2xl md:text-3xl wrap-break-word text-start',
-	p: 'text-xl md:text-2xl text-start',
-	a: 'text-xl md:text-2xl text-start text-emphasis-secondary',
+	h1: 'font-black tracking-tight text-start',
+	h2: 'text-[clamp(1.65rem,3.8vw,2.35rem)] wrap-break-word text-start',
+	h3: 'text-[clamp(1.35rem,2.8vw,1.75rem)] wrap-break-word text-start',
+	h4: 'text-[clamp(1.15rem,2.2vw,1.5rem)] wrap-break-word text-start',
+	p: 'text-[clamp(1.1rem,2vw,1.35rem)] text-start',
+	a: 'text-[clamp(1.1rem,2vw,1.35rem)] text-start text-emphasis-secondary',
 };
 
 const isAnchor = Tag === 'a';
@@ -46,7 +38,7 @@ const extraAttributes = isAnchor
 <Tag
 	class={cn(styles[Tag], className)}
 	{...extraAttributes}
-	{...props as any}
+	{...props}
 >
 	<slot />
 </Tag>
