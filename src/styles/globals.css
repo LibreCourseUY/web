@@ -93,11 +93,6 @@
     }
   }
 
-  main > section:not(:first-child) {
-    content-visibility: auto;
-    contain-intrinsic-size: auto 800px;
-  }
-
   @media (prefers-contrast: more) {
     :root {
       --background: #ffffff;
@@ -117,6 +112,16 @@
 }
 
 @theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+  --radius-xs: 0px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --radius-4xl: 0px;
   --color-background: var(--background);
   --color-emphasis: var(--color-emphasis);
   --color-emphasis-secondary: var(--color-emphasis-secondary);
@@ -159,4 +164,27 @@
     --color-line: #2e2e2b;
     --color-muted: #9f9f96;
   }
+}
+
+/* Terminal treatment (unlayered so it wins over utility layers) */
+.rounded,
+.rounded-sm,
+.rounded-md,
+.rounded-lg,
+.rounded-xl,
+.rounded-2xl,
+.rounded-3xl {
+  border-radius: 0;
+}
+
+code {
+  border-radius: 0;
+}
+
+code.block {
+  border-left: 2px solid var(--color-emphasis-secondary);
+}
+
+hr {
+  border-style: dashed;
 }

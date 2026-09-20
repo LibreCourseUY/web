@@ -5,9 +5,11 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node scripts/generate-llms.mjs",
     "preview": "astro preview",
     "astro": "astro",
+    "seo": "python3 scripts/generate_seo.py",
+    "og": "bash scripts/generate-og.sh",
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
@@ -18,7 +20,6 @@
     "@fontsource/space-grotesk": "^5.3.0",
     "@tailwindcss/vite": "^4.3.0",
     "astro": "^5.5.0",
-    "astro-seo": "^0.8.4",
     "clsx": "^2.1.1",
     "sharp": "^0.34.5",
     "tailwind-merge": "^2.6.0",

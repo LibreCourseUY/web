@@ -10,9 +10,9 @@ import '@fontsource/space-grotesk/latin-500.css';
 import '@fontsource/space-grotesk/latin-700.css';
 import '@fontsource/space-grotesk/latin-ext-500.css';
 import '@fontsource/space-grotesk/latin-ext-700.css';
-import { SEO } from 'astro-seo';
 // Components
 import Navbar from '@/components/Navbar/Navbar.astro';
+import Seo from '@/components/Seo/Seo.astro';
 // Utils
 import { cn } from '@/lib/utils';
 // Styles
@@ -45,13 +45,7 @@ const { title, description } = Astro.props;
         else if (window.matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.classList.add('dark');
       })();
     </script>
-    <SEO
-      title={title}
-      description={description}
-      twitter={{
-        card: 'summary',
-      }}
-    />
+    <Seo route={Astro.url.pathname} fallbackTitle={title} fallbackDescription={description} />
   </head>
   <body class={cn("bg-background font-sans text-emphasis antialiased max-w-[100vw] overflow-x-hidden")}>
     <Navbar pathname={Astro.url.pathname} />

@@ -9,7 +9,10 @@ export interface Props {
 	openInTab?: boolean;
 }
 
-const { href, className, disabled, openInTab = false } = Astro.props;
+const { href = '', className, disabled, openInTab = false } = Astro.props;
+
+const isExternal = /^(https?:)?\/\//i.test(href) || href.startsWith('mailto:');
+const newTab = openInTab || isExternal;
 ---
 
 {
@@ -25,7 +28,8 @@ const { href, className, disabled, openInTab = false } = Astro.props;
 	) : (
 		<a
 			href={href}
-			target={openInTab ? '_self' : '_blank'}
+			target={newTab ? '_blank' : '_self'}
+			rel={newTab ? 'noopener noreferrer' : undefined}
 			class={cn(
 				'anchor relative text-2xl text-emphasis-secondary cursor-pointer hover:text-emphasis-secondary/80',
 				className,

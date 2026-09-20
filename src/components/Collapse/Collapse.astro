@@ -18,23 +18,24 @@ const { question, open = false } = Astro.props;
 	>
 		<span><Text variant="p">{question}</Text></span>
 		<span
-			class="faq-icon shrink-0 font-mono text-lg text-muted/60
-        transition-[transform,color] duration-300 ease-in-out
-        group-[.open]:rotate-45 group-hover:text-emphasis"
+			class="faq-icon shrink-0 font-mono text-base text-muted/60
+        transition-colors duration-300 ease-in-out
+        group-[.open]:text-emphasis-secondary group-hover:text-emphasis"
 			aria-hidden="true"
 		>
-			+
+			[+]
 		</span>
 	</button>
 
 	<div
-		class="faq-body overflow-hidden
-      max-h-0 group-[.open]:max-h-48
-      transition-[max-height] duration-350 ease-in-out"
+		class="faq-body grid grid-rows-[0fr] group-[.open]:grid-rows-[1fr]
+      transition-[grid-template-rows] duration-350 ease-in-out"
 	>
-		<Text variant="p" className="pb-5 text-emphasis/80 leading-7">
-			<slot />
-		</Text>
+		<div class="overflow-hidden">
+			<Text variant="p" className="pb-5 text-emphasis/80 leading-7">
+				<slot />
+			</Text>
+		</div>
 	</div>
 </div>
 

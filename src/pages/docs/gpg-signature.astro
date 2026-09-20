@@ -116,7 +116,7 @@ const keyId = 'C4D02E34E0956389';
   description="Learn how to install GPG, generate a signing key pair, sign your Git commits, and verify them on GitHub."
 >
   <main class="flex min-h-screen flex-col items-start justify-center">
-    <section class="flex flex-col justify-start items-start w-full min-h-dvh mt-12 md:pt-12">
+    <section class="flex flex-col justify-start items-start w-full min-h-[calc(100dvh-4rem)] pt-12 pb-12">
       <div class="space-y-12 w-full max-w-4xl">
         <div class="space-y-12">
           <Text variant="h1">GPG Signature</Text>
@@ -132,18 +132,18 @@ const keyId = 'C4D02E34E0956389';
           <Text variant="h3">Index</Text>
           <ul>
             <li>
-              <Anchor openInTab href="#installing-gpg">Installing GPG</Anchor>
+              <Anchor href="#installing-gpg">Installing GPG</Anchor>
             </li>
             <li>
-              <Anchor openInTab href="#creating-a-signature">Creating a signature</Anchor>
+              <Anchor href="#creating-a-signature">Creating a signature</Anchor>
             </li>
             <li>
-              <Anchor openInTab href="#signing-git-commits">
+              <Anchor href="#signing-git-commits">
                 Signing Git commits with your gpg signature</Anchor
               >
             </li>
             <li>
-              <Anchor openInTab href="#commit-signature-verification">
+              <Anchor href="#commit-signature-verification">
                 Commit signature verification on GitHub</Anchor
               >
             </li>
@@ -315,7 +315,7 @@ const keyId = 'C4D02E34E0956389';
 
               <Text variant="p">Once finished it should generate your own gpg signature.</Text>
 
-              <p class="text-xs font-semibold uppercase text-emphasis-secondary">Output:</p>
+              <p class="text-xs font-semibold text-emphasis-secondary">Output:</p>
               <code
                 class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
                 set:text={code.created}

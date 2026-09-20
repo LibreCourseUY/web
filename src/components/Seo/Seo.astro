@@ -1,0 +1,89 @@
+---
+import seoManifest from '@/data/seo-manifest.json';
+
+interface SeoOg {
+	type: string;
+	title: string;
+	description?: string;
+	url: string;
+	image?: string;
+	'image:width'?: number;
+	'image:height'?: number;
+	'image:alt'?: string;
+	site_name?: string;
+	locale?: string;
+}
+
+interface SeoTwitter {
+	card: string;
+	title: string;
+	description?: string;
+	image?: string;
+	'image:alt'?: string;
+}
+
+interface SeoEntry {
+	title: string;
+	canonical: string;
+	robots: string;
+	description?: string;
+	og: SeoOg;
+	twitter: SeoTwitter;
+	schema_jsonld?: unknown;
+}
+
+export interface Props {
+	route?: string;
+	fallbackTitle?: string;
+	fallbackDescription?: string;
+}
+
+const { route = Astro.url.pathname, fallbackTitle = 'LibreCourseUY', fallbackDescription } = Astro.props;
+
+const manifest = seoManifest as Record<string, SeoEntry | undefined>;
+const withSlash = route.endsWith('/') ? route : `${route}/`;
+const seo = manifest[route] ?? manifest[withSlash];
+---
+
+{
+	seo ? (
+		<>
+			<title>{seo.title}</title>
+			{seo.description && <meta name="description" content={seo.description} />}
+			<link rel="canonical" href={seo.canonical} />
+			<meta name="robots" content={seo.robots} />
+			<meta property="og:type" content={seo.og.type} />
+			<meta property="og:title" content={seo.og.title} />
+			{seo.og.description && <meta property="og:description" content={seo.og.description} />}
+			<meta property="og:url" content={seo.og.url} />
+			{seo.og.image && <meta property="og:image" content={seo.og.image} />}
+			{seo.og['image:width'] && (
+				<meta property="og:image:width" content={String(seo.og['image:width'])} />
+			)}
+			{seo.og['image:height'] && (
+				<meta property="og:image:height" content={String(seo.og['image:height'])} />
+			)}
+			{seo.og['image:alt'] && <meta property="og:image:alt" content={seo.og['image:alt']} />}
+			{seo.og.site_name && <meta property="og:site_name" content={seo.og.site_name} />}
+			{seo.og.locale && <meta property="og:locale" content={seo.og.locale} />}
+			<meta name="twitter:card" content={seo.twitter.card} />
+			<meta name="twitter:title" content={seo.twitter.title} />
+			{seo.twitter.description && (
+				<meta name="twitter:description" content={seo.twitter.description} />
+			)}
+			{seo.twitter.image && <meta name="twitter:image" content={seo.twitter.image} />}
+			{seo.twitter['image:alt'] && (
+				<meta name="twitter:image:alt" content={seo.twitter['image:alt']} />
+			)}
+			{seo.schema_jsonld && (
+				<script type="application/ld+json" set:html={JSON.stringify(seo.schema_jsonld)} />
+			)}
+		</>
+	) : (
+		<>
+			<title>{fallbackTitle}</title>
+			{fallbackDescription && <meta name="description" content={fallbackDescription} />}
+			<meta name="robots" content="index,follow" />
+		</>
+	)
+}

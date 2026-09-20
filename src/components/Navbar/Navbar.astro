@@ -29,7 +29,7 @@ const route = [
   <div
     class={cn("h-16 w-full flex flex-row justify-between items-center")}
   >
-    <a href="/" class="flex items-center text-xl">
+    <a href="/" class="flex items-center text-xl font-bold tracking-tight">
       LibreCourseUY
     </a>
 
@@ -42,10 +42,10 @@ const route = [
                 "text-sm font-bold inline-block",
                 arr.at(-1)?.name === item.name
                   ? "pr-0 border-r-0"
-                  : "pr-3 border-r border-neutral-700",
+                  : "pr-3 border-r border-line",
                 pathname === item.href || pathname === `${item.href}/`
-                  ? "text-emphasis/60 font-normal"
-                  : "text-emphasis hover:text-emphasis/80",
+                  ? "text-emphasis-secondary"
+                  : "text-emphasis/70 hover:text-emphasis",
               )}
               href={item.href}
             >
@@ -88,10 +88,10 @@ const route = [
         <li>
           <a
             class={cn(
-              "text-2xl font-bold tracking-wide transition-colors",
+              "text-2xl font-bold transition-colors",
               pathname === item.href
-                ? "text-emphasis/60"
-                : "text-emphasis hover:text-emphasis/80",
+                ? "text-emphasis-secondary"
+                : "text-emphasis/70 hover:text-emphasis",
             )}
             href={item.href}
           >
