@@ -101,8 +101,39 @@ const awesomeFeedUrl = import.meta.env.PUBLIC_AWESOME_FEED_URL ?? '';
           targets.forEach(function (el) { io.observe(el); });
         }
 
-        if (document.readyState !== 'loading') setupReveal();
-        else document.addEventListener('DOMContentLoaded', setupReveal);
+        function setupScrollCue() {
+          var cue = document.querySelector('.scroll-cue');
+          if (!cue) return;
+
+          var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          var ticking = false;
+
+          function update() {
+            ticking = false;
+            var fade = reduce ? 0 : Math.min(window.scrollY / (window.innerHeight * 0.35), 1);
+            cue.style.opacity = String(1 - fade);
+            cue.style.transform = 'translate(-50%, ' + (fade * 16) + 'px)';
+          }
+
+          function onScroll() {
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(update);
+          }
+
+          update();
+          window.addEventListener('scroll', onScroll, { passive: true });
+        }
+
+        if (document.readyState !== 'loading') {
+          setupReveal();
+          setupScrollCue();
+        } else {
+          document.addEventListener('DOMContentLoaded', function () {
+            setupReveal();
+            setupScrollCue();
+          });
+        }
       })();
     </script>
   </body>
