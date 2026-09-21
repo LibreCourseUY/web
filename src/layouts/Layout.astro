@@ -24,6 +24,7 @@ export interface Props {
 }
 
 const { title, description } = Astro.props;
+const awesomeFeedUrl = import.meta.env.PUBLIC_AWESOME_FEED_URL ?? '';
 ---
 
 <!doctype html>
@@ -52,6 +53,30 @@ const { title, description } = Astro.props;
     <div class='mx-12 md:mx-24'>
       <slot />
     </div>
+    {awesomeFeedUrl && (
+      <script is:inline define:vars={{ feedUrl: awesomeFeedUrl }}>
+        (function () {
+          var KEY = 'awesome-feed';
+          if (!feedUrl) return;
+          try {
+            if (sessionStorage.getItem(KEY)) return;
+          } catch (e) {
+            /* storage unavailable */
+          }
+          var load = function () {
+            fetch(feedUrl, { headers: { Accept: 'application/json' } })
+              .then(function (res) { return res.ok ? res.json() : null; })
+              .then(function (data) {
+                if (!data || !Array.isArray(data.entries)) return;
+                try { sessionStorage.setItem(KEY, JSON.stringify(data)); } catch (e) { /* ignore */ }
+              })
+              .catch(function () {});
+          };
+          if ('requestIdleCallback' in window) requestIdleCallback(load);
+          else window.addEventListener('load', load);
+        })();
+      </script>
+    )}
     <script is:inline>
       (function () {
         function setupReveal() {
@@ -76,8 +101,39 @@ const { title, description } = Astro.props;
           targets.forEach(function (el) { io.observe(el); });
         }
 
-        if (document.readyState !== 'loading') setupReveal();
-        else document.addEventListener('DOMContentLoaded', setupReveal);
+        function setupScrollCue() {
+          var cue = document.querySelector('.scroll-cue');
+          if (!cue) return;
+
+          var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          var ticking = false;
+
+          function update() {
+            ticking = false;
+            var fade = reduce ? 0 : Math.min(window.scrollY / (window.innerHeight * 0.35), 1);
+            cue.style.opacity = String(1 - fade);
+            cue.style.transform = 'translate(-50%, ' + (fade * 16) + 'px)';
+          }
+
+          function onScroll() {
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(update);
+          }
+
+          update();
+          window.addEventListener('scroll', onScroll, { passive: true });
+        }
+
+        if (document.readyState !== 'loading') {
+          setupReveal();
+          setupScrollCue();
+        } else {
+          document.addEventListener('DOMContentLoaded', function () {
+            setupReveal();
+            setupScrollCue();
+          });
+        }
       })();
     </script>
   </body>

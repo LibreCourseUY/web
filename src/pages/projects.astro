@@ -1,37 +1,273 @@
 ---
-// src/pages/projects.astro
 import Layout from '@/layouts/Layout.astro';
-import type { ProjectsGitHubType } from '@/lib/types';
-import RepoCard from '@/components/RepoCard/RepoCard.astro';
-
-const projects: ProjectsGitHubType[] = [
-  { id: 'UruAPI', collection: 'projects', data: { name: 'UruAPI', description: "API wrapping datosuruguay.com, programmatic access to Uruguay's daily economic indicators: exchange rates, inflation (IPC), fuel & transit prices, and more, all from official sources.", url: 'https://github.com/LibreCourseUY/UruAPI', stars: 3, language: 'Python', updatedAt: '2026-07-22T10:36:45Z', topics: ['api', 'uruguay', 'economics', 'exchange-rates', 'inflation', 'fuel-prices', 'datosuruguay'] } },
-  { id: 'ArgosUY', collection: 'projects', data: { name: 'ArgosUY', description: 'ArgosUY is an open-source platform that indexes the GitHub ecosystem of Uruguay, users, organizations, repositories, and individual commits, stores it in ClickHouse, and exposes a FastAPI backend.', url: 'https://github.com/LibreCourseUY/ArgosUY', stars: 0, language: 'Dockerfile', updatedAt: '2026-07-03T01:01:27Z', topics: ['uruguay', 'github-ecosystem', 'clickhouse', 'fastapi', 'open-source'] } },
-  { id: 'fingcomms', collection: 'projects', data: { name: 'fingcomms', description: 'Directory for student groups.', url: 'https://github.com/LibreCourseUY/fingcomms', stars: 2, language: 'HTML', updatedAt: '2026-06-30T02:15:09Z', topics: [] } },
-  { id: 'react-components', collection: 'projects', data: { name: 'react-components', description: 'react-components [LibreCourseUY] es un ecosistema colaborativo diseñado para desarrolladores que están dando sus primeros pasos en React. El objetivo no es solo construir componentes, sino aprender el flujo de trabajo profesional: desde la creación de componentes hasta la gestión de Pull Requests y el mantenimiento de una biblioteca compartida.', url: 'https://github.com/LibreCourseUY/react-components', stars: 1, language: 'TypeScript', updatedAt: '2026-06-10T17:43:07Z', topics: ['react', 'components', 'learning', 'collaborative'] } },
-  { id: 'Inkfing', collection: 'projects', data: { name: 'Inkfing', description: 'A dark-mode extension targeting FING specific websites\\apps', url: 'https://github.com/LibreCourseUY/Inkfing', stars: 6, language: 'CSS', updatedAt: '2026-06-06T21:16:04Z', topics: [] } },
-  { id: 'PolyAPI', collection: 'projects', data: { name: 'PolyAPI', description: 'PolyAPI is a polyglot API architecture that demonstrates how to build production-ready APIs using multiple programming languages, each contributing isolated, well-defined modules.', url: 'https://github.com/LibreCourseUY/PolyAPI', stars: 0, language: 'Python', updatedAt: '2026-06-01T22:07:50Z', topics: ['api', 'polyglot', 'microservices', 'architecture'] } },
-  { id: 'fingDB', collection: 'projects', data: { name: 'fingDB', description: 'Centralized site with course information, prerequisites, and career data.', url: 'https://github.com/LibreCourseUY/fingDB', stars: 3, language: 'HTML', updatedAt: '2026-06-01T22:07:50Z', topics: ['education', 'courses', 'university'] } },
-  { id: 'fingmap', collection: 'projects', data: { name: 'fingmap', description: 'Interactive map of the Faculty of Engineering campus.', url: 'https://github.com/LibreCourseUY/fingmap', stars: 4, language: 'Vue', updatedAt: '2026-05-13T04:09:19Z', topics: ['map', 'interactive', 'campus'] } },
-];
-
-const filterProjects = ['.github', 'libreblog', 'scripts', 'initial-Challenges', 'web'];
+import Footer from '@/components/Footer/Footer.astro';
+import Text from '@/components/Text/Text.astro';
 ---
 
 <Layout
-	title="Projects | LibreCourseUY"
-	description="Explore all projects from LibreCourseUY."
+  title="Projects | LibreCourseUY"
+  description="Explore open source and community projects from LibreCourseUY."
 >
-	<main class="mx-auto px-4 py-12 space-y-6">
-		<h1 class="text-[clamp(2.1rem,4.6vw,3.25rem)] font-black tracking-tight">Projects</h1>
-		<p class="text-muted">Repositories from the LibreCourseUY GitHub organization.</p>
+  <main class="flex min-h-screen flex-col items-start justify-center">
+    <section class="flex w-full flex-col justify-start items-start gap-8 pt-12 pb-12">
+      <div class="space-y-4">
+        <Text variant="h1">Projects</Text>
+        <Text variant="p" class="text-muted max-w-3xl">
+          Curated projects from the LibreCourseUY community. Search, filter and find something to
+          contribute to.
+        </Text>
+      </div>
 
-		<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-12">
-			{
-				projects
-					.filter(({ data }) => !filterProjects.includes(data.name) && data.description)
-					.map(({ data }) => <RepoCard {...data} />)
-			}
-		</div>
-	</main>
+      <div id="awesome-app" class="w-full" hidden>
+        <div
+          class="flex flex-col gap-4 border-y border-line py-6 md:flex-row md:flex-wrap md:items-end"
+        >
+          <label class="flex min-w-56 flex-1 flex-col gap-1">
+            <span class="text-xs font-bold uppercase tracking-wider text-muted">Search</span>
+            <input
+              id="awesome-search"
+              type="search"
+              placeholder="Name, description or tag..."
+              class="w-full border border-line bg-surface px-3 py-2 text-sm text-emphasis outline-none focus:border-emphasis-secondary"
+            />
+          </label>
+
+          <label class="flex min-w-44 flex-col gap-1">
+            <span class="text-xs font-bold uppercase tracking-wider text-muted">Category</span>
+            <select
+              id="awesome-category"
+              class="border border-line bg-surface px-3 py-2 text-sm text-emphasis outline-none focus:border-emphasis-secondary"
+            ></select>
+          </label>
+
+          <label class="flex min-w-44 flex-col gap-1">
+            <span class="text-xs font-bold uppercase tracking-wider text-muted">Monetization</span>
+            <select
+              id="awesome-monetization"
+              class="border border-line bg-surface px-3 py-2 text-sm text-emphasis outline-none focus:border-emphasis-secondary"
+            ></select>
+          </label>
+
+          <label class="flex min-w-44 flex-col gap-1">
+            <span class="text-xs font-bold uppercase tracking-wider text-muted">Language</span>
+            <select
+              id="awesome-language"
+              class="border border-line bg-surface px-3 py-2 text-sm text-emphasis outline-none focus:border-emphasis-secondary"
+            ></select>
+          </label>
+
+          <label class="flex min-w-40 flex-col gap-1">
+            <span class="text-xs font-bold uppercase tracking-wider text-muted">Source</span>
+            <select
+              id="awesome-source"
+              class="border border-line bg-surface px-3 py-2 text-sm text-emphasis outline-none focus:border-emphasis-secondary"
+            >
+              <option value="">Any</option>
+              <option value="open">Open source</option>
+              <option value="closed">Closed source</option>
+            </select>
+          </label>
+
+          <label class="flex min-w-40 flex-col gap-1">
+            <span class="text-xs font-bold uppercase tracking-wider text-muted">Contributions</span>
+            <select
+              id="awesome-contrib"
+              class="border border-line bg-surface px-3 py-2 text-sm text-emphasis outline-none focus:border-emphasis-secondary"
+            >
+              <option value="">Any</option>
+              <option value="open">Open</option>
+              <option value="closed">Closed</option>
+            </select>
+          </label>
+
+          <button
+            id="awesome-reset"
+            type="button"
+            class="border border-line px-4 py-2 text-sm font-bold text-muted transition-colors hover:border-emphasis-secondary hover:text-emphasis"
+          >
+            Reset
+          </button>
+        </div>
+
+        <p id="awesome-count" class="pt-4 text-xs uppercase tracking-wider text-muted"></p>
+
+        <div id="awesome-grid" class="grid grid-cols-1 gap-6 pt-4 md:grid-cols-2 lg:grid-cols-3">
+        </div>
+
+        <p id="awesome-empty" class="hidden py-16 text-center text-muted" hidden>
+          No projects match your filters.
+        </p>
+      </div>
+
+      <div id="awesome-maintenance" class="w-full border border-line bg-surface p-8" hidden>
+        <Text variant="h3">This section is under maintenance</Text>
+        <Text variant="p" class="mt-3 max-w-2xl text-muted">
+          The project list is temporarily unavailable. Please check back soon.
+        </Text>
+      </div>
+
+      <div
+        id="awesome-loading"
+        class="w-full py-16 text-center text-xs uppercase tracking-wider text-muted"
+      >
+        Loading projects...
+      </div>
+    </section>
+    <Footer />
+  </main>
 </Layout>
+
+<script>
+  import { filterEntries, sortEntries, uniqueValues, type AwesomeEntry } from '@/lib/awesome';
+  import { loadAwesomeFeed } from '@/lib/awesome-client';
+
+  const app = document.getElementById('awesome-app') as HTMLElement | null;
+  const grid = document.getElementById('awesome-grid');
+  const count = document.getElementById('awesome-count');
+  const empty = document.getElementById('awesome-empty');
+  const maintenance = document.getElementById('awesome-maintenance');
+  const loading = document.getElementById('awesome-loading');
+  const search = document.getElementById('awesome-search') as HTMLInputElement | null;
+  const categoryEl = document.getElementById('awesome-category') as HTMLSelectElement | null;
+  const monetizationEl = document.getElementById(
+    'awesome-monetization',
+  ) as HTMLSelectElement | null;
+  const languageEl = document.getElementById('awesome-language') as HTMLSelectElement | null;
+  const sourceEl = document.getElementById('awesome-source') as HTMLSelectElement | null;
+  const contribEl = document.getElementById('awesome-contrib') as HTMLSelectElement | null;
+  const resetEl = document.getElementById('awesome-reset');
+
+  function esc(value: string): string {
+    return value.replace(/[&<>"']/g, (char) => {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char] ?? char;
+    });
+  }
+
+  function card(entry: AwesomeEntry): string {
+    const badges: string[] = [`[${esc(entry.category)}]`];
+    if (entry.open_source) badges.push('[open]');
+    else badges.push('[closed]');
+    if (entry.monetization && entry.monetization !== 'none')
+      badges.push(`[${esc(entry.monetization)}]`);
+    if (entry.open_to_contributions ?? true) badges.push('[open to contributions]');
+    for (const lang of entry.language ?? []) badges.push(`[${esc(lang)}]`);
+
+    const maintainers = (entry.maintainers ?? [])
+      .map(
+        (handle) =>
+          `<a href="https://github.com/${esc(handle.replace('@', ''))}" target="_blank" rel="noopener noreferrer" class="text-emphasis-secondary hover:underline">${esc(handle)}</a>`,
+      )
+      .join(' · ');
+
+    return `
+			<div class="flex min-w-0 flex-col gap-3 border border-line bg-surface p-4 transition-colors hover:border-emphasis-secondary/60">
+				<div class="flex items-center justify-between gap-2">
+					<a href="${esc(entry.url)}" target="_blank" rel="noopener noreferrer" class="min-w-0 flex-1 truncate text-sm font-bold text-emphasis">${esc(entry.name)}</a>
+				</div>
+				<p class="break-words text-sm leading-relaxed text-muted">${esc(entry.description)}</p>
+				<div class="flex flex-wrap gap-1">${badges
+          .map(
+            (b) => `<span class="border border-line px-1.5 py-0.5 text-xs text-muted">${b}</span>`,
+          )
+          .join('')}</div>
+				<div class="mt-auto flex flex-wrap items-center justify-between gap-2 border-t border-line pt-3 text-xs text-muted">
+					${entry.repository ? `<a href="${esc(entry.repository)}" target="_blank" rel="noopener noreferrer" class="hover:text-emphasis">[source]</a>` : '<span></span>'}
+					${maintainers ? `<span>${maintainers}</span>` : ''}
+				</div>
+			</div>`;
+  }
+
+  function fillSelect(el: HTMLSelectElement | null, label: string, values: string[]) {
+    if (!el) return;
+    el.innerHTML =
+      `<option value="">Any ${label}</option>` +
+      values.map((v) => `<option value="${esc(v)}">${esc(v)}</option>`).join('');
+  }
+
+  function readState() {
+    return {
+      query: search?.value ?? '',
+      categories: categoryEl?.value ? [categoryEl.value] : [],
+      monetization: monetizationEl?.value ? [monetizationEl.value] : [],
+      languages: languageEl?.value ? [languageEl.value] : [],
+      openSource: sourceEl?.value === 'open' ? true : sourceEl?.value === 'closed' ? false : null,
+      openToContributions:
+        contribEl?.value === 'open' ? true : contribEl?.value === 'closed' ? false : null,
+    };
+  }
+
+  function writeUrl() {
+    const params = new URLSearchParams();
+    const state = readState();
+    if (state.query) params.set('q', state.query);
+    if (state.categories[0]) params.set('category', state.categories[0]);
+    if (state.monetization[0]) params.set('monetization', state.monetization[0]);
+    if (state.languages[0]) params.set('language', state.languages[0]);
+    if (state.openSource !== null) params.set('source', state.openSource ? 'open' : 'closed');
+    if (state.openToContributions !== null)
+      params.set('contrib', state.openToContributions ? 'open' : 'closed');
+    const qs = params.toString();
+    history.replaceState(null, '', qs ? `?${qs}` : location.pathname);
+  }
+
+  function readUrl() {
+    const params = new URLSearchParams(location.search);
+    if (search && params.get('q')) search.value = params.get('q')!;
+    if (categoryEl && params.get('category')) categoryEl.value = params.get('category')!;
+    if (monetizationEl && params.get('monetization'))
+      monetizationEl.value = params.get('monetization')!;
+    if (languageEl && params.get('language')) languageEl.value = params.get('language')!;
+    if (sourceEl && params.get('source')) sourceEl.value = params.get('source')!;
+    if (contribEl && params.get('contrib')) contribEl.value = params.get('contrib')!;
+  }
+
+  async function init() {
+    const feed = await loadAwesomeFeed();
+    loading?.setAttribute('hidden', '');
+
+    if (!feed || !app || !grid || !count) {
+      maintenance?.removeAttribute('hidden');
+      return;
+    }
+
+    app.removeAttribute('hidden');
+
+    fillSelect(categoryEl, 'category', feed.categories);
+    fillSelect(
+      monetizationEl,
+      'monetization',
+      uniqueValues(feed.entries, (e) => [e.monetization ?? 'none']),
+    );
+    fillSelect(
+      languageEl,
+      'language',
+      uniqueValues(feed.entries, (e) => e.language ?? []),
+    );
+
+    readUrl();
+
+    const render = () => {
+      const filtered = sortEntries(filterEntries(feed.entries, readState()));
+      grid.innerHTML = filtered.map(card).join('');
+      count.textContent = `${filtered.length} of ${feed.entries.length} projects`;
+      empty?.toggleAttribute('hidden', filtered.length > 0);
+      writeUrl();
+    };
+
+    search?.addEventListener('input', render);
+    for (const el of [categoryEl, monetizationEl, languageEl, sourceEl, contribEl]) {
+      el?.addEventListener('change', render);
+    }
+    resetEl?.addEventListener('click', () => {
+      if (search) search.value = '';
+      for (const el of [categoryEl, monetizationEl, languageEl, sourceEl, contribEl]) {
+        if (el) el.value = '';
+      }
+      render();
+    });
+
+    render();
+  }
+
+  void init();
+</script>
