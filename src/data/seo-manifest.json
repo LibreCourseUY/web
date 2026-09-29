@@ -425,7 +425,7 @@
     "og": {
       "type": "website",
       "title": "Projects | LibreCourseUY",
-      "description": "Explore all projects from LibreCourseUY.",
+      "description": "Explore open source and community projects from LibreCourseUY.",
       "url": "https://librecourse.uy/projects/",
       "image": "https://librecourse.uy/og.jpg",
       "image:width": 1200,
@@ -437,18 +437,18 @@
     "twitter": {
       "card": "summary_large_image",
       "title": "Projects | LibreCourseUY",
-      "description": "Explore all projects from LibreCourseUY.",
+      "description": "Explore open source and community projects from LibreCourseUY.",
       "image": "https://librecourse.uy/og.jpg",
       "image:alt": "LibreCourseUY"
     },
-    "description": "Explore all projects from LibreCourseUY.",
+    "description": "Explore open source and community projects from LibreCourseUY.",
     "schema_jsonld": [
       {
         "@context": "https://schema.org",
         "@type": "CollectionPage",
         "name": "Projects | LibreCourseUY",
         "url": "https://librecourse.uy/projects/",
-        "description": "Explore all projects from LibreCourseUY.",
+        "description": "Explore open source and community projects from LibreCourseUY.",
         "image": "https://librecourse.uy/og.jpg",
         "datePublished": "2026-06-18",
         "dateModified": "2026-09-18",

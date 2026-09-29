@@ -14,6 +14,7 @@ Astro 5 + TypeScript website template.
 | `pnpm seo` | Regenerate `src/data/seo-manifest.json` with seoslug (needs Python + `seoslug`) |
 | `pnpm og` | Regenerate `public/og.jpg` (needs ImageMagick) |
 | `pnpm lint` | Run ESLint |
+| `pnpm test` | Run the awesome-filter self-check (Node strip-types) |
 | `pnpm format` | Format all files with Prettier |
 | `pnpm format:check` | Check formatting without writing |
 
@@ -37,6 +38,7 @@ src/
 - **Fonts**: Import Fontsource CSS in layout frontmatter (e.g. `@fontsource/inter/400.css`).
 - **Images**: Use Astro's built-in `<Image />` from `astro:assets` for optimized images (no extra package needed).
 - **Dark mode**: Tailwind `dark:` variants work out of the box, no class switching is configured by default.
+- **Awesome feed**: `/projects` renders the curated list from `PUBLIC_AWESOME_FEED_URL` (see `.env.example`). When unset or unreachable, the page shows an "under maintenance" notice. `Layout` prefetches the feed into `sessionStorage`; filtering helpers live in `src/lib/awesome.ts` (pure, covered by `pnpm test`).
 
 ## Config Files
 

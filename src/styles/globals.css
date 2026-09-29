@@ -64,16 +64,21 @@
   }
 
   .scroll-cue {
-    animation: cue 2.4s ease-in-out infinite;
+    transform: translate(-50%, 0);
+    will-change: transform, opacity;
+  }
+
+  .scroll-cue > svg {
+    animation: cue 2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
   }
 
   @keyframes cue {
     0%, 100% {
       transform: translateY(0);
-      opacity: 0.45;
+      opacity: 0.4;
     }
     50% {
-      transform: translateY(6px);
+      transform: translateY(7px);
       opacity: 1;
     }
   }

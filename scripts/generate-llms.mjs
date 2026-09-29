@@ -10,7 +10,7 @@ const ABOUT =
 	'A non-profit FOSS community from Uruguay growing the next generation of open source contributors in Latin America.';
 
 if (!existsSync(dist)) {
-	console.error('dist/ not found — run `astro build` first.');
+	console.error('dist/ not found; run `astro build` first.');
 	process.exit(1);
 }
 
@@ -37,7 +37,7 @@ function decode(value) {
 		.replace(/&quot;/g, '"')
 		.replace(/&#0?39;/g, "'")
 		.replace(/&nbsp;/g, ' ')
-		.replace(/&mdash;/g, '—')
+		.replace(/&mdash;/g, '-')
 		.replace(/&middot;/g, '·');
 }
 

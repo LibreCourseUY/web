@@ -13,7 +13,7 @@ import Layout from '@/layouts/Layout.astro';
 import { formatLink } from '@/lib/utils';
 import type { ProjectType } from '@/lib/types';
 // Assets
-import heroIcon from '@/assets/hero_icon.png';
+import heroIcon from '@/assets/lcuy_logo.svg';
 import heroImg from '@/assets/ascii-hero.png';
 import computerImg from '@/assets/ascii-computer.png';
 
@@ -31,16 +31,16 @@ const importantLinks = {
 
 const projects: ProjectType[] = [
 	{
-		title: 'Inkfing',
+		title: 'MoodleTweaks',
 		description:
-			"simple extension that allows Fing (Facultad de Ingeniería, UdelaR) students to give their day to day web apps a refreshed dark-mode. It's designed to help incoming students find study partners and collaborative projects to work on.",
+			'Manifest V3 browser extension that refreshes and unifies the styling of the EVA learning platform (Moodle 4.x), adding dark mode and adjustable typography and density.',
 		autor: {
-			name: 'emiliano-gandini',
-			link: 'https://github.com/emiliano-go',
+			name: 'joaquinlarroca',
+			link: 'https://github.com/joaquinlarroca',
 		},
 		image: null,
 		stack: ['HTML', 'CSS', 'JS', 'Manifest V3'],
-		pj_link: 'https://github.com/LibreCourseUY/Inkfing',
+		pj_link: 'https://github.com/LibreCourseUY/moodleTweaks',
 	},
 	{
 		title: 'UruAPI',
@@ -138,7 +138,7 @@ const projects: ProjectType[] = [
 				</div>
 			</div>
 			
-			<div class="scroll-cue absolute bottom-10 left-1/2 -translate-x-1/2 [@media(max-height:640px)]:hidden">
+			<div class="scroll-cue absolute bottom-10 left-1/2 [@media(max-height:640px)]:hidden">
 				<svg class="w-6 h-6 text-emphasis/40" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
 					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
 				</svg>
@@ -174,6 +174,27 @@ const projects: ProjectType[] = [
 				height={380}
 			/>
 		</section>
+		<section 
+			id="collaboration"
+			class="mb-12 w-full flex flex-col items-start justify-center gap-y-6"
+		>
+			<Text variant='h2'>How collaboration works</Text>
+			<Text variant='p'>
+				LibreCourseUY is built around open collaboration.
+			</Text>
+			<Text variant='p'>
+				Members are welcome to bring their own projects, including projects with private or commercial components. However, collaboration organized through LibreCourseUY must happen on open-source parts of those projects.
+			</Text>
+			<Text variant='p'>
+				Project owners retain ownership and governance of their work. LibreCourseUY does not claim rights over members private projects or proprietary code.
+			</Text>
+			<Text variant='p'>
+				Commercial or proprietary work, including paid development, employment, consulting, equity arrangements or work under NDA, must be agreed independently between the members involved. LibreCourseUY is not a party to those agreements.
+			</Text>
+			<Text variant='p'>
+				In short: <strong>what we build together as a community, we build in the open.</strong>
+			</Text>
+		</section>
 		<section
 			id="projects"
 			class="flex min-h-[calc(100dvh-4rem)] flex-col justify-center pt-12"
@@ -181,7 +202,7 @@ const projects: ProjectType[] = [
 			<div class="space-y-8">
 				<Text variant="h2">Our Projects</Text>
 				<Text variant="p"
-					>Projects made by students that show their knowledge in multiple areas</Text
+					>Projects built by our community, showcasing skills across multiple areas.</Text
 				>
 				<div class="space-y-4">
 					{
@@ -208,8 +229,8 @@ const projects: ProjectType[] = [
 					</Collapse>
 
 					<Collapse question="Who can join?">
-						Anyone, for free. Members are expected to follow our Code of Conduct, and those who wish
-						to contribute must sign the CLA.
+						Anyone, for free. Members are expected to follow our Code of Conduct.
+						Contributions follow the license and contribution terms of each project.
 					</Collapse>
 
 					<Collapse question="What does LibreCourseUY offer?">
@@ -252,6 +273,14 @@ const projects: ProjectType[] = [
 								</span>
 							</ListItem>
 						</List>
+					</Collapse>
+					<Collapse question='Can I bring a private or commercial project?'>
+						<Text variant='p' >
+							<span><strong>Yes.</strong> You can bring open-source components of a private or commercial project and collaborate on them through LibreCourseUY.</span>
+						</Text>
+						<Text variant='p'>
+						<span>The private part remains yours. Commercial, proprietary or paid work must be arranged independently between the members involved.</span>
+						</Text>
 					</Collapse>
 				</div>
 			</div>
