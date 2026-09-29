@@ -9,6 +9,11 @@ export interface Props {
 
 const { className, pathname } = Astro.props;
 
+// Build-time pathnames end with a slash ("/learn/"), hrefs mostly don't: compare normalized.
+const normalize = (p: string) => p.replace(/\/+$/, '') || '/';
+const current = pathname ? normalize(pathname) : null;
+const isActive = (href: string) => current === normalize(href);
+
 const route = [
   { name: "Home", href: "/" },
   { name: "Learn", href: "/learn" },
@@ -23,7 +28,7 @@ const route = [
   id="site-header"
   class={cn(
     className,
-    "h-16 w-dvw px-6 md:px-12 lg:px-24 sticky top-0 z-100 flex items-center justify-center",
+    "h-16 w-full px-6 md:px-12 lg:px-24 sticky top-0 z-100 flex items-center justify-center",
   )}
 >
   <div
@@ -43,7 +48,7 @@ const route = [
                 arr.at(-1)?.name === item.name
                   ? "pr-0 border-r-0"
                   : "pr-3 border-r border-line",
-                pathname === item.href || pathname === `${item.href}/`
+                isActive(item.href)
                   ? "text-emphasis-secondary"
                   : "text-emphasis/70 hover:text-emphasis",
               )}
@@ -56,6 +61,7 @@ const route = [
       </ul>
       <button
         id="theme-toggle"
+        type="button"
         class="flex items-center justify-center w-8 h-8 rounded-full hover:bg-emphasis/10 transition-colors"
         aria-label="Toggle theme"
       >
@@ -70,6 +76,10 @@ const route = [
 
     <button
       id="mobile-menu-toggle"
+      type="button"
+      aria-controls="mobile-menu-overlay"
+      aria-expanded="false"
+      aria-label="Open menu"
       class="md:hidden relative flex flex-col justify-center items-center w-8 h-8 z-50 group"
     >
       <span class="absolute w-7 h-0.5 bg-emphasis rounded-full transition-transform duration-300 -translate-y-1 group-[.is-open]:translate-y-0 group-[.is-open]:rotate-45"></span>
@@ -80,16 +90,17 @@ const route = [
 
 <div
   id="mobile-menu-overlay"
-  class="fixed inset-0 z-[90] flex flex-col bg-background px-6 pt-24 pb-4 transition-transform duration-500 ease-in-out -translate-y-full"
+  inert
+  class="fixed inset-0 z-[90] flex md:hidden flex-col overflow-y-auto overscroll-contain bg-background px-6 pt-24 pb-4 transition-transform duration-500 ease-in-out -translate-y-full"
 >
-  <div class="flex flex-1 flex-col items-center justify-start gap-8 pt-8 pb-32">
+  <div class="flex flex-1 flex-col items-center justify-start gap-8 pt-8 pb-16">
     <ul class="flex flex-col items-center gap-8">
       {route.map((item) => (
         <li>
           <a
             class={cn(
               "text-2xl font-bold transition-colors",
-              pathname === item.href
+              isActive(item.href)
                 ? "text-emphasis-secondary"
                 : "text-emphasis/70 hover:text-emphasis",
             )}
@@ -102,6 +113,7 @@ const route = [
     </ul>
     <button
       id="theme-toggle-mobile"
+      type="button"
       class="bg-emphasis mt-4 px-8 py-3 rounded-full font-bold text-background cursor-pointer transition-transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2"
     >
       <svg class="hidden dark:block w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -149,29 +161,34 @@ const route = [
     const toggleBtn = document.getElementById('mobile-menu-toggle');
     const overlay = document.getElementById('mobile-menu-overlay');
 
-    if (!toggleBtn || !overlay) return;
+    if (!toggleBtn || !overlay || toggleBtn.dataset.bound) return;
+    toggleBtn.dataset.bound = '1';
 
-    let isOpen = false;
+    const desktop = window.matchMedia('(min-width: 48rem)'); // Tailwind `md`
+    const isOpen = () => toggleBtn.getAttribute('aria-expanded') === 'true';
 
-    const toggleMenu = () => {
-      isOpen = !isOpen;
-      if (isOpen) {
-        overlay.classList.remove('-translate-y-full');
-        overlay.classList.add('translate-y-0');
-        toggleBtn.classList.add('is-open');
-        document.body.style.overflow = 'hidden';
-      } else {
-        overlay.classList.add('-translate-y-full');
-        overlay.classList.remove('translate-y-0');
-        toggleBtn.classList.remove('is-open');
-        document.body.style.overflow = '';
-      }
+    const setMenu = (open: boolean) => {
+      overlay.classList.toggle('-translate-y-full', !open);
+      overlay.classList.toggle('translate-y-0', open);
+      overlay.toggleAttribute('inert', !open);
+      toggleBtn.classList.toggle('is-open', open);
+      toggleBtn.setAttribute('aria-expanded', String(open));
+      toggleBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      document.body.style.overflow = open ? 'hidden' : '';
+      if (open) overlay.querySelector<HTMLElement>('a')?.focus({ preventScroll: true });
+      else toggleBtn.focus({ preventScroll: true });
     };
 
-    toggleBtn.onclick = toggleMenu;
-
-    overlay.querySelectorAll('a').forEach(link => {
-      link.onclick = () => { if (isOpen) toggleMenu(); };
+    toggleBtn.addEventListener('click', () => setMenu(!isOpen()));
+    overlay.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => setMenu(false));
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && isOpen()) setMenu(false);
+    });
+    // Leaving the mobile breakpoint with the menu open would otherwise lock scroll with no toggle.
+    desktop.addEventListener('change', (event) => {
+      if (event.matches && isOpen()) setMenu(false);
     });
   }
 

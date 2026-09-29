@@ -1,0 +1,59 @@
+---
+// Components
+import Anchor from '@/components/Anchor/Anchor.astro';
+import Text from '@/components/Text/Text.astro';
+// Layout
+import Layout from '@/layouts/Layout.astro';
+
+const terminal = `~$ cd requested-page/
+bash: cd: requested-page/: No such file or directory`;
+
+const links = [
+  { name: 'Home', href: '/' },
+  { name: 'Docs', href: '/docs/' },
+  { name: 'Projects', href: '/projects/' },
+];
+---
+
+<Layout
+  title="Page not found | LibreCourseUY"
+  description="The page you are looking for does not exist or was moved."
+  noindex
+>
+  <main class="flex min-h-screen flex-col items-start justify-center">
+    <section
+      class="flex flex-col justify-start items-start w-full min-h-[calc(100dvh-4rem)] pt-12 pb-12"
+    >
+      <div class="space-y-12 w-full max-w-4xl">
+        <div class="space-y-4">
+          <p class="font-mono text-sm font-bold tracking-[0.08em] text-emphasis-secondary">[404]</p>
+          <Text variant="h1">Page not found</Text>
+          <Text variant="p" className="text-emphasis/70">
+            The page you are looking for does not exist or was moved.
+          </Text>
+        </div>
+
+        <code
+          class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
+          set:text={terminal}
+        />
+
+        <div class="space-y-4">
+          <Text variant="p">Try one of these instead:</Text>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {
+              links.map((item) => (
+                <Anchor
+                  href={item.href}
+                  className="flex items-center justify-center border border-emphasis/60 p-6 text-center text-emphasis/80 hover:border-emphasis hover:text-emphasis"
+                >
+                  <span class="text-lg font-bold">{item.name}</span>
+                </Anchor>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

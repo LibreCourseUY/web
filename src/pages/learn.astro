@@ -4,7 +4,6 @@ import Anchor from '@/components/Anchor/Anchor.astro';
 import List from '@/components/List/List.astro';
 import ListItem from '@/components/List/ListItem.astro';
 import Text from '@/components/Text/Text.astro';
-import Footer from '@/components/Footer/Footer.astro';
 // Layout
 import Layout from '@/layouts/Layout.astro';
 // Utils
@@ -188,7 +187,7 @@ const startOptions = [
 	{
 		title: 'Personal Challenges',
 		description: 'Language-agnostic projects to learn coding',
-		href: '/',
+		href: 'https://github.com/LibreCourseUY/initial-Challenges',
 	},
 	{
 		title: 'Our Projects',
@@ -313,11 +312,6 @@ const startOptions = [
 						independence with guidance. This method builds real, lasting skills rather than
 						temporary copy-paste knowledge.
 					</Text>
-					<Text variant="p">
-						<strong>DeepWiki</strong> (deepwiki.dev) is an AI-powered documentation service that automatically
-						generates comprehensive documentation for GitHub repositories. It analyzes code and creates
-						API references, architecture diagrams, and code explanations.
-					</Text>
 				</div>
 
 				<hr class="border-line" />
@@ -360,14 +354,14 @@ const startOptions = [
 				<div class="space-y-4">
 					<Text variant="h2">Resources</Text>
 					<Text variant="p">Use these to learn (in this order):</Text>
-					<List className="w-fit ml-4">
+					<List className="ml-4">
 						{
 							resources.map((item) => (
 								<ListItem className="first:border-t border-b border-line p-6 flex flex-row justify-start items-center gap-6">
 									<span class="shrink-0 w-8 h-8 flex items-center justify-center border border-emphasis-secondary text-sm font-bold text-emphasis-secondary">
 										{item.priority}
 									</span>
-									<span class="space-y-2">
+									<span class="space-y-2 min-w-0">
 										<strong>{item.title}</strong>
 										<Text variant="p">{item.description}</Text>
 									</span>
@@ -398,6 +392,5 @@ const startOptions = [
 				</div>
 			</div>
 		</section>
-		<Footer />
 	</main>
 </Layout>

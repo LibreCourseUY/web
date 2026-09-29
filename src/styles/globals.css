@@ -92,23 +92,6 @@
       transform: none !important;
     }
   }
-
-  @media (prefers-contrast: more) {
-    :root {
-      --background: #ffffff;
-      --color-emphasis: #000000;
-      --color-emphasis-secondary: #006644;
-      --color-line: #8a8a80;
-      --color-muted: #454540;
-    }
-    .dark {
-      --background: #000000;
-      --color-emphasis: #ffffff;
-      --color-emphasis-secondary: #00ff88;
-      --color-line: #8a8a80;
-      --color-muted: #c9c9bd;
-    }
-  }
 }
 
 @theme {
@@ -166,6 +149,34 @@
   }
 }
 
+@media (prefers-contrast: more) {
+  :root {
+    --background: #ffffff;
+    --color-emphasis: #000000;
+    --color-emphasis-secondary: #006644;
+    --color-line: #8a8a80;
+    --color-muted: #454540;
+  }
+  .dark {
+    --background: #000000;
+    --color-emphasis: #ffffff;
+    --color-emphasis-secondary: #00ff88;
+    --color-line: #8a8a80;
+    --color-muted: #c9c9bd;
+  }
+}
+
+/* Same as .dark above: needed because :root:not(.light) (0,2,0) outranks .dark */
+@media (prefers-contrast: more) and (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    --background: #000000;
+    --color-emphasis: #ffffff;
+    --color-emphasis-secondary: #00ff88;
+    --color-line: #8a8a80;
+    --color-muted: #c9c9bd;
+  }
+}
+
 /* Terminal treatment (unlayered so it wins over utility layers) */
 .rounded,
 .rounded-sm,
@@ -179,12 +190,30 @@
 
 code {
   border-radius: 0;
+  overflow-wrap: anywhere;
 }
 
 code.block {
   border-left: 2px solid var(--color-emphasis-secondary);
+  max-width: 100%;
+  overflow-x: auto;
 }
 
 hr {
   border-style: dashed;
+}
+
+/* Print: scroll-reveal state must never hide content on paper / PDF */
+@media print {
+  html.js main > section,
+  .hero-enter > * {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+  #mobile-menu-overlay,
+  .scroll-cue {
+    display: none !important;
+  }
 }

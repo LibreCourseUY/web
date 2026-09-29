@@ -1,65 +1,81 @@
 ---
-// Components
-import Text from '@/components/Text/Text.astro';
 interface Props {
-	question: string;
-	open?: boolean;
+  question: string;
+  open?: boolean;
 }
 
 const { question, open = false } = Astro.props;
+const id = `faq-${question
+  .toLowerCase()
+  .replace(/[^a-z0-9]+/g, '-')
+  .replace(/^-|-$/g, '')}`;
 ---
 
 <div class:list={['faq-item group border-t border-line', { open }]}>
-	<button
-		class="faq-trigger w-full flex items-center justify-between gap-4 py-5 text-left cursor-pointer
-      font-sans text-[15px] bg-transparent border-none
-      transition-colors duration-200 hover:text-emphasis/80"
-		aria-expanded={open ? 'true' : 'false'}
-	>
-		<span><Text variant="p">{question}</Text></span>
-		<span
-			class="faq-icon shrink-0 font-mono text-base text-muted/60
-        transition-colors duration-300 ease-in-out
-        group-[.open]:text-emphasis-secondary group-hover:text-emphasis"
-			aria-hidden="true"
-		>
-			[+]
-		</span>
-	</button>
+  <button
+    id={`${id}-trigger`}
+    type="button"
+    class="faq-trigger w-full flex items-center justify-between gap-4 py-5 text-left cursor-pointer
+	  font-sans bg-transparent border-none
+	  transition-colors duration-200 hover:text-emphasis/80"
+    aria-expanded={open ? 'true' : 'false'}
+    aria-controls={`${id}-panel`}
+  >
+    <span class="text-[clamp(1.1rem,2vw,1.35rem)] text-start">{question}</span>
+    <span
+      class="faq-icon shrink-0 font-mono text-base text-muted/60
+		transition-colors duration-300 ease-in-out
+		group-[.open]:text-emphasis-secondary group-hover:text-emphasis"
+      aria-hidden="true"
+    >
+      [+]
+    </span>
+  </button>
 
-	<div
-		class="faq-body grid grid-rows-[0fr] group-[.open]:grid-rows-[1fr]
-      transition-[grid-template-rows] duration-350 ease-in-out"
-	>
-		<div class="overflow-hidden">
-			<Text variant="p" className="pb-5 text-emphasis/80 leading-7">
-				<slot />
-			</Text>
-		</div>
-	</div>
+  <div
+    id={`${id}-panel`}
+    role="region"
+    aria-labelledby={`${id}-trigger`}
+    aria-hidden={open ? 'false' : 'true'}
+    inert={!open}
+    class="faq-body grid grid-rows-[0fr] group-[.open]:grid-rows-[1fr]
+	  transition-[grid-template-rows] duration-350 ease-in-out"
+  >
+    <div class="overflow-hidden">
+      <!-- A div (not <p>) so answers may contain lists without the parser splitting the paragraph -->
+      <div class="pb-5 text-emphasis/80 leading-7 text-[clamp(1.1rem,2vw,1.35rem)] text-start">
+        <slot />
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
-	function setupFaq() {
-		document.querySelectorAll<HTMLElement>('.faq-item').forEach((item) => {
-			const trigger = item.querySelector<HTMLButtonElement>('.faq-trigger');
+  function setState(item: HTMLElement, open: boolean) {
+    const trigger = item.querySelector<HTMLButtonElement>('.faq-trigger');
+    const body = item.querySelector<HTMLElement>('.faq-body');
+    item.classList.toggle('open', open);
+    trigger?.setAttribute('aria-expanded', String(open));
+    body?.setAttribute('aria-hidden', String(!open));
+    body?.toggleAttribute('inert', !open);
+  }
 
-			trigger!.onclick = () => {
-				const isOpen = item.classList.contains('open');
+  function setupFaq() {
+    document.querySelectorAll<HTMLElement>('.faq-item').forEach((item) => {
+      const trigger = item.querySelector<HTMLButtonElement>('.faq-trigger');
+      if (!trigger || trigger.dataset.bound) return;
+      trigger.dataset.bound = '1';
 
-				document.querySelectorAll('.faq-item.open').forEach((el) => {
-					el.classList.remove('open');
-					el.querySelector<HTMLButtonElement>('.faq-trigger')?.setAttribute('aria-expanded', 'false');
-				});
+      trigger.addEventListener('click', () => {
+        const willOpen = !item.classList.contains('open');
+        document
+          .querySelectorAll<HTMLElement>('.faq-item.open')
+          .forEach((el) => setState(el, false));
+        if (willOpen) setState(item, true);
+      });
+    });
+  }
 
-				if (!isOpen) {
-					item.classList.add('open');
-					trigger!.setAttribute('aria-expanded', 'true');
-				}
-			};
-		});
-	}
-
-	setupFaq();
-	document.addEventListener('astro:page-load', setupFaq);
+  setupFaq();
+  document.addEventListener('astro:page-load', setupFaq);
 </script>

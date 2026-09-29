@@ -81,6 +81,7 @@ LAYOUT_RE = re.compile(r"<Layout\b(?P<attrs>.*?)>", re.DOTALL)
 ATTR_RE = re.compile(r'(\w+)="([^"]*)"')
 COLLAPSE_RE = re.compile(r'<Collapse\b[^>]*question="([^"]*)"[^>]*>([\s\S]*?)</Collapse>')
 TAG_RE = re.compile(r"<[^>]+>")
+EXPR_RE = re.compile(r"\{[^{}]*\}")  # Astro template expressions
 
 
 def website_schema(entity: SEOEntity, config: SEOConfig, canonical: str, title: str, description: str | None, og_image: str | None) -> dict:
@@ -175,7 +176,8 @@ def layout_props(filepath: Path) -> dict[str, str]:
 
 
 def plain_text(html: str) -> str:
-    text = TAG_RE.sub(" ", html)
+    text = EXPR_RE.sub(" ", html)
+    text = TAG_RE.sub(" ", text)
     text = re.sub(r"\s+", " ", text)
     return text.strip()
 
@@ -225,6 +227,8 @@ def main() -> int:
         warnings.simplefilter("always")
 
         for filepath in sorted(PAGES_DIR.rglob("*.astro")):
+            if filepath.stem == "404":
+                continue
             route = route_from_file(filepath)
             props = layout_props(filepath)
             meta = ROUTES.get(route, {"entity_type": "home" if route == "/" else "page"})

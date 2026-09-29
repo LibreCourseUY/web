@@ -3,7 +3,6 @@ import Anchor from '@/components/Anchor/Anchor.astro';
 import List from '@/components/List/List.astro';
 import ListItem from '@/components/List/ListItem.astro';
 import Text from '@/components/Text/Text.astro';
-import Footer from '@/components/Footer/Footer.astro';
 import Layout from '@/layouts/Layout.astro';
 import { formatLink } from '@/lib/utils';
 ---
@@ -85,19 +84,19 @@ import { formatLink } from '@/lib/utils';
 
 					<div class="space-y-6">
 						<div class="space-y-4">
-							<List className="w-fit">
+							<List>
 								<ListItem
 									className="border-t border-b border-line p-6 flex flex-row-reverse md:flex-row justify-start items-center gap-6"
 								>
 									<span class="mr-3 text-sm">{String(1).padStart(2, '0')}</span>
-									<span class="space-y-4">
+									<span class="space-y-4 min-w-0">
 										<Text
 											variant="h3"
 											className="font-semibold"
 											>Explore the Projects</Text
 										>
 										<Text variant="p"
-											>Visit our Projects page to understand what we build. Pick a project that
+											>Visit our <Anchor href="/projects/">Projects page</Anchor> to understand what we build. Pick a project that
 											interests you!</Text
 										>
 									</span>
@@ -107,14 +106,14 @@ import { formatLink } from '@/lib/utils';
 									className="border-b border-line p-6 flex flex-row-reverse md:flex-row justify-start items-center gap-6"
 								>
 									<span class="mr-3 text-sm">{String(2).padStart(2, '0')}</span>
-									<span class="space-y-4">
+									<span class="space-y-4 min-w-0">
 										<Text
 											variant="h3"
 											className="font-semibold"
 											>The Basics</Text
 										>
 										<Text variant="p"
-											>Check our Git Guide to learn how to use Git and GitHub properly.</Text
+											>Check our <Anchor href="/docs/">documentation</Anchor> to learn how to use Git and GitHub properly.</Text
 										>
 									</span>
 								</ListItem>
@@ -123,7 +122,7 @@ import { formatLink } from '@/lib/utils';
 									className="border-b border-line p-6 flex flex-row-reverse md:flex-row justify-start items-center gap-6"
 								>
 									<span class="mr-3 text-sm">{String(3).padStart(2, '0')}</span>
-									<span class="space-y-4">
+									<span class="space-y-4 min-w-0">
 										<Text
 											variant="h3"
 											className="font-semibold"
@@ -138,7 +137,7 @@ import { formatLink } from '@/lib/utils';
 
 								<ListItem className="p-6 flex flex-row-reverse md:flex-row justify-start items-center gap-6">
 									<span class="mr-3 text-sm">{String(4).padStart(2, '0')}</span>
-									<span class="space-y-4">
+									<span class="space-y-4 min-w-0">
 										<Text
 											variant="h3"
 											className="font-semibold"
@@ -163,12 +162,12 @@ import { formatLink } from '@/lib/utils';
 
 					<div class="space-y-6">
 						<div class="space-y-4">
-							<List className="w-fit">
+							<List>
 								<ListItem
 									className="border-t border-b border-line p-6 flex flex-row-reverse md:flex-row justify-start items-center gap-6"
 								>
 									<span class="mr-3 text-sm">{String(1).padStart(2, '0')}</span>
-									<span class="space-y-4">
+									<span class="space-y-4 min-w-0">
 										<Text
 											variant="h3"
 											className="font-semibold"
@@ -185,7 +184,7 @@ import { formatLink } from '@/lib/utils';
 									className="border-b border-line p-6 flex flex-row-reverse md:flex-row justify-start items-center gap-6"
 								>
 									<span class="mr-3 text-sm">{String(2).padStart(2, '0')}</span>
-									<span class="space-y-4">
+									<span class="space-y-4 min-w-0">
 										<Text
 											variant="h3"
 											className="font-semibold"
@@ -202,7 +201,7 @@ import { formatLink } from '@/lib/utils';
 									className="border-b border-line p-6 flex flex-row-reverse md:flex-row justify-start items-center gap-6"
 								>
 									<span class="mr-3 text-sm">{String(3).padStart(2, '0')}</span>
-									<span class="space-y-4">
+									<span class="space-y-4 min-w-0">
 										<Text
 											variant="h3"
 											className="font-semibold"
@@ -221,7 +220,7 @@ import { formatLink } from '@/lib/utils';
 									className="border-b border-line p-6 flex flex-row-reverse md:flex-row justify-start items-center gap-6"
 								>
 									<span class="mr-3 text-sm">{String(4).padStart(2, '0')}</span>
-									<span class="space-y-4">
+									<span class="space-y-4 min-w-0">
 										<Text
 											variant="h3"
 											className="font-semibold"
@@ -238,7 +237,7 @@ import { formatLink } from '@/lib/utils';
 									className="border-b border-line p-6 flex flex-row-reverse md:flex-row justify-start items-center gap-6"
 								>
 									<span class="mr-3 text-sm">{String(5).padStart(2, '0')}</span>
-									<span class="space-y-4">
+									<span class="space-y-4 min-w-0">
 										<Text
 											variant="h3"
 											className="font-semibold"
@@ -255,7 +254,7 @@ import { formatLink } from '@/lib/utils';
 									className="border-b border-line p-6 flex flex-row-reverse md:flex-row justify-start items-center gap-6"
 								>
 									<span class="mr-3 text-sm">{String(6).padStart(2, '0')}</span>
-									<span class="space-y-4">
+									<span class="space-y-4 min-w-0">
 										<Text
 											variant="h3"
 											className="font-semibold"
@@ -270,7 +269,7 @@ import { formatLink } from '@/lib/utils';
 
 								<ListItem className="p-6 flex flex-row-reverse md:flex-row justify-start items-center gap-6">
 									<span class="mr-3 text-sm">{String(7).padStart(2, '0')}</span>
-									<span class="space-y-4">
+									<span class="space-y-4 min-w-0">
 										<Text
 											variant="h3"
 											className="font-semibold"
@@ -376,7 +375,10 @@ import { formatLink } from '@/lib/utils';
 								>
 							</List>
 						</div>
-						<Text variant="p">Set up your SSH key following our Git Guide.</Text>
+						<Text variant="p">
+							Set up your GPG key following our
+							<Anchor href="/docs/gpg-signature/">GPG Signature guide</Anchor>.
+						</Text>
 						<code class="block p-3 bg-surface border border-line rounded text-sm ml-4"
 							>git config --global commit.gpgsign true</code
 						>
@@ -415,6 +417,5 @@ import { formatLink } from '@/lib/utils';
 				</div>
 			</div>
 		</section>
-		<Footer />
 	</main>
 </Layout>

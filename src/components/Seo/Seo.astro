@@ -36,9 +36,15 @@ export interface Props {
 	route?: string;
 	fallbackTitle?: string;
 	fallbackDescription?: string;
+	noindex?: boolean;
 }
 
-const { route = Astro.url.pathname, fallbackTitle = 'LibreCourseUY', fallbackDescription } = Astro.props;
+const {
+	route = Astro.url.pathname,
+	fallbackTitle = 'LibreCourseUY',
+	fallbackDescription,
+	noindex = false,
+} = Astro.props;
 
 const manifest = seoManifest as Record<string, SeoEntry | undefined>;
 const withSlash = route.endsWith('/') ? route : `${route}/`;
@@ -50,8 +56,8 @@ const seo = manifest[route] ?? manifest[withSlash];
 		<>
 			<title>{seo.title}</title>
 			{seo.description && <meta name="description" content={seo.description} />}
-			<link rel="canonical" href={seo.canonical} />
-			<meta name="robots" content={seo.robots} />
+			{!noindex && <link rel="canonical" href={seo.canonical} />}
+			<meta name="robots" content={noindex ? 'noindex, nofollow' : seo.robots} />
 			<meta property="og:type" content={seo.og.type} />
 			<meta property="og:title" content={seo.og.title} />
 			{seo.og.description && <meta property="og:description" content={seo.og.description} />}
@@ -83,7 +89,7 @@ const seo = manifest[route] ?? manifest[withSlash];
 		<>
 			<title>{fallbackTitle}</title>
 			{fallbackDescription && <meta name="description" content={fallbackDescription} />}
-			<meta name="robots" content="index,follow" />
+			<meta name="robots" content={noindex ? 'noindex, nofollow' : 'index,follow'} />
 		</>
 	)
 }

@@ -13,6 +13,7 @@ import '@fontsource/space-grotesk/latin-ext-700.css';
 // Components
 import Navbar from '@/components/Navbar/Navbar.astro';
 import Seo from '@/components/Seo/Seo.astro';
+import Footer from '@/components/Footer/Footer.astro';
 // Utils
 import { cn } from '@/lib/utils';
 // Styles
@@ -21,9 +22,10 @@ import '@/styles/globals.css';
 export interface Props {
   title: string;
   description?: string;
+  noindex?: boolean;
 }
 
-const { title, description } = Astro.props;
+const { title, description, noindex = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -36,6 +38,7 @@ const { title, description } = Astro.props;
     <meta name="theme-color" content="#f5f5f0" media="(prefers-color-scheme: light)" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="manifest" href="/site.webmanifest" />
+    <link rel="apple-touch-icon" href="/icon.png" />
     <script is:inline>
       (function() {
         document.documentElement.classList.add('js');
@@ -45,12 +48,13 @@ const { title, description } = Astro.props;
         else if (window.matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.classList.add('dark');
       })();
     </script>
-    <Seo route={Astro.url.pathname} fallbackTitle={title} fallbackDescription={description} />
+    <Seo route={Astro.url.pathname} fallbackTitle={title} fallbackDescription={description} noindex={noindex} />
   </head>
   <body class={cn("bg-background font-sans text-emphasis antialiased max-w-[100vw] overflow-x-hidden")}>
     <Navbar pathname={Astro.url.pathname} />
-    <div class='mx-12 md:mx-24'>
+    <div class="mx-6 md:mx-12 lg:mx-24">
       <slot />
+      <Footer />
     </div>
     <script is:inline>
       (function () {

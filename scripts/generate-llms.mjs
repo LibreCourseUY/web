@@ -77,7 +77,7 @@ const pages = walk(dist)
 			text: contentText(html),
 		};
 	})
-	.filter((page) => page.url !== '/404/')
+	.filter((page) => !/^\/404(\.html|\/)?$/.test(page.url))
 	.sort((a, b) => (a.url === '/' ? -1 : b.url === '/' ? 1 : a.url.localeCompare(b.url)));
 
 const index = [
