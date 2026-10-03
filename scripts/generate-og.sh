@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Generates the 1200x630 Open Graph image from the hero asset.
+# Generates the 1200x630 Open Graph image from the brand logo, plus the favicons.
 # Requires ImageMagick 7 (`magick`).
 set -euo pipefail
 
@@ -7,24 +7,22 @@ root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$root"
 
 magick_bin="$(command -v magick || command -v convert)"
-font="/usr/share/fonts/liberation/LiberationSans-Bold.ttf"
 tmp="$(mktemp -d)"
 trap 'rm -rf "$tmp"' EXIT
 
-"$magick_bin" src/assets/ascii-hero.png -resize 1200x630^ -gravity center -extent 1200x630 "$tmp/hero.png"
-"$magick_bin" -size 630x1200 gradient:'rgba(11,13,12,0)-rgba(11,13,12,0.94)' -rotate 90 "$tmp/scrim.png"
-
-"$magick_bin" -size 1200x630 xc:'#0b0d0c' \
-	\( "$tmp/hero.png" -alpha set -channel A -evaluate multiply 0.32 +channel \) -composite \
-	"$tmp/scrim.png" -composite \
-	-fill '#5ec2af' -draw 'rectangle 0,0 6,630' \
-	\( src/assets/hero_icon.png -resize x116 \) -gravity NorthWest -geometry +88+96 -composite \
-	-font "$font" -pointsize 70 -fill '#f7f7f0' -gravity NorthWest -annotate +86+300 'LibreCourseUY' \
-	-font "$font" -pointsize 28 -fill '#8fd8c6' -gravity NorthWest -annotate +90+392 'Open source community · Uruguay' \
-	-font "$font" -pointsize 23 -fill 'rgba(247,247,240,0.55)' -gravity NorthWest -annotate +90+552 'librecourse.uy' \
-	-strip -interlace Plane -quality 85 \
+# Brand logo with wordmark, centered on a white 1200x630 canvas.
+"$magick_bin" src/assets/logo_with_text.png -fuzz 5% -trim +repage \
+	-filter Lanczos -resize 1040x470 \
+	-background white -gravity center -extent 1200x630 \
+	-strip -interlace Plane -quality 90 \
 	public/og.jpg
 
 "$magick_bin" src/assets/hero_icon.png -resize 512x512 -background none -gravity center -extent 512x512 -strip public/icon.png
 
-echo "Wrote public/og.jpg and public/icon.png"
+# Favicons from the brand logo: square vector icon, multi-size ICO and Apple touch icon.
+sed -e 's/width="545" height="439" viewBox="0 0 545 439"/viewBox="0 -53 545 545"/' src/assets/lcuy_logo.svg >public/favicon.svg
+"$magick_bin" src/assets/logo_white_background.png -fuzz 5% -trim +repage -background white -gravity center -extent 580x580 "$tmp/logo-square.png"
+"$magick_bin" "$tmp/logo-square.png" -define icon:auto-resize=48,32,16 public/favicon.ico
+"$magick_bin" "$tmp/logo-square.png" -resize 160x160 -background white -gravity center -extent 180x180 -strip public/apple-touch-icon.png
+
+echo "Wrote public/og.jpg, public/icon.png and favicons"
