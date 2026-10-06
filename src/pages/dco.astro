@@ -1,0 +1,114 @@
+---
+// Components
+import List from '@/components/List/List.astro';
+import ListItem from '@/components/List/ListItem.astro';
+import Text from '@/components/Text/Text.astro';
+import Footer from '@/components/Footer/Footer.astro';
+// Layout
+import Layout from '@/layouts/Layout.astro';
+---
+
+<Layout
+	title="Developer Certificate of Origin | LibreCourseUY"
+	description="LibreCourseUY Developer Certificate of Origin (DCO), certifying contributions by signing off commits."
+>
+	<main class="flex min-h-screen flex-col items-start justify-center">
+		<section class="flex flex-col justify-start items-start w-full min-h-[calc(100dvh-4rem)] pt-12 pb-12">
+			<Text
+				variant="h1"
+				className="max-w-4xl mb-4"
+			>
+				Developer Certificate of Origin</Text
+			>
+			<p class="text-2xl text-emphasis/60 mb-4">DCO</p>
+
+			<div class="space-y-12 w-full max-w-4xl">
+				<div class="space-y-4">
+					<Text variant="p">
+						LibreCourseUY accepts contributions under the Developer Certificate of Origin (DCO)
+						instead of a Contributor License Agreement. The DCO is a lightweight way for
+						contributors to certify that they have the right to submit the work under the
+						project's license.
+					</Text>
+					<Text variant="p">
+						This document governs the legal terms under which contributions are submitted and
+						accepted. Community behavior, collaboration norms, and identity rules may also be
+						governed by other project documents, including <code>CONTRIBUTING.md</code>,
+						<code>CODE_OF_CONDUCT.md</code>, and <code>TRADEMARK.md</code>.
+					</Text>
+				</div>
+
+				<hr class="border-line" />
+
+				<div class="space-y-4">
+					<Text variant="h2">How to sign off</Text>
+					<Text variant="p">
+						Certify every commit by adding a <code>Signed-off-by</code> line. The easiest way is
+						the <code>-s</code> flag, which uses your configured Git name and email:
+					</Text>
+					<Text variant="p">
+						<code>git commit -s -m "feat: describe your change"</code>
+					</Text>
+					<Text variant="p">
+						This produces a line such as
+						<code>Signed-off-by: Your Name &lt;you@example.com&gt;</code> at the end of the
+						commit message. Commits without a <code>Signed-off-by</code> line may be rejected by
+						the automated DCO check.
+					</Text>
+				</div>
+
+				<hr class="border-line" />
+
+				<div class="space-y-4">
+					<Text variant="h2">Developer Certificate of Origin</Text>
+					<Text variant="p">Version 1.1</Text>
+					<Text variant="p">
+						Copyright (C) 2004, 2006 The Linux Foundation and its contributors. Everyone is
+						permitted to copy and distribute verbatim copies of this license document, but
+						changing it is not allowed.
+					</Text>
+				</div>
+
+				<hr class="border-line" />
+
+				<div class="space-y-4">
+					<Text variant="h2">Developer's Certificate of Origin 1.1</Text>
+					<Text variant="p">By making a contribution to this project, I certify that:</Text>
+					<List className="list-disc pl-6">
+						<ListItem>
+							<Text variant="p">
+								(a) The contribution was created in whole or in part by me and I have the right
+								to submit it under the open source license indicated in the file; or
+							</Text>
+						</ListItem>
+						<ListItem>
+							<Text variant="p">
+								(b) The contribution is based upon previous work that, to the best of my
+								knowledge, is covered under an appropriate open source license and I have the
+								right under that license to submit that work with modifications, whether
+								created in whole or in part by me, under the same open source license (unless I
+								am permitted to submit under a different license), as indicated in the file; or
+							</Text>
+						</ListItem>
+						<ListItem>
+							<Text variant="p">
+								(c) The contribution was provided directly to me by some other person who
+								certified (a), (b) or (c) and I have not modified it.
+							</Text>
+						</ListItem>
+						<ListItem>
+							<Text variant="p">
+								(d) I understand and agree that this project and the contribution are public and
+								that a record of the contribution (including all personal information I submit
+								with it, including my sign-off) is maintained indefinitely and may be
+								redistributed consistent with this project or the open source license(s)
+								involved.
+							</Text>
+						</ListItem>
+					</List>
+				</div>
+			</div>
+		</section>
+		<Footer />
+	</main>
+</Layout>

@@ -1,64 +1,4 @@
 {
-  "/cla/": {
-    "title": "Contributor License Agreement | LibreCourseUY",
-    "canonical": "https://librecourse.uy/cla/",
-    "robots": "index,follow,max-snippet:-1,max-image-preview:large",
-    "og": {
-      "type": "website",
-      "title": "Contributor License Agreement | LibreCourseUY",
-      "description": "LibreCourseUY Contributor License Agreement, terms for contributing to our open source projects.",
-      "url": "https://librecourse.uy/cla/",
-      "image": "https://librecourse.uy/og.jpg",
-      "image:width": 1200,
-      "image:height": 630,
-      "image:alt": "LibreCourseUY",
-      "site_name": "LibreCourseUY",
-      "locale": "en_US"
-    },
-    "twitter": {
-      "card": "summary_large_image",
-      "title": "Contributor License Agreement | LibreCourseUY",
-      "description": "LibreCourseUY Contributor License Agreement, terms for contributing to our open source projects.",
-      "image": "https://librecourse.uy/og.jpg",
-      "image:alt": "LibreCourseUY"
-    },
-    "description": "LibreCourseUY Contributor License Agreement, terms for contributing to our open source projects.",
-    "schema_jsonld": [
-      {
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        "name": "Contributor License Agreement | LibreCourseUY",
-        "url": "https://librecourse.uy/cla/",
-        "description": "LibreCourseUY Contributor License Agreement, terms for contributing to our open source projects.",
-        "image": "https://librecourse.uy/og.jpg",
-        "datePublished": "2026-06-08",
-        "dateModified": "2026-09-18",
-        "publisher": {
-          "@type": "Organization",
-          "name": "LibreCourseUY",
-          "logo": "https://librecourse.uy/icon.png"
-        }
-      },
-      {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "https://librecourse.uy/"
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "CLA",
-            "item": "https://librecourse.uy/cla/"
-          }
-        ]
-      }
-    ]
-  },
   "/contribute/": {
     "title": "Contribute | LibreCourseUY",
     "canonical": "https://librecourse.uy/contribute/",
@@ -92,7 +32,7 @@
         "description": "Learn how to contribute to LibreCourseUY open source projects.",
         "image": "https://librecourse.uy/og.jpg",
         "datePublished": "2026-06-12",
-        "dateModified": "2026-09-18",
+        "dateModified": "2026-10-05",
         "author": {
           "@type": "Person",
           "name": "LibreCourseUY"
@@ -118,6 +58,66 @@
             "position": 2,
             "name": "Contribute",
             "item": "https://librecourse.uy/contribute/"
+          }
+        ]
+      }
+    ]
+  },
+  "/dco/": {
+    "title": "Developer Certificate of Origin | LibreCourseUY",
+    "canonical": "https://librecourse.uy/dco/",
+    "robots": "index,follow,max-snippet:-1,max-image-preview:large",
+    "og": {
+      "type": "website",
+      "title": "Developer Certificate of Origin | LibreCourseUY",
+      "description": "LibreCourseUY Developer Certificate of Origin (DCO), certifying contributions by signing off commits.",
+      "url": "https://librecourse.uy/dco/",
+      "image": "https://librecourse.uy/og.jpg",
+      "image:width": 1200,
+      "image:height": 630,
+      "image:alt": "LibreCourseUY",
+      "site_name": "LibreCourseUY",
+      "locale": "en_US"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "Developer Certificate of Origin | LibreCourseUY",
+      "description": "LibreCourseUY Developer Certificate of Origin (DCO), certifying contributions by signing off commits.",
+      "image": "https://librecourse.uy/og.jpg",
+      "image:alt": "LibreCourseUY"
+    },
+    "description": "LibreCourseUY Developer Certificate of Origin (DCO), certifying contributions by signing off commits.",
+    "schema_jsonld": [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Developer Certificate of Origin | LibreCourseUY",
+        "url": "https://librecourse.uy/dco/",
+        "description": "LibreCourseUY Developer Certificate of Origin (DCO), certifying contributions by signing off commits.",
+        "image": "https://librecourse.uy/og.jpg",
+        "datePublished": "2026-10-05",
+        "dateModified": "2026-10-05",
+        "publisher": {
+          "@type": "Organization",
+          "name": "LibreCourseUY",
+          "logo": "https://librecourse.uy/icon.png"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://librecourse.uy/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "DCO",
+            "item": "https://librecourse.uy/dco/"
           }
         ]
       }
@@ -156,7 +156,7 @@
         "description": "Learn how to install GPG, generate a signing key pair, sign your Git commits, and verify them on GitHub.",
         "image": "https://librecourse.uy/og.jpg",
         "datePublished": "2026-08-08",
-        "dateModified": "2026-09-18",
+        "dateModified": "2026-09-28",
         "author": {
           "@type": "Person",
           "name": "LibreCourseUY"
@@ -226,7 +226,7 @@
         "description": "Essential resources for your daily development workflow: official docs, commit signing, API references, learning resources, and tools.",
         "image": "https://librecourse.uy/og.jpg",
         "datePublished": "2026-08-08",
-        "dateModified": "2026-09-18",
+        "dateModified": "2026-09-28",
         "publisher": {
           "@type": "Organization",
           "name": "LibreCourseUY",
@@ -314,7 +314,7 @@
               "name": "Who can join?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Anyone, for free. Members are expected to follow our Code of Conduct, and those who wish to contribute must sign the CLA."
+                "text": "Anyone, for free. Members are expected to follow our Code of Conduct. Contributions follow the license and contribution terms of each project."
               }
             },
             {
@@ -387,7 +387,7 @@
         "description": "Our philosophy for learning programming effectively: assisted autonomy, quick context, building real things, and asking for help.",
         "image": "https://librecourse.uy/og.jpg",
         "datePublished": "2026-08-08",
-        "dateModified": "2026-09-18",
+        "dateModified": "2026-09-28",
         "author": {
           "@type": "Person",
           "name": "LibreCourseUY"
@@ -451,7 +451,7 @@
         "description": "Explore open source and community projects from LibreCourseUY.",
         "image": "https://librecourse.uy/og.jpg",
         "datePublished": "2026-06-18",
-        "dateModified": "2026-09-18",
+        "dateModified": "2026-09-28",
         "publisher": {
           "@type": "Organization",
           "name": "LibreCourseUY",

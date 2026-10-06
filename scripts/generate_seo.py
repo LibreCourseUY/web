@@ -69,9 +69,9 @@ ROUTES: dict[str, dict] = {
             ("GPG Signature", "/docs/gpg-signature/"),
         ],
     },
-    "/cla/": {
+    "/dco/": {
         "entity_type": "page",
-        "breadcrumbs": [("Home", "/"), ("CLA", "/cla/")],
+        "breadcrumbs": [("Home", "/"), ("DCO", "/dco/")],
     },
 }
 
