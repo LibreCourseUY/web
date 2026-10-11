@@ -1,6 +1,10 @@
 const FEED_URL =
 	'https://raw.githubusercontent.com/LibreCourseUY/awesome-librecourseuy/master/public/entries.json';
 const CACHE_URL = 'https://librecourse.uy/api/feed';
+const HEADERS = {
+	'Content-Type': 'application/json',
+	'Cache-Control': 'public, max-age=300, stale-while-revalidate=3600',
+};
 
 interface Context {
 	request: Request;
@@ -15,7 +19,9 @@ export async function onRequest({ request, waitUntil }: Context): Promise<Respon
 	const cache = caches.default;
 	const cached = await cache.match(CACHE_URL);
 	if (cached) {
-		return cached;
+		return new Response(cached.body, {
+			headers: { ...cached.headers, 'X-Feed-Cache': 'HIT' },
+		});
 	}
 
 	const upstream = await fetch(FEED_URL);
@@ -23,12 +29,8 @@ export async function onRequest({ request, waitUntil }: Context): Promise<Respon
 		return new Response('feed unavailable', { status: 502 });
 	}
 
-	const response = new Response(upstream.body, {
-		headers: {
-			'Content-Type': 'application/json',
-			'Cache-Control': 'public, max-age=300, stale-while-revalidate=3600',
-		},
-	});
-	waitUntil(cache.put(CACHE_URL, response.clone()));
+	const response = new Response(upstream.body, { headers: HEADERS });
+	response.headers.set('X-Feed-Cache', 'MISS');
+	waitUntil(cache.put(CACHE_URL, new Response(upstream.clone().body, { headers: HEADERS })));
 	return response;
 }
