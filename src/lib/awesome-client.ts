@@ -1,7 +1,7 @@
 import { isAwesomeFeed, type AwesomeFeed } from '@/lib/awesome';
 
 const CACHE_KEY = 'awesome-feed';
-export const AWESOME_FEED_URL = import.meta.env.PUBLIC_AWESOME_FEED_URL ?? '';
+export const AWESOME_FEED_URL = import.meta.env.PUBLIC_AWESOME_FEED_URL || '/api/feed';
 
 let inflight: Promise<AwesomeFeed | null> | null = null;
 
@@ -17,7 +17,6 @@ function readCache(): AwesomeFeed | null {
 }
 
 async function fetchFeed(): Promise<AwesomeFeed | null> {
-  if (!AWESOME_FEED_URL) return null;
   try {
     const res = await fetch(AWESOME_FEED_URL, { headers: { Accept: 'application/json' } });
     if (!res.ok) return null;
@@ -28,12 +27,10 @@ async function fetchFeed(): Promise<AwesomeFeed | null> {
   }
 }
 
-export function loadAwesomeFeed(force = false): Promise<AwesomeFeed | null> {
-  if (!force) {
-    const cached = readCache();
-    if (cached) return Promise.resolve(cached);
-    if (inflight) return inflight;
-  }
+// Network-first: the CDN caches the feed, so a fresh fetch is cheap and a
+// hard refresh shows updates. sessionStorage is only the offline fallback.
+export function loadAwesomeFeed(): Promise<AwesomeFeed | null> {
+  if (inflight) return inflight;
   inflight = fetchFeed().then((feed) => {
     if (feed) {
       try {
@@ -41,8 +38,9 @@ export function loadAwesomeFeed(force = false): Promise<AwesomeFeed | null> {
       } catch {
         /* storage unavailable, ignore */
       }
+      return feed;
     }
-    return feed;
+    return readCache();
   });
   return inflight;
 }
