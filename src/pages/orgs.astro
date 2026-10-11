@@ -64,8 +64,11 @@ import Text from '@/components/Text/Text.astro';
     const hoverBorder = color
       ? 'hover:border-[color:var(--org)] dark:hover:border-[color:var(--org-dark)]'
       : 'hover:border-emphasis-secondary/60';
+    const badgeColor = color
+      ? 'border-[color:var(--org)] text-[color:var(--org)] dark:border-[color:var(--org-dark)] dark:text-[color:var(--org-dark)]'
+      : 'border-emphasis-secondary text-emphasis-secondary';
     const officialBadge = official
-      ? '<span class="shrink-0 border border-emphasis-secondary px-1.5 py-0.5 text-xs font-bold text-emphasis-secondary">[official]</span>'
+      ? `<span class="shrink-0 border ${badgeColor} px-1.5 py-0.5 text-xs font-bold">[official]</span>`
       : '';
     const communityBadge = official
       ? ''

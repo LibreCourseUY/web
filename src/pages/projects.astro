@@ -171,6 +171,9 @@ import Text from '@/components/Text/Text.astro';
     const hoverBorder = accent
       ? 'hover:border-[color:var(--lang)] dark:hover:border-[color:var(--lang-dark)]'
       : 'hover:border-emphasis-secondary/60';
+    const officialBadgeColor = accent
+      ? 'border-[color:var(--lang)] text-[color:var(--lang)] dark:border-[color:var(--lang-dark)] dark:text-[color:var(--lang-dark)]'
+      : 'border-emphasis-secondary text-emphasis-secondary';
 
     const maintainers = (entry.maintainers ?? [])
       .map(
@@ -183,7 +186,7 @@ import Text from '@/components/Text/Text.astro';
 			<div style="${accentStyle}" class="flex min-w-0 flex-col gap-3 border border-line bg-surface p-4 transition-colors ${hoverBorder}">
 				<div class="flex items-center justify-between gap-2">
 					<a href="${esc(entry.url)}" target="_blank" rel="noopener noreferrer" class="min-w-0 flex-1 truncate text-sm font-bold text-emphasis">${esc(entry.name)}</a>
-					${entry.relationship === 'official' ? '<span class="shrink-0 border border-emphasis-secondary px-1.5 py-0.5 text-xs font-bold text-emphasis-secondary">[official]</span>' : ''}
+					${entry.relationship === 'official' ? `<span class="shrink-0 border ${officialBadgeColor} px-1.5 py-0.5 text-xs font-bold">[official]</span>` : ''}
 				</div>
 				<p class="break-words text-sm leading-relaxed text-muted">${esc(entry.description)}</p>
 				<div class="flex flex-wrap gap-1">${badges
