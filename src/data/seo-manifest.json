@@ -425,7 +425,7 @@
     "og": {
       "type": "website",
       "title": "Orgs | LibreCourseUY",
-      "description": "Uruguayan based open source organizations.",
+      "description": "Open source organizations from the LCUY ecosystem.",
       "url": "https://librecourse.uy/orgs/",
       "image": "https://librecourse.uy/og.jpg",
       "image:width": 1200,
@@ -437,18 +437,20 @@
     "twitter": {
       "card": "summary_large_image",
       "title": "Orgs | LibreCourseUY",
-      "description": "Uruguayan based open source organizations.",
+      "description": "Open source organizations from the LCUY ecosystem.",
       "image": "https://librecourse.uy/og.jpg",
       "image:alt": "LibreCourseUY"
     },
-    "description": "Uruguayan based open source organizations.",
+    "description": "Open source organizations from the LCUY ecosystem.",
     "schema_jsonld": {
       "@context": "https://schema.org",
       "@type": "WebPage",
       "name": "Orgs | LibreCourseUY",
       "url": "https://librecourse.uy/orgs/",
-      "description": "Uruguayan based open source organizations.",
+      "description": "Open source organizations from the LCUY ecosystem.",
       "image": "https://librecourse.uy/og.jpg",
+      "datePublished": "2026-10-10",
+      "dateModified": "2026-10-10",
       "publisher": {
         "@type": "Organization",
         "name": "LibreCourseUY",
