@@ -89,7 +89,13 @@ export function filterEntries(
 }
 
 export function sortEntries(entries: AwesomeEntry[]): AwesomeEntry[] {
-  return [...entries].sort((a, b) => a.name.localeCompare(b.name, 'en'));
+  // Non-commercial first (the page groups by category, so this orders
+  // within each category), then alphabetically.
+  return [...entries].sort(
+    (a, b) =>
+      Number(a.commercial ?? false) - Number(b.commercial ?? false) ||
+      a.name.localeCompare(b.name, 'en'),
+  );
 }
 
 export function uniqueValues(

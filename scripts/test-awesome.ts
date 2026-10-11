@@ -45,6 +45,14 @@ assert.deepEqual(
   sortEntries([entries[1], entries[0]]).map((e) => e.name),
   ['Alpha', 'Beta'],
 );
+assert.equal(
+  sortEntries([
+    { ...entries[0], name: 'ZZZ', commercial: false },
+    { ...entries[1], name: 'AAA', commercial: true },
+  ])[0].name,
+  'ZZZ',
+  'non-commercial sorts first',
+);
 assert.deepEqual(
   uniqueValues(entries, (e) => e.language ?? []),
   ['Python', 'Vue'],
