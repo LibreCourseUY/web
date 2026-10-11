@@ -13,6 +13,7 @@ const entries: AwesomeEntry[] = [
     category: 'APIs',
     tags: ['api'],
     language: ['Python'],
+    maintainers: ['@alice'],
     commercial: false,
     open_source: true,
     relationship: 'official',
@@ -41,6 +42,11 @@ assert.equal(filterEntries(entries, { commercial: false })[0].name, 'Alpha');
 assert.equal(filterEntries(entries, { languages: ['Vue'] })[0].name, 'Beta');
 assert.equal(filterEntries(entries, { tags: ['api'] })[0].name, 'Alpha');
 assert.equal(filterEntries(entries, { query: 'zzz' }).length, 0);
+assert.equal(
+  filterEntries(entries, { query: 'alice' }).length,
+  1,
+  'search matches maintainers',
+);
 assert.deepEqual(
   sortEntries([entries[1], entries[0]]).map((e) => e.name),
   ['Alpha', 'Beta'],

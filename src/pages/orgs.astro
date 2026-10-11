@@ -55,14 +55,31 @@ import Text from '@/components/Text/Text.astro';
   }
 
   function orgCard(org: AwesomeOrg): string {
-    const relationship = org.relationship === 'official' ? '[official]' : '[community]';
+    const official = org.relationship === 'official';
+    const color = org.color;
+    const accentStyle = color ? `--org: ${esc(color.light)}; --org-dark: ${esc(color.dark)};` : '';
+    const linkClass = color
+      ? 'text-[color:var(--org)] dark:text-[color:var(--org-dark)] hover:opacity-75'
+      : 'hover:text-emphasis';
+    const hoverBorder = color
+      ? 'hover:border-[color:var(--org)] dark:hover:border-[color:var(--org-dark)]'
+      : 'hover:border-emphasis-secondary/60';
+    const officialBadge = official
+      ? '<span class="shrink-0 border border-emphasis-secondary px-1.5 py-0.5 text-xs font-bold text-emphasis-secondary">[official]</span>'
+      : '';
+    const communityBadge = official
+      ? ''
+      : '<span class="border border-line px-1.5 py-0.5">[community]</span>';
     return `
-			<div class="flex min-w-0 flex-col gap-3 border border-line bg-surface p-4 transition-colors hover:border-emphasis-secondary/60">
-				<a href="${esc(org.url)}" target="_blank" rel="noopener noreferrer" class="min-w-0 flex-1 truncate text-sm font-bold text-emphasis">${esc(org.name)}</a>
+			<div style="${accentStyle}" class="flex min-w-0 flex-col gap-3 border border-line bg-surface p-4 transition-colors ${hoverBorder}">
+				<div class="flex items-center justify-between gap-2">
+					<a href="${esc(org.url)}" target="_blank" rel="noopener noreferrer" class="min-w-0 flex-1 truncate text-sm font-bold text-emphasis">${esc(org.name)}</a>
+					${officialBadge}
+				</div>
 				<p class="break-words text-sm leading-relaxed text-muted">${esc(org.description)}</p>
 				<div class="mt-auto flex flex-wrap items-center gap-2 border-t border-line pt-3 text-xs text-muted">
-					<span class="border border-line px-1.5 py-0.5">${relationship}</span>
-					${org.url !== org.repository ? `<a href="${esc(org.repository)}" target="_blank" rel="noopener noreferrer" class="hover:text-emphasis">[source]</a>` : ''}
+					${communityBadge}
+					${org.url !== org.repository ? `<a href="${esc(org.repository)}" target="_blank" rel="noopener noreferrer" class="${linkClass}">[source]</a>` : ''}
 				</div>
 			</div>`;
 	}

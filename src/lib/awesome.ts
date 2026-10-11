@@ -21,6 +21,7 @@ export interface AwesomeOrg {
   tags?: string[];
   repository: string;
   relationship?: 'official' | 'community';
+  color?: { light: string; dark: string };
 }
 
 export interface AwesomeFeed {
@@ -50,7 +51,13 @@ function matchesQuery(entry: AwesomeEntry, query: string): boolean {
   const q = normalize(query);
   if (!q) return true;
   const haystack = normalize(
-    [entry.name, entry.description, entry.category, ...(entry.tags ?? [])].join(' '),
+    [
+      entry.name,
+      entry.description,
+      entry.category,
+      ...(entry.tags ?? []),
+      ...(entry.maintainers ?? []),
+    ].join(' '),
   );
   return q.split(/\s+/).every((token) => haystack.includes(token));
 }
