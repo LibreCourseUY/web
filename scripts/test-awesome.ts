@@ -13,8 +13,9 @@ const entries: AwesomeEntry[] = [
     category: 'APIs',
     tags: ['api'],
     language: ['Python'],
-    monetization: 'none',
+    commercial: false,
     open_source: true,
+    relationship: 'official',
     open_to_contributions: true,
   },
   {
@@ -24,8 +25,9 @@ const entries: AwesomeEntry[] = [
     category: 'Web',
     tags: ['vue'],
     language: ['Vue'],
-    monetization: 'paid',
-    open_source: false,
+    commercial: true,
+    open_source: true,
+    relationship: 'community',
     open_to_contributions: false,
   },
 ];
@@ -33,9 +35,9 @@ const entries: AwesomeEntry[] = [
 assert.equal(filterEntries(entries).length, 2);
 assert.equal(filterEntries(entries, { query: 'python' }).length, 1);
 assert.equal(filterEntries(entries, { categories: ['Web'] })[0].name, 'Beta');
-assert.equal(filterEntries(entries, { openSource: true })[0].name, 'Alpha');
 assert.equal(filterEntries(entries, { openToContributions: false })[0].name, 'Beta');
-assert.equal(filterEntries(entries, { monetization: ['paid'] })[0].name, 'Beta');
+assert.equal(filterEntries(entries, { commercial: true })[0].name, 'Beta');
+assert.equal(filterEntries(entries, { commercial: false })[0].name, 'Alpha');
 assert.equal(filterEntries(entries, { languages: ['Vue'] })[0].name, 'Beta');
 assert.equal(filterEntries(entries, { tags: ['api'] })[0].name, 'Alpha');
 assert.equal(filterEntries(entries, { query: 'zzz' }).length, 0);

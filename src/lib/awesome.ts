@@ -7,8 +7,9 @@ export interface AwesomeEntry {
   language?: string[];
   maintainers?: string[];
   license?: string | null;
-  monetization?: string;
+  commercial?: boolean;
   open_source: boolean;
+  relationship?: 'official' | 'community';
   repository?: string | null;
   open_to_contributions?: boolean;
 }
@@ -21,8 +22,7 @@ export interface AwesomeFeed {
 export interface AwesomeFilters {
   query?: string;
   categories?: string[];
-  openSource?: boolean | null;
-  monetization?: string[];
+  commercial?: boolean | null;
   languages?: string[];
   openToContributions?: boolean | null;
   tags?: string[];
@@ -57,8 +57,7 @@ export function filterEntries(
   const {
     query = '',
     categories = [],
-    openSource = null,
-    monetization = [],
+    commercial = null,
     languages = [],
     openToContributions = null,
     tags = [],
@@ -67,13 +66,12 @@ export function filterEntries(
   return entries.filter((entry) => {
     if (!matchesQuery(entry, query)) return false;
     if (categories.length && !categories.includes(entry.category)) return false;
-    if (openSource !== null && entry.open_source !== openSource) return false;
     if (
       openToContributions !== null &&
       (entry.open_to_contributions ?? true) !== openToContributions
     )
       return false;
-    if (!includesAny([entry.monetization ?? 'none'], monetization)) return false;
+    if (commercial !== null && (entry.commercial ?? false) !== commercial) return false;
     if (!includesAny(entry.language ?? [], languages)) return false;
     if (!includesAny(entry.tags ?? [], tags)) return false;
     return true;

@@ -40,11 +40,15 @@ import Text from '@/components/Text/Text.astro';
           </label>
 
           <label class="flex min-w-44 flex-col gap-1">
-            <span class="text-xs font-bold uppercase tracking-wider text-muted">Monetization</span>
+            <span class="text-xs font-bold uppercase tracking-wider text-muted">Commercial</span>
             <select
-              id="awesome-monetization"
+              id="awesome-commercial"
               class="border border-line bg-surface px-3 py-2 text-sm text-emphasis outline-none focus:border-emphasis-secondary"
-            ></select>
+            >
+              <option value="">Any</option>
+              <option value="non-commercial">Non-commercial</option>
+              <option value="commercial">Commercial</option>
+            </select>
           </label>
 
           <label class="flex min-w-44 flex-col gap-1">
@@ -53,18 +57,6 @@ import Text from '@/components/Text/Text.astro';
               id="awesome-language"
               class="border border-line bg-surface px-3 py-2 text-sm text-emphasis outline-none focus:border-emphasis-secondary"
             ></select>
-          </label>
-
-          <label class="flex min-w-40 flex-col gap-1">
-            <span class="text-xs font-bold uppercase tracking-wider text-muted">Source</span>
-            <select
-              id="awesome-source"
-              class="border border-line bg-surface px-3 py-2 text-sm text-emphasis outline-none focus:border-emphasis-secondary"
-            >
-              <option value="">Any</option>
-              <option value="open">Open source</option>
-              <option value="closed">Closed source</option>
-            </select>
           </label>
 
           <label class="flex min-w-40 flex-col gap-1">
@@ -90,7 +82,7 @@ import Text from '@/components/Text/Text.astro';
 
         <p id="awesome-count" class="pt-4 text-xs uppercase tracking-wider text-muted"></p>
 
-        <div id="awesome-grid" class="grid grid-cols-1 gap-6 pt-4 md:grid-cols-2 lg:grid-cols-3">
+        <div id="awesome-grid" class="space-y-10 pt-4">
         </div>
 
         <p id="awesome-empty" class="hidden py-16 text-center text-muted" hidden>
@@ -127,11 +119,8 @@ import Text from '@/components/Text/Text.astro';
   const loading = document.getElementById('awesome-loading');
   const search = document.getElementById('awesome-search') as HTMLInputElement | null;
   const categoryEl = document.getElementById('awesome-category') as HTMLSelectElement | null;
-  const monetizationEl = document.getElementById(
-    'awesome-monetization',
-  ) as HTMLSelectElement | null;
+  const commercialEl = document.getElementById('awesome-commercial') as HTMLSelectElement | null;
   const languageEl = document.getElementById('awesome-language') as HTMLSelectElement | null;
-  const sourceEl = document.getElementById('awesome-source') as HTMLSelectElement | null;
   const contribEl = document.getElementById('awesome-contrib') as HTMLSelectElement | null;
   const resetEl = document.getElementById('awesome-reset');
 
@@ -141,24 +130,58 @@ import Text from '@/components/Text/Text.astro';
     });
   }
 
+  // [light theme, dark theme] brand colors; first language of the entry wins.
+  const LANG_COLORS: Record<string, [string, string]> = {
+    Python: ['#3776AB', '#82B1E0'],
+    TypeScript: ['#3178C6', '#5B9BD5'],
+    JavaScript: ['#8A7500', '#F7DF1E'],
+    Rust: ['#D34516', '#E8845C'],
+    Go: ['#00758D', '#33C5E0'],
+    'C#': ['#68217A', '#A179DC'],
+    Vue: ['#2F8F6A', '#42B883'],
+    Astro: ['#C24800', '#FF5D01'],
+    Java: ['#8A5A00', '#ED8B00'],
+    Dart: ['#0175C2', '#58A6E8'],
+    Kotlin: ['#7F52FF', '#B490FF'],
+    Swift: ['#C2410C', '#F05138'],
+    PHP: ['#5B5F97', '#9B9FD4'],
+    Ruby: ['#A3251C', '#E05A4F'],
+    Shell: ['#3D7A1C', '#6FCF4A'],
+    HTML: ['#C2410C', '#E87040'],
+    CSS: ['#1554AD', '#4DA3FF'],
+    'C++': ['#004482', '#3D9BE9'],
+    C: ['#394F6A', '#7A9CC6'],
+    Lua: ['#7A5A2C', '#C0A062'],
+    Elixir: ['#6B4F8A', '#A88BC4'],
+  };
+
   function card(entry: AwesomeEntry): string {
     const badges: string[] = [`[${esc(entry.category)}]`];
     if (entry.open_source) badges.push('[open]');
-    else badges.push('[closed]');
-    if (entry.monetization && entry.monetization !== 'none')
-      badges.push(`[${esc(entry.monetization)}]`);
+    if (entry.relationship === 'official') badges.push('[official]');
+    else badges.push('[community]');
+    badges.push(entry.commercial ? '[commercial]' : '[non-commercial]');
     if (entry.open_to_contributions ?? true) badges.push('[open to contributions]');
     for (const lang of entry.language ?? []) badges.push(`[${esc(lang)}]`);
+
+    const accent = LANG_COLORS[(entry.language ?? [])[0] ?? ''];
+    const accentStyle = accent ? `--lang: ${accent[0]}; --lang-dark: ${accent[1]};` : '';
+    const accentText = accent
+      ? 'text-[color:var(--lang)] dark:text-[color:var(--lang-dark)]'
+      : 'text-emphasis-secondary';
+    const hoverBorder = accent
+      ? 'hover:border-[color:var(--lang)] dark:hover:border-[color:var(--lang-dark)]'
+      : 'hover:border-emphasis-secondary/60';
 
     const maintainers = (entry.maintainers ?? [])
       .map(
         (handle) =>
-          `<a href="https://github.com/${esc(handle.replace('@', ''))}" target="_blank" rel="noopener noreferrer" class="text-emphasis-secondary hover:underline">${esc(handle)}</a>`,
+          `<a href="https://github.com/${esc(handle.replace('@', ''))}" target="_blank" rel="noopener noreferrer" class="${accentText} hover:underline">${esc(handle)}</a>`,
       )
       .join(' · ');
 
     return `
-			<div class="flex min-w-0 flex-col gap-3 border border-line bg-surface p-4 transition-colors hover:border-emphasis-secondary/60">
+			<div style="${accentStyle}" class="flex min-w-0 flex-col gap-3 border border-line bg-surface p-4 transition-colors ${hoverBorder}">
 				<div class="flex items-center justify-between gap-2">
 					<a href="${esc(entry.url)}" target="_blank" rel="noopener noreferrer" class="min-w-0 flex-1 truncate text-sm font-bold text-emphasis">${esc(entry.name)}</a>
 				</div>
@@ -169,7 +192,10 @@ import Text from '@/components/Text/Text.astro';
           )
           .join('')}</div>
 				<div class="mt-auto flex flex-wrap items-center justify-between gap-2 border-t border-line pt-3 text-xs text-muted">
-					${entry.repository ? `<a href="${esc(entry.repository)}" target="_blank" rel="noopener noreferrer" class="hover:text-emphasis">[source]</a>` : '<span></span>'}
+					<div class="flex items-center gap-2 ${accentText.replace('text-emphasis-secondary', 'text-muted')}">
+						${entry.url && entry.url !== entry.repository ? `<a href="${esc(entry.url)}" target="_blank" rel="noopener noreferrer" class="hover:text-emphasis">[website]</a>` : ''}
+						${entry.repository ? `<a href="${esc(entry.repository)}" target="_blank" rel="noopener noreferrer" class="hover:text-emphasis">[source]</a>` : ''}
+					</div>
 					${maintainers ? `<span>${maintainers}</span>` : ''}
 				</div>
 			</div>`;
@@ -186,9 +212,9 @@ import Text from '@/components/Text/Text.astro';
     return {
       query: search?.value ?? '',
       categories: categoryEl?.value ? [categoryEl.value] : [],
-      monetization: monetizationEl?.value ? [monetizationEl.value] : [],
+      commercial:
+        commercialEl?.value === 'commercial' ? true : commercialEl?.value === 'non-commercial' ? false : null,
       languages: languageEl?.value ? [languageEl.value] : [],
-      openSource: sourceEl?.value === 'open' ? true : sourceEl?.value === 'closed' ? false : null,
       openToContributions:
         contribEl?.value === 'open' ? true : contribEl?.value === 'closed' ? false : null,
     };
@@ -199,9 +225,8 @@ import Text from '@/components/Text/Text.astro';
     const state = readState();
     if (state.query) params.set('q', state.query);
     if (state.categories[0]) params.set('category', state.categories[0]);
-    if (state.monetization[0]) params.set('monetization', state.monetization[0]);
+    if (state.commercial !== null) params.set('commercial', state.commercial ? 'commercial' : 'non-commercial');
     if (state.languages[0]) params.set('language', state.languages[0]);
-    if (state.openSource !== null) params.set('source', state.openSource ? 'open' : 'closed');
     if (state.openToContributions !== null)
       params.set('contrib', state.openToContributions ? 'open' : 'closed');
     const qs = params.toString();
@@ -212,10 +237,8 @@ import Text from '@/components/Text/Text.astro';
     const params = new URLSearchParams(location.search);
     if (search && params.get('q')) search.value = params.get('q')!;
     if (categoryEl && params.get('category')) categoryEl.value = params.get('category')!;
-    if (monetizationEl && params.get('monetization'))
-      monetizationEl.value = params.get('monetization')!;
+    if (commercialEl && params.get('commercial')) commercialEl.value = params.get('commercial')!;
     if (languageEl && params.get('language')) languageEl.value = params.get('language')!;
-    if (sourceEl && params.get('source')) sourceEl.value = params.get('source')!;
     if (contribEl && params.get('contrib')) contribEl.value = params.get('contrib')!;
   }
 
@@ -232,11 +255,6 @@ import Text from '@/components/Text/Text.astro';
 
     fillSelect(categoryEl, 'category', feed.categories);
     fillSelect(
-      monetizationEl,
-      'monetization',
-      uniqueValues(feed.entries, (e) => [e.monetization ?? 'none']),
-    );
-    fillSelect(
       languageEl,
       'language',
       uniqueValues(feed.entries, (e) => e.language ?? []),
@@ -246,19 +264,32 @@ import Text from '@/components/Text/Text.astro';
 
     const render = () => {
       const filtered = sortEntries(filterEntries(feed.entries, readState()));
-      grid.innerHTML = filtered.map(card).join('');
+      const sections = feed.categories
+        .map((category) => [category, filtered.filter((e) => e.category === category)] as const)
+        .filter(([, group]) => group.length > 0);
+      grid.innerHTML = sections
+        .map(
+          ([category, group]) => `
+            <section>
+              <h2 class="border-b border-line pb-2 text-sm font-bold uppercase tracking-wider text-muted">${esc(category)}</h2>
+              <div class="grid grid-cols-1 gap-6 pt-4 md:grid-cols-2 lg:grid-cols-3">
+                ${group.map(card).join('')}
+              </div>
+            </section>`,
+        )
+        .join('');
       count.textContent = `${filtered.length} of ${feed.entries.length} projects`;
       empty?.toggleAttribute('hidden', filtered.length > 0);
       writeUrl();
     };
 
     search?.addEventListener('input', render);
-    for (const el of [categoryEl, monetizationEl, languageEl, sourceEl, contribEl]) {
+    for (const el of [categoryEl, commercialEl, languageEl, contribEl]) {
       el?.addEventListener('change', render);
     }
     resetEl?.addEventListener('click', () => {
       if (search) search.value = '';
-      for (const el of [categoryEl, monetizationEl, languageEl, sourceEl, contribEl]) {
+      for (const el of [categoryEl, commercialEl, languageEl, contribEl]) {
         if (el) el.value = '';
       }
       render();

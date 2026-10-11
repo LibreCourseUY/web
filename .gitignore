@@ -143,3 +143,6 @@ vite.config.ts.timestamp-*
 .vite/
 
 .astro/
+
+# local badge-preview feed, never ship it
+public/mock-feed.json
