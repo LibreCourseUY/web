@@ -19,18 +19,17 @@ export async function onRequest({ request, waitUntil }: Context): Promise<Respon
 	const cache = caches.default;
 	const cached = await cache.match(CACHE_URL);
 	if (cached) {
-		return new Response(cached.body, {
-			headers: { ...cached.headers, 'X-Feed-Cache': 'HIT' },
-		});
+		const headers = new Headers(cached.headers);
+		headers.set('X-Feed-Cache', 'HIT');
+		return new Response(cached.body, { headers });
 	}
 
-	const upstream = await fetch(FEED_URL);
-	if (!upstream.ok) {
+	const upstream = await fetch(FEED_URL).catch(() => null);
+	if (!upstream?.ok) {
 		return new Response('feed unavailable', { status: 502 });
 	}
 
-	const response = new Response(upstream.body, { headers: HEADERS });
-	response.headers.set('X-Feed-Cache', 'MISS');
-	waitUntil(cache.put(CACHE_URL, new Response(upstream.clone().body, { headers: HEADERS })));
-	return response;
+	const body = await upstream.text();
+	waitUntil(cache.put(CACHE_URL, new Response(body, { headers: HEADERS })));
+	return new Response(body, { headers: { ...HEADERS, 'X-Feed-Cache': 'MISS' } });
 }
