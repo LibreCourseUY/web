@@ -1,0 +1,84 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Text from '@/components/Text/Text.astro';
+---
+
+<Layout
+  title="Orgs | LibreCourseUY"
+  description="Uruguayan based open source organizations."
+>
+  <main class="flex min-h-screen flex-col items-start justify-center">
+    <section class="flex w-full flex-col justify-start items-start gap-8 pt-12 pb-12">
+      <div class="space-y-4">
+        <Text variant="h1">Orgs</Text>
+        <Text variant="p" class="text-muted max-w-3xl">
+          Uruguayan based open source orgs. Organizations that take responsibility for maintaining
+          and governing their projects.
+        </Text>
+      </div>
+
+      <div id="orgs-app" class="w-full" hidden>
+        <div id="orgs-grid" class="grid grid-cols-1 gap-6 pt-4 md:grid-cols-2 lg:grid-cols-3">
+        </div>
+      </div>
+
+      <div id="orgs-maintenance" class="w-full border border-line bg-surface p-8" hidden>
+        <Text variant="h3">This section is under maintenance</Text>
+        <Text variant="p" class="mt-3 max-w-2xl text-muted">
+          The org list is temporarily unavailable. Please check back soon.
+        </Text>
+      </div>
+
+      <div
+        id="orgs-loading"
+        class="w-full py-16 text-center text-xs uppercase tracking-wider text-muted"
+      >
+        Loading orgs...
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<script>
+  import { loadAwesomeFeed } from '@/lib/awesome-client';
+  import type { AwesomeOrg } from '@/lib/awesome';
+
+  const app = document.getElementById('orgs-app');
+  const grid = document.getElementById('orgs-grid');
+  const maintenance = document.getElementById('orgs-maintenance');
+  const loading = document.getElementById('orgs-loading');
+
+  function esc(value: string): string {
+    return value.replace(/[&<>"']/g, (char) => {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char] ?? char;
+    });
+  }
+
+  function orgCard(org: AwesomeOrg): string {
+    const relationship = org.relationship === 'official' ? '[official]' : '[community]';
+    return `
+			<div class="flex min-w-0 flex-col gap-3 border border-line bg-surface p-4 transition-colors hover:border-emphasis-secondary/60">
+				<a href="${esc(org.url)}" target="_blank" rel="noopener noreferrer" class="min-w-0 flex-1 truncate text-sm font-bold text-emphasis">${esc(org.name)}</a>
+				<p class="break-words text-sm leading-relaxed text-muted">${esc(org.description)}</p>
+				<div class="mt-auto flex flex-wrap items-center gap-2 border-t border-line pt-3 text-xs text-muted">
+					<span class="border border-line px-1.5 py-0.5">${relationship}</span>
+					${org.url !== org.repository ? `<a href="${esc(org.repository)}" target="_blank" rel="noopener noreferrer" class="hover:text-emphasis">[source]</a>` : ''}
+				</div>
+			</div>`;
+	}
+
+  async function init() {
+    const feed = await loadAwesomeFeed();
+    loading?.setAttribute('hidden', '');
+
+    if (!feed || !app || !grid) {
+      maintenance?.removeAttribute('hidden');
+      return;
+    }
+
+    grid.innerHTML = (feed.orgs ?? []).map(orgCard).join('');
+    app.removeAttribute('hidden');
+  }
+
+  void init();
+</script>

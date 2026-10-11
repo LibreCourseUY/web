@@ -418,6 +418,44 @@
       }
     ]
   },
+  "/orgs/": {
+    "title": "Orgs | LibreCourseUY",
+    "canonical": "https://librecourse.uy/orgs/",
+    "robots": "index,follow,max-snippet:-1,max-image-preview:large",
+    "og": {
+      "type": "website",
+      "title": "Orgs | LibreCourseUY",
+      "description": "Uruguayan based open source organizations.",
+      "url": "https://librecourse.uy/orgs/",
+      "image": "https://librecourse.uy/og.jpg",
+      "image:width": 1200,
+      "image:height": 630,
+      "image:alt": "LibreCourseUY",
+      "site_name": "LibreCourseUY",
+      "locale": "en_US"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "Orgs | LibreCourseUY",
+      "description": "Uruguayan based open source organizations.",
+      "image": "https://librecourse.uy/og.jpg",
+      "image:alt": "LibreCourseUY"
+    },
+    "description": "Uruguayan based open source organizations.",
+    "schema_jsonld": {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Orgs | LibreCourseUY",
+      "url": "https://librecourse.uy/orgs/",
+      "description": "Uruguayan based open source organizations.",
+      "image": "https://librecourse.uy/og.jpg",
+      "publisher": {
+        "@type": "Organization",
+        "name": "LibreCourseUY",
+        "logo": "https://librecourse.uy/icon.png"
+      }
+    }
+  },
   "/projects/": {
     "title": "Projects | LibreCourseUY",
     "canonical": "https://librecourse.uy/projects/",
@@ -451,7 +489,7 @@
         "description": "Explore open source and community projects from LibreCourseUY.",
         "image": "https://librecourse.uy/og.jpg",
         "datePublished": "2026-06-18",
-        "dateModified": "2026-09-28",
+        "dateModified": "2026-10-10",
         "publisher": {
           "@type": "Organization",
           "name": "LibreCourseUY",

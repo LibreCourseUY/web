@@ -14,8 +14,18 @@ export interface AwesomeEntry {
   open_to_contributions?: boolean;
 }
 
+export interface AwesomeOrg {
+  name: string;
+  url: string;
+  description: string;
+  tags?: string[];
+  repository: string;
+  relationship?: 'official' | 'community';
+}
+
 export interface AwesomeFeed {
   categories: string[];
+  orgs?: AwesomeOrg[];
   entries: AwesomeEntry[];
 }
 
@@ -96,5 +106,9 @@ export function uniqueValues(
 export function isAwesomeFeed(value: unknown): value is AwesomeFeed {
   if (!value || typeof value !== 'object') return false;
   const feed = value as Record<string, unknown>;
-  return Array.isArray(feed.entries) && Array.isArray(feed.categories);
+  return (
+    Array.isArray(feed.entries) &&
+    Array.isArray(feed.categories) &&
+    (feed.orgs === undefined || Array.isArray(feed.orgs))
+  );
 }
