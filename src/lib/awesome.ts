@@ -126,25 +126,28 @@ function shuffle<T>(items: T[]): T[] {
 }
 
 /**
- * Pick `count` entries, preferring distinct `key` values. Entries whose key is
- * null (e.g. several maintainers) are deferred and only used to backfill.
+ * Pick `count` entries, allowing at most `maxPerKey` per `key` value. Entries
+ * whose key is null (e.g. several maintainers) are deferred and only used to
+ * backfill when the capped set cannot reach `count`.
  */
 export function pickDiverse<T>(
   items: T[],
   count: number,
   key: (item: T) => string | null,
+  maxPerKey = 1,
 ): T[] {
   if (count <= 0) return [];
   const picked: T[] = [];
   const deferred: T[] = [];
-  const used = new Set<string>();
+  const counts = new Map<string, number>();
   for (const item of shuffle(items)) {
     const value = key(item);
-    if (value === null || used.has(value)) {
+    const used = value === null ? 0 : counts.get(value) ?? 0;
+    if (value === null || used >= maxPerKey) {
       deferred.push(item);
       continue;
     }
-    used.add(value);
+    counts.set(value, used + 1);
     picked.push(item);
     if (picked.length >= count) return picked;
   }

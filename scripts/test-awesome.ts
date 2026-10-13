@@ -88,4 +88,22 @@ assert.equal(
 );
 assert.equal(pickDiverse(entries, 0, maintainer).length, 0);
 
+const capped = pickDiverse(
+  [
+    { ...entries[0], name: 'A', maintainers: ['@a'] },
+    { ...entries[0], name: 'B', maintainers: ['@a'] },
+    { ...entries[0], name: 'C', maintainers: ['@a'] },
+    { ...entries[0], name: 'D', maintainers: ['@a'] },
+    { ...entries[0], name: 'E', maintainers: ['@b'] },
+  ],
+  4,
+  maintainer,
+  3,
+);
+assert.equal(capped.length, 4, 'pickDiverse fills count within cap');
+assert.ok(
+  capped.filter((e) => e.maintainers?.[0] === '@a').length <= 3,
+  'pickDiverse allows at most maxPerKey per maintainer',
+);
+
 console.log('awesome self-check ok');

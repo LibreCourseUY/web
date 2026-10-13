@@ -163,7 +163,7 @@ const importantLinks = {
 				<Text variant="p"
 					>Projects built by our community, showcasing skills across multiple areas.</Text
 				>
-				<div id="home-projects" class="space-y-4"></div>
+				<div id="home-projects" class="grid grid-cols-1 gap-4 md:grid-cols-2"></div>
 				<div
 					id="home-projects-loading"
 					class="py-16 text-center text-xs uppercase tracking-wider text-muted"
@@ -260,7 +260,8 @@ const importantLinks = {
 	const loading = document.getElementById('home-projects-loading');
 	const section = document.getElementById('projects');
 	const LAST_KEY = 'home-projects-last';
-	const COUNT = 3;
+	const COUNT = 6;
+	const MAX_PER_MAINTAINER = 3;
 
 	function lastKey(): string {
 		try {
@@ -276,14 +277,15 @@ const importantLinks = {
 		return entry.maintainers[0].replace('@', '').toLowerCase();
 	}
 
-	// Pick 3, never the same set as the previous load.
+	// Pick COUNT projects, at most MAX_PER_MAINTAINER each, never the same set
+	// as the previous load. Multi-maintainer projects are deferred.
 	function choose(entries: AwesomeEntry[]): AwesomeEntry[] {
 		const previous = lastKey();
 		for (let attempt = 0; attempt < 5; attempt++) {
-			const picked = pickDiverse(entries, COUNT, maintainer);
+			const picked = pickDiverse(entries, COUNT, maintainer, MAX_PER_MAINTAINER);
 			if (picked.map((e) => e.name).join('|') !== previous) return picked;
 		}
-		return pickDiverse(entries, COUNT, maintainer);
+		return pickDiverse(entries, COUNT, maintainer, MAX_PER_MAINTAINER);
 	}
 
 	let loaded = false;
