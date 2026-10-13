@@ -31,16 +31,26 @@ export const LANG_COLORS: Record<string, [string, string]> = {
   Elixir: ['#6B4F8A', '#A88BC4'],
 };
 
-// Mirrors the original landing-page card (src/components/Cards/Cards.astro) as a
-// plain string so it can render from client-fetched feed data.
+// Landing card: the original layout (src/components/Cards/Cards.astro) plus all
+// the awesome metadata, rendered from client-fetched feed data.
 export function projectCard(entry: AwesomeEntry): string {
-  const owner = (url: string | null | undefined) =>
-    url?.match(/github\.com\/([^/]+)/i)?.[1] ?? '';
-  const handle = (entry.maintainers?.[0] ?? '').replace('@', '') || owner(entry.repository);
-  const autorName = handle || 'librecourseuy';
-  const autorLink = handle ? `https://github.com/${handle}` : entry.repository ?? entry.url;
-  const stack = (entry.language?.length ? entry.language : entry.tags ?? []).slice(0, 6);
   const link = entry.repository ?? entry.url;
+
+  const badges: string[] = [`[${esc(entry.category)}]`];
+  if (entry.open_source) badges.push('[open]');
+  if (entry.relationship !== 'official') badges.push('[community]');
+  badges.push(entry.commercial ? '[commercial]' : '[non-commercial]');
+  if (entry.open_to_contributions ?? true) badges.push('[open to contributions]');
+  if (entry.license) badges.push(`[${esc(entry.license)}]`);
+  for (const tag of entry.tags ?? []) badges.push(`[${esc(tag)}]`);
+  for (const lang of entry.language ?? []) badges.push(`[${esc(lang)}]`);
+
+  const maintainers = (entry.maintainers ?? [])
+    .map(
+      (handle) =>
+        `<a href="https://github.com/${esc(handle.replace('@', ''))}" target="_blank" rel="noopener noreferrer" class="hover:underline hover:text-emphasis">${esc(handle)}</a>`,
+    )
+    .join(' · ');
 
   return `
     <div class="flex min-w-0 flex-row items-center gap-4 border border-line bg-surface p-4 transition-colors hover:border-emphasis-secondary/60">
@@ -57,14 +67,17 @@ export function projectCard(entry: AwesomeEntry): string {
           </a>
         </div>
         <p class="break-words text-sm text-muted">${esc(entry.description)}</p>
-        <div class="flex flex-wrap items-center justify-between gap-2">
-          <div class="mt-1 flex flex-wrap gap-2">${stack
-            .map(
-              (tech) =>
-                `<span class="max-w-full break-all border border-line px-1.5 py-0.5 text-xs text-muted">[${esc(tech)}]</span>`,
-            )
-            .join('')}</div>
-          <a href="${esc(autorLink)}" target="_blank" rel="noopener noreferrer" class="shrink-0 text-xs hover:underline text-emphasis-secondary">@${esc(autorName.toLocaleLowerCase())}</a>
+        <div class="flex flex-wrap gap-1">${badges
+          .map(
+            (b) => `<span class="border border-line px-1.5 py-0.5 text-xs text-muted">${b}</span>`,
+          )
+          .join('')}</div>
+        <div class="mt-1 flex flex-wrap items-center justify-between gap-2 border-t border-line pt-3 text-xs text-muted">
+          <div class="flex items-center gap-2">
+            ${entry.url && entry.url !== entry.repository ? `<a href="${esc(entry.url)}" target="_blank" rel="noopener noreferrer" class="hover:underline hover:text-emphasis">[website]</a>` : ''}
+            ${entry.repository ? `<a href="${esc(entry.repository)}" target="_blank" rel="noopener noreferrer" class="hover:underline hover:text-emphasis">[source]</a>` : ''}
+          </div>
+          ${maintainers ? `<span>${maintainers}</span>` : ''}
         </div>
       </div>
     </div>`;

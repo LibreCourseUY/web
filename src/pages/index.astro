@@ -253,13 +253,14 @@ const importantLinks = {
 
 <script>
 	import { loadAwesomeFeed } from '@/lib/awesome-client';
-	import { pickRandom, type AwesomeEntry } from '@/lib/awesome';
+	import { pickDiverse, type AwesomeEntry } from '@/lib/awesome';
 	import { projectCard } from '@/lib/awesome-card';
 
 	const grid = document.getElementById('home-projects');
 	const loading = document.getElementById('home-projects-loading');
 	const section = document.getElementById('projects');
 	const LAST_KEY = 'home-projects-last';
+	const COUNT = 3;
 
 	function lastKey(): string {
 		try {
@@ -269,14 +270,20 @@ const importantLinks = {
 		}
 	}
 
-	// Pick 3 distinct entries, never the same set as the previous load.
+	// Prefer one project per maintainer; multi-maintainer projects are deferred.
+	function maintainer(entry: AwesomeEntry): string | null {
+		if (entry.maintainers?.length !== 1) return null;
+		return entry.maintainers[0].replace('@', '').toLowerCase();
+	}
+
+	// Pick 3, never the same set as the previous load.
 	function choose(entries: AwesomeEntry[]): AwesomeEntry[] {
 		const previous = lastKey();
 		for (let attempt = 0; attempt < 5; attempt++) {
-			const picked = pickRandom(entries, 3);
+			const picked = pickDiverse(entries, COUNT, maintainer);
 			if (picked.map((e) => e.name).join('|') !== previous) return picked;
 		}
-		return pickRandom(entries, 3);
+		return pickDiverse(entries, COUNT, maintainer);
 	}
 
 	let loaded = false;

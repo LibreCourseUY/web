@@ -5,7 +5,7 @@
 import assert from 'node:assert/strict';
 import {
   filterEntries,
-  pickRandom,
+  pickDiverse,
   sortEntries,
   uniqueValues,
   type AwesomeEntry,
@@ -65,12 +65,27 @@ assert.deepEqual(
   uniqueValues(entries, (e) => e.language ?? []),
   ['Python', 'Vue'],
 );
-assert.equal(pickRandom(entries, 3).length, 2, 'pickRandom clamps to pool size');
-assert.equal(
-  new Set(pickRandom(entries, 1).map((e) => e.name)).size,
-  1,
-  'pickRandom returns distinct items',
+const maintainer = (e: AwesomeEntry) =>
+  e.maintainers?.length === 1 ? e.maintainers[0] : null;
+const diverse = pickDiverse(
+  [
+    { ...entries[0], name: 'Solo A', maintainers: ['@a'] },
+    { ...entries[0], name: 'Multi', maintainers: ['@a', '@b'] },
+    { ...entries[0], name: 'Solo C', maintainers: ['@c'] },
+  ],
+  2,
+  maintainer,
 );
-assert.equal(pickRandom(entries, 0).length, 0);
+assert.deepEqual(
+  diverse.map((e) => e.name).sort(),
+  ['Solo A', 'Solo C'],
+  'pickDiverse prefers distinct single maintainers and defers multi',
+);
+assert.equal(
+  pickDiverse(entries, 3, maintainer).length,
+  2,
+  'pickDiverse clamps to pool size',
+);
+assert.equal(pickDiverse(entries, 0, maintainer).length, 0);
 
 console.log('awesome self-check ok');

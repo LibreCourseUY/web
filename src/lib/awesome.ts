@@ -116,13 +116,43 @@ export function uniqueValues(
   return [...seen].sort((a, b) => a.localeCompare(b, 'en'));
 }
 
-export function pickRandom<T>(items: T[], count: number): T[] {
+function shuffle<T>(items: T[]): T[] {
   const pool = [...items];
   for (let i = pool.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [pool[i], pool[j]] = [pool[j], pool[i]];
   }
-  return pool.slice(0, Math.max(0, count));
+  return pool;
+}
+
+/**
+ * Pick `count` entries, preferring distinct `key` values. Entries whose key is
+ * null (e.g. several maintainers) are deferred and only used to backfill.
+ */
+export function pickDiverse<T>(
+  items: T[],
+  count: number,
+  key: (item: T) => string | null,
+): T[] {
+  if (count <= 0) return [];
+  const picked: T[] = [];
+  const deferred: T[] = [];
+  const used = new Set<string>();
+  for (const item of shuffle(items)) {
+    const value = key(item);
+    if (value === null || used.has(value)) {
+      deferred.push(item);
+      continue;
+    }
+    used.add(value);
+    picked.push(item);
+    if (picked.length >= count) return picked;
+  }
+  for (const item of deferred) {
+    if (picked.length >= count) break;
+    picked.push(item);
+  }
+  return picked;
 }
 
 export function isAwesomeFeed(value: unknown): value is AwesomeFeed {
