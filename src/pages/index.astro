@@ -5,13 +5,11 @@ import Anchor from '@/components/Anchor/Anchor.astro';
 import Text from '@/components/Text/Text.astro';
 import List from '@/components/List/List.astro';
 import ListItem from '@/components/List/ListItem.astro';
-import Cards from '@/components/Cards/Cards.astro';
 import Collapse from '@/components/Collapse/Collapse.astro';
 // Layout
 import Layout from '@/layouts/Layout.astro';
 // Utils
 import { formatLink } from '@/lib/utils';
-import type { ProjectType } from '@/lib/types';
 // Assets
 import heroIcon from '@/assets/lcuy_logo.svg';
 import heroImg from '@/assets/ascii-hero.png';
@@ -28,45 +26,6 @@ const importantLinks = {
 	discordCommunity: '/join/',
 	github: 'https://github.com/LibreCourseUY',
 };
-
-const projects: ProjectType[] = [
-	{
-		title: 'MoodleTweaks',
-		description:
-			'Manifest V3 browser extension that refreshes and unifies the styling of the EVA learning platform (Moodle 4.x), adding dark mode and adjustable typography and density.',
-		autor: {
-			name: 'joaquinlarroca',
-			link: 'https://github.com/joaquinlarroca',
-		},
-		image: null,
-		stack: ['HTML', 'CSS', 'JS', 'Manifest V3'],
-		pj_link: 'https://github.com/LibreCourseUY/moodleTweaks',
-	},
-	{
-		title: 'UruAPI',
-		description:
-			"is a wrapper around datosuruguay.com and exposes Uruguay's daily-updated economic indicators in a clean, JSON-friendly format.",
-		autor: {
-			name: 'emiliano-gandini',
-			link: 'https://github.com/emiliano-go',
-		},
-		image: null,
-		stack: ['Python', 'FastAPI', 'Docker'],
-		pj_link: 'https://github.com/LibreCourseUY/UruAPI',
-	},
-	{
-		title: 'KanBan generator',
-		description:
-			'A highly configurable React component that accepts an array of columns and an array of cards with generic metadata, and supports drag-and-drop interactions between columns.',
-		autor: {
-			name: 'kevin-ramirez',
-			link: 'https://github.com/Kevin-Ramirez127',
-		},
-		image: null,
-		stack: ['React', 'Tailwind', 'Vite', 'Typescript'],
-		pj_link: 'https://github.com/LibreCourseUY/kanBan-generator',
-	},
-];
 ---
 
 <Layout
@@ -204,15 +163,15 @@ const projects: ProjectType[] = [
 				<Text variant="p"
 					>Projects built by our community, showcasing skills across multiple areas.</Text
 				>
-				<div class="space-y-4">
-					{
-						projects.map((project, i) => (
-							<Cards
-								{...project}
-								index={i}
-							/>
-						))
-					}
+				<div
+					id="home-projects"
+					class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
+				></div>
+				<div
+					id="home-projects-loading"
+					class="py-16 text-center text-xs uppercase tracking-wider text-muted"
+				>
+					Loading projects...
 				</div>
 			</div>
 		</section>
@@ -287,3 +246,21 @@ const projects: ProjectType[] = [
 		</section>
 	</main>
 </Layout>
+
+<script>
+	import { loadAwesomeFeed } from '@/lib/awesome-client';
+	import { pickRandom } from '@/lib/awesome';
+	import { entryCard } from '@/lib/awesome-card';
+
+	const grid = document.getElementById('home-projects');
+	const loading = document.getElementById('home-projects-loading');
+
+	async function init() {
+		const feed = await loadAwesomeFeed();
+		loading?.setAttribute('hidden', '');
+		if (!feed || !grid) return;
+		grid.innerHTML = pickRandom(feed.entries, 3).map(entryCard).join('');
+	}
+
+	void init();
+</script>

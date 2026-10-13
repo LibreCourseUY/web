@@ -3,7 +3,13 @@
  * Run: node --experimental-strip-types scripts/test-awesome.ts
  */
 import assert from 'node:assert/strict';
-import { filterEntries, sortEntries, uniqueValues, type AwesomeEntry } from '../src/lib/awesome.ts';
+import {
+  filterEntries,
+  pickRandom,
+  sortEntries,
+  uniqueValues,
+  type AwesomeEntry,
+} from '../src/lib/awesome.ts';
 
 const entries: AwesomeEntry[] = [
   {
@@ -42,11 +48,7 @@ assert.equal(filterEntries(entries, { commercial: false })[0].name, 'Alpha');
 assert.equal(filterEntries(entries, { languages: ['Vue'] })[0].name, 'Beta');
 assert.equal(filterEntries(entries, { tags: ['api'] })[0].name, 'Alpha');
 assert.equal(filterEntries(entries, { query: 'zzz' }).length, 0);
-assert.equal(
-  filterEntries(entries, { query: 'alice' }).length,
-  1,
-  'search matches maintainers',
-);
+assert.equal(filterEntries(entries, { query: 'alice' }).length, 1, 'search matches maintainers');
 assert.deepEqual(
   sortEntries([entries[1], entries[0]]).map((e) => e.name),
   ['Alpha', 'Beta'],
@@ -63,5 +65,12 @@ assert.deepEqual(
   uniqueValues(entries, (e) => e.language ?? []),
   ['Python', 'Vue'],
 );
+assert.equal(pickRandom(entries, 3).length, 2, 'pickRandom clamps to pool size');
+assert.equal(
+  new Set(pickRandom(entries, 1).map((e) => e.name)).size,
+  1,
+  'pickRandom returns distinct items',
+);
+assert.equal(pickRandom(entries, 0).length, 0);
 
 console.log('awesome self-check ok');
