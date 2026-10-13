@@ -129,29 +129,20 @@ const route = [
 </div>
 
 <script>
-  function getTheme(): string | null {
-    return localStorage.getItem('theme');
-  }
-
   function applyTheme(theme: string) {
     document.documentElement.classList.toggle('dark', theme === 'dark');
     document.documentElement.classList.toggle('light', theme === 'light');
-    localStorage.setItem('theme', theme);
-  }
-
-  function getEffectiveTheme(): string {
-    const stored = getTheme();
-    if (stored) return stored;
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    try {
+      localStorage.setItem('theme', theme);
+    } catch (e) {
+      /* storage unavailable */
+    }
   }
 
   function setupThemeToggle() {
-    const stored = getTheme();
-    if (stored) applyTheme(stored);
-
     const handler = () => {
-      const next = getEffectiveTheme() === 'dark' ? 'light' : 'dark';
-      applyTheme(next);
+      const isDark = document.documentElement.classList.contains('dark');
+      applyTheme(isDark ? 'light' : 'dark');
     };
 
     document.getElementById('theme-toggle')!.onclick = handler;
