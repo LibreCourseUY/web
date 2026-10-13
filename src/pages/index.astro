@@ -163,16 +163,20 @@ const importantLinks = {
 				<Text variant="p"
 					>Projects built by our community, showcasing skills across multiple areas.</Text
 				>
-				<div
-					id="home-projects"
-					class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
-				></div>
+				<div id="home-projects" class="space-y-4"></div>
 				<div
 					id="home-projects-loading"
 					class="py-16 text-center text-xs uppercase tracking-wider text-muted"
 				>
 					Loading projects...
 				</div>
+				<a
+					href="/projects/"
+					class="inline-flex items-center gap-1 border border-line px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-muted transition-colors hover:border-emphasis-secondary hover:text-emphasis-secondary"
+				>
+					See more
+					<span aria-hidden="true">&rarr;</span>
+				</a>
 			</div>
 		</section>
 		<section id="faq">
@@ -249,18 +253,61 @@ const importantLinks = {
 
 <script>
 	import { loadAwesomeFeed } from '@/lib/awesome-client';
-	import { pickRandom } from '@/lib/awesome';
-	import { entryCard } from '@/lib/awesome-card';
+	import { pickRandom, type AwesomeEntry } from '@/lib/awesome';
+	import { projectCard } from '@/lib/awesome-card';
 
 	const grid = document.getElementById('home-projects');
 	const loading = document.getElementById('home-projects-loading');
+	const section = document.getElementById('projects');
+	const LAST_KEY = 'home-projects-last';
 
-	async function init() {
+	function lastKey(): string {
+		try {
+			return sessionStorage.getItem(LAST_KEY) ?? '';
+		} catch {
+			return '';
+		}
+	}
+
+	// Pick 3 distinct entries, never the same set as the previous load.
+	function choose(entries: AwesomeEntry[]): AwesomeEntry[] {
+		const previous = lastKey();
+		for (let attempt = 0; attempt < 5; attempt++) {
+			const picked = pickRandom(entries, 3);
+			if (picked.map((e) => e.name).join('|') !== previous) return picked;
+		}
+		return pickRandom(entries, 3);
+	}
+
+	let loaded = false;
+	async function render() {
+		if (loaded) return;
+		loaded = true;
 		const feed = await loadAwesomeFeed();
 		loading?.setAttribute('hidden', '');
 		if (!feed || !grid) return;
-		grid.innerHTML = pickRandom(feed.entries, 3).map(entryCard).join('');
+		const picked = choose(feed.entries);
+		try {
+			sessionStorage.setItem(LAST_KEY, picked.map((e) => e.name).join('|'));
+		} catch {
+			/* storage unavailable */
+		}
+		grid.innerHTML = picked.map(projectCard).join('');
 	}
 
-	void init();
+	// Lazy: fetch once the section approaches the viewport, never blocking page load.
+	if (section && 'IntersectionObserver' in window) {
+		const io = new IntersectionObserver(
+			(entries) => {
+				if (entries.some((entry) => entry.isIntersecting)) {
+					io.disconnect();
+					void render();
+				}
+			},
+			{ rootMargin: '200px' },
+		);
+		io.observe(section);
+	} else {
+		void render();
+	}
 </script>
