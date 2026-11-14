@@ -1,0 +1,385 @@
+---
+// Components
+import Anchor from '@/components/Anchor/Anchor.astro';
+import List from '@/components/List/List.astro';
+import ListItem from '@/components/List/ListItem.astro';
+import Text from '@/components/Text/Text.astro';
+// Layout
+import Layout from '@/layouts/Layout.astro';
+// Utils
+import { formatLink } from '@/lib/utils';
+import { communityLinks } from '@/data/community';
+
+const deepwiki = 'https://deepwiki.com';
+const discord = communityLinks.discord;
+
+const scope = [
+  {
+    title: 'Learn in community!',
+    description: `Join our <a href="${discord}" target="_blank" class="underline text-emphasis-secondary">Discord</a>, where you will find a community to learn open source together`,
+  },
+  {
+    title: 'Programming Languages',
+    description: 'Python, JavaScript, Rust, Go, C, Java, and more',
+  },
+  {
+    title: 'Frameworks',
+    description: 'React, Vue, FastAPI, Django, Express, Spring, and more',
+  },
+  {
+    title: 'Tools & Technologies',
+    description: 'Git, Docker, PostgreSQL, MongoDB, AWS, Linux, and more',
+  },
+];
+
+const recommendations = [
+  {
+    title: 'Web Development',
+    items: [
+      {
+        name: 'JavaScript + React',
+        badge: 'Popular',
+        description: 'Most popular, huge community, infinite resources',
+      },
+      {
+        name: 'Python + FastAPI',
+        badge: 'Easy',
+        description: 'Great for APIs, easy syntax, very readable',
+      },
+    ],
+  },
+  {
+    title: 'Systems & Low-Level',
+    items: [
+      {
+        name: 'Rust',
+        badge: 'Modern',
+        description: 'Modern, safe, great for learning systems programming',
+      },
+      {
+        name: 'C',
+        badge: 'Foundation',
+        description: 'Foundation of everything, understand how computers work',
+      },
+    ],
+  },
+  {
+    title: 'Mobile Development',
+    items: [
+      {
+        name: 'React Native',
+        badge: 'Cross-platform',
+        description: 'Use JavaScript for iOS and Android',
+      },
+      {
+        name: 'Flutter (Dart)',
+        badge: 'Beautiful',
+        description: "Google's framework, beautiful UIs",
+      },
+    ],
+  },
+  {
+    title: 'Data & AI',
+    items: [
+      {
+        name: 'Python',
+        badge: 'Top',
+        description: 'The language for AI/ML, easiest for data science',
+      },
+      {
+        name: 'Julia',
+        badge: 'Growing',
+        description: 'Growing fast in scientific computing',
+      },
+    ],
+  },
+  {
+    title: 'Automation & Scripting',
+    items: [
+      {
+        name: 'Python',
+        badge: 'Versatile',
+        description: 'Scripts, automation, dev tools, APIs, everything',
+      },
+      {
+        name: 'JavaScript',
+        badge: 'Browser',
+        description: 'Browser automation, Node.js scripts, web scrapers',
+      },
+      {
+        name: 'Bash',
+        badge: 'System',
+        description: 'Shell scripting, Linux automation, CLI tools',
+      },
+      {
+        name: 'Go',
+        badge: 'Fast',
+        description: 'High-performance scripts, CLI tools, automation',
+      },
+    ],
+  },
+  {
+    title: 'Other Languages',
+    items: [
+      {
+        name: 'Ruby',
+        badge: 'Trending',
+        description: 'Elegant syntax, great for web development with Rails',
+      },
+      {
+        name: 'TypeScript',
+        badge: 'Web',
+        description: 'JavaScript with types, great for large web apps',
+      },
+      {
+        name: 'Java',
+        badge: 'Enterprise',
+        description: 'Industry standard, Android, enterprise backends',
+      },
+      {
+        name: 'C#',
+        badge: 'Game',
+        description: 'Game development (Unity), Windows apps, .NET',
+      },
+    ],
+  },
+];
+
+const phases = [
+  {
+    number: '01',
+    title: 'Quick Context',
+    description: `Start with a short introduction to the language or tool. Learn enough to try a small task, then return to tutorials and documentation as new questions come up.`,
+    example: `You want to learn Python. Try an introduction to variables, loops, functions and basic data structures, then use them in a small exercise. Keep the resources nearby while you build.`,
+  },
+  {
+    number: '02',
+    title: 'Build Something Real',
+    description: `Choose a project or a small contribution that interests you. Read its setup guide, try a focused change and use documentation, tutorials and community discussions to understand each step.`,
+    example: `You want to contribute to open-groups. Read the README, get the project running and discuss a small task with a maintainer. If you encounter an error, check the relevant documentation and ask the community for guidance.`,
+  },
+  {
+    number: '03',
+    title: 'Ask for Help',
+    description: `Ask for help when you're unsure how to move forward. Share what you're trying to do, what you've tried and what happened. Discussing the problem is part of learning together.`,
+    example: `Your project won't start. Share the command, the error message and the steps you've tried in the LibreCourseUY Discord. You can ask for a hint, a code review or help understanding the next step.`,
+  },
+];
+
+const resources = [
+  {
+    priority: '1',
+    title: 'Official Documentation',
+    description: 'MDN, Python Docs, Rust Docs, always start here',
+  },
+  {
+    priority: '2',
+    title: 'Community Forums',
+    description: 'Stack Overflow, Reddit (r/learnprogramming), community Discord',
+  },
+  {
+    priority: '3',
+    title: 'Tutorials',
+    description: 'Use focused explanations and examples when you need more context',
+  },
+];
+
+const startOptions = [
+  {
+    title: 'First Contribution',
+    description: 'Choose a project, find a task and prepare your tools',
+    href: '/new/contribute/',
+  },
+  {
+    title: 'Personal Challenges',
+    description: 'Language-agnostic projects to learn coding',
+    href: 'https://github.com/LibreCourseUY/initial-Challenges',
+  },
+  {
+    title: 'Ask the Community',
+    description: 'Find a starting point and get guidance on Discord',
+    href: communityLinks.discord,
+  },
+];
+---
+
+<Layout
+  noindex
+  title="How to Learn | LibreCourseUY"
+  description="Our philosophy for learning programming effectively: assisted autonomy, quick context, building real things, and asking for help."
+>
+  <main class="flex min-h-screen flex-col items-start justify-center">
+    <section
+      class="flex flex-col justify-start items-start w-full min-h-[calc(100dvh-4rem)] pt-12 pb-12"
+    >
+      <div class="space-y-12 w-full max-w-4xl">
+        <div class="space-y-12">
+          <Text variant="h1">How to Learn</Text>
+          <Text variant="p" className="">
+            Our philosophy for learning programming effectively.
+          </Text>
+        </div>
+
+        <hr class="border-line" />
+
+        <div class="space-y-8">
+          <Text variant="h2">The Approach</Text>
+
+          {
+            phases.map((phase) => (
+              <div class="rounded-lg border border-line p-6 space-y-4">
+                <div class="flex flex-row items-center gap-4">
+                  <span class="text-xs font-bold text-emphasis-secondary">[{phase.number}]</span>
+                  <Text variant="h3" className="font-semibold">
+                    {phase.title}
+                  </Text>
+                </div>
+                <Text variant="p">{phase.description}</Text>
+                <div class="p-4 border border-line rounded space-y-2">
+                  <p class="text-xs font-semibold text-emphasis-secondary">Example:</p>
+                  <Text variant="p">{phase.example}</Text>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+
+        <hr class="border-line" />
+
+        <div class="space-y-8">
+          <div class="space-y-4">
+            <Text variant="h2">What Can You Learn?</Text>
+            <Text variant="p"
+              >This approach works for <strong>anything</strong> in programming:</Text
+            >
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 ml-4">
+            {
+              scope.map((item) => (
+                <div class="rounded-lg border border-line p-6 space-y-2">
+                  <h4 class="text-lg font-bold" set:html={item.title} />
+                  <p class="text-sm text-muted" set:html={item.description} />
+                </div>
+              ))
+            }
+          </div>
+          <div class="p-4 border border-line rounded space-y-2 ml-4">
+            <Text variant="p">
+              The key is: <strong>context first → build real stuff → ask for help when stuck</strong
+              >
+            </Text>
+          </div>
+        </div>
+
+        <hr class="border-line" />
+
+        <div class="space-y-4">
+          <Text variant="h2">What is DeepWiki?</Text>
+          <Text variant="p">
+            <Anchor href={formatLink(deepwiki)}>DeepWiki</Anchor>
+            is an AI-powered documentation tool that automatically generates comprehensive documentation
+            for your codebase. It creates API references, architecture diagrams, and code explanations.
+          </Text>
+          <Text variant="p">
+            We use DeepWiki across all our projects to help you understand the codebase faster.
+            Check the
+            <Anchor href="/new/projects/">Projects</Anchor>
+            page for DeepWiki links to each repository.
+          </Text>
+          <div class="p-4 border border-line rounded space-y-4">
+            <Text variant="p">
+              <strong class="underline">Why it's useful:</strong> When you're trying to contribute to
+              a new project, DeepWiki helps you understand the codebase structure, API endpoints, and
+              how different components connect, exactly when you need it.
+            </Text>
+          </div>
+        </div>
+
+        <hr class="border-line" />
+
+        <div class="space-y-4">
+          <Text variant="h2">Assisted Autonomy</Text>
+          <Text variant="p">
+            We believe in <strong>assisted autonomy</strong>: explore a problem, try an approach and
+            discuss what you learn. Documentation, examples and community guidance help you
+            understand your choices and build skills you can use in the next project.
+          </Text>
+        </div>
+
+        <hr class="border-line" />
+
+        <div class="space-y-8">
+          <div class="space-y-4">
+            <Text variant="h2">Recommended for Beginners</Text>
+            <Text variant="p">Start with these languages and frameworks based on your goals:</Text>
+          </div>
+
+          {
+            recommendations.map((section) => (
+              <div class="space-y-4">
+                <Text variant="h3" className="font-semibold">
+                  {section.title}
+                </Text>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 ml-4">
+                  {section.items.map((item) => (
+                    <div class="rounded-lg border border-line p-4 space-y-2">
+                      <div class="flex justify-between items-center gap-4">
+                        <h4 class="text-lg font-bold">{item.name}</h4>
+                        <span class="shrink-0 border border-line px-1.5 py-0.5 text-xs font-medium text-muted">
+                          [{item.badge}]
+                        </span>
+                      </div>
+                      <p class="text-sm text-muted">{item.description}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))
+          }
+        </div>
+
+        <hr class="border-line" />
+
+        <div class="space-y-4">
+          <Text variant="h2">Resources</Text>
+          <Text variant="p">Use these resources as you explore, build and ask questions:</Text>
+          <List className="ml-4">
+            {
+              resources.map((item) => (
+                <ListItem className="first:border-t border-b border-line p-6 flex flex-row justify-start items-center gap-6">
+                  <span class="shrink-0 w-8 h-8 flex items-center justify-center border border-emphasis-secondary text-sm font-bold text-emphasis-secondary">
+                    {item.priority}
+                  </span>
+                  <span class="space-y-2 min-w-0">
+                    <strong>{item.title}</strong>
+                    <Text variant="p">{item.description}</Text>
+                  </span>
+                </ListItem>
+              ))
+            }
+          </List>
+        </div>
+
+        <div class="space-y-8">
+          <div class="space-y-4">
+            <Text variant="h2">Ready to Start?</Text>
+            <Text variant="p">Pick a language and start building:</Text>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 ml-4">
+            {
+              startOptions.map((item) => (
+                <Anchor
+                  href={item.href}
+                  className="flex flex-col items-center justify-center gap-2 rounded-lg border border-emphasis/60 p-6 text-center hover:border-emphasis text-emphasis/80 hover:text-emphasis"
+                >
+                  <h4 class="text-lg font-bold">{item.title}</h4>
+                  <p class="text-sm text-muted">{item.description}</p>
+                </Anchor>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

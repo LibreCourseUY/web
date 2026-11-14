@@ -227,7 +227,7 @@ def main() -> int:
         warnings.simplefilter("always")
 
         for filepath in sorted(PAGES_DIR.rglob("*.astro")):
-            if filepath.stem == "404":
+            if filepath.stem == "404" or "[" in filepath.name:
                 continue
             route = route_from_file(filepath)
             props = layout_props(filepath)
@@ -258,6 +258,8 @@ def main() -> int:
                 continue
 
             payload_dict = payload.to_dict()
+            if route == "/new_index/" or route.startswith("/new/"):
+                payload_dict["robots"] = "noindex, nofollow"
             manifest[route] = payload_dict
             print(
                 f"  OK    {route:<24} {meta['entity_type']:<10} {schema_label(payload_dict.get('schema_jsonld'))}"

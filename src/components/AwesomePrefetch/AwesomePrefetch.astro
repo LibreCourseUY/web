@@ -1,0 +1,36 @@
+---
+interface Props {
+  feedUrl: string;
+}
+
+const { feedUrl } = Astro.props;
+---
+
+<script is:inline define:vars={{ feedUrl }}>
+  (function () {
+    var KEY = 'awesome-feed';
+    if (!feedUrl) return;
+    try {
+      if (sessionStorage.getItem(KEY)) return;
+    } catch (e) {
+      /* storage unavailable */
+    }
+    var load = function () {
+      fetch(feedUrl, { headers: { Accept: 'application/json' } })
+        .then(function (res) {
+          return res.ok ? res.json() : null;
+        })
+        .then(function (data) {
+          if (!data || !Array.isArray(data.entries)) return;
+          try {
+            sessionStorage.setItem(KEY, JSON.stringify(data));
+          } catch (e) {
+            /* ignore */
+          }
+        })
+        .catch(function () {});
+    };
+    if ('requestIdleCallback' in window) requestIdleCallback(load);
+    else window.addEventListener('load', load);
+  })();
+</script>

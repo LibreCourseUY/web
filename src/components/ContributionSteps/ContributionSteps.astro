@@ -1,0 +1,79 @@
+---
+import Anchor from '@/components/Anchor/Anchor.astro';
+import Text from '@/components/Text/Text.astro';
+import { communityLinks } from '@/data/community';
+import { cn } from '@/lib/utils';
+
+const steps = [
+  {
+    title: 'Choose a project',
+    description:
+      'Find something you care about. Code, documentation, design and testing are all ways to contribute.',
+    href: '/new/projects/',
+    link: 'Explore projects',
+    external: false,
+  },
+  {
+    title: 'Find a way to help',
+    description:
+      'Browse open issues on Gitsion. Ask the maintainer about a small task, or bring your questions to Discord.',
+    href: communityLinks.issues,
+    link: 'Browse open work',
+    external: true,
+  },
+  {
+    title: 'Make your first contribution',
+    description:
+      'Read the project guide, prepare your tools and make one focused change. Ask for feedback as you go.',
+    href: '/new/contribute/#prepare',
+    link: 'Prepare your contribution',
+    external: false,
+  },
+];
+---
+
+<ol class="grid border-y border-line md:grid-cols-3" aria-label="Your first contribution">
+  {
+    steps.map((step, index) => (
+      <li
+        class={cn(
+          'flex min-w-0 flex-col gap-5 py-8 md:px-6',
+          index !== steps.length - 1 && 'border-b border-line md:border-r md:border-b-0',
+        )}
+      >
+        <span class="font-mono text-sm text-emphasis-secondary" aria-hidden="true">
+          [{String(index + 1).padStart(2, '0')}]
+        </span>
+        <Text variant="h3" className="text-xl font-bold">
+          {step.title}
+        </Text>
+        <p class="text-base leading-relaxed text-muted">{step.description}</p>
+        <Anchor
+          href={step.href}
+          className="mt-auto w-fit text-sm font-bold underline underline-offset-4"
+        >
+          {step.link}
+          <span aria-hidden="true">{step.external ? ' ↗' : ' →'}</span>
+          {step.external && <span class="sr-only"> (opens in a new tab)</span>}
+        </Anchor>
+      </li>
+    ))
+  }
+</ol>
+
+<p class="max-w-3xl text-base leading-relaxed text-muted">
+  New to open source? Look for
+  <Anchor href={communityLinks.firstIssues} className="text-base underline underline-offset-4">
+    good first issues<span aria-hidden="true"> ↗</span>
+  </Anchor>. If none are open, or you're unsure where to start,
+  <Anchor href={communityLinks.discord} className="text-base underline underline-offset-4">
+    ask in Discord
+  </Anchor>
+  and share what you'd like to learn. You can also start with our
+  <Anchor
+    href="https://github.com/LibreCourseUY/initial-Challenges"
+    className="text-base underline underline-offset-4"
+  >
+    practice challenges<span aria-hidden="true"> ↗</span>
+  </Anchor>.
+</p>

@@ -1,0 +1,18 @@
+---
+import Orgs from '@/pages/orgs.astro';
+import Dco from '@/pages/dco.astro';
+import GpgSignature from '@/pages/docs/gpg-signature.astro';
+
+// These pages have unchanged content; reuse them with the proposal navigation.
+export function getStaticPaths() {
+  return [
+    { params: { page: 'orgs' }, props: { Page: Orgs } },
+    { params: { page: 'dco' }, props: { Page: Dco } },
+    { params: { page: 'docs/gpg-signature' }, props: { Page: GpgSignature } },
+  ];
+}
+
+const { Page } = Astro.props;
+---
+
+<Page />

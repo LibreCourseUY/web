@@ -14,8 +14,10 @@ import '@fontsource/space-grotesk/latin-ext-700.css';
 import Navbar from '@/components/Navbar/Navbar.astro';
 import Seo from '@/components/Seo/Seo.astro';
 import Footer from '@/components/Footer/Footer.astro';
+import AwesomePrefetch from '@/components/AwesomePrefetch/AwesomePrefetch.astro';
 // Utils
 import { cn } from '@/lib/utils';
+import { currentPathForProposal, isProposalPath } from '@/lib/proposal';
 // Styles
 import '@/styles/globals.css';
 
@@ -25,12 +27,15 @@ export interface Props {
   noindex?: boolean;
 }
 
-const { title, description, noindex = false } = Astro.props;
+const { title, description } = Astro.props;
+const proposal = isProposalPath(Astro.url.pathname);
+const noindex = Astro.props.noindex || proposal;
+const currentVersionPath = currentPathForProposal(Astro.url.pathname);
 const awesomeFeedUrl = import.meta.env.PUBLIC_AWESOME_FEED_URL ?? '';
 ---
 
 <!doctype html>
-<html lang="en" class='scroll-smooth'>
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -42,13 +47,17 @@ const awesomeFeedUrl = import.meta.env.PUBLIC_AWESOME_FEED_URL ?? '';
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <script is:inline>
-      (function() {
+      (function () {
         document.documentElement.classList.add('js');
         var root = document.documentElement;
         var mq = window.matchMedia('(prefers-color-scheme: dark)');
         var stored = null;
-        try { stored = localStorage.getItem('theme'); } catch (e) { /* storage unavailable */ }
-        var apply = function(isDark) {
+        try {
+          stored = localStorage.getItem('theme');
+        } catch (e) {
+          /* storage unavailable */
+        }
+        var apply = function (isDark) {
           root.classList.toggle('dark', isDark);
           root.classList.toggle('light', !isDark);
         };
@@ -57,46 +66,58 @@ const awesomeFeedUrl = import.meta.env.PUBLIC_AWESOME_FEED_URL ?? '';
         } else {
           // Default to the system theme and keep following it until the user picks one.
           apply(mq.matches);
-          mq.addEventListener('change', function(event) {
+          mq.addEventListener('change', function (event) {
             var preference = null;
-            try { preference = localStorage.getItem('theme'); } catch (e) { /* ignore */ }
+            try {
+              preference = localStorage.getItem('theme');
+            } catch (e) {
+              /* ignore */
+            }
             if (preference !== 'dark' && preference !== 'light') apply(event.matches);
           });
         }
       })();
     </script>
-    <Seo route={Astro.url.pathname} fallbackTitle={title} fallbackDescription={description} noindex={noindex} />
+    <Seo
+      route={Astro.url.pathname}
+      fallbackTitle={title}
+      fallbackDescription={description}
+      noindex={noindex}
+    />
   </head>
-  <body class={cn("bg-background font-sans text-emphasis antialiased max-w-[100vw] overflow-x-hidden")}>
-    <Navbar pathname={Astro.url.pathname} />
+  <body
+    class={cn(
+      'bg-background font-sans text-emphasis antialiased max-w-[100vw] overflow-x-hidden',
+      proposal && 'pb-20',
+    )}
+  >
+    <Navbar pathname={Astro.url.pathname} proposal={proposal} />
     <div class="mx-6 md:mx-12 lg:mx-24">
       <slot />
       <Footer />
     </div>
-    {awesomeFeedUrl && (
-      <script is:inline define:vars={{ feedUrl: awesomeFeedUrl }}>
-        (function () {
-          var KEY = 'awesome-feed';
-          if (!feedUrl) return;
-          try {
-            if (sessionStorage.getItem(KEY)) return;
-          } catch (e) {
-            /* storage unavailable */
-          }
-          var load = function () {
-            fetch(feedUrl, { headers: { Accept: 'application/json' } })
-              .then(function (res) { return res.ok ? res.json() : null; })
-              .then(function (data) {
-                if (!data || !Array.isArray(data.entries)) return;
-                try { sessionStorage.setItem(KEY, JSON.stringify(data)); } catch (e) { /* ignore */ }
-              })
-              .catch(function () {});
-          };
-          if ('requestIdleCallback' in window) requestIdleCallback(load);
-          else window.addEventListener('load', load);
-        })();
-      </script>
-    )}
+    {
+      proposal && (
+        <aside
+          aria-label="Version comparison"
+          class="fixed inset-x-0 bottom-0 z-80 border-t border-line bg-background px-6 py-3 text-sm shadow-lg md:px-12 lg:px-24"
+        >
+          <div class="flex flex-wrap items-center justify-between gap-x-6 gap-y-2">
+            <span class="font-mono font-bold text-emphasis-secondary">Proposed version</span>
+            <a
+              href={currentVersionPath}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="font-bold underline underline-offset-4"
+            >
+              Compare with the current version <span aria-hidden="true">↗</span>
+              <span class="sr-only"> (opens in a new tab)</span>
+            </a>
+          </div>
+        </aside>
+      )
+    }
+    {awesomeFeedUrl && <AwesomePrefetch feedUrl={awesomeFeedUrl} />}
     <script is:inline>
       (function () {
         function setupReveal() {
@@ -105,20 +126,27 @@ const awesomeFeedUrl = import.meta.env.PUBLIC_AWESOME_FEED_URL ?? '';
 
           var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
           if (reduce || !('IntersectionObserver' in window)) {
-            targets.forEach(function (el) { el.classList.add('is-visible'); });
+            targets.forEach(function (el) {
+              el.classList.add('is-visible');
+            });
             return;
           }
 
-          var io = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-              if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                io.unobserve(entry.target);
-              }
-            });
-          }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+          var io = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add('is-visible');
+                  io.unobserve(entry.target);
+                }
+              });
+            },
+            { rootMargin: '0px 0px -8% 0px', threshold: 0.08 },
+          );
 
-          targets.forEach(function (el) { io.observe(el); });
+          targets.forEach(function (el) {
+            io.observe(el);
+          });
         }
 
         function setupScrollCue() {
@@ -132,7 +160,7 @@ const awesomeFeedUrl = import.meta.env.PUBLIC_AWESOME_FEED_URL ?? '';
             ticking = false;
             var fade = reduce ? 0 : Math.min(window.scrollY / (window.innerHeight * 0.35), 1);
             cue.style.opacity = String(1 - fade);
-            cue.style.transform = 'translate(-50%, ' + (fade * 16) + 'px)';
+            cue.style.transform = 'translate(-50%, ' + fade * 16 + 'px)';
           }
 
           function onScroll() {

@@ -291,9 +291,7 @@
             "@type": "Organization",
             "name": "LibreCourseUY",
             "logo": "https://librecourse.uy/icon.png",
-            "sameAs": [
-              "https://github.com/LibreCourseUY"
-            ]
+            "sameAs": ["https://github.com/LibreCourseUY"]
           }
         },
         {
@@ -418,6 +416,196 @@
       }
     ]
   },
+  "/new/contribute/": {
+    "title": "Contribute | LibreCourseUY",
+    "canonical": "https://librecourse.uy/new/contribute/",
+    "robots": "noindex, nofollow",
+    "og": {
+      "type": "website",
+      "title": "Contribute | LibreCourseUY",
+      "description": "Make your first open source contribution with LibreCourseUY. Choose a project, find a task on Gitsion and prepare your tools with community support.",
+      "url": "https://librecourse.uy/new/contribute/",
+      "image": "https://librecourse.uy/og.jpg",
+      "image:width": 1200,
+      "image:height": 630,
+      "image:alt": "LibreCourseUY",
+      "site_name": "LibreCourseUY",
+      "locale": "en_US"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "Contribute | LibreCourseUY",
+      "description": "Make your first open source contribution with LibreCourseUY. Choose a project, find a task on Gitsion and prepare your tools with community support.",
+      "image": "https://librecourse.uy/og.jpg",
+      "image:alt": "LibreCourseUY"
+    },
+    "description": "Make your first open source contribution with LibreCourseUY. Choose a project, find a task on Gitsion and prepare your tools with community support.",
+    "schema_jsonld": {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Contribute | LibreCourseUY",
+      "url": "https://librecourse.uy/new/contribute/",
+      "description": "Make your first open source contribution with LibreCourseUY. Choose a project, find a task on Gitsion and prepare your tools with community support.",
+      "image": "https://librecourse.uy/og.jpg",
+      "publisher": {
+        "@type": "Organization",
+        "name": "LibreCourseUY",
+        "logo": "https://librecourse.uy/icon.png"
+      }
+    }
+  },
+  "/new/docs/": {
+    "title": "Documentation | LibreCourseUY",
+    "canonical": "https://librecourse.uy/new/docs/",
+    "robots": "noindex, nofollow",
+    "og": {
+      "type": "website",
+      "title": "Documentation | LibreCourseUY",
+      "description": "Essential resources for your daily development workflow: official docs, commit signing, API references, learning resources, and tools.",
+      "url": "https://librecourse.uy/new/docs/",
+      "image": "https://librecourse.uy/og.jpg",
+      "image:width": 1200,
+      "image:height": 630,
+      "image:alt": "LibreCourseUY",
+      "site_name": "LibreCourseUY",
+      "locale": "en_US"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "Documentation | LibreCourseUY",
+      "description": "Essential resources for your daily development workflow: official docs, commit signing, API references, learning resources, and tools.",
+      "image": "https://librecourse.uy/og.jpg",
+      "image:alt": "LibreCourseUY"
+    },
+    "description": "Essential resources for your daily development workflow: official docs, commit signing, API references, learning resources, and tools.",
+    "schema_jsonld": {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Documentation | LibreCourseUY",
+      "url": "https://librecourse.uy/new/docs/",
+      "description": "Essential resources for your daily development workflow: official docs, commit signing, API references, learning resources, and tools.",
+      "image": "https://librecourse.uy/og.jpg",
+      "publisher": {
+        "@type": "Organization",
+        "name": "LibreCourseUY",
+        "logo": "https://librecourse.uy/icon.png"
+      }
+    }
+  },
+  "/new/learn/": {
+    "title": "How to Learn | LibreCourseUY",
+    "canonical": "https://librecourse.uy/new/learn/",
+    "robots": "noindex, nofollow",
+    "og": {
+      "type": "website",
+      "title": "How to Learn | LibreCourseUY",
+      "description": "Our philosophy for learning programming effectively: assisted autonomy, quick context, building real things, and asking for help.",
+      "url": "https://librecourse.uy/new/learn/",
+      "image": "https://librecourse.uy/og.jpg",
+      "image:width": 1200,
+      "image:height": 630,
+      "image:alt": "LibreCourseUY",
+      "site_name": "LibreCourseUY",
+      "locale": "en_US"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "How to Learn | LibreCourseUY",
+      "description": "Our philosophy for learning programming effectively: assisted autonomy, quick context, building real things, and asking for help.",
+      "image": "https://librecourse.uy/og.jpg",
+      "image:alt": "LibreCourseUY"
+    },
+    "description": "Our philosophy for learning programming effectively: assisted autonomy, quick context, building real things, and asking for help.",
+    "schema_jsonld": {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "How to Learn | LibreCourseUY",
+      "url": "https://librecourse.uy/new/learn/",
+      "description": "Our philosophy for learning programming effectively: assisted autonomy, quick context, building real things, and asking for help.",
+      "image": "https://librecourse.uy/og.jpg",
+      "publisher": {
+        "@type": "Organization",
+        "name": "LibreCourseUY",
+        "logo": "https://librecourse.uy/icon.png"
+      }
+    }
+  },
+  "/new/projects/": {
+    "title": "Projects | LibreCourseUY",
+    "canonical": "https://librecourse.uy/new/projects/",
+    "robots": "noindex, nofollow",
+    "og": {
+      "type": "website",
+      "title": "Projects | LibreCourseUY",
+      "description": "Explore open source and community projects from LibreCourseUY.",
+      "url": "https://librecourse.uy/new/projects/",
+      "image": "https://librecourse.uy/og.jpg",
+      "image:width": 1200,
+      "image:height": 630,
+      "image:alt": "LibreCourseUY",
+      "site_name": "LibreCourseUY",
+      "locale": "en_US"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "Projects | LibreCourseUY",
+      "description": "Explore open source and community projects from LibreCourseUY.",
+      "image": "https://librecourse.uy/og.jpg",
+      "image:alt": "LibreCourseUY"
+    },
+    "description": "Explore open source and community projects from LibreCourseUY.",
+    "schema_jsonld": {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Projects | LibreCourseUY",
+      "url": "https://librecourse.uy/new/projects/",
+      "description": "Explore open source and community projects from LibreCourseUY.",
+      "image": "https://librecourse.uy/og.jpg",
+      "publisher": {
+        "@type": "Organization",
+        "name": "LibreCourseUY",
+        "logo": "https://librecourse.uy/icon.png"
+      }
+    }
+  },
+  "/new_index/": {
+    "title": "LibreCourseUY",
+    "canonical": "https://librecourse.uy/new_index/",
+    "robots": "noindex, nofollow",
+    "og": {
+      "type": "website",
+      "title": "LibreCourseUY",
+      "description": "Join a non-profit FOSS community from Uruguay. Discover projects, learn together and make your first open source contribution.",
+      "url": "https://librecourse.uy/new_index/",
+      "image": "https://librecourse.uy/og.jpg",
+      "image:width": 1200,
+      "image:height": 630,
+      "image:alt": "LibreCourseUY",
+      "site_name": "LibreCourseUY",
+      "locale": "en_US"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "LibreCourseUY",
+      "description": "Join a non-profit FOSS community from Uruguay. Discover projects, learn together and make your first open source contribution.",
+      "image": "https://librecourse.uy/og.jpg",
+      "image:alt": "LibreCourseUY"
+    },
+    "description": "Join a non-profit FOSS community from Uruguay. Discover projects, learn together and make your first open source contribution.",
+    "schema_jsonld": {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "LibreCourseUY",
+      "url": "https://librecourse.uy/new_index/",
+      "description": "Join a non-profit FOSS community from Uruguay. Discover projects, learn together and make your first open source contribution.",
+      "image": "https://librecourse.uy/og.jpg",
+      "publisher": {
+        "@type": "Organization",
+        "name": "LibreCourseUY",
+        "logo": "https://librecourse.uy/icon.png"
+      }
+    }
+  },
   "/orgs/": {
     "title": "Orgs | LibreCourseUY",
     "canonical": "https://librecourse.uy/orgs/",
@@ -450,7 +638,7 @@
       "description": "Open source organizations from the LCUY ecosystem.",
       "image": "https://librecourse.uy/og.jpg",
       "datePublished": "2026-10-10",
-      "dateModified": "2026-10-10",
+      "dateModified": "2026-10-11",
       "publisher": {
         "@type": "Organization",
         "name": "LibreCourseUY",
@@ -491,7 +679,7 @@
         "description": "Explore open source and community projects from LibreCourseUY.",
         "image": "https://librecourse.uy/og.jpg",
         "datePublished": "2026-06-18",
-        "dateModified": "2026-10-10",
+        "dateModified": "2026-10-13",
         "publisher": {
           "@type": "Organization",
           "name": "LibreCourseUY",

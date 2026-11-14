@@ -1,64 +1,95 @@
 ---
 // Utils
 import { cn } from '@/lib/utils';
+import { communityLinks } from '@/data/community';
+import { currentPathForProposal, proposalHome, proposalHref } from '@/lib/proposal';
 
 export interface Props {
   className?: string;
   pathname?: string;
+  proposal?: boolean;
 }
 
-const { className, pathname } = Astro.props;
+const { className, pathname, proposal = false } = Astro.props;
 
 // Build-time pathnames end with a slash ("/learn/"), hrefs mostly don't: compare normalized.
-const normalize = (p: string) => p.replace(/\/+$/, '') || '/';
+const normalize = (p: string) =>
+  (proposal ? currentPathForProposal(p) : p).replace(/\/+$/, '') || '/';
 const current = pathname ? normalize(pathname) : null;
-const isActive = (href: string) => current === normalize(href);
+const isActive = (href: string) => {
+  const path = normalize(href);
+  if (proposal && path === '/docs') return current === '/dco' || current?.startsWith('/docs');
+  if (proposal && path === '/projects') return current === '/orgs' || current === path;
+  return current === path;
+};
 
-const route = [
-  { name: "Home", href: "/" },
-  { name: "Learn", href: "/learn" },
-  { name: "Projects", href: "/projects" },
-  { name: "Orgs", href: "/orgs" },
-  { name: "Docs", href: "/docs" },
-  { name: "Open source", href: "/contribute/" },
-  { name: "DCO", href: "/dco" },
-];
+const routes: { name: string; href: string; external?: boolean }[] = proposal
+  ? [
+      { name: 'Home', href: '/' },
+      { name: 'Learn', href: '/learn/' },
+      { name: 'Projects', href: '/projects/' },
+      { name: 'Activity', href: communityLinks.activity, external: true },
+      { name: 'Docs', href: '/docs/' },
+      { name: 'Contribute', href: '/contribute/' },
+    ]
+  : [
+      { name: 'Home', href: '/' },
+      { name: 'Learn', href: '/learn' },
+      { name: 'Projects', href: '/projects' },
+      { name: 'Orgs', href: '/orgs' },
+      { name: 'Docs', href: '/docs' },
+      { name: 'Open source', href: '/contribute/' },
+      { name: 'DCO', href: '/dco' },
+    ];
+const route = routes.map((item) => ({
+  ...item,
+  href: proposal ? proposalHref(item.href) : item.href,
+}));
 ---
 
 <header
   id="site-header"
   class={cn(
     className,
-    "h-16 w-full px-6 md:px-12 lg:px-24 sticky top-0 z-100 flex items-center justify-center",
+    'h-16 w-full px-6 md:px-12 lg:px-24 sticky top-0 z-100 flex items-center justify-center',
   )}
 >
-  <div
-    class={cn("h-16 w-full flex flex-row justify-between items-center")}
-  >
-    <a href="/" class="flex items-center text-xl font-bold tracking-tight">
+  <div class={cn('h-16 w-full flex flex-row justify-between items-center')}>
+    <a
+      href={proposal ? proposalHome : '/'}
+      class="flex items-center text-xl font-bold tracking-tight"
+    >
       LibreCourseUY
     </a>
 
-    <div class="hidden md:flex flex-row items-center gap-4">
+    <nav
+      aria-label="Main navigation"
+      class={cn('flex-row items-center gap-4', proposal ? 'hidden lg:flex' : 'hidden md:flex')}
+    >
       <ul class="flex flex-row gap-4">
-        {route.map((item, _, arr) => (
-          <li>
-            <a
-              class={cn(
-                "text-sm font-bold inline-block",
-                arr.at(-1)?.name === item.name
-                  ? "pr-0 border-r-0"
-                  : "pr-3 border-r border-line",
-                isActive(item.href)
-                  ? "text-emphasis-secondary"
-                  : "text-emphasis/70 hover:text-emphasis",
-              )}
-              href={item.href}
-            >
-              {item.name}
-            </a>
-          </li>
-        ))}
+        {
+          route.map((item, _, arr) => (
+            <li>
+              <a
+                class={cn(
+                  'text-sm font-bold inline-block',
+                  arr.at(-1)?.name === item.name ? 'pr-0 border-r-0' : 'pr-3 border-r border-line',
+                  isActive(item.href)
+                    ? 'text-emphasis-secondary'
+                    : 'text-emphasis/70 hover:text-emphasis',
+                )}
+                href={item.href}
+                target={item.external ? '_blank' : undefined}
+                rel={item.external ? 'noopener noreferrer' : undefined}
+                aria-current={current === normalize(item.href) ? 'page' : undefined}
+              >
+                {item.name}
+                {item.external && <span aria-hidden="true"> ↗</span>}
+                {item.external && <span class="sr-only"> (opens in a new tab)</span>}
+              </a>
+            </li>
+          ))
+        }
       </ul>
       <button
         id="theme-toggle"
@@ -66,14 +97,34 @@ const route = [
         class="flex items-center justify-center w-8 h-8 rounded-full hover:bg-emphasis/10 transition-colors"
         aria-label="Toggle theme"
       >
-        <svg class="hidden dark:block w-5 h-5 text-emphasis" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+        <svg
+          class="hidden dark:block w-5 h-5 text-emphasis"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+          ></path>
         </svg>
-        <svg class="block dark:hidden w-5 h-5 text-emphasis" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+        <svg
+          class="block dark:hidden w-5 h-5 text-emphasis"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+          ></path>
         </svg>
       </button>
-    </div>
+    </nav>
 
     <button
       id="mobile-menu-toggle"
@@ -81,10 +132,18 @@ const route = [
       aria-controls="mobile-menu-overlay"
       aria-expanded="false"
       aria-label="Open menu"
-      class="md:hidden relative flex flex-col justify-center items-center w-8 h-8 z-50 group"
+      data-desktop-breakpoint={proposal ? '64rem' : '48rem'}
+      class={cn(
+        'relative flex flex-col justify-center items-center w-8 h-8 z-50 group',
+        proposal ? 'lg:hidden' : 'md:hidden',
+      )}
     >
-      <span class="absolute w-7 h-0.5 bg-emphasis rounded-full transition-transform duration-300 -translate-y-1 group-[.is-open]:translate-y-0 group-[.is-open]:rotate-45"></span>
-      <span class="absolute w-7 h-0.5 bg-emphasis rounded-full transition-transform duration-300 translate-y-1 group-[.is-open]:translate-y-0 group-[.is-open]:-rotate-45"></span>
+      <span
+        class="absolute w-7 h-0.5 bg-emphasis rounded-full transition-transform duration-300 -translate-y-1 group-[.is-open]:translate-y-0 group-[.is-open]:rotate-45"
+      ></span>
+      <span
+        class="absolute w-7 h-0.5 bg-emphasis rounded-full transition-transform duration-300 translate-y-1 group-[.is-open]:translate-y-0 group-[.is-open]:-rotate-45"
+      ></span>
     </button>
   </div>
 </header>
@@ -92,40 +151,73 @@ const route = [
 <div
   id="mobile-menu-overlay"
   inert
-  class="fixed inset-0 z-[90] flex md:hidden flex-col overflow-y-auto overscroll-contain bg-background px-6 pt-24 pb-4 transition-transform duration-500 ease-in-out -translate-y-full"
+  class={cn(
+    'fixed inset-0 z-[90] flex flex-col overflow-y-auto overscroll-contain bg-background px-6 pt-24 pb-4 transition-transform duration-500 ease-in-out -translate-y-full',
+    proposal ? 'lg:hidden' : 'md:hidden',
+  )}
 >
-  <div class="flex flex-1 flex-col items-center justify-start gap-8 pt-8 pb-16">
+  <nav
+    aria-label="Mobile navigation"
+    class="flex flex-1 flex-col items-center justify-start gap-8 pt-8 pb-16"
+  >
     <ul class="flex flex-col items-center gap-8">
-      {route.map((item) => (
-        <li>
-          <a
-            class={cn(
-              "text-2xl font-bold transition-colors",
-              isActive(item.href)
-                ? "text-emphasis-secondary"
-                : "text-emphasis/70 hover:text-emphasis",
-            )}
-            href={item.href}
-          >
-            {item.name}
-          </a>
-        </li>
-      ))}
+      {
+        route.map((item) => (
+          <li>
+            <a
+              class={cn(
+                'text-2xl font-bold transition-colors',
+                isActive(item.href)
+                  ? 'text-emphasis-secondary'
+                  : 'text-emphasis/70 hover:text-emphasis',
+              )}
+              href={item.href}
+              target={item.external ? '_blank' : undefined}
+              rel={item.external ? 'noopener noreferrer' : undefined}
+              aria-current={current === normalize(item.href) ? 'page' : undefined}
+            >
+              {item.name}
+              {item.external && <span aria-hidden="true"> ↗</span>}
+              {item.external && <span class="sr-only"> (opens in a new tab)</span>}
+            </a>
+          </li>
+        ))
+      }
     </ul>
     <button
       id="theme-toggle-mobile"
       type="button"
       class="bg-emphasis mt-4 px-8 py-3 rounded-full font-bold text-background cursor-pointer transition-transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2"
     >
-      <svg class="hidden dark:block w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+      <svg
+        class="hidden dark:block w-5 h-5"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+        ></path>
       </svg>
-      <svg class="block dark:hidden w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+      <svg
+        class="block dark:hidden w-5 h-5"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+        ></path>
       </svg>
       Theme
     </button>
-  </div>
+  </nav>
 </div>
 
 <script>
@@ -156,7 +248,9 @@ const route = [
     if (!toggleBtn || !overlay || toggleBtn.dataset.bound) return;
     toggleBtn.dataset.bound = '1';
 
-    const desktop = window.matchMedia('(min-width: 48rem)'); // Tailwind `md`
+    const desktop = window.matchMedia(
+      `(min-width: ${toggleBtn.dataset.desktopBreakpoint ?? '48rem'})`,
+    );
     const isOpen = () => toggleBtn.getAttribute('aria-expanded') === 'true';
 
     const setMenu = (open: boolean) => {
