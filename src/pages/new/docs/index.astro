@@ -148,31 +148,48 @@ const categories = [
       class="flex flex-col justify-start items-start w-full min-h-[calc(100dvh-4rem)] pt-12 pb-12"
     >
       <div class="space-y-12 w-full max-w-4xl">
-        <div class="space-y-12">
-          <Text variant="h1">Documentation</Text>
-          <Text variant="p" className="md:ml-4">
-            Find contribution guides, references and tools for your day-to-day development.
-          </Text>
-          <Anchor
-            href="/new/learn/#learning-resources"
-            className="inline-flex items-center gap-2 text-base font-bold underline underline-offset-4"
-          >
-            Browse courses and practice exercises <span aria-hidden="true">→</span>
-          </Anchor>
-        </div>
+        <header class="space-y-8">
+          <div class="space-y-4">
+            <Text variant="h1">Documentation</Text>
+            <Text variant="p" className="max-w-3xl text-lg leading-relaxed text-muted">
+              Find contribution guides, references and tools for your day-to-day development.
+            </Text>
+            <p class="text-sm leading-relaxed text-muted">
+              For courses and practice exercises,
+              <Anchor
+                href="/new/learn/#learning-resources"
+                className="inline-flex items-center gap-1 text-sm font-semibold underline underline-offset-4"
+              >
+                visit Learn <span aria-hidden="true">→</span>
+              </Anchor>.
+            </p>
+          </div>
 
-        <nav
-          aria-label="Documentation sections"
-          class="flex flex-wrap gap-x-6 gap-y-3 border-y border-line py-4 text-sm font-bold text-emphasis-secondary"
-        >
-          {
-            categories.map((category) => (
-              <a href={`#${category.id}`} class="underline underline-offset-4">
-                {category.title}
-              </a>
-            ))
-          }
-        </nav>
+          <nav aria-label="Documentation sections" class="border-y border-line py-4">
+            <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">
+              <p class="shrink-0 font-mono text-xs uppercase tracking-wider text-muted">
+                On this page
+              </p>
+              <ul class="flex flex-wrap gap-x-6 gap-y-3">
+                {
+                  categories.map((category) => (
+                    <li>
+                      <a
+                        href={`#${category.id}`}
+                        class="inline-flex items-center gap-2 text-sm font-semibold text-emphasis/80 transition-colors hover:text-emphasis-secondary"
+                      >
+                        {category.title}
+                        <span aria-hidden="true" class="text-muted">
+                          ↓
+                        </span>
+                      </a>
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
+          </nav>
+        </header>
 
         {
           categories.map((category) => (
