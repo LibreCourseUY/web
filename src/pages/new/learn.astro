@@ -1,8 +1,6 @@
 ---
 // Components
 import Anchor from '@/components/Anchor/Anchor.astro';
-import List from '@/components/List/List.astro';
-import ListItem from '@/components/List/ListItem.astro';
 import Text from '@/components/Text/Text.astro';
 // Layout
 import Layout from '@/layouts/Layout.astro';
@@ -166,21 +164,71 @@ const phases = [
   },
 ];
 
-const resources = [
+const learningResources = [
   {
-    priority: '1',
-    title: 'Official Documentation',
-    description: 'MDN, Python Docs, Rust Docs, always start here',
+    id: 'courses',
+    title: 'Courses & Tutorials',
+    description:
+      'Build context with a course or a focused explanation, then apply what you learn to a project.',
+    items: [
+      {
+        name: 'freeCodeCamp',
+        description: 'Follow a coding curriculum with lessons and projects.',
+        href: 'https://www.freecodecamp.org/',
+      },
+      {
+        name: 'Codecademy',
+        description: 'Work through interactive programming courses.',
+        href: 'https://www.codecademy.com/',
+      },
+      {
+        name: 'Udemy',
+        description: 'Find courses on specific programming topics.',
+        href: 'https://www.udemy.com/',
+      },
+      {
+        name: 'Coursera',
+        description: 'Explore courses from universities and other education providers.',
+        href: 'https://www.coursera.org/',
+      },
+    ],
   },
   {
-    priority: '2',
-    title: 'Community Forums',
-    description: 'Stack Overflow, Reddit (r/learnprogramming), community Discord',
+    id: 'practice',
+    title: 'Practice & Exercises',
+    description:
+      'Try a small challenge to practice a concept or work through a programming problem.',
+    items: [
+      {
+        name: 'Exercism',
+        description: 'Practice programming through exercises and mentoring.',
+        href: 'https://exercism.org/',
+      },
+      {
+        name: 'LeetCode',
+        description: 'Solve programming problems and prepare for technical interviews.',
+        href: 'https://leetcode.com/',
+      },
+    ],
   },
   {
-    priority: '3',
-    title: 'Tutorials',
-    description: 'Use focused explanations and examples when you need more context',
+    id: 'community-help',
+    title: 'Community Help',
+    description:
+      "Look for an existing answer or ask a focused question. Share what you're trying to do and what you've already tried.",
+    items: [
+      {
+        name: 'LibreCourseUY Discord',
+        description: 'Connect with the community, ask for guidance and share your progress.',
+        href: communityLinks.discord,
+      },
+      {
+        name: 'Stack Overflow',
+        description:
+          'Search programming questions and share a focused question when you need help.',
+        href: 'https://stackoverflow.com/',
+      },
+    ],
   },
 ];
 
@@ -206,7 +254,7 @@ const startOptions = [
 <Layout
   noindex
   title="How to Learn | LibreCourseUY"
-  description="Our philosophy for learning programming effectively: assisted autonomy, quick context, building real things, and asking for help."
+  description="Learn programming through real projects, community support, courses and practice exercises with LibreCourseUY."
 >
   <main class="flex min-h-screen flex-col items-start justify-center">
     <section
@@ -218,6 +266,12 @@ const startOptions = [
           <Text variant="p" className="">
             Our philosophy for learning programming effectively.
           </Text>
+          <Anchor
+            href="#learning-resources"
+            className="inline-flex items-center gap-2 text-base font-bold underline underline-offset-4"
+          >
+            Browse courses, exercises and community help <span aria-hidden="true">↓</span>
+          </Anchor>
         </div>
 
         <hr class="border-line" />
@@ -340,25 +394,53 @@ const startOptions = [
 
         <hr class="border-line" />
 
-        <div class="space-y-4">
-          <Text variant="h2">Resources</Text>
-          <Text variant="p">Use these resources as you explore, build and ask questions:</Text>
-          <List className="ml-4">
-            {
-              resources.map((item) => (
-                <ListItem className="first:border-t border-b border-line p-6 flex flex-row justify-start items-center gap-6">
-                  <span class="shrink-0 w-8 h-8 flex items-center justify-center border border-emphasis-secondary text-sm font-bold text-emphasis-secondary">
-                    {item.priority}
-                  </span>
-                  <span class="space-y-2 min-w-0">
-                    <strong>{item.title}</strong>
-                    <Text variant="p">{item.description}</Text>
-                  </span>
-                </ListItem>
-              ))
-            }
-          </List>
-        </div>
+        <section
+          id="learning-resources"
+          aria-labelledby="learning-resources-heading"
+          class="space-y-8"
+        >
+          <div class="space-y-4">
+            <Text variant="h2" id="learning-resources-heading">Learning Resources</Text>
+            <Text variant="p">
+              Choose a course, practice what you learn and bring your questions to the community.
+              For language references, Git guides and developer tools, browse our
+              <Anchor href="/new/docs/" className="text-inherit underline">documentation</Anchor>.
+            </Text>
+          </div>
+          {
+            learningResources.map((group) => (
+              <section id={group.id} aria-labelledby={`${group.id}-heading`} class="space-y-6">
+                <div class="space-y-3">
+                  <Text variant="h3" id={`${group.id}-heading`} className="font-semibold">
+                    {group.title}
+                  </Text>
+                  <p class="max-w-3xl text-base leading-relaxed text-muted">{group.description}</p>
+                </div>
+                <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+                  {group.items.map((item) => (
+                    <Anchor
+                      href={item.href}
+                      className="border border-line bg-surface p-6 text-emphasis/80 transition-colors hover:border-emphasis-secondary/60 hover:text-emphasis"
+                    >
+                      <div class="flex items-start justify-between gap-4">
+                        <h4 class="text-lg font-bold">{item.name}</h4>
+                        {item.href.startsWith('https://') && (
+                          <span aria-hidden="true" class="shrink-0 text-base">
+                            ↗
+                          </span>
+                        )}
+                      </div>
+                      <p class="mt-2 text-sm text-muted">{item.description}</p>
+                      {item.href.startsWith('https://') && (
+                        <span class="sr-only"> (opens in a new tab)</span>
+                      )}
+                    </Anchor>
+                  ))}
+                </div>
+              </section>
+            ))
+          }
+        </section>
 
         <div class="space-y-8">
           <div class="space-y-4">
