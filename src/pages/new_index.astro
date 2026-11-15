@@ -416,7 +416,6 @@ const activityLinks = [
   const LAST_KEY = 'home-projects-last';
   const COUNT = 6;
   const MAX_PER_MAINTAINER = 3;
-  const ORGANIZATION_COUNT = 4;
 
   function lastKey(): string {
     try {
@@ -454,9 +453,9 @@ const activityLinks = [
     organizationsLoading?.setAttribute('hidden', '');
     if (!feed) return;
 
-    const featuredOrganizations = (feed.orgs ?? []).slice(0, ORGANIZATION_COUNT);
-    if (organizations && featuredOrganizations.length > 0) {
-      organizations.innerHTML = featuredOrganizations.map(organizationCard).join('');
+    const orgs = feed.orgs ?? [];
+    if (organizations && orgs.length > 0) {
+      organizations.innerHTML = orgs.map(organizationCard).join('');
       organizationsFallback?.setAttribute('hidden', '');
     }
 
