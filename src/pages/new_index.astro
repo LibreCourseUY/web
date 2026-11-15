@@ -187,11 +187,41 @@ const activityLinks = [
           >
             Browse all projects <span aria-hidden="true">→</span>
           </Anchor>
-          <Anchor href="/new/orgs/" className="text-sm font-bold underline underline-offset-4">
-            Meet the organizations <span aria-hidden="true">→</span>
+          <Anchor href="#organizations" className="text-sm font-bold underline underline-offset-4">
+            Meet the organizations <span aria-hidden="true">↓</span>
           </Anchor>
         </div>
       </div>
+    </section>
+    <section id="organizations" class="w-full space-y-8 border-t border-line py-16 md:py-24">
+      <div class="max-w-3xl space-y-4">
+        <Text variant="h2">Organizations in our ecosystem</Text>
+        <Text variant="p" className="text-muted">
+          Meet the organizations maintaining and governing projects in the LibreCourseUY ecosystem.
+        </Text>
+      </div>
+      <div id="home-organizations" class="grid grid-cols-1 gap-4 md:grid-cols-2"></div>
+      <div
+        id="home-organizations-loading"
+        class="py-8 text-center text-xs uppercase tracking-wider text-muted"
+        role="status"
+        hidden
+      >
+        Loading organizations...
+      </div>
+      <p id="home-organizations-fallback" class="max-w-3xl text-base leading-relaxed text-muted">
+        Explore the organization directory, or
+        <Anchor href={communityLinks.discord} className="text-base underline underline-offset-4"
+          >ask in Discord</Anchor
+        >
+        to find out where you can contribute.
+      </p>
+      <Anchor
+        href="/new/orgs/"
+        className="inline-flex items-center gap-2 border border-line px-4 py-3 text-sm font-bold text-emphasis hover:border-emphasis-secondary hover:text-emphasis-secondary"
+      >
+        Browse all organizations <span aria-hidden="true">→</span>
+      </Anchor>
     </section>
     <section id="start" class="w-full space-y-8 border-t border-line py-16 md:py-24">
       <div class="max-w-3xl space-y-4">
@@ -374,14 +404,19 @@ const activityLinks = [
   import { loadAwesomeFeed } from '@/lib/awesome-client';
   import { pickDiverse, type AwesomeEntry } from '@/lib/awesome';
   import { projectCard } from '@/lib/awesome-card';
+  import { organizationCard } from '@/lib/awesome-org-card';
 
   const grid = document.getElementById('home-projects');
   const loading = document.getElementById('home-projects-loading');
   const fallback = document.getElementById('home-projects-fallback');
-  const section = document.getElementById('projects');
+  const organizations = document.getElementById('home-organizations');
+  const organizationsLoading = document.getElementById('home-organizations-loading');
+  const organizationsFallback = document.getElementById('home-organizations-fallback');
+  const sections = [document.getElementById('projects'), document.getElementById('organizations')];
   const LAST_KEY = 'home-projects-last';
   const COUNT = 6;
   const MAX_PER_MAINTAINER = 3;
+  const ORGANIZATION_COUNT = 4;
 
   function lastKey(): string {
     try {
@@ -413,9 +448,19 @@ const activityLinks = [
     if (loaded) return;
     loaded = true;
     loading?.removeAttribute('hidden');
+    organizationsLoading?.removeAttribute('hidden');
     const feed = await loadAwesomeFeed();
     loading?.setAttribute('hidden', '');
-    if (!feed || !grid) return;
+    organizationsLoading?.setAttribute('hidden', '');
+    if (!feed) return;
+
+    const featuredOrganizations = (feed.orgs ?? []).slice(0, ORGANIZATION_COUNT);
+    if (organizations && featuredOrganizations.length > 0) {
+      organizations.innerHTML = featuredOrganizations.map(organizationCard).join('');
+      organizationsFallback?.setAttribute('hidden', '');
+    }
+
+    if (!grid) return;
     const picked = choose(feed.entries);
     if (picked.length === 0) return;
     try {
@@ -427,8 +472,12 @@ const activityLinks = [
     fallback?.setAttribute('hidden', '');
   }
 
-  // Lazy: fetch once the section approaches the viewport, never blocking page load.
-  if (section && 'IntersectionObserver' in window) {
+  // Fragment links must load the cards even when the browser restores an older scroll position.
+  const catalogAnchor =
+    window.location.hash === '#projects' || window.location.hash === '#organizations';
+  if (catalogAnchor) {
+    void render();
+  } else if (sections.some(Boolean) && 'IntersectionObserver' in window) {
     const io = new IntersectionObserver(
       (entries) => {
         if (entries.some((entry) => entry.isIntersecting)) {
@@ -438,7 +487,9 @@ const activityLinks = [
       },
       { rootMargin: '200px' },
     );
-    io.observe(section);
+    sections.forEach((section) => {
+      if (section) io.observe(section);
+    });
   } else {
     void render();
   }
