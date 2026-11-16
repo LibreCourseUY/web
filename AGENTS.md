@@ -2,7 +2,10 @@
 
 ## Project
 
-Astro 5 + TypeScript website template.
+Astro 7 + TypeScript website template.
+
+Requires Node `>=22.23.4` (Astro 7) and the pinned `pnpm@10.18.0` (`packageManager`);
+the Docker build uses `node:24-alpine`.
 
 ## Quick Commands
 
@@ -60,3 +63,7 @@ src/
 
 - `prettier-plugin-astro` is required for `.astro` formatting, it will not format `.astro` files without being listed in `.prettierrc` plugins.
 - ESLint's `astro-eslint-parser` is configured only for `*.astro` files via the overrides block, `.ts` files use the `@typescript-eslint/parser` normally.
+- `compressHTML: true` is intentional: Astro 7 defaults to `'jsx'` whitespace handling, which strips the space between inline elements. Keep `true` to preserve Astro 5/6 output.
+- Astro 7 uses the Rust compiler, which rejects unclosed tags and no longer auto-corrects invalid nesting. Close every non-void element.
+- Content collection config lives at `src/content.config.ts` (the old `src/content/config.ts` location was removed in Astro 6) and imports `z` from `astro/zod`.
+- `build.cssMinify` is now Lightning CSS by default in the Vite 8 bundled with Astro 7, so the explicit `lightningcss` settings in `astro.config.mjs` are redundant but harmless.
