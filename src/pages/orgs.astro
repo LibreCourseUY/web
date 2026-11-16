@@ -18,8 +18,7 @@ import Text from '@/components/Text/Text.astro';
       </div>
 
       <div id="orgs-app" class="w-full" hidden>
-        <div id="orgs-grid" class="grid grid-cols-1 gap-6 pt-4 md:grid-cols-2 lg:grid-cols-3">
-        </div>
+        <div id="orgs-grid" class="grid grid-cols-1 gap-6 pt-4 md:grid-cols-2 lg:grid-cols-3"></div>
       </div>
 
       <div id="orgs-maintenance" class="w-full border border-line bg-surface p-8" hidden>
@@ -85,7 +84,7 @@ import Text from '@/components/Text/Text.astro';
 					${org.url !== org.repository ? `<a href="${esc(org.repository)}" target="_blank" rel="noopener noreferrer" class="${linkClass}">[source]</a>` : ''}
 				</div>
 			</div>`;
-	}
+  }
 
   async function init() {
     const feed = await loadAwesomeFeed();

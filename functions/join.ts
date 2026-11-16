@@ -1,89 +1,89 @@
 interface Env {
-	DISCORD_INVITE_URL: string;
-	TURNSTILE_HOSTNAMES: string;
-	TURNSTILE_SECRET_KEY: string;
-	TURNSTILE_SITE_KEY: string;
+  DISCORD_INVITE_URL: string;
+  TURNSTILE_HOSTNAMES: string;
+  TURNSTILE_SECRET_KEY: string;
+  TURNSTILE_SITE_KEY: string;
 }
 
 interface Context {
-	env: Env;
-	request: Request;
+  env: Env;
+  request: Request;
 }
 
 interface TurnstileResult {
-	action?: string;
-	'error-codes'?: string[];
-	hostname?: string;
-	success?: boolean;
+  action?: string;
+  'error-codes'?: string[];
+  hostname?: string;
+  success?: boolean;
 }
 
 const verificationUrl = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
 const expectedAction = 'join-discord';
 
 function allowedHostnames(env: Env): Set<string> {
-	return new Set(
-		(env.TURNSTILE_HOSTNAMES ?? '')
-			.split(',')
-			.map((hostname) => hostname.trim())
-			.filter(Boolean),
-	);
+  return new Set(
+    (env.TURNSTILE_HOSTNAMES ?? '')
+      .split(',')
+      .map((hostname) => hostname.trim())
+      .filter(Boolean),
+  );
 }
 
 export async function onRequest({ env, request }: Context): Promise<Response> {
-	if (request.method === 'POST') {
-		const form = await request.formData();
-		const token = form.get('cf-turnstile-response');
-		const hostnames = allowedHostnames(env);
+  if (request.method === 'POST') {
+    const form = await request.formData();
+    const token = form.get('cf-turnstile-response');
+    const hostnames = allowedHostnames(env);
 
-		if (
-			typeof token !== 'string' ||
-			token.length === 0 ||
-			token.length > 2048 ||
-			hostnames.size === 0
-		) {
-			return Response.redirect(new URL('/join/?error=1', request.url), 303);
-		}
+    if (
+      typeof token !== 'string' ||
+      token.length === 0 ||
+      token.length > 2048 ||
+      hostnames.size === 0
+    ) {
+      return Response.redirect(new URL('/join/?error=1', request.url), 303);
+    }
 
-		try {
-			const response = await fetch(verificationUrl, {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-				signal: AbortSignal.timeout(10_000),
-				body: new URLSearchParams({
-					secret: env.TURNSTILE_SECRET_KEY,
-					response: token,
-					remoteip: request.headers.get('CF-Connecting-IP') ?? '',
-				}),
-			});
-			const result = (await response.json()) as TurnstileResult;
-			const valid =
-				result.success === true &&
-				result.action === expectedAction &&
-				typeof result.hostname === 'string' &&
-				hostnames.has(result.hostname);
+    try {
+      const response = await fetch(verificationUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        signal: AbortSignal.timeout(10_000),
+        body: new URLSearchParams({
+          secret: env.TURNSTILE_SECRET_KEY,
+          response: token,
+          remoteip: request.headers.get('CF-Connecting-IP') ?? '',
+        }),
+      });
+      const result = (await response.json()) as TurnstileResult;
+      const valid =
+        result.success === true &&
+        result.action === expectedAction &&
+        typeof result.hostname === 'string' &&
+        hostnames.has(result.hostname);
 
-			if (valid) {
-				console.log('turnstile verified', result.hostname);
-				return Response.redirect(env.DISCORD_INVITE_URL, 303);
-			}
+      if (valid) {
+        console.log('turnstile verified', result.hostname);
+        return Response.redirect(env.DISCORD_INVITE_URL, 303);
+      }
 
-			console.warn('turnstile rejected', {
-				action: result.action,
-				errors: result['error-codes'],
-				hostname: result.hostname,
-			});
-		} catch (error) {
-			console.error('turnstile siteverify failed', error);
-		}
+      console.warn('turnstile rejected', {
+        action: result.action,
+        errors: result['error-codes'],
+        hostname: result.hostname,
+      });
+    } catch (error) {
+      console.error('turnstile siteverify failed', error);
+    }
 
-		return Response.redirect(new URL('/join/?error=1', request.url), 303);
-	}
+    return Response.redirect(new URL('/join/?error=1', request.url), 303);
+  }
 
-	if (request.method !== 'GET') return new Response('Method not allowed', { status: 405 });
+  if (request.method !== 'GET') return new Response('Method not allowed', { status: 405 });
 
-	const showError = new URL(request.url).searchParams.has('error');
-	return new Response(
-		`<!doctype html>
+  const showError = new URL(request.url).searchParams.has('error');
+  return new Response(
+    `<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -145,6 +145,6 @@ export async function onRequest({ env, request }: Context): Promise<Response> {
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   </body>
 </html>`,
-		{ headers: { 'Content-Type': 'text/html; charset=UTF-8', 'Cache-Control': 'no-store' } },
-	);
+    { headers: { 'Content-Type': 'text/html; charset=UTF-8', 'Cache-Control': 'no-store' } },
+  );
 }

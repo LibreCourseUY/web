@@ -14,12 +14,15 @@ interface GitHubRepo {
 const projects = defineCollection({
   loader: async () => {
     try {
-      const res = await fetch('https://api.github.com/orgs/LibreCourseUY/repos?per_page=100&sort=updated', {
-        headers: {
-          Authorization: `Bearer ${import.meta.env.GH_TOKEN}`,
-          Accept: 'application/vnd.github+json',
+      const res = await fetch(
+        'https://api.github.com/orgs/LibreCourseUY/repos?per_page=100&sort=updated',
+        {
+          headers: {
+            Authorization: `Bearer ${import.meta.env.GH_TOKEN}`,
+            Accept: 'application/vnd.github+json',
+          },
         },
-      });
+      );
       if (!res.ok) {
         console.warn(`GitHub API error: ${res.status} ${res.statusText}`);
         return [];

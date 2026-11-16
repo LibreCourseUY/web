@@ -2,60 +2,51 @@
 import type { ProjectsGitHubType } from '@/lib/types';
 
 interface Props extends Omit<ProjectsGitHubType['data'], 'id'> {
-	variant?: 'default' | 'fork' | 'archived';
-	featured?: boolean;
-	previewLines?: boolean;
+  variant?: 'default' | 'fork' | 'archived';
+  featured?: boolean;
+  previewLines?: boolean;
 }
 
-const {
-	name,
-	description,
-	topics = [],
-	language,
-	url = '#',
-} = Astro.props;
+const { name, description, topics = [], language, url = '#' } = Astro.props;
 
 const MAX_TOPICS = 5;
-
 ---
 
 <a
-	href={url}
-	target="_blank"
-	rel="noopener noreferrer"
-	class:list={[
-		'group flex min-w-0 flex-col gap-3 rounded-xl border border-line bg-surface p-4 no-underline transition-colors duration-150 hover:border-emphasis-secondary/60'
-	]}
+  href={url}
+  target="_blank"
+  rel="noopener noreferrer"
+  class:list={[
+    'group flex min-w-0 flex-col gap-3 rounded-xl border border-line bg-surface p-4 no-underline transition-colors duration-150 hover:border-emphasis-secondary/60',
+  ]}
 >
-	<div class="flex min-w-0 items-center gap-2">
-		<span
-			class="min-w-0 flex-1 truncate text-sm font-bold text-emphasis"
-		>
-			{name}
-		</span>
-	</div>
+  <div class="flex min-w-0 items-center gap-2">
+    <span class="min-w-0 flex-1 truncate text-sm font-bold text-emphasis">
+      {name}
+    </span>
+  </div>
 
-	{
-		description && (
-			<p class="line-clamp-2 break-words text-sm leading-relaxed text-muted">{description}</p>
-		)
-	}
+  {
+    description && (
+      <p class="line-clamp-2 break-words text-sm leading-relaxed text-muted">{description}</p>
+    )
+  }
 
-	{
-		topics.length > 0 && (
-			<div class="flex flex-wrap gap-1">
-				{topics.toSpliced(MAX_TOPICS, topics.length-1).map((topic) => (
-					<span class="max-w-full break-all border border-line px-1.5 py-0.5 text-xs text-muted">
-						[{topic}]
-					</span>
-				))}
-			</div>
-		)
-	}
+  {
+    topics.length > 0 && (
+      <div class="flex flex-wrap gap-1">
+        {topics.toSpliced(MAX_TOPICS, topics.length - 1).map((topic) => (
+          <span class="max-w-full break-all border border-line px-1.5 py-0.5 text-xs text-muted">
+            [{topic}]
+          </span>
+        ))}
+      </div>
+    )
+  }
 
-	<div
-		class="mt-auto flex flex-wrap items-center gap-3.5 border-t border-line pt-3 text-xs text-muted"
-	>
-		{language && <span class="text-emphasis-secondary">[{language}]</span>}
-	</div>
+  <div
+    class="mt-auto flex flex-wrap items-center gap-3.5 border-t border-line pt-3 text-xs text-muted"
+  >
+    {language && <span class="text-emphasis-secondary">[{language}]</span>}
+  </div>
 </a>

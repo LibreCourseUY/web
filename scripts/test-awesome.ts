@@ -65,8 +65,7 @@ assert.deepEqual(
   uniqueValues(entries, (e) => e.language ?? []),
   ['Python', 'Vue'],
 );
-const maintainer = (e: AwesomeEntry) =>
-  e.maintainers?.length === 1 ? e.maintainers[0] : null;
+const maintainer = (e: AwesomeEntry) => (e.maintainers?.length === 1 ? e.maintainers[0] : null);
 const diverse = pickDiverse(
   [
     { ...entries[0], name: 'Solo A', maintainers: ['@a'] },
@@ -81,11 +80,7 @@ assert.deepEqual(
   ['Solo A', 'Solo C'],
   'pickDiverse prefers distinct single maintainers and defers multi',
 );
-assert.equal(
-  pickDiverse(entries, 3, maintainer).length,
-  2,
-  'pickDiverse clamps to pool size',
-);
+assert.equal(pickDiverse(entries, 3, maintainer).length, 2, 'pickDiverse clamps to pool size');
 assert.equal(pickDiverse(entries, 0, maintainer).length, 0);
 
 const capped = pickDiverse(

@@ -16,9 +16,9 @@ export interface ProjectsGitHubType {
     name: string;
     description: string;
     url: string;
-    stars: number,
+    stars: number;
     language: string;
     updatedAt: string;
     topics: string[];
-  }
+  };
 }

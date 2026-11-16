@@ -9,17 +9,17 @@ the Docker build uses `node:24-alpine`.
 
 ## Quick Commands
 
-| Command | Purpose |
-|---------|---------|
-| `pnpm dev` | Start dev server (localhost:4321) |
-| `pnpm build` | Build for production |
-| `pnpm preview` | Preview production build |
-| `pnpm seo` | Regenerate `src/data/seo-manifest.json` with seoslug (needs Python + `seoslug`) |
-| `pnpm og` | Regenerate `public/og.jpg` (needs ImageMagick) |
-| `pnpm lint` | Run ESLint |
-| `pnpm test` | Run the awesome-filter self-check (Node strip-types) |
-| `pnpm format` | Format all files with Prettier |
-| `pnpm format:check` | Check formatting without writing |
+| Command             | Purpose                                                                         |
+| ------------------- | ------------------------------------------------------------------------------- |
+| `pnpm dev`          | Start dev server (localhost:4321)                                               |
+| `pnpm build`        | Build for production                                                            |
+| `pnpm preview`      | Preview production build                                                        |
+| `pnpm seo`          | Regenerate `src/data/seo-manifest.json` with seoslug (needs Python + `seoslug`) |
+| `pnpm og`           | Regenerate `public/og.jpg` (needs ImageMagick)                                  |
+| `pnpm lint`         | Run ESLint                                                                      |
+| `pnpm test`         | Run the awesome-filter self-check (Node strip-types)                            |
+| `pnpm format`       | Format all files with Prettier                                                  |
+| `pnpm format:check` | Check formatting without writing                                                |
 
 ## Structure
 
@@ -45,12 +45,12 @@ src/
 
 ## Config Files
 
-| File | What it wires |
-|------|---------------|
+| File               | What it wires                             |
+| ------------------ | ----------------------------------------- |
 | `astro.config.mjs` | Tailwind, Sitemap, Partytown integrations |
-| `tsconfig.json` | Strict mode, `@/*` path alias |
-| `.eslintrc.cjs` | ESLint (TS + Astro + Prettier) |
-| `.prettierrc` | Prettier with `prettier-plugin-astro` |
+| `tsconfig.json`    | Strict mode, `@/*` path alias             |
+| `.eslintrc.cjs`    | ESLint (TS + Astro + Prettier)            |
+| `.prettierrc`      | Prettier with `prettier-plugin-astro`     |
 
 ## Framework Notes
 

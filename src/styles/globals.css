@@ -7,12 +7,15 @@
     scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
   }
-  h1, h2 {
+  h1,
+  h2 {
     text-wrap: balance;
     font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
   }
   body {
-    transition: background-color 0.3s, color 0.3s;
+    transition:
+      background-color 0.3s,
+      color 0.3s;
   }
   :where([id]) {
     scroll-margin-top: 5.5rem;
@@ -34,11 +37,21 @@
   .hero-enter > * {
     animation: rise 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) both;
   }
-  .hero-enter > *:nth-child(1) { animation-delay: 0.05s; }
-  .hero-enter > *:nth-child(2) { animation-delay: 0.12s; }
-  .hero-enter > *:nth-child(3) { animation-delay: 0.19s; }
-  .hero-enter > *:nth-child(4) { animation-delay: 0.26s; }
-  .hero-enter > *:nth-child(5) { animation-delay: 0.33s; }
+  .hero-enter > *:nth-child(1) {
+    animation-delay: 0.05s;
+  }
+  .hero-enter > *:nth-child(2) {
+    animation-delay: 0.12s;
+  }
+  .hero-enter > *:nth-child(3) {
+    animation-delay: 0.19s;
+  }
+  .hero-enter > *:nth-child(4) {
+    animation-delay: 0.26s;
+  }
+  .hero-enter > *:nth-child(5) {
+    animation-delay: 0.33s;
+  }
 
   html.js main > section:not(:first-child) {
     opacity: 0;
@@ -73,7 +86,8 @@
   }
 
   @keyframes cue {
-    0%, 100% {
+    0%,
+    100% {
       transform: translateY(0);
       opacity: 0.4;
     }
@@ -87,7 +101,9 @@
     html {
       scroll-behavior: auto;
     }
-    *, *::before, *::after {
+    *,
+    *::before,
+    *::after {
       transition-duration: 0.01ms !important;
       animation-duration: 0.01ms !important;
     }
@@ -101,7 +117,8 @@
 
 @theme {
   --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+  --font-mono:
+    ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
   --radius-xs: 0px;
   --radius-sm: 0px;
   --radius-md: 0px;

@@ -5,40 +5,38 @@ import { cn, formatLink } from '@/lib/utils';
 type ValidTags = 'h1' | 'h2' | 'h3' | 'h4' | 'p' | 'a';
 
 interface BaseProps {
-	className?: string;
+  className?: string;
 }
 
 type Props =
-	| (BaseProps & { variant: 'h1' | 'h2' | 'h3' | 'h4' | 'p'; link?: never; openInTab?: never } & HTMLAttributes<
-				'h1' | 'h2' | 'p'
-			>)
-	| (BaseProps & { variant: 'a'; link?: string; openInTab?: boolean } & HTMLAttributes<'a'>);
+  | (BaseProps & {
+      variant: 'h1' | 'h2' | 'h3' | 'h4' | 'p';
+      link?: never;
+      openInTab?: never;
+    } & HTMLAttributes<'h1' | 'h2' | 'p'>)
+  | (BaseProps & { variant: 'a'; link?: string; openInTab?: boolean } & HTMLAttributes<'a'>);
 
 const { variant, className, link, openInTab, ...props } = Astro.props;
 const Tag = variant as ValidTags;
 
 const styles = {
-	h1: 'text-[clamp(2.1rem,4.6vw,3.25rem)] font-black tracking-tight text-start',
-	h2: 'text-[clamp(1.65rem,3.8vw,2.35rem)] wrap-break-word text-start',
-	h3: 'text-[clamp(1.35rem,2.8vw,1.75rem)] wrap-break-word text-start',
-	h4: 'text-[clamp(1.15rem,2.2vw,1.5rem)] wrap-break-word text-start',
-	p: 'text-[clamp(1.1rem,2vw,1.35rem)] text-start',
-	a: 'text-[clamp(1.1rem,2vw,1.35rem)] text-start text-emphasis-secondary',
+  h1: 'text-[clamp(2.1rem,4.6vw,3.25rem)] font-black tracking-tight text-start',
+  h2: 'text-[clamp(1.65rem,3.8vw,2.35rem)] wrap-break-word text-start',
+  h3: 'text-[clamp(1.35rem,2.8vw,1.75rem)] wrap-break-word text-start',
+  h4: 'text-[clamp(1.15rem,2.2vw,1.5rem)] wrap-break-word text-start',
+  p: 'text-[clamp(1.1rem,2vw,1.35rem)] text-start',
+  a: 'text-[clamp(1.1rem,2vw,1.35rem)] text-start text-emphasis-secondary',
 };
 
 const isAnchor = Tag === 'a';
 const extraAttributes = isAnchor
-	? {
-			href: formatLink(link || ''),
-			target: openInTab ? '_blank' : undefined,
-		}
-	: {};
+  ? {
+      href: formatLink(link || ''),
+      target: openInTab ? '_blank' : undefined,
+    }
+  : {};
 ---
 
-<Tag
-	class={cn(styles[Tag], className)}
-	{...extraAttributes}
-	{...props}
->
-	<slot />
+<Tag class={cn(styles[Tag], className)} {...extraAttributes} {...props}>
+  <slot />
 </Tag>

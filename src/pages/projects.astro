@@ -82,8 +82,7 @@ import Text from '@/components/Text/Text.astro';
 
         <p id="awesome-count" class="pt-4 text-xs uppercase tracking-wider text-muted"></p>
 
-        <div id="awesome-grid" class="space-y-10 pt-4">
-        </div>
+        <div id="awesome-grid" class="space-y-10 pt-4"></div>
 
         <p id="awesome-empty" class="hidden py-16 text-center text-muted" hidden>
           No projects match your filters.
@@ -137,7 +136,11 @@ import Text from '@/components/Text/Text.astro';
       query: search?.value ?? '',
       categories: categoryEl?.value ? [categoryEl.value] : [],
       commercial:
-        commercialEl?.value === 'commercial' ? true : commercialEl?.value === 'non-commercial' ? false : null,
+        commercialEl?.value === 'commercial'
+          ? true
+          : commercialEl?.value === 'non-commercial'
+            ? false
+            : null,
       languages: languageEl?.value ? [languageEl.value] : [],
       openToContributions:
         contribEl?.value === 'open' ? true : contribEl?.value === 'closed' ? false : null,
@@ -149,7 +152,8 @@ import Text from '@/components/Text/Text.astro';
     const state = readState();
     if (state.query) params.set('q', state.query);
     if (state.categories[0]) params.set('category', state.categories[0]);
-    if (state.commercial !== null) params.set('commercial', state.commercial ? 'commercial' : 'non-commercial');
+    if (state.commercial !== null)
+      params.set('commercial', state.commercial ? 'commercial' : 'non-commercial');
     if (state.languages[0]) params.set('language', state.languages[0]);
     if (state.openToContributions !== null)
       params.set('contrib', state.openToContributions ? 'open' : 'closed');

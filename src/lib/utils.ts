@@ -17,6 +17,11 @@ export const formatLink = (url: string): string => {
 };
 
 export const formatDate = (date: string): string => {
-  const options: Intl.DateTimeFormatOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  const options: Intl.DateTimeFormatOptions = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  };
   return new Intl.DateTimeFormat('en-GB', options).format(new Date(date));
-}
+};

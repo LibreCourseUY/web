@@ -3,10 +3,10 @@
 import { cn } from '@/lib/utils';
 
 export interface Props {
-	className?: string;
-	href?: string;
-	disabled?: boolean;
-	openInTab?: boolean;
+  className?: string;
+  href?: string;
+  disabled?: boolean;
+  openInTab?: boolean;
 }
 
 const { href = '', className, disabled, openInTab = false } = Astro.props;
@@ -16,26 +16,26 @@ const newTab = openInTab || isExternal;
 ---
 
 {
-	disabled ? (
-		<span
-			class={cn(
-				'anchor disabled relative text-2xl text-emphasis-secondary/60 cursor-default',
-				className,
-			)}
-		>
-			<slot />
-		</span>
-	) : (
-		<a
-			href={href}
-			target={newTab ? '_blank' : '_self'}
-			rel={newTab ? 'noopener noreferrer' : undefined}
-			class={cn(
-				'anchor relative text-2xl text-emphasis-secondary cursor-pointer hover:text-emphasis-secondary/80',
-				className,
-			)}
-		>
-			<slot />
-		</a>
-	)
+  disabled ? (
+    <span
+      class={cn(
+        'anchor disabled relative text-2xl text-emphasis-secondary/60 cursor-default',
+        className,
+      )}
+    >
+      <slot />
+    </span>
+  ) : (
+    <a
+      href={href}
+      target={newTab ? '_blank' : '_self'}
+      rel={newTab ? 'noopener noreferrer' : undefined}
+      class={cn(
+        'anchor relative text-2xl text-emphasis-secondary cursor-pointer hover:text-emphasis-secondary/80',
+        className,
+      )}
+    >
+      <slot />
+    </a>
+  )
 }
