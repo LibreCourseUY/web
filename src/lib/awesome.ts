@@ -83,10 +83,7 @@ export function filterEntries(
   return entries.filter((entry) => {
     if (!matchesQuery(entry, query)) return false;
     if (categories.length && !categories.includes(entry.category)) return false;
-    if (
-      openToContributions !== null &&
-      (entry.open_to_contributions ?? true) !== openToContributions
-    )
+    if (openToContributions !== null && entry.open_to_contributions !== openToContributions)
       return false;
     if (commercial !== null && (entry.commercial ?? false) !== commercial) return false;
     if (!includesAny(entry.language ?? [], languages)) return false;
@@ -142,7 +139,7 @@ export function pickDiverse<T>(
   const counts = new Map<string, number>();
   for (const item of shuffle(items)) {
     const value = key(item);
-    const used = value === null ? 0 : counts.get(value) ?? 0;
+    const used = value === null ? 0 : (counts.get(value) ?? 0);
     if (value === null || used >= maxPerKey) {
       deferred.push(item);
       continue;

@@ -3,6 +3,7 @@
  * Run: node --experimental-strip-types scripts/test-awesome.ts
  */
 import assert from 'node:assert/strict';
+import { entryCard, projectCard } from '../src/lib/awesome-card.ts';
 import {
   filterEntries,
   pickDiverse,
@@ -43,6 +44,41 @@ assert.equal(filterEntries(entries).length, 2);
 assert.equal(filterEntries(entries, { query: 'python' }).length, 1);
 assert.equal(filterEntries(entries, { categories: ['Web'] })[0].name, 'Beta');
 assert.equal(filterEntries(entries, { openToContributions: false })[0].name, 'Beta');
+
+const contributionEntries: AwesomeEntry[] = [
+  ...entries,
+  {
+    name: 'Gamma',
+    url: 'https://c.example',
+    description: 'Contribution status has not been declared',
+    category: 'Web',
+    open_source: true,
+  },
+];
+assert.deepEqual(
+  filterEntries(contributionEntries).map((entry) => entry.name),
+  ['Alpha', 'Beta', 'Gamma'],
+  'unfiltered results include projects whose contribution status is unknown',
+);
+assert.deepEqual(
+  filterEntries(contributionEntries, { openToContributions: true }).map((entry) => entry.name),
+  ['Alpha'],
+  'only explicitly open projects match the open filter',
+);
+assert.deepEqual(
+  filterEntries(contributionEntries, { openToContributions: false }).map((entry) => entry.name),
+  ['Beta'],
+  'unknown contribution status does not mean closed',
+);
+for (const render of [projectCard, entryCard]) {
+  assert.ok(render(contributionEntries[0]).includes('[open to contributions]'));
+  assert.ok(!render(contributionEntries[1]).includes('[open to contributions]'));
+  assert.ok(
+    !render(contributionEntries[2]).includes('[open to contributions]'),
+    `${render.name} does not advertise unknown contribution status as open`,
+  );
+}
+
 assert.equal(filterEntries(entries, { commercial: true })[0].name, 'Beta');
 assert.equal(filterEntries(entries, { commercial: false })[0].name, 'Alpha');
 assert.equal(filterEntries(entries, { languages: ['Vue'] })[0].name, 'Beta');
@@ -65,8 +101,7 @@ assert.deepEqual(
   uniqueValues(entries, (e) => e.language ?? []),
   ['Python', 'Vue'],
 );
-const maintainer = (e: AwesomeEntry) =>
-  e.maintainers?.length === 1 ? e.maintainers[0] : null;
+const maintainer = (e: AwesomeEntry) => (e.maintainers?.length === 1 ? e.maintainers[0] : null);
 const diverse = pickDiverse(
   [
     { ...entries[0], name: 'Solo A', maintainers: ['@a'] },
@@ -81,11 +116,7 @@ assert.deepEqual(
   ['Solo A', 'Solo C'],
   'pickDiverse prefers distinct single maintainers and defers multi',
 );
-assert.equal(
-  pickDiverse(entries, 3, maintainer).length,
-  2,
-  'pickDiverse clamps to pool size',
-);
+assert.equal(pickDiverse(entries, 3, maintainer).length, 2, 'pickDiverse clamps to pool size');
 assert.equal(pickDiverse(entries, 0, maintainer).length, 0);
 
 const capped = pickDiverse(

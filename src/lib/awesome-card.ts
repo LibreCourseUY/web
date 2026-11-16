@@ -40,7 +40,7 @@ export function projectCard(entry: AwesomeEntry): string {
   if (entry.open_source) badges.push('[open]');
   if (entry.relationship !== 'official') badges.push('[community]');
   badges.push(entry.commercial ? '[commercial]' : '[non-commercial]');
-  if (entry.open_to_contributions ?? true) badges.push('[open to contributions]');
+  if (entry.open_to_contributions === true) badges.push('[open to contributions]');
   if (entry.license) badges.push(`[${esc(entry.license)}]`);
   for (const tag of entry.tags ?? []) badges.push(`[${esc(tag)}]`);
   for (const lang of entry.language ?? []) badges.push(`[${esc(lang)}]`);
@@ -88,7 +88,7 @@ export function entryCard(entry: AwesomeEntry): string {
   if (entry.open_source) badges.push('[open]');
   if (entry.relationship !== 'official') badges.push('[community]');
   badges.push(entry.commercial ? '[commercial]' : '[non-commercial]');
-  if (entry.open_to_contributions ?? true) badges.push('[open to contributions]');
+  if (entry.open_to_contributions === true) badges.push('[open to contributions]');
   for (const lang of entry.language ?? []) badges.push(`[${esc(lang)}]`);
 
   const accent = LANG_COLORS[(entry.language ?? [])[0] ?? ''];
