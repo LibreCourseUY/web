@@ -109,7 +109,9 @@ const keyId = 'C4D02E34E0956389';
   description="Learn how to install GPG, generate a signing key pair, sign your Git commits, and verify them on GitHub."
 >
   <main class="flex min-h-screen flex-col items-start justify-center">
-    <section class="flex flex-col justify-start items-start w-full min-h-[calc(100dvh-4rem)] pt-12 pb-12">
+    <section
+      class="flex flex-col justify-start items-start w-full min-h-[calc(100dvh-4rem)] pt-12 pb-12"
+    >
       <div class="space-y-12 w-full max-w-4xl">
         <div class="space-y-12">
           <Text variant="h1">GPG Signature</Text>
@@ -178,8 +180,9 @@ const keyId = 'C4D02E34E0956389';
             <div class="space-y-4 ml-4">
               <Text variant="h4">Arch</Text>
               <Text variant="p">
-                gnupg should already be installed on your system as it is a dependency of pacman
-                (<Anchor href="https://wiki.archlinux.org/title/GnuPG">ArchWiki</Anchor>).
+                gnupg should already be installed on your system as it is a dependency of pacman (<Anchor
+                  href="https://wiki.archlinux.org/title/GnuPG">ArchWiki</Anchor
+                >).
               </Text>
               <code
                 class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
@@ -241,8 +244,8 @@ const keyId = 'C4D02E34E0956389';
 
             <Text variant="p">
               It should display a prompt to specify what kind of key you want, press{' '}
-              <code class="p-1 bg-surface border border-line rounded text-sm">Enter</code> to continue with the default
-              or select what kind you want.
+              <code class="p-1 bg-surface border border-line rounded text-sm">Enter</code> to continue
+              with the default or select what kind you want.
             </Text>
             <code
               class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
@@ -251,8 +254,8 @@ const keyId = 'C4D02E34E0956389';
 
             <Text variant="p">
               At the prompt, select which elliptic curve you want, press{' '}
-              <code class="p-1 bg-surface border border-line rounded text-sm">Enter</code> to continue with the default
-              or select what you want.
+              <code class="p-1 bg-surface border border-line rounded text-sm">Enter</code> to continue
+              with the default or select what you want.
             </Text>
             <code
               class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
@@ -261,8 +264,8 @@ const keyId = 'C4D02E34E0956389';
 
             <Text variant="p">
               Then when it asks you to specify the expiry time, press{' '}
-              <code class="p-1 bg-surface border border-line rounded text-sm">Enter</code> to continue with the default
-              or select what you want.
+              <code class="p-1 bg-surface border border-line rounded text-sm">Enter</code> to continue
+              with the default or select what you want.
             </Text>
             <code
               class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
@@ -270,10 +273,10 @@ const keyId = 'C4D02E34E0956389';
             />
 
             <Text variant="p">
-              If you entered <code class="p-1 bg-surface border border-line rounded text-sm">0</code> or{' '}
-              <code class="p-1 bg-surface border border-line rounded text-sm">Enter</code>, then you should type{
-                ' '
-              }
+              If you entered <code class="p-1 bg-surface border border-line rounded text-sm">0</code
+              > or{' '}
+              <code class="p-1 bg-surface border border-line rounded text-sm">Enter</code>, then you
+              should type{' '}
               <code class="p-1 bg-surface border border-line rounded text-sm">y</code> to confirm it.
             </Text>
             <code
@@ -302,8 +305,8 @@ const keyId = 'C4D02E34E0956389';
             <div class="rounded-lg border border-line p-6 space-y-2">
               <Text variant="p">
                 After all of this confirm that the inputted info is correct, if yes type{' '}
-                <code class="p-1 bg-surface border border-line rounded text-sm">O</code> and continue. It should open
-                a prompt to type your passphrase (use a secure passphrase).
+                <code class="p-1 bg-surface border border-line rounded text-sm">O</code> and continue.
+                It should open a prompt to type your passphrase (use a secure passphrase).
               </Text>
 
               <Text variant="p">Once finished it should generate your own gpg signature.</Text>
@@ -317,7 +320,8 @@ const keyId = 'C4D02E34E0956389';
 
             <Text variant="p">
               Note the two numbers at the end of the output:{' '}
-              <code class="p-1 bg-surface border border-line rounded text-sm">{fingerprint}</code> is your key's full
+              <code class="p-1 bg-surface border border-line rounded text-sm">{fingerprint}</code> is
+              your key's full
               <strong>fingerprint</strong>, and{' '}
               <code class="p-1 bg-surface border border-line rounded text-sm">{keyId}</code> is the <strong
                 >key ID</strong
@@ -350,8 +354,8 @@ const keyId = 'C4D02E34E0956389';
 
           <Text variant="p">
             Next, configure Git to use the GPG key we generated. Replace{' '}
-            <code class="p-1 bg-surface border border-line rounded text-sm">{keyId}</code> with the key ID from your
-            own output (the last 16 characters of your fingerprint):
+            <code class="p-1 bg-surface border border-line rounded text-sm">{keyId}</code> with the key
+            ID from your own output (the last 16 characters of your fingerprint):
           </Text>
           <code
             class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
@@ -384,8 +388,8 @@ const keyId = 'C4D02E34E0956389';
           <div class="p-4 border border-line rounded space-y-4">
             <Text variant="p">
               <strong class="underline">Windows only:</strong> if Git can't find Gpg4win's{' '}
-              <code class="p-1 bg-surface border border-line rounded text-sm">gpg</code> binary, tell Git where it lives
-              (adjust the path to your install):
+              <code class="p-1 bg-surface border border-line rounded text-sm">gpg</code> binary, tell
+              Git where it lives (adjust the path to your install):
             </Text>
             <code
               class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"

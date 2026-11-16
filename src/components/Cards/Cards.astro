@@ -14,30 +14,20 @@ export interface Props extends ProjectType {
   index?: number;
 }
 
-const {
-  title,
-  autor,
-  description,
-  stack,
-  image,
-  index,
-  className,
-  pj_link,
-} = Astro.props;
+const { title, autor, description, stack, image, index, className, pj_link } = Astro.props;
 
 const default_colors = [
-  "bg-surface-strong",
-  "bg-surface-strong",
-  "bg-surface-strong",
-  "bg-surface-strong",
+  'bg-surface-strong',
+  'bg-surface-strong',
+  'bg-surface-strong',
+  'bg-surface-strong',
 ];
-const colorIndex =
-  !index && index !== 0 ? 1 : index % default_colors.length;
+const colorIndex = !index && index !== 0 ? 1 : index % default_colors.length;
 ---
 
 <div
   class={cn(
-    "flex min-w-0 flex-row items-center gap-4 border border-line bg-surface p-4 transition-colors hover:border-emphasis-secondary/60",
+    'flex min-w-0 flex-row items-center gap-4 border border-line bg-surface p-4 transition-colors hover:border-emphasis-secondary/60',
     className,
   )}
 >
@@ -54,7 +44,7 @@ const colorIndex =
       <div
         class={cn(
           default_colors[colorIndex],
-          "hidden md:flex w-24 h-24 md:w-36 md:h-36 shrink-0 justify-center items-center",
+          'hidden md:flex w-24 h-24 md:w-36 md:h-36 shrink-0 justify-center items-center',
         )}
       >
         <Image
@@ -75,7 +65,6 @@ const colorIndex =
         aria-label={`Open ${title} repository`}
         className="w-6 h-6 hover:bg-emphasis/10 hover:cursor-pointer flex items-center justify-center rounded-full"
         link={pj_link}
-
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -83,7 +72,7 @@ const colorIndex =
           fill="currentColor"
           class="w-4 h-4 text-muted"
         >
-          <path d="M6 6v2h8.59L5 17.59 6.41 19 16 9.41V18h2V6z" />
+          <path d="M6 6v2h8.59L5 17.59 6.41 19 16 9.41V18h2V6z"></path>
         </svg>
       </Text>
     </div>
@@ -92,11 +81,13 @@ const colorIndex =
 
     <div class="flex flex-wrap items-center justify-between gap-2">
       <div class="mt-1 flex flex-wrap gap-2">
-        {stack.map((tech) => (
-          <span class="max-w-full break-all border border-line px-1.5 py-0.5 text-xs text-muted">
-            [{tech}]
-          </span>
-        ))}
+        {
+          stack.map((tech) => (
+            <span class="max-w-full break-all border border-line px-1.5 py-0.5 text-xs text-muted">
+              [{tech}]
+            </span>
+          ))
+        }
       </div>
       <Text
         variant="a"
