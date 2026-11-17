@@ -7,10 +7,12 @@ import List from '@/components/List/List.astro';
 import ListItem from '@/components/List/ListItem.astro';
 import Collapse from '@/components/Collapse/Collapse.astro';
 import ContributionSteps from '@/components/ContributionSteps/ContributionSteps.astro';
+import ShowcaseCard from '@/components/ShowcaseCard/ShowcaseCard.astro';
 // Layout
 import Layout from '@/layouts/Layout.astro';
 // Utils
 import { communityLinks } from '@/data/community';
+import { showcaseNotice, showcaseProducts } from '@/data/showcase';
 // Assets
 import heroIcon from '@/assets/lcuy_logo.svg';
 import heroImg from '@/assets/ascii-hero.png';
@@ -190,6 +192,38 @@ const activityLinks = [
             Meet the organizations <span aria-hidden="true">↓</span>
           </Anchor>
         </div>
+      </div>
+    </section>
+    <section id="showcase" class="w-full space-y-8 border-t border-line py-16 md:py-24">
+      <div class="max-w-3xl space-y-4">
+        <Text variant="h2">Built by our members</Text>
+        <Text variant="p" className="text-muted">
+          Independent products built by developers in the LibreCourseUY community.
+        </Text>
+        <p class="text-sm leading-relaxed text-muted">{showcaseNotice}</p>
+      </div>
+      <ul class="grid grid-cols-1 gap-4 md:grid-cols-2">
+        {
+          showcaseProducts.slice(0, 4).map((product) => (
+            <li class="min-w-0">
+              <ShowcaseCard product={product} />
+            </li>
+          ))
+        }
+      </ul>
+      <div class="flex flex-wrap items-center gap-x-6 gap-y-4">
+        <Anchor
+          href="/showcase/"
+          className="inline-flex items-center gap-2 border border-line px-4 py-3 text-sm font-bold text-emphasis hover:border-emphasis-secondary hover:text-emphasis-secondary"
+        >
+          Explore all {showcaseProducts.length} products <span aria-hidden="true">→</span>
+        </Anchor>
+        <Anchor
+          href="/showcase/#submit-product"
+          className="text-sm font-bold underline underline-offset-4"
+        >
+          Share your product <span aria-hidden="true">→</span>
+        </Anchor>
       </div>
     </section>
     <section id="organizations" class="w-full space-y-8 border-t border-line py-16 md:py-24">

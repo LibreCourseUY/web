@@ -1,0 +1,43 @@
+---
+import Anchor from '@/components/Anchor/Anchor.astro';
+import type { ShowcaseProduct } from '@/data/showcase';
+
+interface Props {
+  product: ShowcaseProduct;
+  headingLevel?: 'h2' | 'h3';
+}
+
+const { product, headingLevel: Heading = 'h3' } = Astro.props;
+const domain = new URL(product.url).hostname.replace(/^www\./, '');
+---
+
+<article
+  class="flex h-full min-w-0 flex-col gap-4 border border-line bg-surface p-6 transition-colors hover:border-emphasis-secondary/60 focus-within:border-emphasis-secondary"
+>
+  <Heading class="text-xl font-bold">
+    <Anchor
+      href={product.url}
+      className="flex items-start justify-between gap-4 text-xl font-bold text-emphasis hover:text-emphasis-secondary"
+    >
+      <span class="min-w-0 break-words">{product.name}</span>
+      <span aria-hidden="true" class="shrink-0 text-emphasis-secondary">↗</span>
+      <span class="sr-only"> website (opens in a new tab)</span>
+    </Anchor>
+  </Heading>
+  <p class="text-base leading-relaxed text-muted">{product.description}</p>
+  <div class="mt-auto flex flex-wrap items-center justify-between gap-3 border-t border-line pt-4">
+    <p class="text-sm text-muted">
+      By{' '}{
+        product.creator.url ? (
+          <Anchor href={product.creator.url} className="text-sm underline underline-offset-4">
+            {product.creator.name}
+            <span class="sr-only"> (opens in a new tab)</span>
+          </Anchor>
+        ) : (
+          <span class="text-emphasis">{product.creator.name}</span>
+        )
+      }
+    </p>
+    <span class="break-all font-mono text-xs text-muted">{domain}</span>
+  </div>
+</article>

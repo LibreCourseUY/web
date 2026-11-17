@@ -1,0 +1,65 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Anchor from '@/components/Anchor/Anchor.astro';
+import Text from '@/components/Text/Text.astro';
+import ShowcaseCard from '@/components/ShowcaseCard/ShowcaseCard.astro';
+import { showcaseContributionUrl, showcaseNotice, showcaseProducts } from '@/data/showcase';
+---
+
+<Layout
+  title="Member products | LibreCourseUY"
+  description="Discover independent products built by members of the LibreCourseUY community and propose your own product through a pull request."
+>
+  <main class="flex min-h-screen flex-col items-start">
+    <section class="w-full space-y-8 pb-12 pt-12">
+      <div class="max-w-3xl space-y-4">
+        <Text variant="h1">Built by our members</Text>
+        <Text variant="p" className="text-muted">
+          Independent products built by developers in the LibreCourseUY community.
+        </Text>
+        <p class="text-sm leading-relaxed text-muted">{showcaseNotice}</p>
+      </div>
+      <nav aria-label="Explore the community" class="flex flex-wrap gap-x-6 gap-y-4">
+        <Anchor href="#submit-product" className="text-sm font-bold underline underline-offset-4">
+          Share your product <span aria-hidden="true">↓</span>
+        </Anchor>
+        <Anchor href="/projects/" className="text-sm font-bold underline underline-offset-4">
+          Find open source projects to contribute to <span aria-hidden="true">→</span>
+        </Anchor>
+      </nav>
+    </section>
+
+    <section aria-label="Member products" class="w-full border-t border-line py-12">
+      <p class="mb-6 font-mono text-xs uppercase tracking-wider text-muted">
+        {showcaseProducts.length} products · A–Z
+      </p>
+      <ul class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+        {
+          showcaseProducts.map((product) => (
+            <li class="min-w-0">
+              <ShowcaseCard product={product} headingLevel="h2" />
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section id="submit-product" class="w-full space-y-6 border-t border-line py-12 md:py-16">
+      <div class="max-w-3xl space-y-4">
+        <Text variant="h2">Share what you're building</Text>
+        <Text variant="p" className="text-muted">
+          Any LibreCourseUY member can propose a product through a pull request. Include its name,
+          website, a short description and its creator. Open source, closed-source and commercial
+          products are welcome.
+        </Text>
+      </div>
+      <Anchor
+        href={showcaseContributionUrl}
+        className="inline-flex items-center gap-2 border border-line px-4 py-3 text-sm font-bold text-emphasis hover:border-emphasis-secondary hover:text-emphasis-secondary"
+      >
+        Read the submission guide <span aria-hidden="true">↗</span>
+        <span class="sr-only"> (opens in a new tab)</span>
+      </Anchor>
+    </section>
+  </main>
+</Layout>

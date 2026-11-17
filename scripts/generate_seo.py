@@ -56,6 +56,10 @@ ROUTES: dict[str, dict] = {
         "entity_type": "taxonomy",
         "breadcrumbs": [("Home", "/"), ("Projects", "/projects/")],
     },
+    "/showcase/": {
+        "entity_type": "taxonomy",
+        "breadcrumbs": [("Home", "/"), ("Member products", "/showcase/")],
+    },
     "/docs/": {
         "entity_type": "taxonomy",
         "breadcrumbs": [("Home", "/"), ("Docs", "/docs/")],

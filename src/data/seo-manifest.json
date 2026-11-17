@@ -32,7 +32,7 @@
         "description": "Make your first open source contribution with LibreCourseUY. Choose a project, find a task on Gitsion and prepare your tools with community support.",
         "image": "https://librecourse.uy/og.jpg",
         "datePublished": "2026-06-12",
-        "dateModified": "2026-11-16",
+        "dateModified": "2026-11-17",
         "author": {
           "@type": "Person",
           "name": "LibreCourseUY"
@@ -226,7 +226,7 @@
         "description": "Contribution guides, Git and GitHub resources, technical references and developer tools for the LibreCourseUY community.",
         "image": "https://librecourse.uy/og.jpg",
         "datePublished": "2026-08-08",
-        "dateModified": "2026-11-16",
+        "dateModified": "2026-11-17",
         "publisher": {
           "@type": "Organization",
           "name": "LibreCourseUY",
@@ -409,7 +409,7 @@
         "description": "Learn programming through real projects, community support, courses and practice exercises with LibreCourseUY.",
         "image": "https://librecourse.uy/og.jpg",
         "datePublished": "2026-08-08",
-        "dateModified": "2026-11-16",
+        "dateModified": "2026-11-17",
         "author": {
           "@type": "Person",
           "name": "LibreCourseUY"
@@ -513,7 +513,7 @@
         "description": "Explore open source and community projects from LibreCourseUY.",
         "image": "https://librecourse.uy/og.jpg",
         "datePublished": "2026-06-18",
-        "dateModified": "2026-11-16",
+        "dateModified": "2026-11-17",
         "publisher": {
           "@type": "Organization",
           "name": "LibreCourseUY",
@@ -535,6 +535,64 @@
             "position": 2,
             "name": "Projects",
             "item": "https://librecourse.uy/projects/"
+          }
+        ]
+      }
+    ]
+  },
+  "/showcase/": {
+    "title": "Member products | LibreCourseUY",
+    "canonical": "https://librecourse.uy/showcase/",
+    "robots": "index,follow,max-snippet:-1,max-image-preview:large",
+    "og": {
+      "type": "website",
+      "title": "Member products | LibreCourseUY",
+      "description": "Discover independent products built by members of the LibreCourseUY community and propose your own product through a pull request.",
+      "url": "https://librecourse.uy/showcase/",
+      "image": "https://librecourse.uy/og.jpg",
+      "image:width": 1200,
+      "image:height": 630,
+      "image:alt": "LibreCourseUY",
+      "site_name": "LibreCourseUY",
+      "locale": "en_US"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "Member products | LibreCourseUY",
+      "description": "Discover independent products built by members of the LibreCourseUY community and propose your own product through a pull request.",
+      "image": "https://librecourse.uy/og.jpg",
+      "image:alt": "LibreCourseUY"
+    },
+    "description": "Discover independent products built by members of the LibreCourseUY community and propose your own product through a pull request.",
+    "schema_jsonld": [
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Member products | LibreCourseUY",
+        "url": "https://librecourse.uy/showcase/",
+        "description": "Discover independent products built by members of the LibreCourseUY community and propose your own product through a pull request.",
+        "image": "https://librecourse.uy/og.jpg",
+        "publisher": {
+          "@type": "Organization",
+          "name": "LibreCourseUY",
+          "logo": "https://librecourse.uy/icon.png"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://librecourse.uy/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Member products",
+            "item": "https://librecourse.uy/showcase/"
           }
         ]
       }
