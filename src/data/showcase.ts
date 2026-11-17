@@ -64,7 +64,7 @@ export const showcaseProducts: ShowcaseProduct[] = [
   {
     name: 'Wake Up',
     description: 'Track habits and emotions to discover patterns in your daily life.',
-    creator: { name: 'Ivan' },
+    creator: { name: 'Ivan Molina' },
     url: 'https://wakeuptracker.com/',
   },
 ].sort((first, second) => first.name.localeCompare(second.name, 'en'));
