@@ -16,6 +16,13 @@ export const showcaseContributionUrl =
 
 export const showcaseProducts: ShowcaseProduct[] = [
   {
+    name: 'azulify',
+    description:
+      'See the real profit of every Amazon sale after fees, shipping, ads, taxes and product cost.',
+    creator: { name: 'Igor Benav' },
+    url: 'https://azulify.io/',
+  },
+  {
     name: 'ClassBack',
     description:
       'Organize and share class notes, summaries and study materials with other students.',

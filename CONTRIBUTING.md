@@ -27,7 +27,7 @@ members visibility; LibreCourseUY does not maintain or endorse the listed produc
    to LibreCourseUY and linking to the product.
 
 The same data supplies the homepage and `/showcase/`. Products are sorted alphabetically;
-the homepage displays up to eight products. Placement is not a ranking or an endorsement.
+the homepage displays up to ten products. Placement is not a ranking or an endorsement.
 
 Cards do not require an image. If you propose adding one, use an actual product screenshot
 or an asset supplied by its creator.
