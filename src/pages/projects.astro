@@ -1,6 +1,8 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import Text from '@/components/Text/Text.astro';
+import Anchor from '@/components/Anchor/Anchor.astro';
+import { communityLinks } from '@/data/community';
 ---
 
 <Layout
@@ -16,6 +18,22 @@ import Text from '@/components/Text/Text.astro';
           contribute to.
         </Text>
       </div>
+
+      <nav aria-label="Explore the community" class="flex flex-wrap gap-x-6 gap-y-4">
+        <Anchor href="/orgs/" className="text-sm font-bold underline underline-offset-4">
+          Meet the organizations <span aria-hidden="true">→</span>
+        </Anchor>
+        <Anchor
+          href={communityLinks.activity}
+          className="text-sm font-bold underline underline-offset-4"
+        >
+          Follow activity on Gitsion <span aria-hidden="true">↗</span>
+          <span class="sr-only"> (opens in a new tab)</span>
+        </Anchor>
+        <Anchor href="/contribute/" className="text-sm font-bold underline underline-offset-4">
+          First contribution guide <span aria-hidden="true">→</span>
+        </Anchor>
+      </nav>
 
       <div id="awesome-app" class="w-full" hidden>
         <div
@@ -90,9 +108,14 @@ import Text from '@/components/Text/Text.astro';
       </div>
 
       <div id="awesome-maintenance" class="w-full border border-line bg-surface p-8" hidden>
-        <Text variant="h3">This section is under maintenance</Text>
+        <Text variant="h3">Project directory temporarily unavailable</Text>
         <Text variant="p" class="mt-3 max-w-2xl text-muted">
-          The project list is temporarily unavailable. Please check back soon.
+          You can still explore community projects and open tasks on
+          <Anchor href={communityLinks.activity} className="text-inherit underline">Gitsion</Anchor
+          >, or <Anchor href={communityLinks.discord} className="text-inherit underline"
+            >ask in Discord</Anchor
+          >
+          for help finding a project.
         </Text>
       </div>
 

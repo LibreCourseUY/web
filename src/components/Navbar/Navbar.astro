@@ -2,49 +2,32 @@
 // Utils
 import { cn } from '@/lib/utils';
 import { communityLinks } from '@/data/community';
-import { currentPathForProposal, proposalHome, proposalHref } from '@/lib/proposal';
 
 export interface Props {
   className?: string;
   pathname?: string;
-  proposal?: boolean;
 }
 
-const { className, pathname, proposal = false } = Astro.props;
+const { className, pathname } = Astro.props;
 
 // Build-time pathnames end with a slash ("/learn/"), hrefs mostly don't: compare normalized.
-const normalize = (p: string) =>
-  (proposal ? currentPathForProposal(p) : p).replace(/\/+$/, '') || '/';
+const normalize = (p: string) => p.replace(/\/+$/, '') || '/';
 const current = pathname ? normalize(pathname) : null;
 const isActive = (href: string) => {
   const path = normalize(href);
-  if (proposal && path === '/docs') return current === '/dco' || current?.startsWith('/docs');
-  if (proposal && path === '/projects') return current === '/orgs' || current === path;
+  if (path === '/docs') return current === '/dco' || current?.startsWith('/docs');
+  if (path === '/projects') return current === '/orgs' || current === path;
   return current === path;
 };
 
-const routes: { name: string; href: string; external?: boolean }[] = proposal
-  ? [
-      { name: 'Home', href: '/' },
-      { name: 'Learn', href: '/learn/' },
-      { name: 'Projects', href: '/projects/' },
-      { name: 'Activity', href: communityLinks.activity, external: true },
-      { name: 'Docs', href: '/docs/' },
-      { name: 'Contribute', href: '/contribute/' },
-    ]
-  : [
-      { name: 'Home', href: '/' },
-      { name: 'Learn', href: '/learn' },
-      { name: 'Projects', href: '/projects' },
-      { name: 'Orgs', href: '/orgs' },
-      { name: 'Docs', href: '/docs' },
-      { name: 'Open source', href: '/contribute/' },
-      { name: 'DCO', href: '/dco' },
-    ];
-const route = routes.map((item) => ({
-  ...item,
-  href: proposal ? proposalHref(item.href) : item.href,
-}));
+const route: { name: string; href: string; external?: boolean }[] = [
+  { name: 'Home', href: '/' },
+  { name: 'Learn', href: '/learn/' },
+  { name: 'Projects', href: '/projects/' },
+  { name: 'Activity', href: communityLinks.activity, external: true },
+  { name: 'Docs', href: '/docs/' },
+  { name: 'Contribute', href: '/contribute/' },
+];
 ---
 
 <header
@@ -55,17 +38,9 @@ const route = routes.map((item) => ({
   )}
 >
   <div class={cn('h-16 w-full flex flex-row justify-between items-center')}>
-    <a
-      href={proposal ? proposalHome : '/'}
-      class="flex items-center text-xl font-bold tracking-tight"
-    >
-      LibreCourseUY
-    </a>
+    <a href="/" class="flex items-center text-xl font-bold tracking-tight"> LibreCourseUY </a>
 
-    <nav
-      aria-label="Main navigation"
-      class={cn('flex-row items-center gap-4', proposal ? 'hidden lg:flex' : 'hidden md:flex')}
-    >
+    <nav aria-label="Main navigation" class="hidden flex-row items-center gap-4 lg:flex">
       <ul class="flex flex-row gap-4">
         {
           route.map((item, _, arr) => (
@@ -132,10 +107,10 @@ const route = routes.map((item) => ({
       aria-controls="mobile-menu-overlay"
       aria-expanded="false"
       aria-label="Open menu"
-      data-desktop-breakpoint={proposal ? '64rem' : '48rem'}
+      data-desktop-breakpoint="64rem"
       class={cn(
         'relative flex flex-col justify-center items-center w-8 h-8 z-50 group',
-        proposal ? 'lg:hidden' : 'md:hidden',
+        'lg:hidden',
       )}
     >
       <span
@@ -153,7 +128,7 @@ const route = routes.map((item) => ({
   inert
   class={cn(
     'fixed inset-0 z-[90] flex flex-col overflow-y-auto overscroll-contain bg-background px-6 pt-24 pb-4 transition-transform duration-500 ease-in-out -translate-y-full',
-    proposal ? 'lg:hidden' : 'md:hidden',
+    'lg:hidden',
   )}
 >
   <nav

@@ -10,157 +10,127 @@ const targetHrefFromThisPath = (path: string): string => `${currentPath}/${path}
 
 const categories = [
   {
-    title: 'LibreCourse Documentation',
+    id: 'contributing',
+    title: 'Contributing',
+    description:
+      'Start a contribution, prepare signed commits and understand the project contribution terms.',
     items: [
+      {
+        name: 'First Contribution',
+        description: 'Choose a project, find a task and prepare your first pull request.',
+        href: '/contribute/',
+      },
       {
         name: 'GPG Signature',
-        description:
-          'A secure digital stamp that proves a file or message (or git commit) is real and yours.',
+        description: 'Set up a GPG key and sign your Git commits.',
         href: targetHrefFromThisPath('gpg-signature'),
       },
-    ],
-  },
-  {
-    title: 'Official Documentation',
-    items: [
       {
-        name: 'MDN Web Docs',
-        description: 'Complete documentation for HTML, CSS, JavaScript and web APIs',
-        href: 'https://developer.mozilla.org/',
+        name: 'Developer Certificate of Origin',
+        description: 'Understand the DCO and how to add a sign-off to your commits.',
+        href: '/dco/',
       },
-      {
-        name: 'GitHub Docs',
-        description: 'Everything about Git, GitHub and collaboration',
-        href: 'https://docs.github.com/',
-      },
-      {
-        name: 'Git Docs',
-        description: 'Official Git documentation',
-        href: 'https://git-scm.com/doc',
-      },
-      {
-        name: 'Python Docs',
-        description: 'Official Python documentation',
-        href: 'https://docs.python.org/3/',
-      },
-      {
-        name: 'Rust Docs',
-        description: 'Rust programming language documentation',
-        href: 'https://docs.rs/',
-      },
-      {
-        name: 'Docker Docs',
-        description: 'Containerization platform documentation',
-        href: 'https://docs.docker.com/',
-      },
-    ],
-  },
-  {
-    title: 'Commit Signing',
-    items: [
       {
         name: 'GitHub Verification Docs',
-        description: 'Official GitHub documentation on commit signature verification',
+        description: 'Look up signing keys and commit signature verification on GitHub.',
         href: 'https://docs.github.com/en/authentication/managing-commit-signature-verification',
       },
     ],
   },
   {
-    title: 'API & Reference',
+    id: 'git-github',
+    title: 'Git & GitHub',
+    description:
+      'Look up Git commands and GitHub workflows, or practice version control step by step.',
     items: [
       {
-        name: 'DevDocs',
-        description: 'API documentation browser with unified search',
-        href: 'https://devdocs.io/',
+        name: 'Git Docs',
+        description: 'Find command references and guides for working with Git.',
+        href: 'https://git-scm.com/doc',
       },
       {
-        name: 'HackTerms',
-        description: 'Dictionary of programming terms',
-        href: 'https://hackterms.com/',
+        name: 'GitHub Docs',
+        description: 'Learn how repositories, pull requests and collaboration work on GitHub.',
+        href: 'https://docs.github.com/',
       },
-      {
-        name: 'Stack Overflow',
-        description: 'Community Q&A platform',
-        href: 'https://stackoverflow.com/',
-      },
-      {
-        name: 'Postman',
-        description: 'API testing and development platform',
-        href: 'https://www.postman.com/',
-      },
-      {
-        name: 'RapidAPI',
-        description: 'API marketplace for public APIs',
-        href: 'https://rapidapi.com/',
-      },
-    ],
-  },
-  {
-    title: 'Learning Resources',
-    items: [
-      {
-        name: 'freeCodeCamp',
-        description: 'Free coding curriculum and certifications',
-        href: 'https://www.freecodecamp.org/',
-      },
-      {
-        name: 'Codecademy',
-        description: 'Interactive programming courses',
-        href: 'https://www.codecademy.com/',
-      },
-      {
-        name: 'Udemy',
-        description: 'Online courses platform',
-        href: 'https://www.udemy.com/',
-      },
-      {
-        name: 'Coursera',
-        description: 'University-level courses online',
-        href: 'https://www.coursera.org/',
-      },
-      {
-        name: 'Exercism',
-        description: 'Coding exercises with mentorship',
-        href: 'https://exercism.org/',
-      },
-      {
-        name: 'LeetCode',
-        description: 'Programming practice and interview prep',
-        href: 'https://leetcode.com/',
-      },
-    ],
-  },
-  {
-    title: 'Tools',
-    items: [
       {
         name: 'Pro Git Book',
-        description: 'Free online book covering everything about Git',
+        description: 'Read a guide to Git, from the basics to more advanced workflows.',
         href: 'https://git-scm.com/book/en/v2',
       },
       {
         name: 'GitHub Skills',
-        description: 'Interactive courses from GitHub',
+        description: 'Practice GitHub workflows through interactive courses.',
         href: 'https://github.com/skills',
       },
       {
         name: 'Learn Git Branching',
-        description: 'Interactive visual git tutorial',
+        description: 'Explore branches, merges and rebases with visual exercises.',
         href: 'https://learngitbranching.js.org/',
+      },
+    ],
+  },
+  {
+    id: 'technical-reference',
+    title: 'Technical Reference',
+    description: 'Check language syntax, APIs and tool behavior while working on a project.',
+    items: [
+      {
+        name: 'MDN Web Docs',
+        description: 'Look up HTML, CSS, JavaScript and web APIs.',
+        href: 'https://developer.mozilla.org/',
+      },
+      {
+        name: 'Python Docs',
+        description:
+          'Find the Python tutorial, language reference and standard library documentation.',
+        href: 'https://docs.python.org/3/',
+      },
+      {
+        name: 'Rust Docs',
+        description: 'Find the Rust book, language references and standard library documentation.',
+        href: 'https://doc.rust-lang.org/stable/',
+      },
+      {
+        name: 'Docker Docs',
+        description: 'Look up container concepts, commands and configuration.',
+        href: 'https://docs.docker.com/',
+      },
+      {
+        name: 'DevDocs',
+        description: 'Search documentation for multiple languages and APIs in one place.',
+        href: 'https://devdocs.io/',
+      },
+      {
+        name: 'HackTerms',
+        description: 'Look up unfamiliar programming terms.',
+        href: 'https://hackterms.com/',
+      },
+    ],
+  },
+  {
+    id: 'developer-tools',
+    title: 'Developer Tools',
+    description: 'Test APIs, explore regular expressions, validate JSON and write cron schedules.',
+    items: [
+      {
+        name: 'Postman',
+        description: 'Send API requests and inspect responses.',
+        href: 'https://www.postman.com/',
       },
       {
         name: 'RegExr',
-        description: 'Regular expression testing tool',
+        description: 'Try regular expressions and explore how they match your text.',
         href: 'https://regexr.com/',
       },
       {
         name: 'JSON Formatter',
-        description: 'JSON validation and formatting',
+        description: 'Format JSON and check its syntax.',
         href: 'https://jsonformatter.org/',
       },
       {
         name: 'Crontab Guru',
-        description: 'Cron schedule expression editor',
+        description: 'Write and understand cron schedule expressions.',
         href: 'https://crontab.guru/',
       },
     ],
@@ -170,38 +140,87 @@ const categories = [
 
 <Layout
   title="Documentation | LibreCourseUY"
-  description="Essential resources for your daily development workflow: official docs, commit signing, API references, learning resources, and tools."
+  description="Contribution guides, Git and GitHub resources, technical references and developer tools for the LibreCourseUY community."
 >
   <main class="flex min-h-screen flex-col items-start justify-center">
     <section
       class="flex flex-col justify-start items-start w-full min-h-[calc(100dvh-4rem)] pt-12 pb-12"
     >
       <div class="space-y-12 w-full max-w-4xl">
-        <div class="space-y-12">
-          <Text variant="h1">Documentation</Text>
-          <Text variant="p" className="md:ml-4">
-            Essential resources for your daily development workflow.
-          </Text>
-        </div>
+        <header class="space-y-8">
+          <div class="space-y-4">
+            <Text variant="h1">Documentation</Text>
+            <Text variant="p" className="max-w-3xl text-lg leading-relaxed text-muted">
+              Find contribution guides, references and tools for your day-to-day development.
+            </Text>
+            <p class="text-sm leading-relaxed text-muted">
+              For courses and practice exercises,
+              <Anchor
+                href="/learn/#learning-resources"
+                className="inline-flex items-center gap-1 text-sm font-semibold underline underline-offset-4"
+              >
+                visit Learn <span aria-hidden="true">→</span>
+              </Anchor>.
+            </p>
+          </div>
 
-        <hr class="border-line" />
+          <nav aria-label="Documentation sections" class="border-y border-line py-4">
+            <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">
+              <p class="shrink-0 font-mono text-xs uppercase tracking-wider text-muted">
+                On this page
+              </p>
+              <ul class="flex flex-wrap gap-x-6 gap-y-3">
+                {
+                  categories.map((category) => (
+                    <li>
+                      <a
+                        href={`#${category.id}`}
+                        class="inline-flex items-center gap-2 text-sm font-semibold text-emphasis/80 transition-colors hover:text-emphasis-secondary"
+                      >
+                        {category.title}
+                        <span aria-hidden="true" class="text-muted">
+                          ↓
+                        </span>
+                      </a>
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
+          </nav>
+        </header>
 
         {
           categories.map((category) => (
-            <div class="space-y-8">
-              <Text variant="h2">{category.title}</Text>
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 ml-4">
+            <section id={category.id} aria-labelledby={`${category.id}-heading`} class="space-y-6">
+              <div class="space-y-3">
+                <Text variant="h2" id={`${category.id}-heading`}>
+                  {category.title}
+                </Text>
+                <p class="max-w-3xl text-base leading-relaxed text-muted">{category.description}</p>
+              </div>
+              <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
                 {category.items.map((item) => (
                   <Anchor
                     href={item.href}
                     className="rounded-xl border bg-surface text-emphasis/80 hover:text-emphasis border-line hover:border-emphasis-secondary/60 p-6 space-y-2 cursor-pointer transition-colors"
                   >
-                    <h4 class="text-lg font-bold">{item.name}</h4>
+                    <div class="flex items-start justify-between gap-4">
+                      <h3 class="text-lg font-bold">{item.name}</h3>
+                      {item.href.startsWith('https://') && (
+                        <span aria-hidden="true" class="shrink-0 text-base">
+                          ↗
+                        </span>
+                      )}
+                    </div>
                     <p class="text-sm text-muted">{item.description}</p>
+                    {item.href.startsWith('https://') && (
+                      <span class="sr-only"> (opens in a new tab)</span>
+                    )}
                   </Anchor>
                 ))}
               </div>
-            </div>
+            </section>
           ))
         }
       </div>

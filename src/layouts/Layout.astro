@@ -16,8 +16,6 @@ import Seo from '@/components/Seo/Seo.astro';
 import Footer from '@/components/Footer/Footer.astro';
 import AwesomePrefetch from '@/components/AwesomePrefetch/AwesomePrefetch.astro';
 // Utils
-import { cn } from '@/lib/utils';
-import { currentPathForProposal, isProposalPath } from '@/lib/proposal';
 // Styles
 import '@/styles/globals.css';
 
@@ -27,10 +25,7 @@ export interface Props {
   noindex?: boolean;
 }
 
-const { title, description } = Astro.props;
-const proposal = isProposalPath(Astro.url.pathname);
-const noindex = Astro.props.noindex || proposal;
-const currentVersionPath = currentPathForProposal(Astro.url.pathname);
+const { title, description, noindex = false } = Astro.props;
 const awesomeFeedUrl = import.meta.env.PUBLIC_AWESOME_FEED_URL ?? '';
 ---
 
@@ -85,38 +80,12 @@ const awesomeFeedUrl = import.meta.env.PUBLIC_AWESOME_FEED_URL ?? '';
       noindex={noindex}
     />
   </head>
-  <body
-    class={cn(
-      'bg-background font-sans text-emphasis antialiased max-w-[100vw] overflow-x-hidden',
-      proposal && 'pb-20',
-    )}
-  >
-    <Navbar pathname={Astro.url.pathname} proposal={proposal} />
+  <body class="bg-background font-sans text-emphasis antialiased max-w-[100vw] overflow-x-hidden">
+    <Navbar pathname={Astro.url.pathname} />
     <div class="mx-6 md:mx-12 lg:mx-24">
       <slot />
       <Footer />
     </div>
-    {
-      proposal && (
-        <aside
-          aria-label="Version comparison"
-          class="fixed inset-x-0 bottom-0 z-80 border-t border-line bg-background px-6 py-3 text-sm shadow-lg md:px-12 lg:px-24"
-        >
-          <div class="flex flex-wrap items-center justify-between gap-x-6 gap-y-2">
-            <span class="font-mono font-bold text-emphasis-secondary">Proposed version</span>
-            <a
-              href={currentVersionPath}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="font-bold underline underline-offset-4"
-            >
-              Compare with the current version <span aria-hidden="true">↗</span>
-              <span class="sr-only"> (opens in a new tab)</span>
-            </a>
-          </div>
-        </aside>
-      )
-    }
     {awesomeFeedUrl && <AwesomePrefetch feedUrl={awesomeFeedUrl} />}
     <script is:inline>
       (function () {

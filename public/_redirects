@@ -1,0 +1,4 @@
+# Review URLs of the redesign, before it became the main site.
+/new_index.html / 301
+/new_index / 301
+/new/* /:splat 301

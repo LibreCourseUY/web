@@ -258,8 +258,6 @@ def main() -> int:
                 continue
 
             payload_dict = payload.to_dict()
-            if route == "/new_index/" or route.startswith("/new/"):
-                payload_dict["robots"] = "noindex, nofollow"
             manifest[route] = payload_dict
             print(
                 f"  OK    {route:<24} {meta['entity_type']:<10} {schema_label(payload_dict.get('schema_jsonld'))}"

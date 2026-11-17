@@ -1,16 +1,15 @@
 ---
 // Components
 import Anchor from '@/components/Anchor/Anchor.astro';
-import List from '@/components/List/List.astro';
-import ListItem from '@/components/List/ListItem.astro';
 import Text from '@/components/Text/Text.astro';
 // Layout
 import Layout from '@/layouts/Layout.astro';
 // Utils
 import { formatLink } from '@/lib/utils';
+import { communityLinks } from '@/data/community';
 
 const deepwiki = 'https://deepwiki.com';
-const discord = '/join/';
+const discord = communityLinks.discord;
 
 const scope = [
   {
@@ -148,63 +147,113 @@ const phases = [
   {
     number: '01',
     title: 'Quick Context',
-    description: `Watch a short tutorial (no more than 2 hours) to understand the basic syntax and structure of the language or tool. Don't try to learn everything, just get enough context to understand what you're looking at.`,
-    example: `You want to learn Python. Watch a 1-hour "Python for beginners" video to understand variables, loops, functions, and basic data structures. That's it. Don't finish the entire course.`,
+    description: `Start with a short introduction to the language or tool. Learn enough to try a small task, then return to tutorials and documentation as new questions come up.`,
+    example: `You want to learn Python. Try an introduction to variables, loops, functions and basic data structures, then use them in a small exercise. Keep the resources nearby while you build.`,
   },
   {
     number: '02',
     title: 'Build Something Real',
-    description: `Find a project to work on or a repository to contribute to. Just start doing it, even if you don't know anything. Learn by using documentation, forums, and search engines. No tutorials. Figure it out yourself.`,
-    example: `You want to contribute to open-groups. Clone the repo, try to understand the code, make a small change, and push it. When you encounter an error, search on Stack Overflow, read the FastAPI docs, ask in the community`,
+    description: `Choose a project or a small contribution that interests you. Read its setup guide, try a focused change and use documentation, tutorials and community discussions to understand each step.`,
+    example: `You want to contribute to open-groups. Read the README, get the project running and discuss a small task with a maintainer. If you encounter an error, check the relevant documentation and ask the community for guidance.`,
   },
   {
     number: '03',
     title: 'Ask for Help',
-    description: `If you get truly stuck, reach out to more experienced developers through the community groups. This is the "assisted" part of assisted autonomy.`,
-    example: `You've been stuck on the same error for 2+ hours. You've searched everywhere and nothing works. That's when you ask for help in the LibrecourseUY Discord or group chats.`,
+    description: `Ask for help when you're unsure how to move forward. Share what you're trying to do, what you've tried and what happened. Discussing the problem is part of learning together.`,
+    example: `Your project won't start. Share the command, the error message and the steps you've tried in the LibreCourseUY Discord. You can ask for a hint, a code review or help understanding the next step.`,
   },
 ];
 
-const resources = [
+const learningResources = [
   {
-    priority: '1',
-    title: 'Official Documentation',
-    description: 'MDN, Python Docs, Rust Docs, always start here',
+    id: 'courses',
+    title: 'Courses & Tutorials',
+    description:
+      'Build context with a course or a focused explanation, then apply what you learn to a project.',
+    items: [
+      {
+        name: 'freeCodeCamp',
+        description: 'Follow a coding curriculum with lessons and projects.',
+        href: 'https://www.freecodecamp.org/',
+      },
+      {
+        name: 'Codecademy',
+        description: 'Work through interactive programming courses.',
+        href: 'https://www.codecademy.com/',
+      },
+      {
+        name: 'Udemy',
+        description: 'Find courses on specific programming topics.',
+        href: 'https://www.udemy.com/',
+      },
+      {
+        name: 'Coursera',
+        description: 'Explore courses from universities and other education providers.',
+        href: 'https://www.coursera.org/',
+      },
+    ],
   },
   {
-    priority: '2',
-    title: 'Community Forums',
-    description: 'Stack Overflow, Reddit (r/learnprogramming), community Discord',
+    id: 'practice',
+    title: 'Practice & Exercises',
+    description:
+      'Try a small challenge to practice a concept or work through a programming problem.',
+    items: [
+      {
+        name: 'Exercism',
+        description: 'Practice programming through exercises and mentoring.',
+        href: 'https://exercism.org/',
+      },
+      {
+        name: 'LeetCode',
+        description: 'Solve programming problems and prepare for technical interviews.',
+        href: 'https://leetcode.com/',
+      },
+    ],
   },
   {
-    priority: '3',
-    title: 'Tutorials',
-    description: 'Only when you need quick context (limit to 2 hours max)',
+    id: 'community-help',
+    title: 'Community Help',
+    description:
+      "Look for an existing answer or ask a focused question. Share what you're trying to do and what you've already tried.",
+    items: [
+      {
+        name: 'LibreCourseUY Discord',
+        description: 'Connect with the community, ask for guidance and share your progress.',
+        href: communityLinks.discord,
+      },
+      {
+        name: 'Stack Overflow',
+        description:
+          'Search programming questions and share a focused question when you need help.',
+        href: 'https://stackoverflow.com/',
+      },
+    ],
   },
 ];
 
 const startOptions = [
+  {
+    title: 'First Contribution',
+    description: 'Choose a project, find a task and prepare your tools',
+    href: '/contribute/',
+  },
   {
     title: 'Personal Challenges',
     description: 'Language-agnostic projects to learn coding',
     href: 'https://github.com/LibreCourseUY/initial-Challenges',
   },
   {
-    title: 'Our Projects',
-    description: 'Contribute to real LibrecourseUY projects',
-    href: '/projects',
-  },
-  {
-    title: 'Documentation',
-    description: 'Essential resources and guides',
-    href: '/docs',
+    title: 'Ask the Community',
+    description: 'Find a starting point and get guidance on Discord',
+    href: communityLinks.discord,
   },
 ];
 ---
 
 <Layout
   title="How to Learn | LibreCourseUY"
-  description="Our philosophy for learning programming effectively: assisted autonomy, quick context, building real things, and asking for help."
+  description="Learn programming through real projects, community support, courses and practice exercises with LibreCourseUY."
 >
   <main class="flex min-h-screen flex-col items-start justify-center">
     <section
@@ -216,6 +265,12 @@ const startOptions = [
           <Text variant="p" className="">
             Our philosophy for learning programming effectively.
           </Text>
+          <Anchor
+            href="#learning-resources"
+            className="inline-flex items-center gap-2 text-base font-bold underline underline-offset-4"
+          >
+            Browse courses, exercises and community help <span aria-hidden="true">↓</span>
+          </Anchor>
         </div>
 
         <hr class="border-line" />
@@ -281,7 +336,7 @@ const startOptions = [
           <Text variant="p">
             We use DeepWiki across all our projects to help you understand the codebase faster.
             Check the
-            <Anchor href="/projects">Projects</Anchor>
+            <Anchor href="/projects/">Projects</Anchor>
             page for DeepWiki links to each repository.
           </Text>
           <div class="p-4 border border-line rounded space-y-4">
@@ -298,9 +353,9 @@ const startOptions = [
         <div class="space-y-4">
           <Text variant="h2">Assisted Autonomy</Text>
           <Text variant="p">
-            We believe in <strong>assisted autonomy</strong>, a learning approach that balances
-            independence with guidance. This method builds real, lasting skills rather than
-            temporary copy-paste knowledge.
+            We believe in <strong>assisted autonomy</strong>: explore a problem, try an approach and
+            discuss what you learn. Documentation, examples and community guidance help you
+            understand your choices and build skills you can use in the next project.
           </Text>
         </div>
 
@@ -338,25 +393,53 @@ const startOptions = [
 
         <hr class="border-line" />
 
-        <div class="space-y-4">
-          <Text variant="h2">Resources</Text>
-          <Text variant="p">Use these to learn (in this order):</Text>
-          <List className="ml-4">
-            {
-              resources.map((item) => (
-                <ListItem className="first:border-t border-b border-line p-6 flex flex-row justify-start items-center gap-6">
-                  <span class="shrink-0 w-8 h-8 flex items-center justify-center border border-emphasis-secondary text-sm font-bold text-emphasis-secondary">
-                    {item.priority}
-                  </span>
-                  <span class="space-y-2 min-w-0">
-                    <strong>{item.title}</strong>
-                    <Text variant="p">{item.description}</Text>
-                  </span>
-                </ListItem>
-              ))
-            }
-          </List>
-        </div>
+        <section
+          id="learning-resources"
+          aria-labelledby="learning-resources-heading"
+          class="space-y-8"
+        >
+          <div class="space-y-4">
+            <Text variant="h2" id="learning-resources-heading">Learning Resources</Text>
+            <Text variant="p">
+              Choose a course, practice what you learn and bring your questions to the community.
+              For language references, Git guides and developer tools, browse our
+              <Anchor href="/docs/" className="text-inherit underline">documentation</Anchor>.
+            </Text>
+          </div>
+          {
+            learningResources.map((group) => (
+              <section id={group.id} aria-labelledby={`${group.id}-heading`} class="space-y-6">
+                <div class="space-y-3">
+                  <Text variant="h3" id={`${group.id}-heading`} className="font-semibold">
+                    {group.title}
+                  </Text>
+                  <p class="max-w-3xl text-base leading-relaxed text-muted">{group.description}</p>
+                </div>
+                <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+                  {group.items.map((item) => (
+                    <Anchor
+                      href={item.href}
+                      className="border border-line bg-surface p-6 text-emphasis/80 transition-colors hover:border-emphasis-secondary/60 hover:text-emphasis"
+                    >
+                      <div class="flex items-start justify-between gap-4">
+                        <h4 class="text-lg font-bold">{item.name}</h4>
+                        {item.href.startsWith('https://') && (
+                          <span aria-hidden="true" class="shrink-0 text-base">
+                            ↗
+                          </span>
+                        )}
+                      </div>
+                      <p class="mt-2 text-sm text-muted">{item.description}</p>
+                      {item.href.startsWith('https://') && (
+                        <span class="sr-only"> (opens in a new tab)</span>
+                      )}
+                    </Anchor>
+                  ))}
+                </div>
+              </section>
+            ))
+          }
+        </section>
 
         <div class="space-y-8">
           <div class="space-y-4">
