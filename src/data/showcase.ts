@@ -30,6 +30,13 @@ export const showcaseProducts: ShowcaseProduct[] = [
     url: 'https://www.enrouta.com/',
   },
   {
+    name: 'FastroAI',
+    description:
+      'Build AI-powered SaaS apps with a template that includes authentication, payments and a frontend.',
+    creator: { name: 'Igor Benav' },
+    url: 'https://fastro.ai/',
+  },
+  {
     name: 'MenchoBot',
     description: 'Log fleet refueling, machine hours and fuel consumption through WhatsApp.',
     creator: { name: 'Franco Feijó' },
