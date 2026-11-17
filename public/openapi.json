@@ -1,0 +1,184 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "LibreCourseUY public API",
+    "summary": "Read-only catalogue API and MCP endpoint for the LibreCourseUY community.",
+    "description": "Public, unauthenticated JSON surfaces served by the LibreCourseUY website. No token, account, or API key is required.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "LibreCourseUY",
+      "url": "https://github.com/LibreCourseUY"
+    },
+    "license": {
+      "name": "Content is published for reuse with attribution",
+      "identifier": "CC-BY-4.0"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://librecourse.uy",
+      "description": "Production"
+    }
+  ],
+  "tags": [
+    {
+      "name": "catalogue",
+      "description": "Project and organisation metadata"
+    },
+    {
+      "name": "mcp",
+      "description": "Model Context Protocol endpoint"
+    }
+  ],
+  "paths": {
+    "/api/feed": {
+      "get": {
+        "tags": ["catalogue"],
+        "operationId": "getCatalogueFeed",
+        "summary": "List every catalogue entry",
+        "description": "Returns the curated LibreCourseUY catalogue: categories, organisations, and project entries. Cached for five minutes at the edge.",
+        "responses": {
+          "200": {
+            "description": "The full catalogue feed.",
+            "headers": {
+              "X-Feed-Cache": {
+                "description": "Edge cache state: HIT or MISS.",
+                "schema": { "type": "string", "enum": ["HIT", "MISS"] }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/CatalogueFeed" }
+              }
+            }
+          },
+          "502": {
+            "description": "The upstream catalogue is unavailable."
+          }
+        }
+      }
+    },
+    "/api/health": {
+      "get": {
+        "tags": ["catalogue"],
+        "operationId": "getHealth",
+        "summary": "Service health",
+        "responses": {
+          "200": {
+            "description": "The service is up.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Health" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mcp": {
+      "post": {
+        "tags": ["mcp"],
+        "operationId": "callMcp",
+        "summary": "Model Context Protocol (Streamable HTTP)",
+        "description": "JSON-RPC 2.0 endpoint implementing initialize, tools/list, tools/call and ping. Stateless: no session id is required. Tool schemas are published in /.well-known/mcp/server-card.json.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/JsonRpcRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A JSON-RPC response.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/JsonRpcResponse" }
+              }
+            }
+          },
+          "202": {
+            "description": "Notification accepted (for example notifications/initialized)."
+          },
+          "400": {
+            "description": "Malformed JSON-RPC request."
+          },
+          "405": {
+            "description": "Only POST is supported; the server does not offer a standalone SSE stream."
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CatalogueEntry": {
+        "type": "object",
+        "required": ["name", "url", "description", "category"],
+        "properties": {
+          "name": { "type": "string" },
+          "url": { "type": "string", "format": "uri" },
+          "description": { "type": "string" },
+          "category": { "type": "string" },
+          "tags": { "type": "array", "items": { "type": "string" } },
+          "language": { "type": "array", "items": { "type": "string" } },
+          "maintainers": { "type": "array", "items": { "type": "string" } },
+          "license": { "type": ["string", "null"] },
+          "commercial": { "type": "boolean" },
+          "repository": { "type": "string", "format": "uri" },
+          "open_to_contributions": { "type": "boolean" },
+          "relationship": { "type": "string" },
+          "open_source": { "type": "boolean" }
+        }
+      },
+      "CatalogueFeed": {
+        "type": "object",
+        "required": ["categories", "orgs", "entries"],
+        "properties": {
+          "categories": { "type": "array", "items": { "type": "string" } },
+          "orgs": { "type": "array", "items": { "type": "object" } },
+          "entries": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/CatalogueEntry" }
+          }
+        }
+      },
+      "Health": {
+        "type": "object",
+        "required": ["status", "service", "time"],
+        "properties": {
+          "status": { "type": "string", "enum": ["ok"] },
+          "service": { "type": "string" },
+          "time": { "type": "string", "format": "date-time" }
+        }
+      },
+      "JsonRpcRequest": {
+        "type": "object",
+        "required": ["jsonrpc", "method"],
+        "properties": {
+          "jsonrpc": { "type": "string", "const": "2.0" },
+          "id": { "type": ["string", "number", "null"] },
+          "method": { "type": "string" },
+          "params": { "type": "object" }
+        }
+      },
+      "JsonRpcResponse": {
+        "type": "object",
+        "required": ["jsonrpc"],
+        "properties": {
+          "jsonrpc": { "type": "string", "const": "2.0" },
+          "id": { "type": ["string", "number", "null"] },
+          "result": { "type": "object" },
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": { "type": "integer" },
+              "message": { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

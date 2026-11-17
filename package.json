@@ -5,13 +5,13 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && node scripts/generate-llms.mjs",
+    "build": "astro build && node scripts/generate-agent-skills.mjs && node scripts/generate-llms.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "seo": "python3 scripts/generate_seo.py",
     "og": "bash scripts/generate-og.sh",
     "lint": "eslint .",
-    "test": "node --experimental-strip-types scripts/test-awesome.ts",
+    "test": "node --experimental-strip-types scripts/test-awesome.ts && node --experimental-strip-types scripts/test-agent-endpoints.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
@@ -24,10 +24,12 @@
     "clsx": "^2.1.1",
     "sharp": "^0.35.5",
     "tailwind-merge": "^2.6.0",
-    "tailwindcss": "^4.3.5"
+    "tailwindcss": "^4.3.5",
+    "turndown": "^7.2.5"
   },
   "devDependencies": {
     "@astrojs/partytown": "^2.1.9",
+    "@types/turndown": "^5.0.6",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
     "eslint": "^8.57.1",

@@ -1,0 +1,46 @@
+{
+  "specVersion": "1.0",
+  "host": {
+    "displayName": "LibreCourseUY",
+    "identifier": "did:web:librecourse.uy",
+    "url": "https://librecourse.uy/"
+  },
+  "entries": [
+    {
+      "identifier": "urn:air:librecourse.uy:server:site",
+      "displayName": "LibreCourseUY MCP Server",
+      "description": "Streamable HTTP MCP server exposing the LibreCourseUY project catalogue, site navigation and contribution guide.",
+      "type": "application/mcp-server-card+json",
+      "url": "https://librecourse.uy/.well-known/mcp/server-card.json",
+      "representativeQueries": [
+        "which LibreCourseUY projects accept contributions right now",
+        "find an open source Python project from Uruguay",
+        "how do I join the LibreCourseUY community"
+      ]
+    },
+    {
+      "identifier": "urn:air:librecourse.uy:api:projects",
+      "displayName": "LibreCourseUY Project Catalogue API",
+      "description": "Public read-only JSON catalogue of the projects and organisations in the LibreCourseUY ecosystem.",
+      "type": "application/vnd.oai.openapi+json;version=3.1",
+      "url": "https://librecourse.uy/openapi.json",
+      "representativeQueries": [
+        "list LibreCourseUY projects tagged web",
+        "what projects does LibreCourseUY maintain",
+        "show the raw project catalogue as JSON"
+      ]
+    },
+    {
+      "identifier": "urn:air:librecourse.uy:skills:index",
+      "displayName": "LibreCourseUY Agent Skills",
+      "description": "Agent Skills discovery index for working with the LibreCourseUY catalogue and contribution process.",
+      "type": "application/json",
+      "url": "https://librecourse.uy/.well-known/agent-skills/index.json",
+      "representativeQueries": [
+        "what agent skills does LibreCourseUY publish",
+        "how should an agent search the LibreCourseUY catalogue",
+        "what is the LibreCourseUY contribution checklist for agents"
+      ]
+    }
+  ]
+}

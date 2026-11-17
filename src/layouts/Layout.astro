@@ -15,6 +15,7 @@ import Navbar from '@/components/Navbar/Navbar.astro';
 import Seo from '@/components/Seo/Seo.astro';
 import Footer from '@/components/Footer/Footer.astro';
 import AwesomePrefetch from '@/components/AwesomePrefetch/AwesomePrefetch.astro';
+import AgentTools from '@/components/AgentTools/AgentTools.astro';
 // Utils
 // Styles
 import '@/styles/globals.css';
@@ -41,6 +42,9 @@ const awesomeFeedUrl = import.meta.env.PUBLIC_AWESOME_FEED_URL ?? '';
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="ai-catalog" href="/.well-known/ai-catalog.json" type="application/json" />
+    <link rel="api-catalog" href="/.well-known/api-catalog" type="application/linkset+json" />
+    <link rel="mcp-server-card" href="/.well-known/mcp/server-card.json" type="application/json" />
     <script is:inline>
       (function () {
         document.documentElement.classList.add('js');
@@ -87,6 +91,7 @@ const awesomeFeedUrl = import.meta.env.PUBLIC_AWESOME_FEED_URL ?? '';
       <Footer />
     </div>
     {awesomeFeedUrl && <AwesomePrefetch feedUrl={awesomeFeedUrl} />}
+    <AgentTools />
     <script is:inline>
       (function () {
         function setupReveal() {

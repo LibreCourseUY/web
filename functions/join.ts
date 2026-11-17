@@ -130,7 +130,7 @@ export async function onRequest({ env, request }: Context): Promise<Response> {
       <h1>Join our Discord</h1>
       <p>Complete the verification to continue to the LibreCourseUY community.</p>
       ${showError ? '<p class="error">Verification failed. Please try again.</p>' : ''}
-      <form method="post">
+      <form method="post" toolname="join_librecourseuy_discord" tooldescription="Request an invite to the LibreCourseUY Discord community. Requires a human to complete the Turnstile verification.">
         <div class="cf-turnstile" data-sitekey="${env.TURNSTILE_SITE_KEY}" data-action="join-discord" data-appearance="always" data-theme="light" data-error-callback="onTurnstileError"></div>
         <p id="turnstile-error" class="error" hidden></p>
         <button type="submit"><span class="prompt" aria-hidden="true">~$</span><span>goto_discord.sh</span></button>

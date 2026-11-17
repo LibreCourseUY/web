@@ -1,0 +1,22 @@
+{
+  "serverInfo": {
+    "name": "librecourseuy-site",
+    "title": "LibreCourseUY",
+    "version": "1.0.0",
+    "description": "Project catalogue, site navigation and contribution guide for the LibreCourseUY open source community.",
+    "websiteUrl": "https://librecourse.uy/"
+  },
+  "protocolVersion": "2025-06-18",
+  "endpoint": "https://librecourse.uy/mcp",
+  "transport": {
+    "type": "streamable-http",
+    "endpoint": "https://librecourse.uy/mcp"
+  },
+  "capabilities": {
+    "tools": {
+      "listChanged": false
+    },
+    "resources": {},
+    "prompts": {}
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://librecourse.uy/api",
+      "service-desc": [
+        {
+          "href": "https://librecourse.uy/openapi.json",
+          "type": "application/vnd.oai.openapi+json;version=3.1"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://librecourse.uy/docs/",
+          "type": "text/html",
+          "title": "LibreCourseUY documentation"
+        }
+      ],
+      "status": [
+        {
+          "href": "https://librecourse.uy/api/health",
+          "type": "application/json"
+        }
+      ]
+    },
+    {
+      "anchor": "https://librecourse.uy/mcp",
+      "service-desc": [
+        {
+          "href": "https://librecourse.uy/.well-known/mcp/server-card.json",
+          "type": "application/mcp-server-card+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://librecourse.uy/docs/",
+          "type": "text/html",
+          "title": "LibreCourseUY documentation"
+        }
+      ],
+      "status": [
+        {
+          "href": "https://librecourse.uy/api/health",
+          "type": "application/json"
+        }
+      ]
+    }
+  ]
+}

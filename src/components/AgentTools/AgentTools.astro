@@ -1,0 +1,169 @@
+---
+// Exposes a few read-only site actions to browser AI agents through WebMCP.
+// Silently does nothing in browsers that do not implement document.modelContext.
+---
+
+<script>
+  interface ToolResult {
+    content: Array<{ type: 'text'; text: string }>;
+    isError?: boolean;
+  }
+
+  interface WebMcpTool {
+    name: string;
+    title?: string;
+    description: string;
+    inputSchema: Record<string, unknown>;
+    execute: (args: Record<string, unknown>) => Promise<ToolResult> | ToolResult;
+  }
+
+  interface ModelContextApi {
+    registerTool: (tool: WebMcpTool, options?: { signal?: AbortSignal }) => Promise<unknown>;
+  }
+
+  interface CatalogueEntry {
+    name: string;
+    url: string;
+    description: string;
+    category: string;
+    language?: string[];
+    open_to_contributions?: boolean;
+  }
+
+  const PAGES: Record<string, string> = {
+    home: '/',
+    projects: '/projects/',
+    showcase: '/showcase/',
+    orgs: '/orgs/',
+    learn: '/learn/',
+    contribute: '/contribute/',
+    dco: '/dco/',
+    'gpg-signature': '/docs/gpg-signature/',
+    docs: '/docs/',
+  };
+
+  function text(body: string, isError = false): ToolResult {
+    return { content: [{ type: 'text', text: body }], isError };
+  }
+
+  async function loadCatalogue(): Promise<CatalogueEntry[]> {
+    const response = await fetch('/api/feed', { headers: { accept: 'application/json' } });
+    if (!response.ok) throw new Error(`catalogue unavailable (${response.status})`);
+    const feed = (await response.json()) as { entries?: CatalogueEntry[] };
+    return feed.entries ?? [];
+  }
+
+  const tools: WebMcpTool[] = [
+    {
+      name: 'search_projects',
+      title: 'Search LibreCourseUY projects',
+      description:
+        'Search the LibreCourseUY catalogue by free text and return matching projects with their repository URL and contribution status.',
+      inputSchema: {
+        type: 'object',
+        properties: {
+          query: {
+            type: 'string',
+            description: 'Free text to match against project names and descriptions.',
+          },
+          limit: {
+            type: 'integer',
+            minimum: 1,
+            maximum: 25,
+            description: 'Maximum results (default 5).',
+          },
+        },
+        required: ['query'],
+        additionalProperties: false,
+      },
+      async execute(args) {
+        const query = String(args.query ?? '')
+          .trim()
+          .toLowerCase();
+        if (!query) return text('A non-empty "query" is required.', true);
+        const limit = Math.min(Math.max(Number(args.limit) || 5, 1), 25);
+
+        try {
+          const entries = await loadCatalogue();
+          const matches = entries.filter((entry) =>
+            [entry.name, entry.description, entry.category, ...(entry.language ?? [])]
+              .join(' ')
+              .toLowerCase()
+              .includes(query),
+          );
+          if (!matches.length) return text(`No projects matched "${args.query}".`);
+          const lines = matches
+            .slice(0, limit)
+            .map(
+              (entry) =>
+                `- ${entry.name} (${entry.category})${entry.open_to_contributions ? ' · open to contributions' : ''}\n  ${entry.url}\n  ${entry.description}`,
+            );
+          return text(
+            [`${matches.length} project(s) matched "${args.query}":`, ...lines].join('\n'),
+          );
+        } catch (error) {
+          return text(`Catalogue lookup failed: ${String(error)}`, true);
+        }
+      },
+    },
+    {
+      name: 'open_site_page',
+      title: 'Open a LibreCourseUY page',
+      description:
+        'Navigate the browser to a LibreCourseUY page: projects, showcase, orgs, learn, contribute, dco, gpg-signature, docs or home.',
+      inputSchema: {
+        type: 'object',
+        properties: {
+          page: { type: 'string', enum: Object.keys(PAGES) },
+        },
+        required: ['page'],
+        additionalProperties: false,
+      },
+      execute(args) {
+        const page = String(args.page ?? '');
+        const path = PAGES[page];
+        if (!path)
+          return text(
+            `Unknown page "${page}". Known pages: ${Object.keys(PAGES).join(', ')}.`,
+            true,
+          );
+        window.location.assign(path);
+        return text(`Navigating to ${path}`);
+      },
+    },
+    {
+      name: 'get_contribution_steps',
+      title: 'Get contribution requirements',
+      description:
+        'Return the requirements every LibreCourseUY contribution must meet: DCO sign-off, GPG-signed commits and Conventional Commits.',
+      inputSchema: { type: 'object', properties: {}, additionalProperties: false },
+      execute() {
+        return text(
+          [
+            'Every LibreCourseUY contribution must:',
+            '1. Carry a DCO sign-off on every commit (git commit -s).',
+            '2. Have GPG-signed commits (see /docs/gpg-signature/).',
+            '3. Use Conventional Commits, e.g. "feat(ui): add org cards".',
+            '',
+            'Then open a pull request against the default branch.',
+            'Discord: /join/ · Issues: https://gitsion.librecourse.uy/issues',
+          ].join('\n'),
+        );
+      },
+    },
+  ];
+
+  const api: ModelContextApi | undefined =
+    (document as unknown as { modelContext?: ModelContextApi }).modelContext ??
+    (navigator as unknown as { modelContext?: ModelContextApi }).modelContext;
+
+  if (api?.registerTool) {
+    const controller = new AbortController();
+    for (const tool of tools) {
+      api.registerTool(tool, { signal: controller.signal }).catch(() => {
+        /* registration is best effort */
+      });
+    }
+    window.addEventListener('pagehide', () => controller.abort(), { once: true });
+  }
+</script>
