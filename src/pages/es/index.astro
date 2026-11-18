@@ -1,0 +1,538 @@
+---
+// Components
+import { Image } from 'astro:assets';
+import Anchor from '@/components/Anchor/Anchor.astro';
+import Text from '@/components/Text/Text.astro';
+import List from '@/components/List/List.astro';
+import ListItem from '@/components/List/ListItem.astro';
+import Collapse from '@/components/Collapse/Collapse.astro';
+import ContributionSteps from '@/components/ContributionSteps/ContributionSteps.astro';
+import ShowcaseCard from '@/components/ShowcaseCard/ShowcaseCard.astro';
+// Layout
+import Layout from '@/layouts/Layout.astro';
+// Utils
+import { communityLinks } from '@/data/community';
+import { showcaseNoticeFor, showcaseProductsFor } from '@/data/showcase';
+
+const showcaseProducts = showcaseProductsFor('es');
+const showcaseNotice = showcaseNoticeFor('es');
+// Assets
+import heroIcon from '@/assets/lcuy_logo.svg';
+import heroImg from '@/assets/ascii-hero.png';
+import computerImg from '@/assets/ascii-computer.png';
+
+const aboutList = [
+  '<strong class="block">Sin fines de lucro</strong> Comunidad FOSS radicada en Uruguay.',
+  '<strong class="block">Hecha para desarrolladores de todos los niveles </strong>desde el primer commit hasta quien contribuye desde hace años.',
+  'Herramientas abiertas, aprendizaje abierto, procesos abiertos.',
+  '<strong class="block">Formando a la próxima generación </strong>de contribuyentes de código abierto en Latinoamérica.',
+];
+
+const activityLinks = [
+  {
+    title: 'Feed de actividad',
+    description: 'Seguí las novedades por proyecto o por contribuyente.',
+    href: communityLinks.activity,
+  },
+  {
+    title: 'Issues',
+    description: 'Explorá las tareas abiertas en los proyectos del catálogo.',
+    href: communityLinks.issues,
+  },
+  {
+    title: 'Pull requests',
+    description: 'Mirá las contribuciones en curso y los últimos merges.',
+    href: communityLinks.pulls,
+  },
+];
+---
+
+<Layout
+  title="LibreCourseUY — Comunidad FOSS sin fines de lucro"
+  description="Sumate a una comunidad FOSS sin fines de lucro de Uruguay. Descubrí proyectos, aprendé en conjunto y hacé tu primera contribución al código abierto."
+>
+  <main class="flex min-h-screen flex-col items-start justify-center">
+    <section
+      id="hero_section"
+      class="relative w-[calc(100%+3rem)] md:w-[calc(100%+6rem)] lg:w-[calc(100%+12rem)] left-1/2 -translate-x-1/2 -mt-16 min-h-dvh flex items-center justify-center py-16 md:py-24 lg:py-32 overflow-hidden"
+    >
+      <div
+        class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-emphasis-secondary/10 via-transparent to-transparent"
+      >
+      </div>
+      <Image
+        src={heroImg}
+        alt=""
+        class="absolute inset-0 w-full h-full object-cover opacity-25 dark:opacity-20 pointer-events-none select-none"
+        widths={[640, 960, 1280]}
+        sizes="100vw"
+        loading="eager"
+        fetchpriority="low"
+      />
+
+      <div
+        class="hero-enter relative z-10 flex flex-col items-center justify-center w-full px-6 text-center"
+      >
+        <div class="mb-8 md:mb-10 flex items-center justify-center w-24 sm:w-28 md:w-32 lg:w-40">
+          <Image
+            src={heroIcon}
+            alt="Ícono de LibreCourseUY"
+            class="w-full h-full object-cover"
+            inferSize={true}
+            loading="eager"
+          />
+        </div>
+
+        <Text
+          variant="h1"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl max-w-6xl mb-6 text-center"
+        >
+          Construí en público.<br />
+          <span class="text-emphasis-secondary">Convertite en código abierto.</span>
+        </Text>
+
+        <Text
+          variant="p"
+          className="max-w-2xl mb-10 text-emphasis/70 text-lg text-center md:text-xl"
+        >
+          Una comunidad FOSS sin fines de lucro de Uruguay que forma a la próxima generación de
+          contribuyentes de código abierto en Latinoamérica.
+        </Text>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+          <Anchor
+            className="group inline-flex items-center gap-2 border border-emphasis-secondary px-4 py-3 font-mono text-sm font-bold tracking-[0.08em] text-emphasis-secondary transition-colors hover:bg-emphasis-secondary hover:text-background whitespace-nowrap"
+            href="/es/contribute/"
+          >
+            <span aria-hidden="true" class="transition-transform group-hover:translate-x-0.5"
+              >~$</span
+            >
+            <span>Empezá a contribuir</span>
+          </Anchor>
+          <Anchor
+            href="/es/projects/"
+            className="inline-flex items-center gap-2 border border-line px-4 py-3 text-sm font-bold text-emphasis transition-colors hover:border-emphasis-secondary hover:text-emphasis-secondary"
+          >
+            Explorá proyectos <span aria-hidden="true">→</span>
+          </Anchor>
+        </div>
+
+        <div
+          class="flex items-center justify-center gap-8 text-emphasis/80 dark:text-emphasis/60 text-sm font-semibold"
+        >
+          <a
+            href={communityLinks.discord}
+            class="hover:text-emphasis-secondary transition-colors flex items-center gap-2"
+          >
+            <svg class="w-5 h-5" viewBox="0 0 127.14 96.36" aria-hidden="true">
+              <path
+                fill="#5865F2"
+                d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.79,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.68,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.81,11.1,105.25,105.25,0,0,0,32.22-16.15c2.62-27.28-4.48-51.2-21.16-76.14ZM42.45,65.69C36.18,65.69,31,60,31,53s5.18-12.71,11.45-12.71S53.9,46,53.9,53,48.73,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.23,60,73.23,53s5.18-12.71,11.46-12.71S96.16,46,96.16,53,91,65.69,84.69,65.69Z"
+              ></path>
+            </svg>
+
+            Sumate a Discord
+          </a>
+          <span class="hidden sm:inline">·</span>
+          <a
+            href="https://github.com/LibreCourseUY"
+            class="hover:text-emphasis-secondary transition-colors flex items-center gap-2"
+          >
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"
+              ></path>
+            </svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+
+      <div class="scroll-cue absolute bottom-10 left-1/2 [@media(max-height:640px)]:hidden">
+        <svg
+          class="w-6 h-6 text-emphasis/40"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+        </svg>
+      </div>
+    </section>
+    <section id="projects" class="w-full py-16 md:py-24">
+      <div class="space-y-8">
+        <Text variant="h2">Construido por nuestra comunidad</Text>
+        <Text variant="p"
+          >Explorá proyectos, encontrá algo que te interese y conocé a quienes lo construyen.</Text
+        >
+        <div id="home-projects" class="grid grid-cols-1 gap-4 md:grid-cols-2"></div>
+        <div
+          id="home-projects-loading"
+          class="py-16 text-center text-xs uppercase tracking-wider text-muted"
+          role="status"
+          hidden
+        >
+          Cargando proyectos...
+        </div>
+        <p id="home-projects-fallback" class="max-w-3xl text-base leading-relaxed text-muted">
+          Explorá nuestro directorio de proyectos abajo, o
+          <Anchor href={communityLinks.activity} className="text-base underline underline-offset-4">
+            seguí los proyectos en Gitsion<span aria-hidden="true"> ↗</span>
+          </Anchor>
+          para ver en qué está trabajando la comunidad.
+        </p>
+        <div class="flex flex-wrap items-center gap-x-6 gap-y-4">
+          <Anchor
+            href="/es/projects/"
+            className="inline-flex items-center gap-2 border border-line px-4 py-3 text-sm font-bold text-emphasis hover:border-emphasis-secondary hover:text-emphasis-secondary"
+          >
+            Ver todos los proyectos <span aria-hidden="true">→</span>
+          </Anchor>
+          <Anchor href="#organizations" className="text-sm font-bold underline underline-offset-4">
+            Conocé las organizaciones <span aria-hidden="true">↓</span>
+          </Anchor>
+        </div>
+      </div>
+    </section>
+    <section id="showcase" class="w-full space-y-8 border-t border-line py-16 md:py-24">
+      <div class="max-w-3xl space-y-4">
+        <Text variant="h2">Construido por nuestros miembros</Text>
+        <Text variant="p" className="text-muted">
+          Productos independientes creados por desarrolladores de la comunidad de LibreCourseUY.
+        </Text>
+        <p class="text-sm leading-relaxed text-muted">{showcaseNotice}</p>
+      </div>
+      <ul class="grid grid-cols-1 gap-4 md:grid-cols-2">
+        {
+          showcaseProducts.slice(0, 10).map((product) => (
+            <li class="min-w-0">
+              <ShowcaseCard product={product} />
+            </li>
+          ))
+        }
+      </ul>
+      <div class="flex flex-wrap items-center gap-x-6 gap-y-4">
+        <Anchor
+          href="/es/showcase/"
+          className="inline-flex items-center gap-2 border border-line px-4 py-3 text-sm font-bold text-emphasis hover:border-emphasis-secondary hover:text-emphasis-secondary"
+        >
+          Explorá los {showcaseProducts.length} productos <span aria-hidden="true">→</span>
+        </Anchor>
+        <Anchor
+          href="/es/showcase/#submit-product"
+          className="text-sm font-bold underline underline-offset-4"
+        >
+          Compartí tu producto <span aria-hidden="true">→</span>
+        </Anchor>
+      </div>
+    </section>
+    <section id="organizations" class="w-full space-y-8 border-t border-line py-16 md:py-24">
+      <div class="max-w-3xl space-y-4">
+        <Text variant="h2">Organizaciones de nuestro ecosistema</Text>
+        <Text variant="p" className="text-muted">
+          Conocé a las organizaciones que mantienen y gobiernan los proyectos del ecosistema
+          LibreCourseUY.
+        </Text>
+      </div>
+      <div id="home-organizations" class="grid grid-cols-1 gap-4 md:grid-cols-2"></div>
+      <div
+        id="home-organizations-loading"
+        class="py-8 text-center text-xs uppercase tracking-wider text-muted"
+        role="status"
+        hidden
+      >
+        Cargando organizaciones...
+      </div>
+      <p id="home-organizations-fallback" class="max-w-3xl text-base leading-relaxed text-muted">
+        Explorá el directorio de organizaciones, o
+        <Anchor href={communityLinks.discord} className="text-base underline underline-offset-4"
+          >preguntá en Discord</Anchor
+        >
+        para descubrir dónde podés contribuir.
+      </p>
+      <Anchor
+        href="/es/orgs/"
+        className="inline-flex items-center gap-2 border border-line px-4 py-3 text-sm font-bold text-emphasis hover:border-emphasis-secondary hover:text-emphasis-secondary"
+      >
+        Ver todas las organizaciones <span aria-hidden="true">→</span>
+      </Anchor>
+    </section>
+    <section id="start" class="w-full space-y-8 border-t border-line py-16 md:py-24">
+      <div class="max-w-3xl space-y-4">
+        <Text variant="h2">Tu primera contribución empieza acá</Text>
+        <Text variant="p" className="text-muted">
+          Empezá con una tarea chica, aprendé haciendo y pedí ayuda en el camino.
+        </Text>
+      </div>
+      <ContributionSteps />
+    </section>
+    <section
+      id="activity"
+      class="my-8 grid w-full gap-10 border border-line bg-surface p-6 md:p-10 lg:grid-cols-2"
+    >
+      <div class="space-y-6">
+        <p class="font-mono text-xs font-bold uppercase tracking-wider text-emphasis-secondary">
+          Actividad de la comunidad · Gitsion
+        </p>
+        <Text variant="h2">Mirá lo que estamos construyendo</Text>
+        <Text variant="p" className="max-w-xl text-muted">
+          Gitsion reúne las novedades de los proyectos de la comunidad. Seguí el trabajo por
+          proyecto o por persona, encontrá issues abiertos y explorá las contribuciones recientes.
+        </Text>
+        <Anchor
+          href={communityLinks.activity}
+          className="inline-flex items-center gap-2 border border-emphasis-secondary px-4 py-3 font-mono text-sm font-bold transition-colors hover:bg-emphasis-secondary hover:text-background"
+        >
+          Explorá la actividad de la comunidad <span aria-hidden="true">↗</span>
+          <span class="sr-only"> (se abre en una pestaña nueva)</span>
+        </Anchor>
+      </div>
+      <ul class="divide-y divide-line border-y border-line">
+        {
+          activityLinks.map((item) => (
+            <li class="py-6">
+              <Anchor
+                href={item.href}
+                className="flex items-center justify-between gap-4 text-lg font-bold"
+              >
+                {item.title} <span aria-hidden="true">↗</span>
+                <span class="sr-only"> (se abre en una pestaña nueva)</span>
+              </Anchor>
+              <p class="mt-2 text-base text-muted">{item.description}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+    <section id="about" class="grid w-full items-start gap-12 py-16 lg:grid-cols-2 md:py-24">
+      <div class="space-y-8">
+        <Text variant="h2">Una comunidad para aprender y construir</Text>
+        <List>
+          {
+            aboutList.map((item, i) => (
+              <ListItem className="flex items-center gap-6 border-b border-line py-5 first:border-t">
+                <span class="shrink-0 font-mono text-sm text-emphasis-secondary">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <span set:html={item} />
+              </ListItem>
+            ))
+          }
+        </List>
+        <div id="collaboration" class="space-y-4">
+          <Text variant="h3">Construida en torno a la colaboración abierta</Text>
+          <p class="text-base leading-relaxed text-muted">
+            Traé tus ideas y tus proyectos. Lo que construimos en comunidad, lo construimos en
+            abierto. Cada proyecto mantiene su propia propiedad, gobernanza y condiciones de
+            contribución.
+          </p>
+          <Anchor href="#faq" className="text-sm font-bold underline underline-offset-4"
+            >Leé las preguntas frecuentes de la comunidad <span aria-hidden="true">↓</span></Anchor
+          >
+        </div>
+      </div>
+      <Image
+        src={computerImg}
+        alt="Computadora ilustrada en arte ASCII"
+        class="w-full border border-line object-cover"
+        loading="lazy"
+        width={620}
+        height={380}
+      />
+    </section>
+    <section id="faq">
+      <div class="max-w-200 pt-16 pb-24 space-y-12">
+        <Text variant="h2" className="text-[clamp(2.1rem,4.6vw,3.25rem)] font-black tracking-tight"
+          >¿Tenés preguntas?</Text
+        >
+        <div class="[&_.faq-item:last-child]:border-b [&_.faq-item:last-child]:border-line">
+          <Collapse question="¿Qué es LibreCourseUY?" open>
+            Una iniciativa sin fines de lucro radicada en Uruguay que ayuda a programadores —desde
+            quienes están empezando hasta profesionales con experiencia— a contribuir a software
+            libre y de código abierto.
+          </Collapse>
+
+          <Collapse question="¿Quién puede sumarse?">
+            Cualquiera, gratis. Se espera que quienes participan sigan nuestro Código de Conducta.
+            Las contribuciones siguen la licencia y las condiciones de contribución de cada
+            proyecto.
+          </Collapse>
+
+          <Collapse question="¿Qué ofrece LibreCourseUY?">
+            Una comunidad de desarrollo sólida con objetivos en común, un espacio para aprender y
+            hacer crecer tu carrera, y proyectos reales que valen la pena para tu CV.
+          </Collapse>
+
+          <Collapse question="¿Cómo empiezo?">
+            Seguí nuestra <Anchor href="/es/contribute/" className="text-inherit underline"
+              >guía de primera contribución</Anchor
+            >: elegí un proyecto, encontrá una tarea chica y prepará tus herramientas. Si necesitás
+            ayuda para elegir,
+            <Anchor href={communityLinks.discord} className="text-inherit underline"
+              >preguntá en Discord</Anchor
+            >. Nuestra <Anchor href="/es/learn/" className="text-inherit underline"
+              >guía de aprendizaje</Anchor
+            > explica cómo aprender con proyectos reales y acompañamiento de la comunidad.
+          </Collapse>
+          <Collapse question="¿Dónde puedo ver la actividad reciente de los proyectos?">
+            Visitá <Anchor href={communityLinks.activity} className="text-inherit underline"
+              >Gitsion</Anchor
+            >
+            para seguir las novedades por proyecto o contribuyente, explorar issues y ver pull requests.
+            Nuestro <Anchor href="/es/projects/" className="text-inherit underline"
+              >directorio de proyectos</Anchor
+            > te ayuda a descubrir proyectos por categoría, lenguaje y estado de contribución.
+          </Collapse>
+
+          <Collapse question="¿Por qué está todo en inglés?">
+            El código abierto es una conversación global y el inglés es su lengua común. Escribir
+            issues, pull requests y documentación en inglés hace que tus contribuciones sean
+            accesibles para toda la comunidad FOSS, no solo para quienes hablan español. También te
+            prepara para colaborar en el mundo real, en cualquier proyecto y en cualquier lugar.
+          </Collapse>
+
+          <Collapse question="¿Dónde puedo encontrar a LibreCourseUY?">
+            <List>
+              <ListItem
+                className="first:border-t border-b border-line p-6 flex flex-row justify-start items-center gap-6"
+              >
+                <span class="mr-3 text-sm">{String(1).padStart(2, '0')}</span>
+                <span>
+                  Contribuí en
+                  <Anchor href={communityLinks.github}>GitHub</Anchor>
+                </span>
+              </ListItem>
+              <ListItem
+                className="border-b border-line p-6 flex flex-row justify-start items-center gap-6"
+              >
+                <span class="mr-3 text-sm">{String(2).padStart(2, '0')}</span>
+                <span>
+                  Sumate a nuestro servidor de
+                  <Anchor href={communityLinks.discord}>Discord</Anchor>
+                </span>
+              </ListItem>
+            </List>
+          </Collapse>
+          <Collapse question="¿Cómo funciona la propiedad de los proyectos?">
+            Quienes son dueños de los proyectos conservan la propiedad y la gobernanza de su
+            trabajo. Las contribuciones siguen la licencia y las condiciones de contribución de cada
+            proyecto. LibreCourseUY no reclama derechos sobre los proyectos privados ni el código
+            propietario de sus miembros.
+          </Collapse>
+          <Collapse question="¿Puedo traer un proyecto privado o comercial?">
+            <p>
+              <strong>Sí.</strong> Podés traer proyectos con componentes privados o comerciales. La colaboración
+              organizada a través de LibreCourseUY debe ocurrir sobre las partes de código abierto de
+              esos proyectos. La parte privada sigue siendo tuya.
+            </p>
+            <p class="mt-4">
+              El trabajo comercial o propietario, incluido el desarrollo pago, el empleo, la
+              consultoría, los acuerdos de acciones o el trabajo bajo NDA, debe acordarse de forma
+              independiente entre las personas involucradas. LibreCourseUY no es parte de esos
+              acuerdos.
+            </p>
+          </Collapse>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<script>
+  import { loadAwesomeFeed } from '@/lib/awesome-client';
+  import { pickDiverse, type AwesomeEntry } from '@/lib/awesome';
+  import { projectCard } from '@/lib/awesome-card';
+  import { organizationCard } from '@/lib/awesome-org-card';
+
+  const grid = document.getElementById('home-projects');
+  const loading = document.getElementById('home-projects-loading');
+  const fallback = document.getElementById('home-projects-fallback');
+  const organizations = document.getElementById('home-organizations');
+  const organizationsLoading = document.getElementById('home-organizations-loading');
+  const organizationsFallback = document.getElementById('home-organizations-fallback');
+  const sections = [document.getElementById('projects'), document.getElementById('organizations')];
+  const LAST_KEY = 'home-projects-last';
+  const COUNT = 6;
+  const MAX_PER_MAINTAINER = 3;
+
+  function lastKey(): string {
+    try {
+      return sessionStorage.getItem(LAST_KEY) ?? '';
+    } catch {
+      return '';
+    }
+  }
+
+  // Prefer one project per maintainer; multi-maintainer projects are deferred.
+  function maintainer(entry: AwesomeEntry): string | null {
+    if (entry.maintainers?.length !== 1) return null;
+    return entry.maintainers[0].replace('@', '').toLowerCase();
+  }
+
+  // Pick COUNT projects, at most MAX_PER_MAINTAINER each, never the same set
+  // as the previous load. Multi-maintainer projects are deferred.
+  function choose(entries: AwesomeEntry[]): AwesomeEntry[] {
+    const previous = lastKey();
+    for (let attempt = 0; attempt < 5; attempt++) {
+      const picked = pickDiverse(entries, COUNT, maintainer, MAX_PER_MAINTAINER);
+      if (picked.map((e) => e.name).join('|') !== previous) return picked;
+    }
+    return pickDiverse(entries, COUNT, maintainer, MAX_PER_MAINTAINER);
+  }
+
+  let loaded = false;
+  async function render() {
+    if (loaded) return;
+    loaded = true;
+    loading?.removeAttribute('hidden');
+    organizationsLoading?.removeAttribute('hidden');
+    const feed = await loadAwesomeFeed();
+    loading?.setAttribute('hidden', '');
+    organizationsLoading?.setAttribute('hidden', '');
+    if (!feed) return;
+
+    const orgs = feed.orgs ?? [];
+    if (organizations && orgs.length > 0) {
+      organizations.innerHTML = orgs.map(organizationCard).join('');
+      organizationsFallback?.setAttribute('hidden', '');
+    }
+
+    if (!grid) return;
+    const picked = choose(feed.entries);
+    if (picked.length === 0) return;
+    try {
+      sessionStorage.setItem(LAST_KEY, picked.map((e) => e.name).join('|'));
+    } catch {
+      /* storage unavailable */
+    }
+    grid.innerHTML = picked.map(projectCard).join('');
+    fallback?.setAttribute('hidden', '');
+  }
+
+  // Fragment links must load the cards even when the browser restores an older scroll position.
+  const catalogAnchor =
+    window.location.hash === '#projects' || window.location.hash === '#organizations';
+  if (catalogAnchor) {
+    void render();
+  } else if (sections.some(Boolean) && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          io.disconnect();
+          void render();
+        }
+      },
+      { rootMargin: '200px' },
+    );
+    sections.forEach((section) => {
+      if (section) io.observe(section);
+    });
+  } else {
+    void render();
+  }
+</script>

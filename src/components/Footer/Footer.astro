@@ -1,17 +1,24 @@
 ---
 import Anchor from '@/components/Anchor/Anchor.astro';
+import { langFromPath, localizePath } from '@/i18n/config';
+import { common } from '@/i18n/common';
 
+const lang = langFromPath(Astro.url.pathname);
+const t = common[lang];
 const year = new Date().getFullYear();
+const href = (path: string) => localizePath(path, lang);
 ---
 
 <footer class="min-h-64 pb-12 flex flex-col justify-end gap-2 sm:flex-row sm:items-end sm:gap-x-12">
   <span class="text-emphasis/60">Libre<span>Course</span>UY</span>
-  <nav aria-label="Footer" class="flex flex-wrap gap-x-4 gap-y-1 text-sm">
-    <Anchor href="/about/" className="hover:text-emphasis">About</Anchor>
-    <Anchor href="/projects/" className="hover:text-emphasis">Projects</Anchor>
-    <Anchor href="/orgs/" className="hover:text-emphasis">Organizations</Anchor>
-    <Anchor href="/docs/" className="hover:text-emphasis">Docs</Anchor>
-    <Anchor href="/contribute/" className="hover:text-emphasis">Contribute</Anchor>
+  <nav aria-label={t.footer.label} class="flex flex-wrap gap-x-4 gap-y-1 text-sm">
+    <Anchor href={href('/about/')} className="hover:text-emphasis">{t.footer.about}</Anchor>
+    <Anchor href={href('/projects/')} className="hover:text-emphasis">{t.footer.projects}</Anchor>
+    <Anchor href={href('/orgs/')} className="hover:text-emphasis">{t.footer.orgs}</Anchor>
+    <Anchor href={href('/docs/')} className="hover:text-emphasis">{t.footer.docs}</Anchor>
+    <Anchor href={href('/contribute/')} className="hover:text-emphasis"
+      >{t.footer.contribute}</Anchor
+    >
   </nav>
-  <span>© {year} | Open Source Education</span>
+  <span>© {year} | {t.footer.rights}</span>
 </footer>

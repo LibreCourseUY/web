@@ -1,0 +1,104 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Text from '@/components/Text/Text.astro';
+import Anchor from '@/components/Anchor/Anchor.astro';
+import { communityLinks } from '@/data/community';
+---
+
+<Layout
+  title="Acerca de LibreCourseUY — Comunidad FOSS sin fines de lucro"
+  description="LibreCourseUY es una comunidad de software libre sin fines de lucro en Uruguay. Cómo nos organizamos, quién es dueño de los proyectos y cómo participar."
+>
+  <main class="flex min-h-screen flex-col items-start justify-start gap-12 py-16">
+    <section class="w-full space-y-4">
+      <Text variant="h1">Acerca de LibreCourseUY</Text>
+      <Text variant="p" class="max-w-3xl text-muted">
+        LibreCourseUY es una comunidad sin fines de lucro radicada en Uruguay que ayuda a
+        programadores —desde quienes dan su primer paso hasta mantenedores con experiencia— a
+        contribuir a software libre y de código abierto. Lo hacemos con proyectos reales: sin
+        tutoriales aislados ni bases de código imaginarias.
+      </Text>
+    </section>
+
+    <section class="w-full space-y-4">
+      <Text variant="h2">Qué hacemos</Text>
+      <ul class="max-w-3xl list-disc space-y-3 pl-6 text-muted">
+        <li>
+          <strong class="text-emphasis">Curamos proyectos reales.</strong> Mantenemos un catálogo de proyectos
+          de código abierto creados por miembros y organizaciones del ecosistema, con el lenguaje, la
+          licencia y el estado de contribución de cada uno.
+        </li>
+        <li>
+          <strong class="text-emphasis">Enseñamos lo difícil.</strong> Nuestras guías cubren las partes
+          del código abierto que nadie explica: commits firmados con GPG, el Developer Certificate of
+          Origin, Conventional Commits y un pull request que un mantenedor pueda revisar de verdad.
+        </li>
+        <li>
+          <strong class="text-emphasis">Conectamos personas.</strong> En Discord se responden las dudas
+          y se encuentra con quién trabajar en el primer issue.
+        </li>
+      </ul>
+    </section>
+
+    <section class="w-full space-y-4">
+      <Text variant="h2">Por qué existimos</Text>
+      <Text variant="p" class="max-w-3xl text-muted">
+        A quien quiere contribuir al código abierto no le falta motivación: le falta una primera
+        tarea que pueda terminar. Los tutoriales terminan antes de la parte interesante —la
+        revisión, el rebase, el mantenedor pidiendo un cambio— y sin esa parte no hay contribución
+        ni confianza. Construimos LibreCourseUY en el orden inverso: sumate a un proyecto real, tomá
+        un issue chico, llevalo adelante con ayuda y después tomá algo más grande.
+      </Text>
+      <Text variant="p" class="max-w-3xl text-muted">
+        El catálogo existe para que ese primer paso sea concreto. Cada entrada indica su lenguaje,
+        licencia, mantenedores y si está abierta a contribuciones, así nadie tiene que adivinar si
+        un proyecto está vivo o si su autor quiere ayuda. Las organizaciones conservan su propia
+        gobernanza; la comunidad aporta el mapa, las guías y las personas que responden.
+      </Text>
+    </section>
+
+    <section class="w-full space-y-4">
+      <Text variant="h2">Cómo nos organizamos</Text>
+      <Text variant="p" class="max-w-3xl text-muted">
+        LibreCourseUY no es una empresa y no reclama la propiedad del trabajo de sus miembros. Cada
+        dueño de proyecto conserva la propiedad y la gobernanza; la colaboración que ocurre en la
+        comunidad se aplica solo a las partes de código abierto. El trabajo privado y comercial
+        sigue siendo privado y comercial, y cualquier acuerdo al respecto se arregla directamente
+        entre las personas involucradas: la comunidad no es parte.
+      </Text>
+      <Text variant="p" class="max-w-3xl text-muted">
+        Las contribuciones siguen las reglas de cada repositorio: cada commit lleva
+        <Anchor href="/es/dco/">firma DCO</Anchor> y firma GPG, y los mensajes siguen Conventional Commits.
+        No hay cuota de membresía, ni contrato, ni más filtros que eso.
+      </Text>
+    </section>
+
+    <section class="w-full space-y-4">
+      <Text variant="h2">Dónde vive el código</Text>
+      <Text variant="p" class="max-w-3xl text-muted">
+        El código vive en GitHub bajo la
+        <Anchor href="https://github.com/LibreCourseUY">organización LibreCourseUY</Anchor>, y la
+        actividad del ecosistema se sigue en
+        <Anchor href={communityLinks.activity}>Gitsion</Anchor>. Las organizaciones que mantienen
+        proyectos aparecen en la
+        <Anchor href="/es/orgs/">página de organizaciones</Anchor>.
+      </Text>
+    </section>
+
+    <section class="w-full space-y-4">
+      <Text variant="h2">Cómo participar</Text>
+      <Text variant="p" class="max-w-3xl text-muted">
+        Leé la <Anchor href="/es/contribute/">guía de primera contribución</Anchor>, elegí algo del
+        <Anchor href="/es/projects/">catálogo de proyectos</Anchor> y preguntá en
+        <Anchor href={communityLinks.discord}>Discord</Anchor> cuando te trabés. Si todavía estás aprendiendo,
+        la <Anchor href="/es/learn/">guía de aprendizaje</Anchor> explica cómo crecer con proyectos reales
+        en lugar de ejercicios.
+      </Text>
+      <Text variant="p" class="max-w-3xl text-muted">
+        Para prensa, alianzas o cualquier tema que no sea una pregunta de código, escribinos en
+        <Anchor href={communityLinks.discord}>Discord</Anchor> o abrí un issue en
+        <Anchor href="https://github.com/LibreCourseUY">GitHub</Anchor>.
+      </Text>
+    </section>
+  </main>
+</Layout>

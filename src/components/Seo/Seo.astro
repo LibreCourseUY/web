@@ -1,5 +1,6 @@
 ---
 import seoManifest from '@/data/seo-manifest.json';
+import { OG_LOCALE, otherLang, type Lang } from '@/i18n/config';
 
 interface SeoOg {
   type: string;
@@ -37,6 +38,7 @@ export interface Props {
   fallbackTitle?: string;
   fallbackDescription?: string;
   noindex?: boolean;
+  lang?: Lang;
 }
 
 const {
@@ -44,7 +46,11 @@ const {
   fallbackTitle = 'LibreCourseUY',
   fallbackDescription,
   noindex = false,
+  lang,
 } = Astro.props;
+
+const ogLocale = lang ? OG_LOCALE[lang] : null;
+const ogLocaleAlternate = lang ? OG_LOCALE[otherLang(lang)] : null;
 
 const manifest = seoManifest as Record<string, SeoEntry | undefined>;
 const withSlash = route.endsWith('/') ? route : `${route}/`;
@@ -71,7 +77,10 @@ const seo = manifest[route] ?? manifest[withSlash];
       )}
       {seo.og['image:alt'] && <meta property="og:image:alt" content={seo.og['image:alt']} />}
       {seo.og.site_name && <meta property="og:site_name" content={seo.og.site_name} />}
-      {seo.og.locale && <meta property="og:locale" content={seo.og.locale} />}
+      {(ogLocale ?? seo.og.locale) && (
+        <meta property="og:locale" content={ogLocale ?? seo.og.locale} />
+      )}
+      {ogLocaleAlternate && <meta property="og:locale:alternate" content={ogLocaleAlternate} />}
       <meta name="twitter:card" content={seo.twitter.card} />
       <meta name="twitter:title" content={seo.twitter.title} />
       {seo.twitter.description && (

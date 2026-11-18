@@ -1,0 +1,107 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Text from '@/components/Text/Text.astro';
+import Anchor from '@/components/Anchor/Anchor.astro';
+import { communityLinks } from '@/data/community';
+import { fetchCatalogueForBuild } from '@/lib/catalogue-build';
+import { orgsGridHtml } from '@/lib/catalogue-render';
+
+// Prerender the organisations so the page has content without JS.
+// Card descriptions come from the fetched catalogue and stay as published.
+const feed = await fetchCatalogueForBuild();
+const orgs = feed?.orgs ?? [];
+const orgsHtml = orgs.length ? orgsGridHtml(orgs) : '';
+---
+
+<Layout
+  title="Organizaciones de código abierto — LibreCourseUY"
+  description="Organizaciones que mantienen y gobiernan proyectos del ecosistema LibreCourseUY: quiénes son, qué mantienen y dónde vive su código."
+>
+  <main class="flex min-h-screen flex-col items-start justify-center">
+    <section class="flex w-full flex-col justify-start items-start gap-8 pt-12 pb-12">
+      <div class="space-y-4">
+        <Text variant="h1">Organizaciones</Text>
+        <Text variant="p" class="text-muted max-w-3xl">
+          Organizaciones de código abierto del ecosistema LCUY. Grupos que se hacen responsables de
+          mantener y gobernar sus proyectos.
+        </Text>
+      </div>
+
+      <div class="max-w-3xl space-y-4">
+        <Text variant="h2">Qué significa «organización» acá</Text>
+        <Text variant="p" class="text-muted">
+          Una organización es cualquier grupo que se hace responsable de mantener y gobernar uno o
+          más proyectos del ecosistema: una organización de GitHub, una empresa que libera código
+          abierto o un colectivo de mantenedores. Las organizaciones marcadas como
+          <strong class="text-emphasis">oficiales</strong> pertenecen a LibreCourseUY; el resto son independientes
+          y fijan sus propias reglas, licencias y hojas de ruta.
+        </Text>
+        <Text variant="p" class="text-muted">
+          Aparecer en la lista no es un respaldo ni transfiere la propiedad. Si mantenés proyectos y
+          querés que sean visibles, abrí un pull request contra el
+          <Anchor href="/es/projects/">catálogo de proyectos</Anchor> con el nombre de la organización,
+          su URL y una descripción breve. Cada organización conserva sus reglas de contribución, así que
+          leé el <code>CONTRIBUTING.md</code> del repositorio antes de enviar un cambio.
+        </Text>
+        <Text variant="p" class="text-muted">
+          Las organizaciones aparecen acá cuando tienen al menos un proyecto en el catálogo. Si un
+          proyecto cambia de dueño, o una organización deja de mantenerlo, la entrada se actualiza o
+          se elimina en lugar de quedar desactualizada: un directorio viejo es peor que uno corto.
+          ¿Encontraste algo desactualizado? Comentalo en
+          <Anchor href={communityLinks.discord}>Discord</Anchor> o mandá la corrección como pull request.
+        </Text>
+      </div>
+
+      <div id="orgs-app" class="w-full" hidden={orgs.length === 0}>
+        <div
+          id="orgs-grid"
+          class="grid grid-cols-1 gap-6 pt-4 md:grid-cols-2 lg:grid-cols-3"
+          set:html={orgsHtml}
+        />
+      </div>
+
+      <div id="orgs-maintenance" class="w-full border border-line bg-surface p-8" hidden>
+        <Text variant="h3">Esta sección está en mantenimiento</Text>
+        <Text variant="p" class="mt-3 max-w-2xl text-muted">
+          La lista de organizaciones no está disponible por el momento. Volvé a intentar en unos
+          minutos.
+        </Text>
+      </div>
+
+      <div
+        id="orgs-loading"
+        class="w-full py-16 text-center text-xs uppercase tracking-wider text-muted"
+        hidden={orgs.length > 0}
+      >
+        Cargando organizaciones...
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<script>
+  import { loadAwesomeFeed } from '@/lib/awesome-client';
+  import { orgsGridHtml } from '@/lib/catalogue-render';
+
+  const app = document.getElementById('orgs-app');
+  const grid = document.getElementById('orgs-grid');
+  const maintenance = document.getElementById('orgs-maintenance');
+  const loading = document.getElementById('orgs-loading');
+
+  async function init() {
+    const rendered = (grid?.innerHTML ?? '').trim().length > 0;
+    const feed = await loadAwesomeFeed();
+    loading?.setAttribute('hidden', '');
+
+    if (!feed || !app || !grid) {
+      // Keep the prerendered list if the refresh failed.
+      if (!rendered) maintenance?.removeAttribute('hidden');
+      return;
+    }
+
+    grid.innerHTML = orgsGridHtml(feed.orgs ?? []);
+    app.removeAttribute('hidden');
+  }
+
+  void init();
+</script>

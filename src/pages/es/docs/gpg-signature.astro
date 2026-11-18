@@ -1,0 +1,489 @@
+---
+// Components
+import Anchor from '@/components/Anchor/Anchor.astro';
+import Text from '@/components/Text/Text.astro';
+// Layout
+import Layout from '@/layouts/Layout.astro';
+
+const code = {
+  apt: `apt update
+apt install gnupg -y`,
+  dnf: `dnf update -y
+dnf install gnupg2 -y`,
+  pacman: `pacman -S gnupg`,
+  brew: `brew install gnupg`,
+  version: `gpg --version`,
+  versionOutput: `[user@linux ~]$ gpg --version
+gpg (GnuPG) 2.4.9
+libgcrypt 1.12.2
+Copyright (C) 2025 g10 Code GmbH
+License GNU GPL-3.0-or-later <https://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Home: /home/user/.gnupg
+Supported algorithms:
+Pubkey: RSA, ELG, DSA, ECDH, ECDSA, EDDSA
+Cipher: IDEA, 3DES, CAST5, BLOWFISH, AES, AES192, AES256, TWOFISH,
+    CAMELLIA128, CAMELLIA192, CAMELLIA256
+Hash: SHA1, RIPEMD160, SHA256, SHA384, SHA512, SHA224
+Compression: Uncompressed, ZIP, ZLIB, BZIP2`,
+  generate: `gpg --full-generate-key`,
+  keyPrompt: `[user@linux ~]$ gpg --full-generate-key
+gpg (GnuPG) 2.4.9; Copyright (C) 2025 g10 Code GmbH
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Please select what kind of key you want:
+    (1) RSA and RSA
+    (2) DSA and Elgamal
+    (3) DSA (sign only)
+    (4) RSA (sign only)
+    (9) ECC (sign and encrypt) *default*
+    (10) ECC (sign only)
+    (14) Existing key from card
+Your selection? `,
+  curve: `Please select which elliptic curve you want:
+    (1) Curve 25519 *default*
+    (4) NIST P-384
+    (6) Brainpool P-256
+Your selection?`,
+  validityPrompt: `Please specify how long the key should be valid.
+        0 = key does not expire
+    <n>  = key expires in n days
+    <n>w = key expires in n weeks
+    <n>m = key expires in n months
+    <n>y = key expires in n years
+Key is valid for? (0)`,
+  confirmExpiry: `Key does not expire at all
+Is this correct? (y/N)`,
+  realName: `GnuPG needs to construct a user ID to identify your key.
+
+Real name:`,
+  emailPrompt: `Email address:`,
+  commentPrompt: `Comment:`,
+  created: `We need to generate a lot of random bytes. It is a good idea to perform
+some other action (type on the keyboard, move the mouse, utilize the
+disks) during the prime generation; this gives the random number
+generator a better chance to gain enough entropy.
+We need to generate a lot of random bytes. It is a good idea to perform
+some other action (type on the keyboard, move the mouse, utilize the
+disks) during the prime generation; this gives the random number
+generator a better chance to gain enough entropy.
+gpg: directory '/home/user/.gnupg/openpgp-revocs.d' created
+gpg: revocation certificate stored as '/home/user/.gnupg/openpgp-revocs.d/532E183AC87324997E2A064EC4D02E34E0956389.rev'
+public and secret key created and signed.
+
+pub   ed25519 2026-08-28 [SC]
+      532E183AC87324997E2A064EC4D02E34E0956389
+uid                      user <user@example.com>
+sub   cv25519 2026-08-28 [E]`,
+  gitIdentity: `git config --global user.name "Your Name"
+git config --global user.email "you@example.com"`,
+  signingKey: `git config --global user.signingkey C4D02E34E0956389`,
+  enableSign: `git config --global commit.gpgsign true`,
+  commitSingle: `git commit -S -m "Your commit message"`,
+  verifyLog: `git log --show-signature`,
+  gpgProgram: `git config --global gpg.program "C:\\Program Files (x86)\\GnuPG\\bin\\gpg.exe"`,
+  listSecret: `gpg --list-secret-keys --keyid-format=long`,
+  listSecretOutput: `[keyboxd]
+---------
+sec   ed25519/C4D02E34E0956389 2026-08-28 [SC]
+      532E183AC87324997E2A064EC4D02E34E0956389
+uid                 [ultimate] user <user@example.com>
+ssb   cv25519/88E544D3D639D488 2026-08-28 [E]`,
+  exportKey: `gpg --armor --export C4D02E34E0956389
+# Prints the GPG key ID, in ASCII armor format`,
+  pushTest: `git add .
+git commit -m "Test signed commit"
+git push`,
+  noreplyEmail: `git config --global user.email "<id>+<username>@users.noreply.github.com"`,
+} as const;
+
+const fingerprint = '532E183AC87324997E2A064EC4D02E34E0956389';
+const keyId = 'C4D02E34E0956389';
+---
+
+<Layout
+  title="Guía de firma GPG para commits — LibreCourseUY"
+  description="Aprendé a instalar GPG, generar un par de claves de firma, firmar tus commits de Git y verificar las firmas correctamente en GitHub."
+>
+  <main class="flex min-h-screen flex-col items-start justify-center">
+    <section
+      class="flex flex-col justify-start items-start w-full min-h-[calc(100dvh-4rem)] pt-12 pb-12"
+    >
+      <div class="space-y-12 w-full max-w-4xl">
+        <div class="space-y-12">
+          <Text variant="h1">Firma GPG</Text>
+          <Text variant="p">
+            Una firma GPG es una forma de demostrar criptográficamente que un archivo o un commit
+            realmente viene de vos. Esta guía te acompaña paso a paso para instalar GPG, crear un
+            par de claves de firma, firmar tus commits de Git y agregar tu clave pública a GitHub
+            para que tus commits aparezcan como «Verificado».
+          </Text>
+        </div>
+
+        <div class="space-y-2 ml-4 border border-line p-6 space-y-4">
+          <Text variant="h3">Índice</Text>
+          <ul>
+            <li>
+              <Anchor href="#installing-gpg">Instalar GPG</Anchor>
+            </li>
+            <li>
+              <Anchor href="#creating-a-signature">Crear una firma</Anchor>
+            </li>
+            <li>
+              <Anchor href="#signing-git-commits"> Firmar commits de Git con tu firma GPG</Anchor>
+            </li>
+            <li>
+              <Anchor href="#commit-signature-verification">
+                Verificación de firmas de commits en GitHub</Anchor
+              >
+            </li>
+          </ul>
+        </div>
+
+        <hr class="border-line" />
+
+        <div class="space-y-8">
+          <Text variant="h2" id="installing-gpg"> Instalar GPG </Text>
+
+          <div class="space-y-4">
+            <Text variant="h3">Windows</Text>
+            <Text variant="p">
+              Descargá Gpg4win desde{' '}
+              <Anchor href="https://gnupg.org/download/index.html#binary">gnupg.org</Anchor>.
+            </Text>
+          </div>
+
+          <div class="space-y-4">
+            <Text variant="h3">Linux</Text>
+
+            <div class="space-y-4 ml-4">
+              <Text variant="h4">Debian/Ubuntu</Text>
+              <code
+                class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
+                set:text={code.apt}
+              />
+            </div>
+
+            <div class="space-y-4 ml-4">
+              <Text variant="h4">Fedora/RedHat</Text>
+              <code
+                class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
+                set:text={code.dnf}
+              />
+            </div>
+
+            <div class="space-y-4 ml-4">
+              <Text variant="h4">Arch</Text>
+              <Text variant="p">
+                gnupg ya debería estar instalado en tu sistema, porque es una dependencia de pacman
+                (<Anchor href="https://wiki.archlinux.org/title/GnuPG">ArchWiki</Anchor>).
+              </Text>
+              <code
+                class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
+                set:text={code.pacman}
+              />
+            </div>
+          </div>
+
+          <div class="space-y-4">
+            <Text variant="h3">macOS</Text>
+            <Text variant="p">
+              Si no tenés Homebrew instalado, instalalo primero desde{' '}
+              <Anchor href="https://brew.sh">brew.sh</Anchor> y después ejecutá:
+            </Text>
+            <code
+              class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
+              set:text={code.brew}
+            />
+          </div>
+        </div>
+
+        <hr class="border-line" />
+
+        <div class="space-y-8">
+          <Text variant="h2" id="creating-a-signature"> Crear una firma </Text>
+
+          <div class="space-y-4">
+            <Text variant="h3">Comprobar si gpg está instalado</Text>
+            <Text variant="p">Abrí tu terminal y ejecutá:</Text>
+            <code
+              class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
+              set:text={code.version}
+            />
+            <Text variant="p">Debería mostrar:</Text>
+            <code
+              class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
+              set:text={code.versionOutput}
+            />
+            <Text variant="p"
+              >Una vez que confirmes que GPG está instalado correctamente, empecemos a crear una
+              clave.</Text
+            >
+          </div>
+
+          <div class="space-y-4">
+            <Text variant="h3">Empezá a crear tus pares de claves</Text>
+            <code
+              class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
+              set:text={code.generate}
+            />
+
+            <div class="p-4 border border-line rounded space-y-4">
+              <Text variant="p">
+                <strong class="underline">Atención:</strong> este es un asistente interactivo. Te va a
+                hacer varias preguntas y después te va a pedir una frase de contraseña aparte. Esa solicitud
+                puede abrirse en su propia ventana (un cuadro de «pinentry»): escribí ahí tu frase de
+                contraseña. En un servidor sin interfaz gráfica, en cambio, te la va a pedir en la terminal.
+              </Text>
+            </div>
+
+            <Text variant="p">
+              Debería mostrar un mensaje para elegir qué tipo de clave querés. Presioná{' '}
+              <code class="p-1 bg-surface border border-line rounded text-sm">Enter</code> para continuar
+              con el valor por defecto o elegí el tipo que prefieras.
+            </Text>
+            <code
+              class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
+              set:text={code.keyPrompt}
+            />
+
+            <Text variant="p">
+              En esa solicitud, elegí qué curva elíptica querés: presioná{' '}
+              <code class="p-1 bg-surface border border-line rounded text-sm">Enter</code> para continuar
+              con la opción por defecto o seleccioná la que prefieras.
+            </Text>
+            <code
+              class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
+              set:text={code.curve}
+            />
+
+            <Text variant="p">
+              Después, cuando te pida la fecha de vencimiento, presioná{' '}
+              <code class="p-1 bg-surface border border-line rounded text-sm">Enter</code> para continuar
+              con el valor por defecto o elegí el que quieras.
+            </Text>
+            <code
+              class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
+              set:text={code.validityPrompt}
+            />
+
+            <Text variant="p">
+              Si ingresaste <code class="p-1 bg-surface border border-line rounded text-sm">0</code> o{
+                ' '
+              }
+              <code class="p-1 bg-surface border border-line rounded text-sm">Enter</code>, tenés
+              que escribir <code class="p-1 bg-surface border border-line rounded text-sm">y</code> para
+              confirmarlo.
+            </Text>
+            <code
+              class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
+              set:text={code.confirmExpiry}
+            />
+
+            <Text variant="p">Ingresá tu nombre real</Text>
+            <code
+              class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
+              set:text={code.realName}
+            />
+
+            <Text variant="p">Correo electrónico (usá el correo verificado en GitHub)</Text>
+            <code
+              class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
+              set:text={code.emailPrompt}
+            />
+
+            <Text variant="p">Ingresá un comentario o dejalo vacío</Text>
+            <code
+              class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
+              set:text={code.commentPrompt}
+            />
+
+            <div class="rounded-lg border border-line p-6 space-y-2">
+              <Text variant="p">
+                Después de todo esto, confirmá que los datos ingresados sean correctos: si están
+                bien, escribí <code class="p-1 bg-surface border border-line rounded text-sm"
+                  >O</code
+                > y continuá. Debería abrirse una solicitud para escribir tu frase de contraseña (usá
+                una frase segura).
+              </Text>
+
+              <Text variant="p">Al terminar, debería generar tu propia firma GPG.</Text>
+
+              <p class="text-xs font-semibold text-emphasis-secondary">Salida:</p>
+              <code
+                class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
+                set:text={code.created}
+              />
+            </div>
+
+            <Text variant="p">
+              Fijate en los dos números al final de la salida:{' '}
+              <code class="p-1 bg-surface border border-line rounded text-sm">{fingerprint}</code> es
+              la
+              <strong>huella</strong> completa de tu clave y{' '}
+              <code class="p-1 bg-surface border border-line rounded text-sm">{keyId}</code> es el
+              <strong>ID de clave</strong>{' '}
+              - son simplemente los últimos 16 caracteres de la huella. Vas a usar el ID de clave más
+              adelante para indicarle a Git con qué clave firmar.
+            </Text>
+          </div>
+        </div>
+
+        <hr class="border-line" />
+
+        <div class="space-y-8">
+          <Text variant="h2" id="signing-git-commits">
+            Firmar commits de Git con tu firma GPG
+          </Text>
+
+          <Text variant="p"
+            >Ahora que tenemos nuestra clave, hay que decirle a Git que la use para firmar nuestros
+            commits.</Text
+          >
+          <Text variant="p">
+            Primero, asegurate de que Git sepa quién sos. El correo que uses acá tiene que coincidir
+            con el que usaste en la clave GPG (y con el correo verificado de tu cuenta de GitHub);
+            de lo contrario, GitHub no va a mostrar tus commits como «Verificado»:
+          </Text>
+          <code
+            class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
+            set:text={code.gitIdentity}
+          />
+
+          <Text variant="p">
+            Ahora configurá Git para que use la clave GPG que generamos. Reemplazá{' '}
+            <code class="p-1 bg-surface border border-line rounded text-sm">{keyId}</code> por el ID de
+            clave de tu propia salida (los últimos 16 caracteres de tu huella):
+          </Text>
+          <code
+            class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
+            set:text={code.signingKey}
+          />
+
+          <Text variant="p">Habilitá la firma de todos los commits por defecto:</Text>
+          <code
+            class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
+            set:text={code.enableSign}
+          />
+
+          <Text variant="p">
+            Desde ahora, todos los commits que hagas van a estar firmados. Para firmar un commit
+            puntual de forma explícita, usá la opción{' '}
+            <code class="p-1 bg-surface border border-line rounded text-sm">-S</code>:
+          </Text>
+          <code
+            class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
+            set:text={code.commitSingle}
+          />
+
+          <Text variant="p">Para verificar que tus commits estén firmados, usá:</Text>
+          <code
+            class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
+            set:text={code.verifyLog}
+          />
+
+          <div class="p-4 border border-line rounded space-y-4">
+            <Text variant="p">
+              <strong class="underline">Solo Windows:</strong> si Git no encuentra el binario{' '}
+              <code class="p-1 bg-surface border border-line rounded text-sm">gpg</code> de Gpg4win, indicá
+              dónde está (ajustá la ruta a tu instalación):
+            </Text>
+            <code
+              class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
+              set:text={code.gpgProgram}
+            />
+          </div>
+        </div>
+
+        <hr class="border-line" />
+
+        <div class="space-y-8">
+          <Text variant="h2" id="commit-signature-verification">
+            Verificación de firmas de commits en GitHub
+          </Text>
+
+          <Text variant="p">Ejecutá:</Text>
+          <code
+            class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
+            set:text={code.listSecret}
+          />
+          <code
+            class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
+            set:text={code.listSecretOutput}
+          />
+
+          <Text variant="p">
+            De la lista de claves GPG, copiá el ID de clave (el de 16 caracteres) que quieras usar.
+            En este ejemplo, el ID de la clave GPG es <strong>{keyId}</strong>:
+          </Text>
+          <code
+            class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
+            set:text={code.exportKey}
+          />
+
+          <Text variant="p">
+            Copiá tu clave GPG, empezando por{' '}
+            <code class="p-1 bg-surface border border-line rounded text-sm"
+              >-----BEGIN PGP PUBLIC KEY BLOCK-----</code
+            >{' '}
+            y terminando por{' '}
+            <code class="p-1 bg-surface border border-line rounded text-sm"
+              >-----END PGP PUBLIC KEY BLOCK-----</code
+            >.
+          </Text>
+          <Text variant="p">
+            Agregala en GitHub siguiendo esta{' '}
+            <Anchor
+              href="https://docs.github.com/en/authentication/managing-commit-signature-verification/adding-a-gpg-key-to-your-github-account#adding-a-gpg-key"
+              >guía</Anchor
+            >.
+          </Text>
+        </div>
+
+        <hr class="border-line" />
+
+        <div class="space-y-8">
+          <Text variant="h2">Verificá que funcionó</Text>
+          <div class="space-y-4 ml-4">
+            <div class="space-y-4">
+              <Text variant="p">
+                <strong>1. Subí un commit firmado.</strong> Hacé un commit firmado (o cualquier commit,
+                porque la firma ya está habilitada por defecto) y subilo a GitHub:
+              </Text>
+              <code
+                class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
+                set:text={code.pushTest}
+              />
+            </div>
+            <div class="space-y-4">
+              <Text variant="p">
+                <strong>2. Revisá la insignia.</strong> Abrí el commit en GitHub. Deberías ver una insignia
+                verde <strong>Verificado</strong> junto a tu commit.
+              </Text>
+            </div>
+          </div>
+
+          <div class="space-y-4">
+            <Text variant="p">
+              Si el commit aparece como «No verificado», la causa más común es que los correos no
+              coincidan. GitHub solo muestra «Verificado» en los commits hechos con un correo
+              verificado. Para evitarlo, podés usar el correo noreply de GitHub en lugar del tuyo
+              personal:
+            </Text>
+            <code
+              class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
+              set:text={code.noreplyEmail}
+            />
+            <Text variant="p">
+              Podés encontrar tu propia dirección noreply en GitHub, en{' '}
+              <strong>Configuración → Correos electrónicos</strong>.
+            </Text>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

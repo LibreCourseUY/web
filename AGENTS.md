@@ -98,6 +98,24 @@ Machine-readable discovery for AI agents is part of the site, not an add-on:
 Functions directly (17 checks, including the www→apex redirect). Keep it green
 when changing agent surfaces.
 
+## Internationalization
+
+- English lives at the root, Spanish under `/es/`. Every page (except `404`) needs
+  a twin: `src/pages/foo.astro` and `src/pages/es/foo.astro`.
+- Shared chrome localizes itself from `Astro.url.pathname` via
+  `langFromPath()` (`src/i18n/config.ts`); nav and footer strings live in
+  `src/i18n/common.ts`. For page copy, translate the page file directly.
+- Internal links inside `/es/` pages must point at `/es/...`; use
+  `localizePath()` in components rather than hardcoding.
+- Each page declares `<Layout title description>` with literal strings in its own
+  language — `pnpm seo` reads them per file, so titles/descriptions and
+  breadcrumbs stay correct for both locales.
+- `hreflang` (en, es, x-default), `<html lang>` and `og:locale` are emitted by
+  `Layout`/`Seo`; never hardcode them per page.
+- Do not translate fetched catalogue data (project and organisation
+  descriptions), commands, or code. The `/es/` catalogue translates its chrome
+  only.
+
 ## SEO invariants
 
 - Every page declares `<Layout title description>`; titles are 30-60 characters

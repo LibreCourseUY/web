@@ -2,6 +2,8 @@
 // Utils
 import { cn } from '@/lib/utils';
 import { communityLinks } from '@/data/community';
+import { LOCALE_LABEL, LOCALE_NAME, langFromPath, localizePath, otherLang } from '@/i18n/config';
+import { common } from '@/i18n/common';
 
 export interface Props {
   className?: string;
@@ -20,14 +22,21 @@ const isActive = (href: string) => {
   return current === path;
 };
 
+const lang = langFromPath(pathname ?? Astro.url.pathname);
+const t = common[lang];
+const altLang = otherLang(lang);
+const altHref = localizePath(pathname ?? Astro.url.pathname, altLang);
+
+const at = (path: string) => localizePath(path, lang);
+
 const route: { name: string; href: string; external?: boolean }[] = [
-  { name: 'Home', href: '/' },
-  { name: 'Learn', href: '/learn/' },
-  { name: 'Projects', href: '/projects/' },
-  { name: 'Showcase', href: '/showcase/' },
-  { name: 'Activity', href: communityLinks.activity, external: true },
-  { name: 'Docs', href: '/docs/' },
-  { name: 'Contribute', href: '/contribute/' },
+  { name: t.nav.home, href: at('/') },
+  { name: t.nav.learn, href: at('/learn/') },
+  { name: t.nav.projects, href: at('/projects/') },
+  { name: t.nav.showcase, href: at('/showcase/') },
+  { name: t.nav.activity, href: communityLinks.activity, external: true },
+  { name: t.nav.docs, href: at('/docs/') },
+  { name: t.nav.contribute, href: at('/contribute/') },
 ];
 ---
 
@@ -39,9 +48,9 @@ const route: { name: string; href: string; external?: boolean }[] = [
   )}
 >
   <div class={cn('h-16 w-full flex flex-row justify-between items-center')}>
-    <a href="/" class="flex items-center text-xl font-bold tracking-tight"> LibreCourseUY </a>
+    <a href={at('/')} class="flex items-center text-xl font-bold tracking-tight"> LibreCourseUY </a>
 
-    <nav aria-label="Main navigation" class="hidden flex-row items-center gap-4 lg:flex">
+    <nav aria-label={t.nav.main} class="hidden flex-row items-center gap-4 lg:flex">
       <ul class="flex flex-row gap-4">
         {
           route.map((item, _, arr) => (
@@ -61,17 +70,27 @@ const route: { name: string; href: string; external?: boolean }[] = [
               >
                 {item.name}
                 {item.external && <span aria-hidden="true"> ↗</span>}
-                {item.external && <span class="sr-only"> (opens in a new tab)</span>}
+                {item.external && <span class="sr-only"> {t.nav.opensInNewTab}</span>}
               </a>
             </li>
           ))
         }
       </ul>
+      <a
+        id="lang-toggle"
+        href={altHref}
+        hreflang={altLang}
+        lang={altLang}
+        class="flex items-center justify-center h-8 min-w-8 px-1.5 rounded-full font-mono text-xs font-bold tracking-wider text-emphasis/70 hover:text-emphasis hover:bg-emphasis/10 transition-colors"
+        aria-label={t.nav.switchTo}
+      >
+        {LOCALE_LABEL[altLang]}
+      </a>
       <button
         id="theme-toggle"
         type="button"
         class="flex items-center justify-center w-8 h-8 rounded-full hover:bg-emphasis/10 transition-colors"
-        aria-label="Toggle theme"
+        aria-label={t.nav.toggleTheme}
       >
         <svg
           class="hidden dark:block w-5 h-5 text-emphasis"
@@ -107,7 +126,9 @@ const route: { name: string; href: string; external?: boolean }[] = [
       type="button"
       aria-controls="mobile-menu-overlay"
       aria-expanded="false"
-      aria-label="Open menu"
+      aria-label={t.nav.openMenu}
+      data-label-open={t.nav.openMenu}
+      data-label-close={t.nav.closeMenu}
       data-desktop-breakpoint="64rem"
       class={cn(
         'relative flex flex-col justify-center items-center w-8 h-8 z-50 group',
@@ -133,7 +154,7 @@ const route: { name: string; href: string; external?: boolean }[] = [
   )}
 >
   <nav
-    aria-label="Mobile navigation"
+    aria-label={t.nav.mobile}
     class="flex flex-1 flex-col items-center justify-start gap-8 pt-8 pb-16"
   >
     <ul class="flex flex-col items-center gap-8">
@@ -154,12 +175,23 @@ const route: { name: string; href: string; external?: boolean }[] = [
             >
               {item.name}
               {item.external && <span aria-hidden="true"> ↗</span>}
-              {item.external && <span class="sr-only"> (opens in a new tab)</span>}
+              {item.external && <span class="sr-only"> {t.nav.opensInNewTab}</span>}
             </a>
           </li>
         ))
       }
     </ul>
+    <a
+      href={altHref}
+      hreflang={altLang}
+      lang={altLang}
+      class="mt-4 px-8 py-3 rounded-full border border-line font-bold text-emphasis transition-colors hover:border-emphasis-secondary flex items-center justify-center gap-2"
+    >
+      <span class="font-mono text-xs tracking-wider text-emphasis/60" aria-hidden="true"
+        >{LOCALE_LABEL[altLang]}</span
+      >
+      {LOCALE_NAME[altLang]}
+    </a>
     <button
       id="theme-toggle-mobile"
       type="button"
@@ -191,7 +223,7 @@ const route: { name: string; href: string; external?: boolean }[] = [
           d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
         ></path>
       </svg>
-      Theme
+      {t.nav.theme}
     </button>
   </nav>
 </div>

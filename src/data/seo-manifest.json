@@ -6,7 +6,7 @@
     "og": {
       "type": "website",
       "title": "About LibreCourseUY — Non-Profit FOSS Community in Uruguay",
-      "description": "LibreCourseUY is a non-profit free and open source software community based in Uruguay. Learn how we are organized, who owns the projects, and how to take part.",
+      "description": "LibreCourseUY is a non-profit free and open source community in Uruguay. How we are organized, who owns the projects, and how to take part.",
       "url": "https://librecourse.uy/about/",
       "image": "https://librecourse.uy/og.jpg",
       "image:width": 1200,
@@ -18,18 +18,18 @@
     "twitter": {
       "card": "summary_large_image",
       "title": "About LibreCourseUY — Non-Profit FOSS Community in Uruguay",
-      "description": "LibreCourseUY is a non-profit free and open source software community based in Uruguay. Learn how we are organized, who owns the projects, and how to take part.",
+      "description": "LibreCourseUY is a non-profit free and open source community in Uruguay. How we are organized, who owns the projects, and how to take part.",
       "image": "https://librecourse.uy/og.jpg",
       "image:alt": "LibreCourseUY"
     },
-    "description": "LibreCourseUY is a non-profit free and open source software community based in Uruguay. Learn how we are organized, who owns the projects, and how to take part.",
+    "description": "LibreCourseUY is a non-profit free and open source community in Uruguay. How we are organized, who owns the projects, and how to take part.",
     "schema_jsonld": [
       {
         "@context": "https://schema.org",
         "@type": "WebPage",
         "name": "About LibreCourseUY — Non-Profit FOSS Community in Uruguay",
         "url": "https://librecourse.uy/about/",
-        "description": "LibreCourseUY is a non-profit free and open source software community based in Uruguay. Learn how we are organized, who owns the projects, and how to take part.",
+        "description": "LibreCourseUY is a non-profit free and open source community in Uruguay. How we are organized, who owns the projects, and how to take part.",
         "image": "https://librecourse.uy/og.jpg",
         "datePublished": "2026-11-18",
         "dateModified": "2026-11-18",
@@ -317,6 +317,680 @@
       }
     ]
   },
+  "/es/about/": {
+    "title": "Acerca de LibreCourseUY — Comunidad FOSS sin fines de lucro",
+    "canonical": "https://librecourse.uy/es/about/",
+    "robots": "index,follow,max-snippet:-1,max-image-preview:large",
+    "og": {
+      "type": "website",
+      "title": "Acerca de LibreCourseUY — Comunidad FOSS sin fines de lucro",
+      "description": "LibreCourseUY es una comunidad de software libre sin fines de lucro en Uruguay. Cómo nos organizamos, quién es dueño de los proyectos y cómo participar.",
+      "url": "https://librecourse.uy/es/about/",
+      "image": "https://librecourse.uy/og.jpg",
+      "image:width": 1200,
+      "image:height": 630,
+      "image:alt": "LibreCourseUY",
+      "site_name": "LibreCourseUY",
+      "locale": "en_US"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "Acerca de LibreCourseUY — Comunidad FOSS sin fines de lucro",
+      "description": "LibreCourseUY es una comunidad de software libre sin fines de lucro en Uruguay. Cómo nos organizamos, quién es dueño de los proyectos y cómo participar.",
+      "image": "https://librecourse.uy/og.jpg",
+      "image:alt": "LibreCourseUY"
+    },
+    "description": "LibreCourseUY es una comunidad de software libre sin fines de lucro en Uruguay. Cómo nos organizamos, quién es dueño de los proyectos y cómo participar.",
+    "schema_jsonld": [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Acerca de LibreCourseUY — Comunidad FOSS sin fines de lucro",
+        "url": "https://librecourse.uy/es/about/",
+        "description": "LibreCourseUY es una comunidad de software libre sin fines de lucro en Uruguay. Cómo nos organizamos, quién es dueño de los proyectos y cómo participar.",
+        "image": "https://librecourse.uy/og.jpg",
+        "author": {
+          "@type": "Person",
+          "name": "LibreCourseUY"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "LibreCourseUY",
+          "logo": "https://librecourse.uy/icon.png"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Inicio",
+            "item": "https://librecourse.uy/es/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Acerca",
+            "item": "https://librecourse.uy/es/about/"
+          }
+        ]
+      }
+    ]
+  },
+  "/es/contribute/": {
+    "title": "Cómo hacer tu primera contribución — LibreCourseUY",
+    "canonical": "https://librecourse.uy/es/contribute/",
+    "robots": "index,follow,max-snippet:-1,max-image-preview:large",
+    "og": {
+      "type": "website",
+      "title": "Cómo hacer tu primera contribución — LibreCourseUY",
+      "description": "Hacé tu primera contribución al código abierto con LibreCourseUY. Elegí un proyecto, encontrá una tarea en Gitsion y prepará tus herramientas.",
+      "url": "https://librecourse.uy/es/contribute/",
+      "image": "https://librecourse.uy/og.jpg",
+      "image:width": 1200,
+      "image:height": 630,
+      "image:alt": "LibreCourseUY",
+      "site_name": "LibreCourseUY",
+      "locale": "en_US"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "Cómo hacer tu primera contribución — LibreCourseUY",
+      "description": "Hacé tu primera contribución al código abierto con LibreCourseUY. Elegí un proyecto, encontrá una tarea en Gitsion y prepará tus herramientas.",
+      "image": "https://librecourse.uy/og.jpg",
+      "image:alt": "LibreCourseUY"
+    },
+    "description": "Hacé tu primera contribución al código abierto con LibreCourseUY. Elegí un proyecto, encontrá una tarea en Gitsion y prepará tus herramientas.",
+    "schema_jsonld": [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Cómo hacer tu primera contribución — LibreCourseUY",
+        "url": "https://librecourse.uy/es/contribute/",
+        "description": "Hacé tu primera contribución al código abierto con LibreCourseUY. Elegí un proyecto, encontrá una tarea en Gitsion y prepará tus herramientas.",
+        "image": "https://librecourse.uy/og.jpg",
+        "author": {
+          "@type": "Person",
+          "name": "LibreCourseUY"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "LibreCourseUY",
+          "logo": "https://librecourse.uy/icon.png"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Inicio",
+            "item": "https://librecourse.uy/es/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Contribuir",
+            "item": "https://librecourse.uy/es/contribute/"
+          }
+        ]
+      }
+    ]
+  },
+  "/es/dco/": {
+    "title": "Certificado de Origen (DCO) — LibreCourseUY",
+    "canonical": "https://librecourse.uy/es/dco/",
+    "robots": "index,follow,max-snippet:-1,max-image-preview:large",
+    "og": {
+      "type": "website",
+      "title": "Certificado de Origen (DCO) — LibreCourseUY",
+      "description": "LibreCourseUY acepta contribuciones bajo el Developer Certificate of Origin (DCO). Cómo certificar cada commit con la línea Signed-off-by.",
+      "url": "https://librecourse.uy/es/dco/",
+      "image": "https://librecourse.uy/og.jpg",
+      "image:width": 1200,
+      "image:height": 630,
+      "image:alt": "LibreCourseUY",
+      "site_name": "LibreCourseUY",
+      "locale": "en_US"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "Certificado de Origen (DCO) — LibreCourseUY",
+      "description": "LibreCourseUY acepta contribuciones bajo el Developer Certificate of Origin (DCO). Cómo certificar cada commit con la línea Signed-off-by.",
+      "image": "https://librecourse.uy/og.jpg",
+      "image:alt": "LibreCourseUY"
+    },
+    "description": "LibreCourseUY acepta contribuciones bajo el Developer Certificate of Origin (DCO). Cómo certificar cada commit con la línea Signed-off-by.",
+    "schema_jsonld": [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Certificado de Origen (DCO) — LibreCourseUY",
+        "url": "https://librecourse.uy/es/dco/",
+        "description": "LibreCourseUY acepta contribuciones bajo el Developer Certificate of Origin (DCO). Cómo certificar cada commit con la línea Signed-off-by.",
+        "image": "https://librecourse.uy/og.jpg",
+        "publisher": {
+          "@type": "Organization",
+          "name": "LibreCourseUY",
+          "logo": "https://librecourse.uy/icon.png"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Inicio",
+            "item": "https://librecourse.uy/es/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "DCO",
+            "item": "https://librecourse.uy/es/dco/"
+          }
+        ]
+      }
+    ]
+  },
+  "/es/docs/gpg-signature/": {
+    "title": "Guía de firma GPG para commits — LibreCourseUY",
+    "canonical": "https://librecourse.uy/es/docs/gpg-signature/",
+    "robots": "index,follow,max-snippet:-1,max-image-preview:large",
+    "og": {
+      "type": "article",
+      "title": "Guía de firma GPG para commits — LibreCourseUY",
+      "description": "Aprendé a instalar GPG, generar un par de claves de firma, firmar tus commits de Git y verificar las firmas correctamente en GitHub.",
+      "url": "https://librecourse.uy/es/docs/gpg-signature/",
+      "image": "https://librecourse.uy/og.jpg",
+      "image:width": 1200,
+      "image:height": 630,
+      "image:alt": "LibreCourseUY",
+      "site_name": "LibreCourseUY",
+      "locale": "en_US"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "Guía de firma GPG para commits — LibreCourseUY",
+      "description": "Aprendé a instalar GPG, generar un par de claves de firma, firmar tus commits de Git y verificar las firmas correctamente en GitHub.",
+      "image": "https://librecourse.uy/og.jpg",
+      "image:alt": "LibreCourseUY"
+    },
+    "description": "Aprendé a instalar GPG, generar un par de claves de firma, firmar tus commits de Git y verificar las firmas correctamente en GitHub.",
+    "schema_jsonld": [
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "name": "Guía de firma GPG para commits — LibreCourseUY",
+        "url": "https://librecourse.uy/es/docs/gpg-signature/",
+        "description": "Aprendé a instalar GPG, generar un par de claves de firma, firmar tus commits de Git y verificar las firmas correctamente en GitHub.",
+        "image": "https://librecourse.uy/og.jpg",
+        "author": {
+          "@type": "Person",
+          "name": "LibreCourseUY"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "LibreCourseUY",
+          "logo": "https://librecourse.uy/icon.png"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Inicio",
+            "item": "https://librecourse.uy/es/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Documentación",
+            "item": "https://librecourse.uy/es/docs/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Firma GPG",
+            "item": "https://librecourse.uy/es/docs/gpg-signature/"
+          }
+        ]
+      }
+    ]
+  },
+  "/es/docs/": {
+    "title": "Documentación para contribuir: Git, GPG y GitHub",
+    "canonical": "https://librecourse.uy/es/docs/",
+    "robots": "index,follow,max-snippet:-1,max-image-preview:large",
+    "og": {
+      "type": "website",
+      "title": "Documentación para contribuir: Git, GPG y GitHub",
+      "description": "Guías de contribución, recursos de Git y GitHub, referencias técnicas y herramientas para la comunidad de LibreCourseUY.",
+      "url": "https://librecourse.uy/es/docs/",
+      "image": "https://librecourse.uy/og.jpg",
+      "image:width": 1200,
+      "image:height": 630,
+      "image:alt": "LibreCourseUY",
+      "site_name": "LibreCourseUY",
+      "locale": "en_US"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "Documentación para contribuir: Git, GPG y GitHub",
+      "description": "Guías de contribución, recursos de Git y GitHub, referencias técnicas y herramientas para la comunidad de LibreCourseUY.",
+      "image": "https://librecourse.uy/og.jpg",
+      "image:alt": "LibreCourseUY"
+    },
+    "description": "Guías de contribución, recursos de Git y GitHub, referencias técnicas y herramientas para la comunidad de LibreCourseUY.",
+    "schema_jsonld": [
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Documentación para contribuir: Git, GPG y GitHub",
+        "url": "https://librecourse.uy/es/docs/",
+        "description": "Guías de contribución, recursos de Git y GitHub, referencias técnicas y herramientas para la comunidad de LibreCourseUY.",
+        "image": "https://librecourse.uy/og.jpg",
+        "publisher": {
+          "@type": "Organization",
+          "name": "LibreCourseUY",
+          "logo": "https://librecourse.uy/icon.png"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Inicio",
+            "item": "https://librecourse.uy/es/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Documentación",
+            "item": "https://librecourse.uy/es/docs/"
+          }
+        ]
+      }
+    ]
+  },
+  "/es/": {
+    "title": "LibreCourseUY — Comunidad FOSS sin fines de lucro",
+    "canonical": "https://librecourse.uy/es/",
+    "robots": "index,follow,max-snippet:-1,max-image-preview:large",
+    "og": {
+      "type": "website",
+      "title": "LibreCourseUY — Comunidad FOSS sin fines de lucro",
+      "description": "Sumate a una comunidad FOSS sin fines de lucro de Uruguay. Descubrí proyectos, aprendé en conjunto y hacé tu primera contribución al código abierto.",
+      "url": "https://librecourse.uy/es/",
+      "image": "https://librecourse.uy/og.jpg",
+      "image:width": 1200,
+      "image:height": 630,
+      "image:alt": "LibreCourseUY",
+      "site_name": "LibreCourseUY",
+      "locale": "en_US"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "LibreCourseUY — Comunidad FOSS sin fines de lucro",
+      "description": "Sumate a una comunidad FOSS sin fines de lucro de Uruguay. Descubrí proyectos, aprendé en conjunto y hacé tu primera contribución al código abierto.",
+      "image": "https://librecourse.uy/og.jpg",
+      "image:alt": "LibreCourseUY"
+    },
+    "description": "Sumate a una comunidad FOSS sin fines de lucro de Uruguay. Descubrí proyectos, aprendé en conjunto y hacé tu primera contribución al código abierto.",
+    "schema_jsonld": {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://librecourse.uy/es/#organization",
+          "name": "LibreCourseUY",
+          "url": "https://librecourse.uy/es/",
+          "logo": "https://librecourse.uy/icon.png",
+          "sameAs": [
+            "https://github.com/LibreCourseUY"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://librecourse.uy/es/#website",
+          "name": "LibreCourseUY",
+          "url": "https://librecourse.uy/es/",
+          "description": "Sumate a una comunidad FOSS sin fines de lucro de Uruguay. Descubrí proyectos, aprendé en conjunto y hacé tu primera contribución al código abierto.",
+          "image": "https://librecourse.uy/og.jpg",
+          "publisher": {
+            "@id": "https://librecourse.uy/es/#organization"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://librecourse.uy/es/#faq",
+          "url": "https://librecourse.uy/es/",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "¿Qué es LibreCourseUY?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Una iniciativa sin fines de lucro radicada en Uruguay que ayuda a programadores —desde quienes están empezando hasta profesionales con experiencia— a contribuir a software libre y de código abierto."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Quién puede sumarse?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Cualquiera, gratis. Se espera que quienes participan sigan nuestro Código de Conducta. Las contribuciones siguen la licencia y las condiciones de contribución de cada proyecto."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Qué ofrece LibreCourseUY?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Una comunidad de desarrollo sólida con objetivos en común, un espacio para aprender y hacer crecer tu carrera, y proyectos reales que valen la pena para tu CV."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Cómo empiezo?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Seguí nuestra guía de primera contribución : elegí un proyecto, encontrá una tarea chica y prepará tus herramientas. Si necesitás ayuda para elegir, preguntá en Discord . Nuestra guía de aprendizaje explica cómo aprender con proyectos reales y acompañamiento de la comunidad."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Dónde puedo ver la actividad reciente de los proyectos?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Visitá Gitsion para seguir las novedades por proyecto o contribuyente, explorar issues y ver pull requests. Nuestro directorio de proyectos te ayuda a descubrir proyectos por categoría, lenguaje y estado de contribución."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Por qué está todo en inglés?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "El código abierto es una conversación global y el inglés es su lengua común. Escribir issues, pull requests y documentación en inglés hace que tus contribuciones sean accesibles para toda la comunidad FOSS, no solo para quienes hablan español. También te prepara para colaborar en el mundo real, en cualquier proyecto y en cualquier lugar."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Dónde puedo encontrar a LibreCourseUY?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Contribuí en GitHub Sumate a nuestro servidor de Discord"
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Cómo funciona la propiedad de los proyectos?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Quienes son dueños de los proyectos conservan la propiedad y la gobernanza de su trabajo. Las contribuciones siguen la licencia y las condiciones de contribución de cada proyecto. LibreCourseUY no reclama derechos sobre los proyectos privados ni el código propietario de sus miembros."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Puedo traer un proyecto privado o comercial?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sí. Podés traer proyectos con componentes privados o comerciales. La colaboración organizada a través de LibreCourseUY debe ocurrir sobre las partes de código abierto de esos proyectos. La parte privada sigue siendo tuya. El trabajo comercial o propietario, incluido el desarrollo pago, el empleo, la consultoría, los acuerdos de acciones o el trabajo bajo NDA, debe acordarse de forma independiente entre las personas involucradas. LibreCourseUY no es parte de esos acuerdos."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "/es/learn/": {
+    "title": "Aprendé a programar contribuyendo — LibreCourseUY",
+    "canonical": "https://librecourse.uy/es/learn/",
+    "robots": "index,follow,max-snippet:-1,max-image-preview:large",
+    "og": {
+      "type": "website",
+      "title": "Aprendé a programar contribuyendo — LibreCourseUY",
+      "description": "Aprendé a programar de verdad con proyectos reales, el apoyo de la comunidad, cursos y ejercicios de práctica de LibreCourseUY.",
+      "url": "https://librecourse.uy/es/learn/",
+      "image": "https://librecourse.uy/og.jpg",
+      "image:width": 1200,
+      "image:height": 630,
+      "image:alt": "LibreCourseUY",
+      "site_name": "LibreCourseUY",
+      "locale": "en_US"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "Aprendé a programar contribuyendo — LibreCourseUY",
+      "description": "Aprendé a programar de verdad con proyectos reales, el apoyo de la comunidad, cursos y ejercicios de práctica de LibreCourseUY.",
+      "image": "https://librecourse.uy/og.jpg",
+      "image:alt": "LibreCourseUY"
+    },
+    "description": "Aprendé a programar de verdad con proyectos reales, el apoyo de la comunidad, cursos y ejercicios de práctica de LibreCourseUY.",
+    "schema_jsonld": [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Aprendé a programar contribuyendo — LibreCourseUY",
+        "url": "https://librecourse.uy/es/learn/",
+        "description": "Aprendé a programar de verdad con proyectos reales, el apoyo de la comunidad, cursos y ejercicios de práctica de LibreCourseUY.",
+        "image": "https://librecourse.uy/og.jpg",
+        "author": {
+          "@type": "Person",
+          "name": "LibreCourseUY"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "LibreCourseUY",
+          "logo": "https://librecourse.uy/icon.png"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Inicio",
+            "item": "https://librecourse.uy/es/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Aprender",
+            "item": "https://librecourse.uy/es/learn/"
+          }
+        ]
+      }
+    ]
+  },
+  "/es/orgs/": {
+    "title": "Organizaciones de código abierto — LibreCourseUY",
+    "canonical": "https://librecourse.uy/es/orgs/",
+    "robots": "index,follow,max-snippet:-1,max-image-preview:large",
+    "og": {
+      "type": "website",
+      "title": "Organizaciones de código abierto — LibreCourseUY",
+      "description": "Organizaciones que mantienen y gobiernan proyectos del ecosistema LibreCourseUY: quiénes son, qué mantienen y dónde vive su código.",
+      "url": "https://librecourse.uy/es/orgs/",
+      "image": "https://librecourse.uy/og.jpg",
+      "image:width": 1200,
+      "image:height": 630,
+      "image:alt": "LibreCourseUY",
+      "site_name": "LibreCourseUY",
+      "locale": "en_US"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "Organizaciones de código abierto — LibreCourseUY",
+      "description": "Organizaciones que mantienen y gobiernan proyectos del ecosistema LibreCourseUY: quiénes son, qué mantienen y dónde vive su código.",
+      "image": "https://librecourse.uy/og.jpg",
+      "image:alt": "LibreCourseUY"
+    },
+    "description": "Organizaciones que mantienen y gobiernan proyectos del ecosistema LibreCourseUY: quiénes son, qué mantienen y dónde vive su código.",
+    "schema_jsonld": [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Organizaciones de código abierto — LibreCourseUY",
+        "url": "https://librecourse.uy/es/orgs/",
+        "description": "Organizaciones que mantienen y gobiernan proyectos del ecosistema LibreCourseUY: quiénes son, qué mantienen y dónde vive su código.",
+        "image": "https://librecourse.uy/og.jpg",
+        "publisher": {
+          "@type": "Organization",
+          "name": "LibreCourseUY",
+          "logo": "https://librecourse.uy/icon.png"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Inicio",
+            "item": "https://librecourse.uy/es/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Organizaciones",
+            "item": "https://librecourse.uy/es/orgs/"
+          }
+        ]
+      }
+    ]
+  },
+  "/es/projects/": {
+    "title": "Proyectos de código abierto de Uruguay — LibreCourseUY",
+    "canonical": "https://librecourse.uy/es/projects/",
+    "robots": "index,follow,max-snippet:-1,max-image-preview:large",
+    "og": {
+      "type": "website",
+      "title": "Proyectos de código abierto de Uruguay — LibreCourseUY",
+      "description": "Explorá proyectos de código abierto de la comunidad LibreCourseUY: filtrá por categoría, lenguaje, licencia y disponibilidad para contribuir.",
+      "url": "https://librecourse.uy/es/projects/",
+      "image": "https://librecourse.uy/og.jpg",
+      "image:width": 1200,
+      "image:height": 630,
+      "image:alt": "LibreCourseUY",
+      "site_name": "LibreCourseUY",
+      "locale": "en_US"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "Proyectos de código abierto de Uruguay — LibreCourseUY",
+      "description": "Explorá proyectos de código abierto de la comunidad LibreCourseUY: filtrá por categoría, lenguaje, licencia y disponibilidad para contribuir.",
+      "image": "https://librecourse.uy/og.jpg",
+      "image:alt": "LibreCourseUY"
+    },
+    "description": "Explorá proyectos de código abierto de la comunidad LibreCourseUY: filtrá por categoría, lenguaje, licencia y disponibilidad para contribuir.",
+    "schema_jsonld": [
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Proyectos de código abierto de Uruguay — LibreCourseUY",
+        "url": "https://librecourse.uy/es/projects/",
+        "description": "Explorá proyectos de código abierto de la comunidad LibreCourseUY: filtrá por categoría, lenguaje, licencia y disponibilidad para contribuir.",
+        "image": "https://librecourse.uy/og.jpg",
+        "publisher": {
+          "@type": "Organization",
+          "name": "LibreCourseUY",
+          "logo": "https://librecourse.uy/icon.png"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Inicio",
+            "item": "https://librecourse.uy/es/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Proyectos",
+            "item": "https://librecourse.uy/es/projects/"
+          }
+        ]
+      }
+    ]
+  },
+  "/es/showcase/": {
+    "title": "Productos creados por nuestros miembros — LibreCourseUY",
+    "canonical": "https://librecourse.uy/es/showcase/",
+    "robots": "index,follow,max-snippet:-1,max-image-preview:large",
+    "og": {
+      "type": "website",
+      "title": "Productos creados por nuestros miembros — LibreCourseUY",
+      "description": "Conocé productos independientes creados por miembros de la comunidad LibreCourseUY y proponé el tuyo a través de un pull request.",
+      "url": "https://librecourse.uy/es/showcase/",
+      "image": "https://librecourse.uy/og.jpg",
+      "image:width": 1200,
+      "image:height": 630,
+      "image:alt": "LibreCourseUY",
+      "site_name": "LibreCourseUY",
+      "locale": "en_US"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "Productos creados por nuestros miembros — LibreCourseUY",
+      "description": "Conocé productos independientes creados por miembros de la comunidad LibreCourseUY y proponé el tuyo a través de un pull request.",
+      "image": "https://librecourse.uy/og.jpg",
+      "image:alt": "LibreCourseUY"
+    },
+    "description": "Conocé productos independientes creados por miembros de la comunidad LibreCourseUY y proponé el tuyo a través de un pull request.",
+    "schema_jsonld": [
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Productos creados por nuestros miembros — LibreCourseUY",
+        "url": "https://librecourse.uy/es/showcase/",
+        "description": "Conocé productos independientes creados por miembros de la comunidad LibreCourseUY y proponé el tuyo a través de un pull request.",
+        "image": "https://librecourse.uy/og.jpg",
+        "publisher": {
+          "@type": "Organization",
+          "name": "LibreCourseUY",
+          "logo": "https://librecourse.uy/icon.png"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Inicio",
+            "item": "https://librecourse.uy/es/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Productos",
+            "item": "https://librecourse.uy/es/showcase/"
+          }
+        ]
+      }
+    ]
+  },
   "/": {
     "title": "LibreCourseUY — Free FOSS Community in Uruguay",
     "canonical": "https://librecourse.uy/",
@@ -535,21 +1209,41 @@
       "image:alt": "LibreCourseUY"
     },
     "description": "Organizations maintaining and governing projects in the LibreCourseUY ecosystem: who they are, what they maintain, and where their source lives.",
-    "schema_jsonld": {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": "Open Source Organizations — LibreCourseUY",
-      "url": "https://librecourse.uy/orgs/",
-      "description": "Organizations maintaining and governing projects in the LibreCourseUY ecosystem: who they are, what they maintain, and where their source lives.",
-      "image": "https://librecourse.uy/og.jpg",
-      "datePublished": "2026-10-10",
-      "dateModified": "2026-11-18",
-      "publisher": {
-        "@type": "Organization",
-        "name": "LibreCourseUY",
-        "logo": "https://librecourse.uy/icon.png"
+    "schema_jsonld": [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Open Source Organizations — LibreCourseUY",
+        "url": "https://librecourse.uy/orgs/",
+        "description": "Organizations maintaining and governing projects in the LibreCourseUY ecosystem: who they are, what they maintain, and where their source lives.",
+        "image": "https://librecourse.uy/og.jpg",
+        "datePublished": "2026-10-10",
+        "dateModified": "2026-11-18",
+        "publisher": {
+          "@type": "Organization",
+          "name": "LibreCourseUY",
+          "logo": "https://librecourse.uy/icon.png"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://librecourse.uy/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Organizations",
+            "item": "https://librecourse.uy/orgs/"
+          }
+        ]
       }
-    }
+    ]
   },
   "/projects/": {
     "title": "Open Source Projects from Uruguay — LibreCourseUY",
