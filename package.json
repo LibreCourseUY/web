@@ -24,12 +24,10 @@
     "clsx": "^2.1.1",
     "sharp": "^0.35.5",
     "tailwind-merge": "^2.6.0",
-    "tailwindcss": "^4.3.5",
-    "turndown": "^7.2.5"
+    "tailwindcss": "^4.3.5"
   },
   "devDependencies": {
     "@astrojs/partytown": "^2.1.9",
-    "@types/turndown": "^5.0.6",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
     "eslint": "^8.57.1",

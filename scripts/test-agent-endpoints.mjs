@@ -158,8 +158,19 @@ await check('health returns ok JSON and is not cached', async () => {
   assert.ok(Date.parse(json.time));
 });
 
-const HTML =
-  '<html><head><title>T</title><script>bad()</script></head><body><h1>Hello</h1><p>Read <a href="/docs/">docs</a>.</p></body></html>';
+const HTML = `<!doctype html>
+<html><head><title>T</title><script>bad()</script></head>
+<body>
+  <nav><a href="/hidden/">nav links are dropped</a></nav>
+  <main>
+    <h1>Hello</h1>
+    <p>Read <a href="/docs/">docs</a> &amp; the <strong>guide</strong>.</p>
+    <ul><li>One</li><li>Two</li></ul>
+    <ol><li>First</li><li>Second</li></ol>
+    <pre><code>npm install &amp; run</code></pre>
+    <img src="/og.jpg" alt="Preview">
+  </main>
+</body></html>`;
 
 function runMiddleware(accept, path = '/') {
   return middleware({
@@ -177,6 +188,18 @@ await check('markdown negotiation converts HTML for Accept: text/markdown', asyn
   assert.match(body, /^# Hello/m);
   assert.match(body, /https:\/\/librecourse\.uy\/docs\//);
   assert.doesNotMatch(body, /bad\(\)/);
+  assert.doesNotMatch(body, /nav links are dropped/);
+});
+
+await check('markdown conversion keeps structure', async () => {
+  const response = await runMiddleware('text/markdown');
+  const body = await response.text();
+  assert.match(body, /- One\n- Two/);
+  assert.match(body, /1\. First\n2\. Second/);
+  assert.match(body, /\*\*guide\*\*/);
+  assert.match(body, /```\nnpm install & run\n```/);
+  assert.match(body, /!\[Preview\]\(https:\/\/librecourse\.uy\/og\.jpg\)/);
+  assert.match(body, /\) & the \*\*guide\*\*\./);
 });
 
 await check('markdown negotiation keeps HTML for browsers', async () => {
