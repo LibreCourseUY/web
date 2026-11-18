@@ -41,7 +41,7 @@ src/
 - **Fonts**: Import Fontsource CSS in layout frontmatter (e.g. `@fontsource/inter/400.css`).
 - **Images**: Use Astro's built-in `<Image />` from `astro:assets` for optimized images (no extra package needed).
 - **Dark mode**: Tailwind `dark:` variants work out of the box, no class switching is configured by default.
-- **Awesome feed**: `/projects` renders the curated list from `PUBLIC_AWESOME_FEED_URL` (see `.env.example`). When unset or unreachable, the page shows an "under maintenance" notice. `Layout` prefetches the feed into `sessionStorage`; filtering helpers live in `src/lib/awesome.ts` (pure, covered by `pnpm test`).
+- **Awesome feed**: `/projects` and `/orgs/` are **prerendered at build time** from the catalogue feed (`src/lib/catalogue-build.ts`, override with `AWESOME_FEED_URL_BUILD`), so the HTML carries the real entries and an `ItemList`. Each card ships its filter metadata in `data-filter`, and the client filters by toggling visibility — filtering keeps working even if the live refresh fails. If the build fetch fails the pages fall back to the old client-only shell with the "under maintenance" notice. Filtering helpers live in `src/lib/awesome.ts` (pure, covered by `pnpm test`).
 
 ## Config Files
 
@@ -86,4 +86,17 @@ Machine-readable discovery for AI agents is part of the site, not an add-on:
 | WebMCP                 | `src/components/AgentTools/AgentTools.astro`                    | Registers browser tools on load when `document.modelContext` exists; no-ops otherwise.                                                                                                                        |
 
 `pnpm test` runs `scripts/test-agent-endpoints.mjs`, which drives all three
-Functions directly (16 checks). Keep it green when changing agent surfaces.
+Functions directly (17 checks, including the www→apex redirect). Keep it green
+when changing agent surfaces.
+
+## SEO invariants
+
+- Every page declares `<Layout title description>`; titles are 30-60 characters
+  and descriptions 120-155. `pnpm seo` regenerates `src/data/seo-manifest.json`
+  from those props (it also injects JSON-LD, canonical and breadcrumbs). Never
+  hand-edit the manifest: it is generated and excluded from Prettier.
+- `/projects/` and `/orgs/` must keep real content in the raw HTML — that is the
+  whole point of the build-time fetch. If you touch `catalogue-render.ts`, check
+  with `curl -s https://librecourse.uy/projects/ | grep -c github.com`.
+- `www` must 301 to the apex (handled in `functions/_middleware.ts`).
+- Sitemap `lastmod` comes from the manifest's git dates (see `astro.config.mjs`).
