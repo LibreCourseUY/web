@@ -403,7 +403,9 @@ const startOptions = [
             <Text variant="p">
               Choose a course, practice what you learn and bring your questions to the community.
               For language references, Git guides and developer tools, browse our
-              <Anchor href="/docs/" className="text-inherit underline">documentation</Anchor>.
+              <Anchor href="/docs/" className="text-base text-inherit underline"
+                >documentation</Anchor
+              >.
             </Text>
           </div>
           {
@@ -419,7 +421,7 @@ const startOptions = [
                   {group.items.map((item) => (
                     <Anchor
                       href={item.href}
-                      className="border border-line bg-surface p-6 text-emphasis/80 transition-colors hover:border-emphasis-secondary/60 hover:text-emphasis"
+                      className="text-base border border-line bg-surface p-6 text-emphasis/80 transition-colors hover:border-emphasis-secondary/60 hover:text-emphasis"
                     >
                       <div class="flex items-start justify-between gap-4">
                         <h4 class="text-lg font-bold">{item.name}</h4>
@@ -451,7 +453,7 @@ const startOptions = [
               startOptions.map((item) => (
                 <Anchor
                   href={item.href}
-                  className="flex flex-col items-center justify-center gap-2 rounded-lg border border-emphasis/60 p-6 text-center hover:border-emphasis text-emphasis/80 hover:text-emphasis"
+                  className="text-base flex flex-col items-center justify-center gap-2 rounded-lg border border-emphasis/60 p-6 text-center hover:border-emphasis text-emphasis/80 hover:text-emphasis"
                 >
                   <h4 class="text-lg font-bold">{item.title}</h4>
                   <p class="text-sm text-muted">{item.description}</p>

@@ -64,18 +64,20 @@ import { communityLinks } from '@/data/community';
           <div class="space-y-4 border border-line p-6">
             <Text variant="h3">Set up Git and commit signing</Text>
             <Text variant="p"
-              >Our <Anchor href="/docs/" className="text-inherit underline">documentation</Anchor> includes
-              Git learning resources and a <Anchor
+              >Our <Anchor href="/docs/" className="text-base text-inherit underline"
+                >documentation</Anchor
+              > includes Git learning resources and a <Anchor
                 href="/docs/gpg-signature/"
-                className="text-inherit underline">GPG signing guide</Anchor
+                className="text-base text-inherit underline">GPG signing guide</Anchor
               >. All commits must be signed with GPG and include a <Anchor
                 href="/dco/"
-                className="text-inherit underline">Developer Certificate of Origin (DCO)</Anchor
+                className="text-base text-inherit underline"
+                >Developer Certificate of Origin (DCO)</Anchor
               > sign-off.</Text
             >
             <Text variant="p"
               >Use <code>git commit -S -s</code> to sign and sign off your commit. If setup is unfamiliar,
-              <Anchor href={communityLinks.discord} className="text-inherit underline"
+              <Anchor href={communityLinks.discord} className="text-base text-inherit underline"
                 >ask in Discord</Anchor
               > and share where you're stuck.</Text
             >
@@ -281,7 +283,9 @@ import { communityLinks } from '@/data/community';
             </div>
             <Text variant="p">
               Set up your GPG key following our
-              <Anchor href="/docs/gpg-signature/">GPG Signature guide</Anchor>.
+              <Anchor href="/docs/gpg-signature/" className="text-base underline underline-offset-4"
+                >GPG Signature guide</Anchor
+              >.
             </Text>
             <code class="block p-3 bg-surface border border-line rounded text-sm ml-4"
               >git config --global commit.gpgsign true</code
@@ -308,12 +312,18 @@ import { communityLinks } from '@/data/community';
             <div class="flex flex-col flex-wrap gap-4">
               <Text variant="p">
                 Browse tasks on
-                <Anchor href={communityLinks.issues}>Gitsion</Anchor>
+                <Anchor
+                  href={communityLinks.issues}
+                  className="text-base underline underline-offset-4">Gitsion</Anchor
+                >
                 and ask project-specific questions in the linked GitHub issue.
               </Text>
               <Text variant="p">
                 Find us on our
-                <Anchor href={communityLinks.discord}>Discord server</Anchor>
+                <Anchor
+                  href={communityLinks.discord}
+                  className="text-base underline underline-offset-4">Discord server</Anchor
+                >
               </Text>
             </div>
           </div>

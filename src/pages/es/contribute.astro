@@ -63,20 +63,20 @@ import { communityLinks } from '@/data/community';
           <div class="space-y-4 border border-line p-6">
             <Text variant="h3">Configurá Git y la firma de commits</Text>
             <Text variant="p"
-              >Nuestra <Anchor href="/es/docs/" className="text-inherit underline"
+              >Nuestra <Anchor href="/es/docs/" className="text-base text-inherit underline"
                 >documentación</Anchor
               > incluye recursos para aprender Git y una <Anchor
                 href="/es/docs/gpg-signature/"
-                className="text-inherit underline">guía de firma con GPG</Anchor
+                className="text-base text-inherit underline">guía de firma con GPG</Anchor
               >. Todos los commits tienen que estar firmados con GPG e incluir la firma del
-              <Anchor href="/es/dco/" className="text-inherit underline"
+              <Anchor href="/es/dco/" className="text-base text-inherit underline"
                 >Developer Certificate of Origin (DCO)</Anchor
               >.</Text
             >
             <Text variant="p"
               >Usá <code>git commit -S -s</code> para firmar y agregar el sign-off de tu commit. Si la
               configuración no te resulta familiar,
-              <Anchor href={communityLinks.discord} className="text-inherit underline"
+              <Anchor href={communityLinks.discord} className="text-base text-inherit underline"
                 >preguntá en Discord</Anchor
               > y contá dónde te trabaste.</Text
             >
@@ -289,7 +289,10 @@ import { communityLinks } from '@/data/community';
             </div>
             <Text variant="p">
               Configurá tu clave GPG siguiendo nuestra
-              <Anchor href="/es/docs/gpg-signature/">guía de firma con GPG</Anchor>.
+              <Anchor
+                href="/es/docs/gpg-signature/"
+                className="text-base underline underline-offset-4">guía de firma con GPG</Anchor
+              >.
             </Text>
             <code class="block p-3 bg-surface border border-line rounded text-sm ml-4"
               >git config --global commit.gpgsign true</code
@@ -319,12 +322,18 @@ import { communityLinks } from '@/data/community';
             <div class="flex flex-col flex-wrap gap-4">
               <Text variant="p">
                 Explorar las tareas en
-                <Anchor href={communityLinks.issues}>Gitsion</Anchor>
+                <Anchor
+                  href={communityLinks.issues}
+                  className="text-base underline underline-offset-4">Gitsion</Anchor
+                >
                 y hacer preguntas específicas del proyecto en el issue de GitHub vinculado.
               </Text>
               <Text variant="p">
                 Encontrarnos en nuestro
-                <Anchor href={communityLinks.discord}>servidor de Discord</Anchor>
+                <Anchor
+                  href={communityLinks.discord}
+                  className="text-base underline underline-offset-4">servidor de Discord</Anchor
+                >
               </Text>
             </div>
           </div>

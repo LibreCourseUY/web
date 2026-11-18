@@ -65,8 +65,11 @@ import { communityLinks } from '@/data/community';
         ustedes: la comunidad no es parte.
       </Text>
       <Text variant="p" class="max-w-3xl text-muted">
-        Cada repo tiene sus reglas: los commits van con <Anchor href="/es/dco/">firma DCO</Anchor> y firma
-        GPG, y los mensajes en Conventional Commits. No hay cuota, ni contrato, ni más filtros que esos.
+        Cada repo tiene sus reglas: los commits van con <Anchor
+          href="/es/dco/"
+          className="text-base underline underline-offset-4">firma DCO</Anchor
+        > y firma GPG, y los mensajes en Conventional Commits. No hay cuota, ni contrato, ni más filtros
+        que esos.
       </Text>
     </section>
 
@@ -74,27 +77,44 @@ import { communityLinks } from '@/data/community';
       <Text variant="h2">Dónde vive el código</Text>
       <Text variant="p" class="max-w-3xl text-muted">
         El código vive en GitHub bajo la
-        <Anchor href="https://github.com/LibreCourseUY">organización LibreCourseUY</Anchor>, y la
-        actividad del ecosistema se sigue en
-        <Anchor href={communityLinks.activity}>Gitsion</Anchor>. Las organizaciones que mantienen
-        proyectos aparecen en la
-        <Anchor href="/es/orgs/">página de organizaciones</Anchor>.
+        <Anchor
+          href="https://github.com/LibreCourseUY"
+          className="text-base underline underline-offset-4">organización LibreCourseUY</Anchor
+        >, y la actividad del ecosistema se sigue en
+        <Anchor href={communityLinks.activity} className="text-base underline underline-offset-4"
+          >Gitsion</Anchor
+        >. Las organizaciones que mantienen proyectos aparecen en la
+        <Anchor href="/es/orgs/" className="text-base underline underline-offset-4"
+          >página de organizaciones</Anchor
+        >.
       </Text>
     </section>
 
     <section class="w-full space-y-4">
       <Text variant="h2">Cómo participar</Text>
       <Text variant="p" class="max-w-3xl text-muted">
-        Leé la <Anchor href="/es/contribute/">guía de primera contribución</Anchor>, elegí algo del
-        <Anchor href="/es/projects/">catálogo de proyectos</Anchor> y preguntá en
-        <Anchor href={communityLinks.discord}>Discord</Anchor> cuando te trabés. Si todavía estás aprendiendo,
-        la <Anchor href="/es/learn/">guía de aprendizaje</Anchor> explica cómo crecer con proyectos reales
-        en lugar de ejercicios.
+        Leé la <Anchor href="/es/contribute/" className="text-base underline underline-offset-4"
+          >guía de primera contribución</Anchor
+        >, elegí algo del
+        <Anchor href="/es/projects/" className="text-base underline underline-offset-4"
+          >catálogo de proyectos</Anchor
+        > y preguntá en
+        <Anchor href={communityLinks.discord} className="text-base underline underline-offset-4"
+          >Discord</Anchor
+        > cuando te trabés. Si todavía estás aprendiendo, la <Anchor
+          href="/es/learn/"
+          className="text-base underline underline-offset-4">guía de aprendizaje</Anchor
+        > explica cómo crecer con proyectos reales en lugar de ejercicios.
       </Text>
       <Text variant="p" class="max-w-3xl text-muted">
         Si es prensa, alianzas o algo que no sea código, escribinos en
-        <Anchor href={communityLinks.discord}>Discord</Anchor> o abrí un issue en
-        <Anchor href="https://github.com/LibreCourseUY">GitHub</Anchor>.
+        <Anchor href={communityLinks.discord} className="text-base underline underline-offset-4"
+          >Discord</Anchor
+        > o abrí un issue en
+        <Anchor
+          href="https://github.com/LibreCourseUY"
+          className="text-base underline underline-offset-4">GitHub</Anchor
+        >.
       </Text>
     </section>
   </main>

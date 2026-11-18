@@ -67,8 +67,9 @@ import { communityLinks } from '@/data/community';
       </Text>
       <Text variant="p" class="max-w-3xl text-muted">
         Contributions follow the rules of each repository: every commit carries a
-        <Anchor href="/dco/">DCO sign-off</Anchor> and a GPG signature, and messages follow Conventional
-        Commits. There is no membership fee, no contract and no gatekeeping beyond that.
+        <Anchor href="/dco/" className="text-base underline underline-offset-4">DCO sign-off</Anchor
+        > and a GPG signature, and messages follow Conventional Commits. There is no membership fee, no
+        contract and no gatekeeping beyond that.
       </Text>
     </section>
 
@@ -76,27 +77,44 @@ import { communityLinks } from '@/data/community';
       <Text variant="h2">Where the code lives</Text>
       <Text variant="p" class="max-w-3xl text-muted">
         Source lives on GitHub under the
-        <Anchor href="https://github.com/LibreCourseUY">LibreCourseUY organisation</Anchor>, and
-        activity across the ecosystem is tracked on
-        <Anchor href={communityLinks.activity}>Gitsion</Anchor>. The organisations that maintain
-        projects in the ecosystem are listed on the
-        <Anchor href="/orgs/">organisations page</Anchor>.
+        <Anchor
+          href="https://github.com/LibreCourseUY"
+          className="text-base underline underline-offset-4">LibreCourseUY organisation</Anchor
+        >, and activity across the ecosystem is tracked on
+        <Anchor href={communityLinks.activity} className="text-base underline underline-offset-4"
+          >Gitsion</Anchor
+        >. The organisations that maintain projects in the ecosystem are listed on the
+        <Anchor href="/orgs/" className="text-base underline underline-offset-4"
+          >organisations page</Anchor
+        >.
       </Text>
     </section>
 
     <section class="w-full space-y-4">
       <Text variant="h2">Take part</Text>
       <Text variant="p" class="max-w-3xl text-muted">
-        Read the <Anchor href="/contribute/">first contribution guide</Anchor>, pick something from
-        the <Anchor href="/projects/">project catalogue</Anchor> and ask in
-        <Anchor href={communityLinks.discord}>Discord</Anchor> when you get stuck. If you are still learning,
-        the <Anchor href="/learn/">learning guide</Anchor> explains how to grow through real projects
-        instead of exercises.
+        Read the <Anchor href="/contribute/" className="text-base underline underline-offset-4"
+          >first contribution guide</Anchor
+        >, pick something from the <Anchor
+          href="/projects/"
+          className="text-base underline underline-offset-4">project catalogue</Anchor
+        > and ask in
+        <Anchor href={communityLinks.discord} className="text-base underline underline-offset-4"
+          >Discord</Anchor
+        > when you get stuck. If you are still learning, the <Anchor
+          href="/learn/"
+          className="text-base underline underline-offset-4">learning guide</Anchor
+        > explains how to grow through real projects instead of exercises.
       </Text>
       <Text variant="p" class="max-w-3xl text-muted">
         For press, partnerships or anything that is not a code question, reach us in
-        <Anchor href={communityLinks.discord}>Discord</Anchor> or open an issue on
-        <Anchor href="https://github.com/LibreCourseUY">GitHub</Anchor>.
+        <Anchor href={communityLinks.discord} className="text-base underline underline-offset-4"
+          >Discord</Anchor
+        > or open an issue on
+        <Anchor
+          href="https://github.com/LibreCourseUY"
+          className="text-base underline underline-offset-4">GitHub</Anchor
+        >.
       </Text>
     </section>
   </main>

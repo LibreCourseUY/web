@@ -18,10 +18,7 @@ const newTab = openInTab || isExternal;
 {
   disabled ? (
     <span
-      class={cn(
-        'anchor disabled relative text-2xl text-emphasis-secondary/60 cursor-default',
-        className,
-      )}
+      class={cn('anchor disabled relative text-emphasis-secondary/60 cursor-default', className)}
     >
       <slot />
     </span>
@@ -31,7 +28,7 @@ const newTab = openInTab || isExternal;
       target={newTab ? '_blank' : '_self'}
       rel={newTab ? 'noopener noreferrer' : undefined}
       class={cn(
-        'anchor relative text-2xl text-emphasis-secondary cursor-pointer hover:text-emphasis-secondary/80',
+        'anchor relative text-emphasis-secondary cursor-pointer hover:text-emphasis-secondary/80',
         className,
       )}
     >
