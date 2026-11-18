@@ -1,3 +1,4 @@
-User-agent: *
+# The User-agent groups (incl. AI crawler policy) are managed by Cloudflare.
+# These directives point crawlers and agents at the machine-readable maps.
 Sitemap: https://librecourse.uy/sitemap-index.xml
 Agentmap: https://librecourse.uy/.well-known/ai-catalog.json

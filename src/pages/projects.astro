@@ -3,11 +3,20 @@ import Layout from '@/layouts/Layout.astro';
 import Text from '@/components/Text/Text.astro';
 import Anchor from '@/components/Anchor/Anchor.astro';
 import { communityLinks } from '@/data/community';
+import { sortEntries } from '@/lib/awesome';
+import { fetchCatalogueForBuild } from '@/lib/catalogue-build';
+import { projectGroupsHtml, projectsItemList } from '@/lib/catalogue-render';
+
+// Prerender the catalogue so crawlers (and visitors without JS) get real
+// content; the client script refreshes it and adds filtering.
+const feed = await fetchCatalogueForBuild();
+const entries = feed ? sortEntries(feed.entries) : [];
+const groupsHtml = feed ? projectGroupsHtml(feed.categories, entries) : '';
 ---
 
 <Layout
-  title="Projects | LibreCourseUY"
-  description="Explore open source and community projects from LibreCourseUY."
+  title="Open Source Projects from Uruguay — LibreCourseUY"
+  description="Browse open source and community projects from LibreCourseUY: filter by category, language, licence and whether maintainers are open to contributions."
 >
   <main class="flex min-h-screen flex-col items-start justify-center">
     <section class="flex w-full flex-col justify-start items-start gap-8 pt-12 pb-12">
@@ -38,7 +47,7 @@ import { communityLinks } from '@/data/community';
         </Anchor>
       </nav>
 
-      <div id="awesome-app" class="w-full" hidden>
+      <div id="awesome-app" class="w-full" hidden={!feed}>
         <div
           class="flex flex-col gap-4 border-y border-line py-6 md:flex-row md:flex-wrap md:items-end"
         >
@@ -101,9 +110,11 @@ import { communityLinks } from '@/data/community';
           </button>
         </div>
 
-        <p id="awesome-count" class="pt-4 text-xs uppercase tracking-wider text-muted"></p>
+        <p id="awesome-count" class="pt-4 text-xs uppercase tracking-wider text-muted">
+          {feed ? `${entries.length} of ${feed.entries.length} projects` : ''}
+        </p>
 
-        <div id="awesome-grid" class="space-y-10 pt-4"></div>
+        <div id="awesome-grid" class="space-y-10 pt-4" set:html={groupsHtml} />
 
         <p id="awesome-empty" class="hidden py-16 text-center text-muted" hidden>
           No projects match your filters.
@@ -125,17 +136,27 @@ import { communityLinks } from '@/data/community';
       <div
         id="awesome-loading"
         class="w-full py-16 text-center text-xs uppercase tracking-wider text-muted"
+        hidden={Boolean(feed)}
       >
         Loading projects...
       </div>
     </section>
   </main>
+  {
+    feed && feed.entries.length > 0 && (
+      <script
+        type="application/ld+json"
+        set:html={JSON.stringify(projectsItemList(entries, 'https://librecourse.uy'))}
+      />
+    )
+  }
 </Layout>
 
 <script>
-  import { filterEntries, sortEntries, uniqueValues } from '@/lib/awesome';
+  import { sortEntries, uniqueValues } from '@/lib/awesome';
   import { loadAwesomeFeed } from '@/lib/awesome-client';
-  import { entryCard, esc } from '@/lib/awesome-card';
+  import { projectGroupsHtml } from '@/lib/catalogue-render';
+  import type { AwesomeEntry, AwesomeFilters } from '@/lib/awesome';
 
   const app = document.getElementById('awesome-app') as HTMLElement | null;
   const grid = document.getElementById('awesome-grid');
@@ -150,14 +171,62 @@ import { communityLinks } from '@/data/community';
   const contribEl = document.getElementById('awesome-contrib') as HTMLSelectElement | null;
   const resetEl = document.getElementById('awesome-reset');
 
-  function fillSelect(el: HTMLSelectElement | null, label: string, values: string[]) {
-    if (!el) return;
-    el.innerHTML =
-      `<option value="">Any ${label}</option>` +
-      values.map((v) => `<option value="${esc(v)}">${esc(v)}</option>`).join('');
+  interface FilterRow {
+    el: HTMLElement;
+    haystack: string;
+    category: string;
+    languages: string[];
+    commercial: number;
+    openToContributions: number;
   }
 
-  function readState() {
+  let rows: FilterRow[] = [];
+  let total = 0;
+
+  // The server renders every card with its filter metadata, so the page is
+  // usable before (and without) the feed fetch.
+  function collectRows(): void {
+    if (!grid) return;
+    rows = [...grid.querySelectorAll<HTMLElement>('[data-filter]')].map((el) => {
+      const raw = el.dataset.filter ?? '{}';
+      let data: Record<string, unknown> = {};
+      try {
+        data = JSON.parse(raw);
+      } catch {
+        /* malformed metadata: treat as unfilterable */
+      }
+      const text = [
+        data.n,
+        data.d,
+        data.c,
+        ...((data.t as string[]) ?? []),
+        ...((data.m as string[]) ?? []),
+      ]
+        .filter(Boolean)
+        .join(' ')
+        .toLowerCase();
+      return {
+        el,
+        haystack: text,
+        category: String(data.c ?? ''),
+        languages: ((data.l as string[]) ?? []).map((l) => l.toLowerCase()),
+        commercial: Number(data.com) || 0,
+        openToContributions: Number(data.o) || 0,
+      };
+    });
+    total = rows.length;
+  }
+
+  function fillSelect(el: HTMLSelectElement | null, label: string, values: string[]) {
+    if (!el) return;
+    const current = el.value;
+    el.innerHTML =
+      `<option value="">Any ${label}</option>` +
+      values.map((v) => `<option value="${v.replace(/"/g, '&quot;')}">${v}</option>`).join('');
+    el.value = current;
+  }
+
+  function readState(): AwesomeFilters {
     return {
       query: search?.value ?? '',
       categories: categoryEl?.value ? [categoryEl.value] : [],
@@ -177,11 +246,11 @@ import { communityLinks } from '@/data/community';
     const params = new URLSearchParams();
     const state = readState();
     if (state.query) params.set('q', state.query);
-    if (state.categories[0]) params.set('category', state.categories[0]);
-    if (state.commercial !== null)
+    if (state.categories?.[0]) params.set('category', state.categories[0]);
+    if (state.commercial !== null && state.commercial !== undefined)
       params.set('commercial', state.commercial ? 'commercial' : 'non-commercial');
-    if (state.languages[0]) params.set('language', state.languages[0]);
-    if (state.openToContributions !== null)
+    if (state.languages?.[0]) params.set('language', state.languages[0]);
+    if (state.openToContributions !== null && state.openToContributions !== undefined)
       params.set('contrib', state.openToContributions ? 'open' : 'closed');
     const qs = params.toString();
     history.replaceState(null, '', qs ? `?${qs}` : location.pathname);
@@ -196,60 +265,101 @@ import { communityLinks } from '@/data/community';
     if (contribEl && params.get('contrib')) contribEl.value = params.get('contrib')!;
   }
 
-  async function init() {
-    const feed = await loadAwesomeFeed();
-    loading?.setAttribute('hidden', '');
+  function applyFilters(): void {
+    const state = readState();
+    const query = (state.query ?? '').trim().toLowerCase();
+    let visible = 0;
 
-    if (!feed || !app || !grid || !count) {
-      maintenance?.removeAttribute('hidden');
-      return;
+    for (const row of rows) {
+      const matchQuery = !query || row.haystack.includes(query);
+      const matchCategory = !state.categories?.length || state.categories.includes(row.category);
+      const matchLanguage =
+        !state.languages?.length ||
+        state.languages.some((l) => row.languages.includes(l.toLowerCase()));
+      const matchCommercial =
+        state.commercial === null || state.commercial === undefined
+          ? true
+          : row.commercial === (state.commercial ? 1 : 0);
+      const matchContrib =
+        state.openToContributions === null || state.openToContributions === undefined
+          ? true
+          : row.openToContributions === (state.openToContributions ? 1 : 0);
+
+      const show = matchQuery && matchCategory && matchLanguage && matchCommercial && matchContrib;
+      row.el.hidden = !show;
+      if (show) visible += 1;
     }
 
-    app.removeAttribute('hidden');
+    for (const section of grid?.querySelectorAll('section') ?? []) {
+      section.hidden = !section.querySelector('[data-filter]:not([hidden])');
+    }
 
-    fillSelect(categoryEl, 'category', feed.categories);
-    fillSelect(
-      languageEl,
-      'language',
-      uniqueValues(feed.entries, (e) => e.language ?? []),
-    );
+    if (count) count.textContent = `${visible} of ${total} projects`;
+    empty?.toggleAttribute('hidden', visible > 0);
+    writeUrl();
+  }
 
-    readUrl();
-
-    const render = () => {
-      const filtered = sortEntries(filterEntries(feed.entries, readState()));
-      const sections = feed.categories
-        .map((category) => [category, filtered.filter((e) => e.category === category)] as const)
-        .filter(([, group]) => group.length > 0);
-      grid.innerHTML = sections
-        .map(
-          ([category, group]) => `
-            <section>
-              <h2 class="border-b border-line pb-2 text-sm font-bold uppercase tracking-wider text-muted">${esc(category)}</h2>
-              <div class="grid grid-cols-1 gap-6 pt-4 md:grid-cols-2 lg:grid-cols-3">
-                ${group.map(entryCard).join('')}
-              </div>
-            </section>`,
-        )
-        .join('');
-      count.textContent = `${filtered.length} of ${feed.entries.length} projects`;
-      empty?.toggleAttribute('hidden', filtered.length > 0);
-      writeUrl();
-    };
-
-    search?.addEventListener('input', render);
+  function bind(): void {
+    search?.addEventListener('input', applyFilters);
     for (const el of [categoryEl, commercialEl, languageEl, contribEl]) {
-      el?.addEventListener('change', render);
+      el?.addEventListener('change', applyFilters);
     }
     resetEl?.addEventListener('click', () => {
       if (search) search.value = '';
       for (const el of [categoryEl, commercialEl, languageEl, contribEl]) {
         if (el) el.value = '';
       }
-      render();
+      applyFilters();
     });
+  }
 
-    render();
+  async function init(): Promise<void> {
+    collectRows();
+    if (rows.length) {
+      fillSelect(
+        categoryEl,
+        'category',
+        [...new Set(rows.map((r) => r.category))].filter(Boolean).sort(),
+      );
+      fillSelect(
+        languageEl,
+        'language',
+        [...new Set(rows.flatMap((r) => r.languages))]
+          .filter(Boolean)
+          .sort((a, b) => a.localeCompare(b)),
+      );
+      readUrl();
+      applyFilters();
+      bind();
+      loading?.setAttribute('hidden', '');
+      app?.removeAttribute('hidden');
+    }
+
+    // Refresh from the live feed in the background; the prerendered catalogue
+    // stays usable if this fails.
+    const feed = await loadAwesomeFeed();
+    loading?.setAttribute('hidden', '');
+    if (!feed || !app || !grid || !count) {
+      if (!rows.length) maintenance?.removeAttribute('hidden');
+      return;
+    }
+
+    const entries: AwesomeEntry[] = sortEntries(feed.entries);
+    grid.innerHTML = projectGroupsHtml(feed.categories, entries);
+    collectRows();
+    fillSelect(
+      categoryEl,
+      'category',
+      feed.categories.length ? feed.categories : [...new Set(entries.map((e) => e.category))],
+    );
+    fillSelect(
+      languageEl,
+      'language',
+      uniqueValues(entries, (e) => e.language ?? []),
+    );
+    readUrl();
+    applyFilters();
+    app.removeAttribute('hidden');
   }
 
   void init();

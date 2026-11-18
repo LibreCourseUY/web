@@ -45,7 +45,7 @@ const activityLinks = [
 ---
 
 <Layout
-  title="LibreCourseUY"
+  title="LibreCourseUY — Free FOSS Community in Uruguay"
   description="Join a non-profit FOSS community from Uruguay. Discover projects, learn together and make your first open source contribution."
 >
   <main class="flex min-h-screen flex-col items-start justify-center">
@@ -61,8 +61,10 @@ const activityLinks = [
         src={heroImg}
         alt=""
         class="absolute inset-0 w-full h-full object-cover opacity-25 dark:opacity-20 pointer-events-none select-none"
-        inferSize={true}
+        widths={[640, 960, 1280]}
+        sizes="100vw"
         loading="eager"
+        fetchpriority="low"
       />
 
       <div

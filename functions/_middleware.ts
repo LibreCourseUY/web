@@ -277,11 +277,18 @@ function shouldSkip(pathname: string): boolean {
 
 export async function onRequest(context: Context): Promise<Response> {
   const { request } = context;
+
+  // One canonical host: www duplicates every URL.
+  const url = new URL(request.url);
+  if (url.hostname === 'www.librecourse.uy') {
+    url.hostname = 'librecourse.uy';
+    return Response.redirect(url.toString(), 301);
+  }
+
   if (request.method !== 'GET' && request.method !== 'HEAD') return context.next();
 
   if (!wantsMarkdown(request.headers.get('accept') ?? '')) return context.next();
 
-  const url = new URL(request.url);
   if (shouldSkip(url.pathname)) return context.next();
 
   const response = await context.next();

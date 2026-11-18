@@ -56,6 +56,11 @@ ROUTES: dict[str, dict] = {
         "entity_type": "taxonomy",
         "breadcrumbs": [("Home", "/"), ("Projects", "/projects/")],
     },
+    "/about/": {
+        "entity_type": "other",
+        "author": SITE_NAME,
+        "breadcrumbs": [("Home", "/"), ("About", "/about/")],
+    },
     "/showcase/": {
         "entity_type": "taxonomy",
         "breadcrumbs": [("Home", "/"), ("Member products", "/showcase/")],
@@ -101,14 +106,23 @@ def website_schema(entity: SEOEntity, config: SEOConfig, canonical: str, title: 
     if og_image:
         website["image"] = og_image
     if config.publisher_name:
-        publisher: dict = {"@type": "Organization", "name": config.publisher_name}
+        # A standalone Organization node lets engines consolidate the entity;
+        # WebSite and pages can then reference it by @id.
+        org_id = f"{canonical}#organization"
+        organization: dict = {
+            "@type": "Organization",
+            "@id": org_id,
+            "name": config.publisher_name,
+            "url": canonical,
+        }
         if config.publisher_logo:
-            publisher["logo"] = config.publisher_logo
+            organization["logo"] = config.publisher_logo
         if HOME_SOCIAL:
-            publisher["sameAs"] = HOME_SOCIAL
-        website["publisher"] = publisher
-
-    graph: list[dict] = [website]
+            organization["sameAs"] = HOME_SOCIAL
+        website["publisher"] = {"@id": org_id}
+        graph: list[dict] = [organization, website]
+    else:
+        graph = [website]
 
     if entity.faq_items:
         graph.append(

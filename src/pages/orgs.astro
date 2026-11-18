@@ -1,11 +1,18 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import Text from '@/components/Text/Text.astro';
+import { fetchCatalogueForBuild } from '@/lib/catalogue-build';
+import { orgsGridHtml } from '@/lib/catalogue-render';
+
+// Prerender the organisations so the page has content without JS.
+const feed = await fetchCatalogueForBuild();
+const orgs = feed?.orgs ?? [];
+const orgsHtml = orgs.length ? orgsGridHtml(orgs) : '';
 ---
 
 <Layout
-  title="Orgs | LibreCourseUY"
-  description="Open source organizations from the LCUY ecosystem."
+  title="Open Source Organizations — LibreCourseUY"
+  description="Organizations maintaining and governing projects in the LibreCourseUY ecosystem: who they are, what they maintain, and where their source lives."
 >
   <main class="flex min-h-screen flex-col items-start justify-center">
     <section class="flex w-full flex-col justify-start items-start gap-8 pt-12 pb-12">
@@ -17,8 +24,28 @@ import Text from '@/components/Text/Text.astro';
         </Text>
       </div>
 
-      <div id="orgs-app" class="w-full" hidden>
-        <div id="orgs-grid" class="grid grid-cols-1 gap-6 pt-4 md:grid-cols-2 lg:grid-cols-3"></div>
+      <div class="max-w-3xl space-y-4">
+        <Text variant="h2">What an organisation means here</Text>
+        <Text variant="p" class="text-muted">
+          An organisation is any group that takes responsibility for maintaining and governing one
+          or more projects in the ecosystem — a GitHub organisation, a company releasing open
+          source, or a collective of maintainers. Organisations marked
+          <strong class="text-emphasis">official</strong> belong to LibreCourseUY itself; the rest are
+          independent and set their own rules, licences and roadmaps.
+        </Text>
+        <Text variant="p" class="text-muted">
+          Being listed is not an endorsement and it does not transfer ownership. If you maintain
+          projects and want them discoverable, open a pull request against the catalogue with the
+          organisation name, URL and a short description.
+        </Text>
+      </div>
+
+      <div id="orgs-app" class="w-full" hidden={orgs.length === 0}>
+        <div
+          id="orgs-grid"
+          class="grid grid-cols-1 gap-6 pt-4 md:grid-cols-2 lg:grid-cols-3"
+          set:html={orgsHtml}
+        />
       </div>
 
       <div id="orgs-maintenance" class="w-full border border-line bg-surface p-8" hidden>
@@ -31,6 +58,7 @@ import Text from '@/components/Text/Text.astro';
       <div
         id="orgs-loading"
         class="w-full py-16 text-center text-xs uppercase tracking-wider text-muted"
+        hidden={orgs.length > 0}
       >
         Loading orgs...
       </div>
@@ -40,62 +68,25 @@ import Text from '@/components/Text/Text.astro';
 
 <script>
   import { loadAwesomeFeed } from '@/lib/awesome-client';
-  import type { AwesomeOrg } from '@/lib/awesome';
+  import { orgsGridHtml } from '@/lib/catalogue-render';
 
   const app = document.getElementById('orgs-app');
   const grid = document.getElementById('orgs-grid');
   const maintenance = document.getElementById('orgs-maintenance');
   const loading = document.getElementById('orgs-loading');
 
-  function esc(value: string): string {
-    return value.replace(/[&<>"']/g, (char) => {
-      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char] ?? char;
-    });
-  }
-
-  function orgCard(org: AwesomeOrg): string {
-    const official = org.relationship === 'official';
-    const color = org.color;
-    const accentStyle = color ? `--org: ${esc(color.light)}; --org-dark: ${esc(color.dark)};` : '';
-    const linkClass = color
-      ? 'text-[color:var(--org)] dark:text-[color:var(--org-dark)] hover:opacity-75'
-      : 'hover:text-emphasis';
-    const hoverBorder = color
-      ? 'hover:border-[color:var(--org)] dark:hover:border-[color:var(--org-dark)]'
-      : 'hover:border-emphasis-secondary/60';
-    const badgeColor = color
-      ? 'border-[color:var(--org)] text-[color:var(--org)] dark:border-[color:var(--org-dark)] dark:text-[color:var(--org-dark)]'
-      : 'border-emphasis-secondary text-emphasis-secondary';
-    const officialBadge = official
-      ? `<span class="shrink-0 border ${badgeColor} px-1.5 py-0.5 text-xs font-bold">[official]</span>`
-      : '';
-    const communityBadge = official
-      ? ''
-      : '<span class="border border-line px-1.5 py-0.5">[community]</span>';
-    return `
-			<div style="${accentStyle}" class="flex min-w-0 flex-col gap-3 border border-line bg-surface p-4 transition-colors ${hoverBorder}">
-				<div class="flex items-center justify-between gap-2">
-					<a href="${esc(org.url)}" target="_blank" rel="noopener noreferrer" class="min-w-0 flex-1 truncate text-sm font-bold text-emphasis">${esc(org.name)}</a>
-					${officialBadge}
-				</div>
-				<p class="break-words text-sm leading-relaxed text-muted">${esc(org.description)}</p>
-				<div class="mt-auto flex flex-wrap items-center gap-2 border-t border-line pt-3 text-xs text-muted">
-					${communityBadge}
-					${org.url !== org.repository ? `<a href="${esc(org.repository)}" target="_blank" rel="noopener noreferrer" class="${linkClass}">[source]</a>` : ''}
-				</div>
-			</div>`;
-  }
-
   async function init() {
+    const rendered = (grid?.innerHTML ?? '').trim().length > 0;
     const feed = await loadAwesomeFeed();
     loading?.setAttribute('hidden', '');
 
     if (!feed || !app || !grid) {
-      maintenance?.removeAttribute('hidden');
+      // Keep the prerendered list if the refresh failed.
+      if (!rendered) maintenance?.removeAttribute('hidden');
       return;
     }
 
-    grid.innerHTML = (feed.orgs ?? []).map(orgCard).join('');
+    grid.innerHTML = orgsGridHtml(feed.orgs ?? []);
     app.removeAttribute('hidden');
   }
 

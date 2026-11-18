@@ -110,8 +110,21 @@ export function entryCard(entry: AwesomeEntry): string {
     )
     .join(' · ');
 
+  // Filter metadata travels with the markup, so filtering keeps working even if
+  // the live feed refresh fails.
+  const filterData = {
+    n: entry.name,
+    d: entry.description,
+    c: entry.category,
+    l: entry.language ?? [],
+    t: entry.tags ?? [],
+    m: entry.maintainers ?? [],
+    com: entry.commercial ? 1 : 0,
+    o: entry.open_to_contributions ? 1 : 0,
+  };
+
   return `
-			<div style="${accentStyle}" class="flex min-w-0 flex-col gap-3 border border-line bg-surface p-4 transition-colors ${hoverBorder}">
+			<div data-filter="${esc(JSON.stringify(filterData))}" style="${accentStyle}" class="flex min-w-0 flex-col gap-3 border border-line bg-surface p-4 transition-colors ${hoverBorder}">
 				<div class="flex items-center justify-between gap-2">
 					<a href="${esc(entry.url)}" target="_blank" rel="noopener noreferrer" class="min-w-0 flex-1 truncate text-sm font-bold text-emphasis">${esc(entry.name)}</a>
 					${entry.relationship === 'official' ? `<span class="shrink-0 border ${officialBadgeColor} px-1.5 py-0.5 text-xs font-bold">[official]</span>` : ''}

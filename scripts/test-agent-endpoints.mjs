@@ -180,6 +180,15 @@ function runMiddleware(accept, path = '/') {
   });
 }
 
+await check('www host redirects to the apex with 301', async () => {
+  const response = await middleware({
+    request: new Request('https://www.librecourse.uy/about/?x=1'),
+    next: async () => new Response('should not be reached', { status: 200 }),
+  });
+  assert.equal(response.status, 301);
+  assert.equal(response.headers.get('location'), 'https://librecourse.uy/about/?x=1');
+});
+
 await check('markdown negotiation converts HTML for Accept: text/markdown', async () => {
   const response = await runMiddleware('text/markdown');
   assert.match(response.headers.get('content-type'), /^text\/markdown/);
