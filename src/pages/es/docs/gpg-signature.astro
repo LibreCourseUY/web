@@ -119,7 +119,7 @@ const keyId = 'C4D02E34E0956389';
             Una firma GPG es una forma de demostrar criptográficamente que un archivo o un commit
             realmente viene de vos. Esta guía te acompaña paso a paso para instalar GPG, crear un
             par de claves de firma, firmar tus commits de Git y agregar tu clave pública a GitHub
-            para que tus commits aparezcan como «Verificado».
+            para que tus commits aparezcan como «Verified».
           </Text>
         </div>
 
@@ -346,7 +346,7 @@ const keyId = 'C4D02E34E0956389';
           <Text variant="p">
             Primero, asegurate de que Git sepa quién sos. El correo que uses acá tiene que coincidir
             con el que usaste en la clave GPG (y con el correo verificado de tu cuenta de GitHub);
-            de lo contrario, GitHub no va a mostrar tus commits como «Verificado»:
+            de lo contrario, GitHub no va a mostrar tus commits como «Verified»:
           </Text>
           <code
             class="block p-3 bg-surface border border-line rounded text-sm whitespace-pre"
@@ -461,15 +461,15 @@ const keyId = 'C4D02E34E0956389';
             <div class="space-y-4">
               <Text variant="p">
                 <strong>2. Revisá la insignia.</strong> Abrí el commit en GitHub. Deberías ver una insignia
-                verde <strong>Verificado</strong> junto a tu commit.
+                verde <strong>Verified</strong> junto a tu commit.
               </Text>
             </div>
           </div>
 
           <div class="space-y-4">
             <Text variant="p">
-              Si el commit aparece como «No verificado», la causa más común es que los correos no
-              coincidan. GitHub solo muestra «Verificado» en los commits hechos con un correo
+              Si el commit aparece como «Unverified», la causa más común es que los correos no
+              coincidan. GitHub solo muestra «Verified» en los commits hechos con un correo
               verificado. Para evitarlo, podés usar el correo noreply de GitHub en lugar del tuyo
               personal:
             </Text>
@@ -479,7 +479,7 @@ const keyId = 'C4D02E34E0956389';
             />
             <Text variant="p">
               Podés encontrar tu propia dirección noreply en GitHub, en{' '}
-              <strong>Configuración → Correos electrónicos</strong>.
+              <strong>Settings → Emails</strong>.
             </Text>
           </div>
         </div>
