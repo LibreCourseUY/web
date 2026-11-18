@@ -13,7 +13,7 @@ export const showcaseNotice =
   'These independent products may be commercial or closed source. They are not maintained or endorsed by LibreCourseUY.';
 
 export const showcaseNoticeEs =
-  'Estos productos independientes pueden ser comerciales o de código cerrado. No están mantenidos ni respaldados por LibreCourseUY.';
+  'Algunos son comerciales o de código cerrado. No los mantenemos ni los avalamos desde LibreCourseUY.';
 
 export const showcaseContributionUrl =
   'https://github.com/LibreCourseUY/web/blob/main/CONTRIBUTING.md#member-products';
@@ -42,7 +42,7 @@ export const showcaseProducts: ShowcaseProduct[] = [
     description:
       'Explore community reports on a live risk map to make more informed travel decisions.',
     descriptionEs:
-      'Explorá reportes de la comunidad en un mapa de riesgo en vivo para tomar mejores decisiones de viaje.',
+      'Mirá lo que reporta la comunidad en un mapa de riesgo en vivo y decidí mejor tus viajes.',
     creator: { name: 'Yaquier Mansfarrol' },
     url: 'https://www.enrouta.com/',
   },

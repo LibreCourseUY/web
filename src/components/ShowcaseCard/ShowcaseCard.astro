@@ -1,6 +1,8 @@
 ---
 import Anchor from '@/components/Anchor/Anchor.astro';
 import type { ShowcaseProduct } from '@/data/showcase';
+import { cardStrings } from '@/lib/card-strings';
+import { langFromPath } from '@/i18n/config';
 
 interface Props {
   product: ShowcaseProduct;
@@ -8,6 +10,7 @@ interface Props {
 }
 
 const { product, headingLevel: Heading = 'h3' } = Astro.props;
+const t = cardStrings[langFromPath(Astro.url.pathname)];
 const domain = new URL(product.url).hostname.replace(/^www\./, '');
 ---
 
@@ -21,17 +24,17 @@ const domain = new URL(product.url).hostname.replace(/^www\./, '');
     >
       <span class="min-w-0 break-words">{product.name}</span>
       <span aria-hidden="true" class="shrink-0 text-emphasis-secondary">↗</span>
-      <span class="sr-only"> website (opens in a new tab)</span>
+      <span class="sr-only"> {t.site} {t.opensInNewTab}</span>
     </Anchor>
   </Heading>
   <p class="text-base leading-relaxed text-muted">{product.description}</p>
   <div class="mt-auto flex flex-wrap items-center justify-between gap-3 border-t border-line pt-4">
     <p class="text-sm text-muted">
-      By{' '}{
+      {t.by}{' '}{
         product.creator.url ? (
           <Anchor href={product.creator.url} className="text-sm underline underline-offset-4">
             {product.creator.name}
-            <span class="sr-only"> (opens in a new tab)</span>
+            <span class="sr-only"> {t.opensInNewTab}</span>
           </Anchor>
         ) : (
           <span class="text-emphasis">{product.creator.name}</span>

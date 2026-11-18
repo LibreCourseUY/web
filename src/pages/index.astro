@@ -489,7 +489,7 @@ const activityLinks = [
 
     const orgs = feed.orgs ?? [];
     if (organizations && orgs.length > 0) {
-      organizations.innerHTML = orgs.map(organizationCard).join('');
+      organizations.innerHTML = orgs.map((org) => organizationCard(org, 'en')).join('');
       organizationsFallback?.setAttribute('hidden', '');
     }
 
@@ -501,7 +501,7 @@ const activityLinks = [
     } catch {
       /* storage unavailable */
     }
-    grid.innerHTML = picked.map(projectCard).join('');
+    grid.innerHTML = picked.map((entry) => projectCard(entry, 'en')).join('');
     fallback?.setAttribute('hidden', '');
   }
 

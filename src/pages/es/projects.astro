@@ -11,7 +11,7 @@ import { projectGroupsHtml, projectsItemList } from '@/lib/catalogue-render';
 // content; the client script refreshes it and adds filtering.
 const feed = await fetchCatalogueForBuild();
 const entries = feed ? sortEntries(feed.entries) : [];
-const groupsHtml = feed ? projectGroupsHtml(feed.categories, entries) : '';
+const groupsHtml = feed ? projectGroupsHtml(feed.categories, entries, 'es') : '';
 ---
 
 <Layout
@@ -90,8 +90,7 @@ const groupsHtml = feed ? projectGroupsHtml(feed.categories, entries) : '';
           </label>
 
           <label class="flex min-w-40 flex-col gap-1">
-            <span class="text-xs font-bold uppercase tracking-wider text-muted">Contribuciones</span
-            >
+            <span class="text-xs font-bold uppercase tracking-wider text-muted">Aportes</span>
             <select
               id="awesome-contrib"
               class="border border-line bg-surface px-3 py-2 text-sm text-emphasis outline-none focus:border-emphasis-secondary"
@@ -346,7 +345,7 @@ const groupsHtml = feed ? projectGroupsHtml(feed.categories, entries) : '';
     }
 
     const entries: AwesomeEntry[] = sortEntries(feed.entries);
-    grid.innerHTML = projectGroupsHtml(feed.categories, entries);
+    grid.innerHTML = projectGroupsHtml(feed.categories, entries, 'es');
     collectRows();
     fillSelect(
       categoryEl,

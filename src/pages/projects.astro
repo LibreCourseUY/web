@@ -11,7 +11,7 @@ import { projectGroupsHtml, projectsItemList } from '@/lib/catalogue-render';
 // content; the client script refreshes it and adds filtering.
 const feed = await fetchCatalogueForBuild();
 const entries = feed ? sortEntries(feed.entries) : [];
-const groupsHtml = feed ? projectGroupsHtml(feed.categories, entries) : '';
+const groupsHtml = feed ? projectGroupsHtml(feed.categories, entries, 'en') : '';
 ---
 
 <Layout
@@ -345,7 +345,7 @@ const groupsHtml = feed ? projectGroupsHtml(feed.categories, entries) : '';
     }
 
     const entries: AwesomeEntry[] = sortEntries(feed.entries);
-    grid.innerHTML = projectGroupsHtml(feed.categories, entries);
+    grid.innerHTML = projectGroupsHtml(feed.categories, entries, 'en');
     collectRows();
     fillSelect(
       categoryEl,

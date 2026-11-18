@@ -1,10 +1,15 @@
-import { esc, entryCard } from '@/lib/awesome-card';
-import { organizationCard } from '@/lib/awesome-org-card';
-import type { AwesomeEntry, AwesomeOrg } from '@/lib/awesome';
+import { esc, entryCard } from './awesome-card.ts';
+import { organizationCard } from './awesome-org-card.ts';
+import type { AwesomeEntry, AwesomeOrg } from './awesome.ts';
+import type { CardLang } from './card-strings.ts';
 
 // Shared by the build-time prerender and the client-side filter, so the HTML a
 // crawler sees and the HTML a visitor sees are produced by the same code.
-export function projectGroupsHtml(categories: string[], entries: AwesomeEntry[]): string {
+export function projectGroupsHtml(
+  categories: string[],
+  entries: AwesomeEntry[],
+  lang: CardLang = 'en',
+): string {
   return categories
     .map((category) => [category, entries.filter((entry) => entry.category === category)] as const)
     .filter(([, group]) => group.length > 0)
@@ -13,15 +18,15 @@ export function projectGroupsHtml(categories: string[], entries: AwesomeEntry[])
         <section>
           <h2 class="border-b border-line pb-2 text-sm font-bold uppercase tracking-wider text-muted">${esc(category)}</h2>
           <div class="grid grid-cols-1 gap-6 pt-4 md:grid-cols-2 lg:grid-cols-3">
-            ${group.map(entryCard).join('')}
+            ${group.map((entry) => entryCard(entry, lang)).join('')}
           </div>
         </section>`,
     )
     .join('');
 }
 
-export function orgsGridHtml(orgs: AwesomeOrg[]): string {
-  return orgs.map(organizationCard).join('');
+export function orgsGridHtml(orgs: AwesomeOrg[], lang: CardLang = 'en'): string {
+  return orgs.map((org) => organizationCard(org, lang)).join('');
 }
 
 export function projectsItemList(entries: AwesomeEntry[], siteUrl: string) {

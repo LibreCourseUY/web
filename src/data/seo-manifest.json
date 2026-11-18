@@ -349,6 +349,8 @@
         "url": "https://librecourse.uy/es/about/",
         "description": "LibreCourseUY es una comunidad de software libre sin fines de lucro en Uruguay. Cómo nos organizamos, quién es dueño de los proyectos y cómo participar.",
         "image": "https://librecourse.uy/og.jpg",
+        "datePublished": "2026-11-18",
+        "dateModified": "2026-11-18",
         "author": {
           "@type": "Person",
           "name": "LibreCourseUY"
@@ -411,6 +413,8 @@
         "url": "https://librecourse.uy/es/contribute/",
         "description": "Hacé tu primera contribución al código abierto con LibreCourseUY. Elegí un proyecto, encontrá una tarea en Gitsion y prepará tus herramientas.",
         "image": "https://librecourse.uy/og.jpg",
+        "datePublished": "2026-06-12",
+        "dateModified": "2026-11-18",
         "author": {
           "@type": "Person",
           "name": "LibreCourseUY"
@@ -473,6 +477,8 @@
         "url": "https://librecourse.uy/es/dco/",
         "description": "LibreCourseUY acepta contribuciones bajo el Developer Certificate of Origin (DCO). Cómo certificar cada commit con la línea Signed-off-by.",
         "image": "https://librecourse.uy/og.jpg",
+        "datePublished": "2026-10-05",
+        "dateModified": "2026-11-18",
         "publisher": {
           "@type": "Organization",
           "name": "LibreCourseUY",
@@ -531,6 +537,8 @@
         "url": "https://librecourse.uy/es/docs/gpg-signature/",
         "description": "Aprendé a instalar GPG, generar un par de claves de firma, firmar tus commits de Git y verificar las firmas correctamente en GitHub.",
         "image": "https://librecourse.uy/og.jpg",
+        "datePublished": "2026-08-08",
+        "dateModified": "2026-11-18",
         "author": {
           "@type": "Person",
           "name": "LibreCourseUY"
@@ -599,6 +607,8 @@
         "url": "https://librecourse.uy/es/docs/",
         "description": "Guías de contribución, recursos de Git y GitHub, referencias técnicas y herramientas para la comunidad de LibreCourseUY.",
         "image": "https://librecourse.uy/og.jpg",
+        "datePublished": "2026-08-08",
+        "dateModified": "2026-11-18",
         "publisher": {
           "@type": "Organization",
           "name": "LibreCourseUY",
@@ -683,7 +693,7 @@
               "name": "¿Qué es LibreCourseUY?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Una iniciativa sin fines de lucro radicada en Uruguay que ayuda a programadores —desde quienes están empezando hasta profesionales con experiencia— a contribuir a software libre y de código abierto."
+                "text": "Una comunidad sin fines de lucro de Uruguay que ayuda a programadores —desde quien recién empieza hasta quien ya trabaja de esto— a contribuir a software libre."
               }
             },
             {
@@ -691,7 +701,7 @@
               "name": "¿Quién puede sumarse?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Cualquiera, gratis. Se espera que quienes participan sigan nuestro Código de Conducta. Las contribuciones siguen la licencia y las condiciones de contribución de cada proyecto."
+                "text": "Cualquiera, y sin costo. Solo pedimos respetar el Código de Conducta y las reglas de cada proyecto."
               }
             },
             {
@@ -699,7 +709,7 @@
               "name": "¿Qué ofrece LibreCourseUY?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Una comunidad de desarrollo sólida con objetivos en común, un espacio para aprender y hacer crecer tu carrera, y proyectos reales que valen la pena para tu CV."
+                "text": "Gente con las mismas ganas, un lugar donde aprender, y proyectos reales para mostrar en tu CV. Sin humo."
               }
             },
             {
@@ -715,7 +725,7 @@
               "name": "¿Dónde puedo ver la actividad reciente de los proyectos?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Visitá Gitsion para seguir las novedades por proyecto o contribuyente, explorar issues y ver pull requests. Nuestro directorio de proyectos te ayuda a descubrir proyectos por categoría, lenguaje y estado de contribución."
+                "text": "Entrá a Gitsion y seguí la actividad del proyecto o de cada persona. En el directorio de proyectos podés filtrar por categoría, lenguaje y si aceptan aportes."
               }
             },
             {
@@ -731,7 +741,7 @@
               "name": "¿Dónde puedo encontrar a LibreCourseUY?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Contribuí en GitHub Sumate a nuestro servidor de Discord"
+                "text": "Pasá por GitHub o sumate al Discord"
               }
             },
             {
@@ -739,7 +749,7 @@
               "name": "¿Cómo funciona la propiedad de los proyectos?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Quienes son dueños de los proyectos conservan la propiedad y la gobernanza de su trabajo. Las contribuciones siguen la licencia y las condiciones de contribución de cada proyecto. LibreCourseUY no reclama derechos sobre los proyectos privados ni el código propietario de sus miembros."
+                "text": "Cada proyecto es de quien lo mantiene: dueño, reglas y decisiones. LibreCourseUY no se queda con nada, ni con tus proyectos privados ni con tu código propietario."
               }
             },
             {
@@ -747,7 +757,7 @@
               "name": "¿Puedo traer un proyecto privado o comercial?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Sí. Podés traer proyectos con componentes privados o comerciales. La colaboración organizada a través de LibreCourseUY debe ocurrir sobre las partes de código abierto de esos proyectos. La parte privada sigue siendo tuya. El trabajo comercial o propietario, incluido el desarrollo pago, el empleo, la consultoría, los acuerdos de acciones o el trabajo bajo NDA, debe acordarse de forma independiente entre las personas involucradas. LibreCourseUY no es parte de esos acuerdos."
+                "text": "Sí. Podés traer proyectos con partes privadas o comerciales; lo que se trabaja desde LibreCourseUY es la parte abierta. La parte privada sigue siendo tuya. Lo comercial o propietario —desarrollo pago, empleo, consultoría, participaciones o trabajo con NDA— lo arreglan entre ustedes. LibreCourseUY no es parte de esos acuerdos."
               }
             }
           ]
@@ -787,6 +797,8 @@
         "url": "https://librecourse.uy/es/learn/",
         "description": "Aprendé a programar de verdad con proyectos reales, el apoyo de la comunidad, cursos y ejercicios de práctica de LibreCourseUY.",
         "image": "https://librecourse.uy/og.jpg",
+        "datePublished": "2026-08-08",
+        "dateModified": "2026-11-18",
         "author": {
           "@type": "Person",
           "name": "LibreCourseUY"
@@ -849,6 +861,8 @@
         "url": "https://librecourse.uy/es/orgs/",
         "description": "Organizaciones que mantienen y gobiernan proyectos del ecosistema LibreCourseUY: quiénes son, qué mantienen y dónde vive su código.",
         "image": "https://librecourse.uy/og.jpg",
+        "datePublished": "2026-10-10",
+        "dateModified": "2026-11-18",
         "publisher": {
           "@type": "Organization",
           "name": "LibreCourseUY",
@@ -907,6 +921,8 @@
         "url": "https://librecourse.uy/es/projects/",
         "description": "Explorá proyectos de código abierto de la comunidad LibreCourseUY: filtrá por categoría, lenguaje, licencia y disponibilidad para contribuir.",
         "image": "https://librecourse.uy/og.jpg",
+        "datePublished": "2026-06-18",
+        "dateModified": "2026-11-18",
         "publisher": {
           "@type": "Organization",
           "name": "LibreCourseUY",
@@ -934,13 +950,13 @@
     ]
   },
   "/es/showcase/": {
-    "title": "Productos creados por nuestros miembros — LibreCourseUY",
+    "title": "Lo que hacen nuestros miembros — LibreCourseUY",
     "canonical": "https://librecourse.uy/es/showcase/",
     "robots": "index,follow,max-snippet:-1,max-image-preview:large",
     "og": {
       "type": "website",
-      "title": "Productos creados por nuestros miembros — LibreCourseUY",
-      "description": "Conocé productos independientes creados por miembros de la comunidad LibreCourseUY y proponé el tuyo a través de un pull request.",
+      "title": "Lo que hacen nuestros miembros — LibreCourseUY",
+      "description": "Proyectos propios de la gente de LibreCourseUY, adentro y afuera del código abierto. Si tenés uno, lo podés proponer con un pull request.",
       "url": "https://librecourse.uy/es/showcase/",
       "image": "https://librecourse.uy/og.jpg",
       "image:width": 1200,
@@ -951,20 +967,22 @@
     },
     "twitter": {
       "card": "summary_large_image",
-      "title": "Productos creados por nuestros miembros — LibreCourseUY",
-      "description": "Conocé productos independientes creados por miembros de la comunidad LibreCourseUY y proponé el tuyo a través de un pull request.",
+      "title": "Lo que hacen nuestros miembros — LibreCourseUY",
+      "description": "Proyectos propios de la gente de LibreCourseUY, adentro y afuera del código abierto. Si tenés uno, lo podés proponer con un pull request.",
       "image": "https://librecourse.uy/og.jpg",
       "image:alt": "LibreCourseUY"
     },
-    "description": "Conocé productos independientes creados por miembros de la comunidad LibreCourseUY y proponé el tuyo a través de un pull request.",
+    "description": "Proyectos propios de la gente de LibreCourseUY, adentro y afuera del código abierto. Si tenés uno, lo podés proponer con un pull request.",
     "schema_jsonld": [
       {
         "@context": "https://schema.org",
         "@type": "CollectionPage",
-        "name": "Productos creados por nuestros miembros — LibreCourseUY",
+        "name": "Lo que hacen nuestros miembros — LibreCourseUY",
         "url": "https://librecourse.uy/es/showcase/",
-        "description": "Conocé productos independientes creados por miembros de la comunidad LibreCourseUY y proponé el tuyo a través de un pull request.",
+        "description": "Proyectos propios de la gente de LibreCourseUY, adentro y afuera del código abierto. Si tenés uno, lo podés proponer con un pull request.",
         "image": "https://librecourse.uy/og.jpg",
+        "datePublished": "2026-11-18",
+        "dateModified": "2026-11-18",
         "publisher": {
           "@type": "Organization",
           "name": "LibreCourseUY",

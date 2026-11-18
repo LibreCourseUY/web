@@ -1,4 +1,4 @@
-import { isAwesomeFeed, type AwesomeFeed } from '@/lib/awesome';
+import { isAwesomeFeed, type AwesomeFeed } from './awesome.ts';
 
 const UPSTREAM =
   'https://raw.githubusercontent.com/LibreCourseUY/awesome-librecourseuy/master/public/entries.json';

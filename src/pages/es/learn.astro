@@ -14,7 +14,7 @@ const discord = communityLinks.discord;
 const scope = [
   {
     title: '¡Aprendé en comunidad!',
-    description: `Sumate a nuestro <a href="${discord}" target="_blank" class="underline text-emphasis-secondary">Discord</a>, donde vas a encontrar una comunidad para aprender código abierto juntos`,
+    description: `En nuestro <a href="${discord}" target="_blank" class="underline text-emphasis-secondary">Discord</a> hay gente para aprender código abierto juntos`,
   },
   {
     title: 'Lenguajes de programación',
@@ -147,19 +147,19 @@ const phases = [
   {
     number: '01',
     title: 'Contexto rápido',
-    description: `Empezá con una introducción corta al lenguaje o la herramienta. Aprendé lo suficiente para resolver una tarea chica y volvé a los tutoriales y a la documentación a medida que aparezcan nuevas dudas.`,
+    description: `Empezá con una introducción corta al lenguaje o la herramienta. Con lo justo para resolver una tarea chica alcanza; a los tutoriales volvés cuando te aparezcan dudas.`,
     example: `Querés aprender Python. Probá una introducción a variables, bucles, funciones y estructuras de datos básicas, y después usalas en un ejercicio corto. Tené los recursos a mano mientras construís.`,
   },
   {
     number: '02',
     title: 'Construí algo real',
-    description: `Elegí un proyecto o una contribución chica que te interese. Leé su guía de instalación, intentá un cambio acotado y usá la documentación, los tutoriales y las conversaciones de la comunidad para entender cada paso.`,
+    description: `Elegí un proyecto o una contribución chica que te interese. Leé la guía de instalación, intentá un cambio acotado y usá los tutoriales, la documentación y lo que se charla en la comunidad para entender cada paso.`,
     example: `Querés contribuir a open-groups. Leé el README, hacé funcionar el proyecto y hablá con un mantenedor sobre una tarea chica. Si te aparece un error, revisá la documentación correspondiente y pedí orientación en la comunidad.`,
   },
   {
     number: '03',
     title: 'Pedí ayuda',
-    description: `Pedí ayuda cuando no tengas claro cómo seguir. Contá qué estás intentando hacer, qué probaste y qué pasó. Discutir el problema es parte de aprender en comunidad.`,
+    description: `Pedí ayuda cuando no tengas claro cómo seguir. Contá qué estás intentando, qué probaste y qué pasó. Pensar el problema en voz alta también es aprender.`,
     example: `Tu proyecto no arranca. Compartí el comando, el mensaje de error y los pasos que probaste en el Discord de LibreCourseUY. Podés pedir una pista, una revisión de código o ayuda para entender el próximo paso.`,
   },
 ];
@@ -262,9 +262,7 @@ const startOptions = [
       <div class="space-y-12 w-full max-w-4xl">
         <div class="space-y-12">
           <Text variant="h1">Cómo aprender</Text>
-          <Text variant="p" className="">
-            Nuestra filosofía para aprender a programar de forma efectiva.
-          </Text>
+          <Text variant="p" className=""> Así aprendemos a programar acá. </Text>
           <Anchor
             href="#learning-resources"
             className="inline-flex items-center gap-2 text-base font-bold underline underline-offset-4"

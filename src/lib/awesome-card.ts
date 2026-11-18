@@ -1,4 +1,5 @@
 import type { AwesomeEntry } from '@/lib/awesome';
+import { cardStrings, type CardLang } from './card-strings.ts';
 
 export function esc(value: string): string {
   return value.replace(/[&<>"']/g, (char) => {
@@ -33,14 +34,15 @@ export const LANG_COLORS: Record<string, [string, string]> = {
 
 // Landing card: the original layout (src/components/Cards/Cards.astro) plus all
 // the awesome metadata, rendered from client-fetched feed data.
-export function projectCard(entry: AwesomeEntry): string {
+export function projectCard(entry: AwesomeEntry, lang: CardLang = 'en'): string {
+  const t = cardStrings[lang];
   const link = entry.repository ?? entry.url;
 
   const badges: string[] = [`[${esc(entry.category)}]`];
-  if (entry.open_source) badges.push('[open]');
-  if (entry.relationship !== 'official') badges.push('[community]');
-  badges.push(entry.commercial ? '[commercial]' : '[non-commercial]');
-  if (entry.open_to_contributions === true) badges.push('[open to contributions]');
+  if (entry.open_source) badges.push(t.open);
+  if (entry.relationship !== 'official') badges.push(t.community);
+  badges.push(entry.commercial ? t.commercial : t.nonCommercial);
+  if (entry.open_to_contributions === true) badges.push(t.openToContributions);
   if (entry.license) badges.push(`[${esc(entry.license)}]`);
   for (const tag of entry.tags ?? []) badges.push(`[${esc(tag)}]`);
   for (const lang of entry.language ?? []) badges.push(`[${esc(lang)}]`);
@@ -62,7 +64,7 @@ export function projectCard(entry: AwesomeEntry): string {
       <div class="flex min-w-0 flex-1 flex-col justify-center gap-y-3">
         <div class="flex w-full items-center justify-between gap-2">
           <h3 class="min-w-0 break-words text-lg font-bold">${esc(entry.name)}</h3>
-          <a href="${esc(link)}" target="_blank" rel="noopener noreferrer" aria-label="Open ${esc(entry.name)} repository" class="w-6 h-6 hover:bg-emphasis/10 hover:cursor-pointer flex items-center justify-center rounded-full">
+          <a href="${esc(link)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(t.repo(entry.name))}" class="w-6 h-6 hover:bg-emphasis/10 hover:cursor-pointer flex items-center justify-center rounded-full">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 text-muted"><path d="M6 6v2h8.59L5 17.59 6.41 19 16 9.41V18h2V6z"/></svg>
           </a>
         </div>
@@ -74,8 +76,8 @@ export function projectCard(entry: AwesomeEntry): string {
           .join('')}</div>
         <div class="mt-1 flex flex-wrap items-center justify-between gap-2 border-t border-line pt-3 text-xs text-muted">
           <div class="flex items-center gap-2">
-            ${entry.url && entry.url !== entry.repository ? `<a href="${esc(entry.url)}" target="_blank" rel="noopener noreferrer" class="hover:underline hover:text-emphasis">[website]</a>` : ''}
-            ${entry.repository ? `<a href="${esc(entry.repository)}" target="_blank" rel="noopener noreferrer" class="hover:underline hover:text-emphasis">[source]</a>` : ''}
+            ${entry.url && entry.url !== entry.repository ? `<a href="${esc(entry.url)}" target="_blank" rel="noopener noreferrer" class="hover:underline hover:text-emphasis">${t.website}</a>` : ''}
+            ${entry.repository ? `<a href="${esc(entry.repository)}" target="_blank" rel="noopener noreferrer" class="hover:underline hover:text-emphasis">${t.source}</a>` : ''}
           </div>
           ${maintainers ? `<span>${maintainers}</span>` : ''}
         </div>
@@ -83,12 +85,13 @@ export function projectCard(entry: AwesomeEntry): string {
     </div>`;
 }
 
-export function entryCard(entry: AwesomeEntry): string {
+export function entryCard(entry: AwesomeEntry, lang: CardLang = 'en'): string {
+  const t = cardStrings[lang];
   const badges: string[] = [`[${esc(entry.category)}]`];
-  if (entry.open_source) badges.push('[open]');
-  if (entry.relationship !== 'official') badges.push('[community]');
-  badges.push(entry.commercial ? '[commercial]' : '[non-commercial]');
-  if (entry.open_to_contributions === true) badges.push('[open to contributions]');
+  if (entry.open_source) badges.push(t.open);
+  if (entry.relationship !== 'official') badges.push(t.community);
+  badges.push(entry.commercial ? t.commercial : t.nonCommercial);
+  if (entry.open_to_contributions === true) badges.push(t.openToContributions);
   for (const lang of entry.language ?? []) badges.push(`[${esc(lang)}]`);
 
   const accent = LANG_COLORS[(entry.language ?? [])[0] ?? ''];
@@ -127,7 +130,7 @@ export function entryCard(entry: AwesomeEntry): string {
 			<div data-filter="${esc(JSON.stringify(filterData))}" style="${accentStyle}" class="flex min-w-0 flex-col gap-3 border border-line bg-surface p-4 transition-colors ${hoverBorder}">
 				<div class="flex items-center justify-between gap-2">
 					<a href="${esc(entry.url)}" target="_blank" rel="noopener noreferrer" class="min-w-0 flex-1 truncate text-sm font-bold text-emphasis">${esc(entry.name)}</a>
-					${entry.relationship === 'official' ? `<span class="shrink-0 border ${officialBadgeColor} px-1.5 py-0.5 text-xs font-bold">[official]</span>` : ''}
+					${entry.relationship === 'official' ? `<span class="shrink-0 border ${officialBadgeColor} px-1.5 py-0.5 text-xs font-bold">${t.official}</span>` : ''}
 				</div>
 				<p class="break-words text-sm leading-relaxed text-muted">${esc(entry.description)}</p>
 				<div class="flex flex-wrap gap-1">${badges
@@ -137,8 +140,8 @@ export function entryCard(entry: AwesomeEntry): string {
           .join('')}</div>
 				<div class="mt-auto flex flex-wrap items-center justify-between gap-2 border-t border-line pt-3 text-xs text-muted">
 					<div class="flex items-center gap-2 ${accentText.replace('text-emphasis-secondary', 'text-muted')}">
-						${entry.url && entry.url !== entry.repository ? `<a href="${esc(entry.url)}" target="_blank" rel="noopener noreferrer" class="hover:text-emphasis">[website]</a>` : ''}
-						${entry.repository ? `<a href="${esc(entry.repository)}" target="_blank" rel="noopener noreferrer" class="hover:text-emphasis">[source]</a>` : ''}
+						${entry.url && entry.url !== entry.repository ? `<a href="${esc(entry.url)}" target="_blank" rel="noopener noreferrer" class="hover:text-emphasis">${t.website}</a>` : ''}
+						${entry.repository ? `<a href="${esc(entry.repository)}" target="_blank" rel="noopener noreferrer" class="hover:text-emphasis">${t.source}</a>` : ''}
 					</div>
 					${maintainers ? `<span>${maintainers}</span>` : ''}
 				</div>

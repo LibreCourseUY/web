@@ -22,21 +22,21 @@ import heroImg from '@/assets/ascii-hero.png';
 import computerImg from '@/assets/ascii-computer.png';
 
 const aboutList = [
-  '<strong class="block">Sin fines de lucro</strong> Comunidad FOSS radicada en Uruguay.',
-  '<strong class="block">Hecha para desarrolladores de todos los niveles </strong>desde el primer commit hasta quien contribuye desde hace años.',
-  'Herramientas abiertas, aprendizaje abierto, procesos abiertos.',
-  '<strong class="block">Formando a la próxima generación </strong>de contribuyentes de código abierto en Latinoamérica.',
+  '<strong class="block">Sin fines de lucro</strong> Una comunidad de código abierto en Uruguay.',
+  '<strong class="block">Para todos los niveles </strong>desde tu primer commit hasta años aportando.',
+  'Todo abierto: las herramientas, lo que aprendemos y cómo lo hacemos.',
+  '<strong class="block">Abriendo la cancha </strong>para que más gente de Latinoamérica aporte al código abierto.',
 ];
 
 const activityLinks = [
   {
     title: 'Feed de actividad',
-    description: 'Seguí las novedades por proyecto o por contribuyente.',
+    description: 'Seguí lo que pasa en cada proyecto y quién lo está haciendo.',
     href: communityLinks.activity,
   },
   {
     title: 'Issues',
-    description: 'Explorá las tareas abiertas en los proyectos del catálogo.',
+    description: 'Mirá qué tareas están abiertas en los proyectos del catálogo.',
     href: communityLinks.issues,
   },
   {
@@ -88,15 +88,15 @@ const activityLinks = [
           className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl max-w-6xl mb-6 text-center"
         >
           Construí en público.<br />
-          <span class="text-emphasis-secondary">Convertite en código abierto.</span>
+          <span class="text-emphasis-secondary">Sumate al código abierto.</span>
         </Text>
 
         <Text
           variant="p"
           className="max-w-2xl mb-10 text-emphasis/70 text-lg text-center md:text-xl"
         >
-          Una comunidad FOSS sin fines de lucro de Uruguay que forma a la próxima generación de
-          contribuyentes de código abierto en Latinoamérica.
+          Somos una comunidad sin fines de lucro en Uruguay. Ayudamos a que más gente de
+          Latinoamérica dé sus primeros pasos en el código abierto.
         </Text>
 
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
@@ -166,9 +166,9 @@ const activityLinks = [
     </section>
     <section id="projects" class="w-full py-16 md:py-24">
       <div class="space-y-8">
-        <Text variant="h2">Construido por nuestra comunidad</Text>
+        <Text variant="h2">Lo que construye la comunidad</Text>
         <Text variant="p"
-          >Explorá proyectos, encontrá algo que te interese y conocé a quienes lo construyen.</Text
+          >Mirá los proyectos, buscá uno que te interese y conocé a la gente que está detrás.</Text
         >
         <div id="home-projects" class="grid grid-cols-1 gap-4 md:grid-cols-2"></div>
         <div
@@ -180,11 +180,11 @@ const activityLinks = [
           Cargando proyectos...
         </div>
         <p id="home-projects-fallback" class="max-w-3xl text-base leading-relaxed text-muted">
-          Explorá nuestro directorio de proyectos abajo, o
+          Mirá el directorio completo abajo, o
           <Anchor href={communityLinks.activity} className="text-base underline underline-offset-4">
-            seguí los proyectos en Gitsion<span aria-hidden="true"> ↗</span>
+            seguí la actividad en Gitsion<span aria-hidden="true"> ↗</span>
           </Anchor>
-          para ver en qué está trabajando la comunidad.
+          para ver en qué anda la comunidad.
         </p>
         <div class="flex flex-wrap items-center gap-x-6 gap-y-4">
           <Anchor
@@ -201,9 +201,9 @@ const activityLinks = [
     </section>
     <section id="showcase" class="w-full space-y-8 border-t border-line py-16 md:py-24">
       <div class="max-w-3xl space-y-4">
-        <Text variant="h2">Construido por nuestros miembros</Text>
+        <Text variant="h2">Lo que hacen nuestros miembros</Text>
         <Text variant="p" className="text-muted">
-          Productos independientes creados por desarrolladores de la comunidad de LibreCourseUY.
+          Proyectos propios de la gente de la comunidad, adentro y afuera del código abierto.
         </Text>
         <p class="text-sm leading-relaxed text-muted">{showcaseNotice}</p>
       </div>
@@ -221,7 +221,7 @@ const activityLinks = [
           href="/es/showcase/"
           className="inline-flex items-center gap-2 border border-line px-4 py-3 text-sm font-bold text-emphasis hover:border-emphasis-secondary hover:text-emphasis-secondary"
         >
-          Explorá los {showcaseProducts.length} productos <span aria-hidden="true">→</span>
+          Ver los {showcaseProducts.length} productos <span aria-hidden="true">→</span>
         </Anchor>
         <Anchor
           href="/es/showcase/#submit-product"
@@ -233,10 +233,9 @@ const activityLinks = [
     </section>
     <section id="organizations" class="w-full space-y-8 border-t border-line py-16 md:py-24">
       <div class="max-w-3xl space-y-4">
-        <Text variant="h2">Organizaciones de nuestro ecosistema</Text>
+        <Text variant="h2">Las organizaciones del ecosistema</Text>
         <Text variant="p" className="text-muted">
-          Conocé a las organizaciones que mantienen y gobiernan los proyectos del ecosistema
-          LibreCourseUY.
+          Quiénes mantienen y gobiernan los proyectos, además de nosotros.
         </Text>
       </div>
       <div id="home-organizations" class="grid grid-cols-1 gap-4 md:grid-cols-2"></div>
@@ -249,11 +248,11 @@ const activityLinks = [
         Cargando organizaciones...
       </div>
       <p id="home-organizations-fallback" class="max-w-3xl text-base leading-relaxed text-muted">
-        Explorá el directorio de organizaciones, o
+        Mirá el directorio de organizaciones, o
         <Anchor href={communityLinks.discord} className="text-base underline underline-offset-4"
           >preguntá en Discord</Anchor
         >
-        para descubrir dónde podés contribuir.
+        dónde podés aportar.
       </p>
       <Anchor
         href="/es/orgs/"
@@ -264,9 +263,9 @@ const activityLinks = [
     </section>
     <section id="start" class="w-full space-y-8 border-t border-line py-16 md:py-24">
       <div class="max-w-3xl space-y-4">
-        <Text variant="h2">Tu primera contribución empieza acá</Text>
+        <Text variant="h2">Tu primera contribución arranca acá</Text>
         <Text variant="p" className="text-muted">
-          Empezá con una tarea chica, aprendé haciendo y pedí ayuda en el camino.
+          Arrancá con una tarea chica, aprendé haciéndola y pedí una mano cuando te trabás.
         </Text>
       </div>
       <ContributionSteps />
@@ -281,8 +280,8 @@ const activityLinks = [
         </p>
         <Text variant="h2">Mirá lo que estamos construyendo</Text>
         <Text variant="p" className="max-w-xl text-muted">
-          Gitsion reúne las novedades de los proyectos de la comunidad. Seguí el trabajo por
-          proyecto o por persona, encontrá issues abiertos y explorá las contribuciones recientes.
+          En Gitsion está todo lo que pasa en los proyectos: quién hizo qué, qué issues están
+          abiertos y qué se mergeó esta semana.
         </Text>
         <Anchor
           href={communityLinks.activity}
@@ -325,11 +324,10 @@ const activityLinks = [
           }
         </List>
         <div id="collaboration" class="space-y-4">
-          <Text variant="h3">Construida en torno a la colaboración abierta</Text>
+          <Text variant="h3">Todo se hace en abierto</Text>
           <p class="text-base leading-relaxed text-muted">
-            Traé tus ideas y tus proyectos. Lo que construimos en comunidad, lo construimos en
-            abierto. Cada proyecto mantiene su propia propiedad, gobernanza y condiciones de
-            contribución.
+            Traé tus ideas y tus proyectos: lo que hacemos en comunidad lo hacemos a la vista de
+            todos. Cada proyecto tiene su dueño, sus reglas y su forma de decidir.
           </p>
           <Anchor href="#faq" className="text-sm font-bold underline underline-offset-4"
             >Leé las preguntas frecuentes de la comunidad <span aria-hidden="true">↓</span></Anchor
@@ -352,20 +350,18 @@ const activityLinks = [
         >
         <div class="[&_.faq-item:last-child]:border-b [&_.faq-item:last-child]:border-line">
           <Collapse question="¿Qué es LibreCourseUY?" open>
-            Una iniciativa sin fines de lucro radicada en Uruguay que ayuda a programadores —desde
-            quienes están empezando hasta profesionales con experiencia— a contribuir a software
-            libre y de código abierto.
+            Una comunidad sin fines de lucro de Uruguay que ayuda a programadores —desde quien
+            recién empieza hasta quien ya trabaja de esto— a contribuir a software libre.
           </Collapse>
 
           <Collapse question="¿Quién puede sumarse?">
-            Cualquiera, gratis. Se espera que quienes participan sigan nuestro Código de Conducta.
-            Las contribuciones siguen la licencia y las condiciones de contribución de cada
-            proyecto.
+            Cualquiera, y sin costo. Solo pedimos respetar el Código de Conducta y las reglas de
+            cada proyecto.
           </Collapse>
 
           <Collapse question="¿Qué ofrece LibreCourseUY?">
-            Una comunidad de desarrollo sólida con objetivos en común, un espacio para aprender y
-            hacer crecer tu carrera, y proyectos reales que valen la pena para tu CV.
+            Gente con las mismas ganas, un lugar donde aprender, y proyectos reales para mostrar en
+            tu CV. Sin humo.
           </Collapse>
 
           <Collapse question="¿Cómo empiezo?">
@@ -380,13 +376,13 @@ const activityLinks = [
             > explica cómo aprender con proyectos reales y acompañamiento de la comunidad.
           </Collapse>
           <Collapse question="¿Dónde puedo ver la actividad reciente de los proyectos?">
-            Visitá <Anchor href={communityLinks.activity} className="text-inherit underline"
+            Entrá a <Anchor href={communityLinks.activity} className="text-inherit underline"
               >Gitsion</Anchor
             >
-            para seguir las novedades por proyecto o contribuyente, explorar issues y ver pull requests.
-            Nuestro <Anchor href="/es/projects/" className="text-inherit underline"
+            y seguí la actividad del proyecto o de cada persona. En el
+            <Anchor href="/es/projects/" className="text-inherit underline"
               >directorio de proyectos</Anchor
-            > te ayuda a descubrir proyectos por categoría, lenguaje y estado de contribución.
+            > podés filtrar por categoría, lenguaje y si aceptan aportes.
           </Collapse>
 
           <Collapse question="¿Por qué está todo en inglés?">
@@ -403,7 +399,7 @@ const activityLinks = [
               >
                 <span class="mr-3 text-sm">{String(1).padStart(2, '0')}</span>
                 <span>
-                  Contribuí en
+                  Pasá por
                   <Anchor href={communityLinks.github}>GitHub</Anchor>
                 </span>
               </ListItem>
@@ -412,28 +408,24 @@ const activityLinks = [
               >
                 <span class="mr-3 text-sm">{String(2).padStart(2, '0')}</span>
                 <span>
-                  Sumate a nuestro servidor de
+                  o sumate al
                   <Anchor href={communityLinks.discord}>Discord</Anchor>
                 </span>
               </ListItem>
             </List>
           </Collapse>
           <Collapse question="¿Cómo funciona la propiedad de los proyectos?">
-            Quienes son dueños de los proyectos conservan la propiedad y la gobernanza de su
-            trabajo. Las contribuciones siguen la licencia y las condiciones de contribución de cada
-            proyecto. LibreCourseUY no reclama derechos sobre los proyectos privados ni el código
-            propietario de sus miembros.
+            Cada proyecto es de quien lo mantiene: dueño, reglas y decisiones. LibreCourseUY no se
+            queda con nada, ni con tus proyectos privados ni con tu código propietario.
           </Collapse>
           <Collapse question="¿Puedo traer un proyecto privado o comercial?">
             <p>
-              <strong>Sí.</strong> Podés traer proyectos con componentes privados o comerciales. La colaboración
-              organizada a través de LibreCourseUY debe ocurrir sobre las partes de código abierto de
-              esos proyectos. La parte privada sigue siendo tuya.
+              <strong>Sí.</strong> Podés traer proyectos con partes privadas o comerciales; lo que se
+              trabaja desde LibreCourseUY es la parte abierta. La parte privada sigue siendo tuya.
             </p>
             <p class="mt-4">
-              El trabajo comercial o propietario, incluido el desarrollo pago, el empleo, la
-              consultoría, los acuerdos de acciones o el trabajo bajo NDA, debe acordarse de forma
-              independiente entre las personas involucradas. LibreCourseUY no es parte de esos
+              Lo comercial o propietario —desarrollo pago, empleo, consultoría, participaciones o
+              trabajo con NDA— lo arreglan entre ustedes. LibreCourseUY no es parte de esos
               acuerdos.
             </p>
           </Collapse>
@@ -498,7 +490,7 @@ const activityLinks = [
 
     const orgs = feed.orgs ?? [];
     if (organizations && orgs.length > 0) {
-      organizations.innerHTML = orgs.map(organizationCard).join('');
+      organizations.innerHTML = orgs.map((org) => organizationCard(org, 'es')).join('');
       organizationsFallback?.setAttribute('hidden', '');
     }
 
@@ -510,7 +502,7 @@ const activityLinks = [
     } catch {
       /* storage unavailable */
     }
-    grid.innerHTML = picked.map(projectCard).join('');
+    grid.innerHTML = picked.map((entry) => projectCard(entry, 'es')).join('');
     fallback?.setAttribute('hidden', '');
   }
 

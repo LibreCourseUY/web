@@ -10,7 +10,7 @@ import { orgsGridHtml } from '@/lib/catalogue-render';
 // Card descriptions come from the fetched catalogue and stay as published.
 const feed = await fetchCatalogueForBuild();
 const orgs = feed?.orgs ?? [];
-const orgsHtml = orgs.length ? orgsGridHtml(orgs) : '';
+const orgsHtml = orgs.length ? orgsGridHtml(orgs, 'es') : '';
 ---
 
 <Layout
@@ -99,7 +99,7 @@ const orgsHtml = orgs.length ? orgsGridHtml(orgs) : '';
       return;
     }
 
-    grid.innerHTML = orgsGridHtml(feed.orgs ?? []);
+    grid.innerHTML = orgsGridHtml(feed.orgs ?? [], 'es');
     app.removeAttribute('hidden');
   }
 
