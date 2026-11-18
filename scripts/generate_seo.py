@@ -172,7 +172,9 @@ CONFIG = SEOConfig(
         "page": "WebPage",
         "taxonomy": "CollectionPage",
         "post": "TechArticle",
-        "other": "HowTo",
+        # HowTo was deprecated by Google in Sept 2023 and these routes are
+        # pages/guides, not step-by-step instruction lists.
+        "other": "WebPage",
     },
     schema_registry=REGISTRY,
     emit_warnings=True,

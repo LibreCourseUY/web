@@ -26,11 +26,13 @@
     "schema_jsonld": [
       {
         "@context": "https://schema.org",
-        "@type": "HowTo",
+        "@type": "WebPage",
         "name": "About LibreCourseUY — Non-Profit FOSS Community in Uruguay",
         "url": "https://librecourse.uy/about/",
         "description": "LibreCourseUY is a non-profit free and open source software community based in Uruguay. Learn how we are organized, who owns the projects, and how to take part.",
         "image": "https://librecourse.uy/og.jpg",
+        "datePublished": "2026-11-18",
+        "dateModified": "2026-11-18",
         "author": {
           "@type": "Person",
           "name": "LibreCourseUY"
@@ -88,13 +90,13 @@
     "schema_jsonld": [
       {
         "@context": "https://schema.org",
-        "@type": "HowTo",
+        "@type": "WebPage",
         "name": "Make Your First Open Source Contribution — LibreCourseUY",
         "url": "https://librecourse.uy/contribute/",
         "description": "Make your first open source contribution with LibreCourseUY. Choose a project, find a task on Gitsion and prepare your tools with community support.",
         "image": "https://librecourse.uy/og.jpg",
         "datePublished": "2026-06-12",
-        "dateModified": "2026-11-17",
+        "dateModified": "2026-11-18",
         "author": {
           "@type": "Person",
           "name": "LibreCourseUY"
@@ -288,7 +290,7 @@
         "description": "Contribution guides, Git and GitHub resources, technical references and developer tools for the LibreCourseUY community.",
         "image": "https://librecourse.uy/og.jpg",
         "datePublished": "2026-08-08",
-        "dateModified": "2026-11-17",
+        "dateModified": "2026-11-18",
         "publisher": {
           "@type": "Organization",
           "name": "LibreCourseUY",
@@ -472,13 +474,13 @@
     "schema_jsonld": [
       {
         "@context": "https://schema.org",
-        "@type": "HowTo",
+        "@type": "WebPage",
         "name": "Learn Programming by Contributing — LibreCourseUY",
         "url": "https://librecourse.uy/learn/",
         "description": "Learn programming through real projects, community support, courses and practice exercises with LibreCourseUY.",
         "image": "https://librecourse.uy/og.jpg",
         "datePublished": "2026-08-08",
-        "dateModified": "2026-11-17",
+        "dateModified": "2026-11-18",
         "author": {
           "@type": "Person",
           "name": "LibreCourseUY"
@@ -541,7 +543,7 @@
       "description": "Organizations maintaining and governing projects in the LibreCourseUY ecosystem: who they are, what they maintain, and where their source lives.",
       "image": "https://librecourse.uy/og.jpg",
       "datePublished": "2026-10-10",
-      "dateModified": "2026-11-16",
+      "dateModified": "2026-11-18",
       "publisher": {
         "@type": "Organization",
         "name": "LibreCourseUY",
@@ -582,7 +584,7 @@
         "description": "Browse open source and community projects from LibreCourseUY: filter by category, language, licence and whether maintainers are open to contributions.",
         "image": "https://librecourse.uy/og.jpg",
         "datePublished": "2026-06-18",
-        "dateModified": "2026-11-17",
+        "dateModified": "2026-11-18",
         "publisher": {
           "@type": "Organization",
           "name": "LibreCourseUY",
@@ -642,7 +644,7 @@
         "description": "Discover independent products built by members of the LibreCourseUY community and propose your own product through a pull request.",
         "image": "https://librecourse.uy/og.jpg",
         "datePublished": "2026-11-17",
-        "dateModified": "2026-11-17",
+        "dateModified": "2026-11-18",
         "publisher": {
           "@type": "Organization",
           "name": "LibreCourseUY",
