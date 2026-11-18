@@ -17,7 +17,7 @@ the Docker build uses `node:24-alpine`.
 | `pnpm seo`          | Regenerate `src/data/seo-manifest.json` with seoslug (needs Python + `seoslug`) |
 | `pnpm og`           | Regenerate `public/og.jpg` (needs ImageMagick)                                  |
 | `pnpm lint`         | Run ESLint                                                                      |
-| `pnpm test`         | Run the awesome-filter self-check (Node strip-types)                            |
+| `pnpm test`         | Run the awesome-filter and agent-endpoint self-checks (Node strip-types)        |
 | `pnpm format`       | Format all files with Prettier                                                  |
 | `pnpm format:check` | Check formatting without writing                                                |
 
@@ -67,3 +67,23 @@ src/
 - Astro 7 uses the Rust compiler, which rejects unclosed tags and no longer auto-corrects invalid nesting. Close every non-void element.
 - Content collection config lives at `src/content.config.ts` (the old `src/content/config.ts` location was removed in Astro 6) and imports `z` from `astro/zod`.
 - `build.cssMinify` is now Lightning CSS by default in the Vite 8 bundled with Astro 7, so the explicit `lightningcss` settings in `astro.config.mjs` are redundant but harmless.
+
+## Agent infrastructure
+
+Machine-readable discovery for AI agents is part of the site, not an add-on:
+
+| Surface                | File                                                            | Notes                                                                                                                                                                                                         |
+| ---------------------- | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Markdown negotiation   | `functions/_middleware.ts`                                      | `Accept: text/markdown` returns markdown plus `x-markdown-tokens`; HTML stays the default. The converter is DOM-free on purpose — Cloudflare's workerd has no DOM, and `turndown` crashed it with error 1101. |
+| MCP server             | `functions/mcp.ts`                                              | Stateless Streamable HTTP at `/mcp`; tools `search_projects`, `list_categories`, `get_site_page`, `get_contribution_steps`.                                                                                   |
+| Health                 | `functions/api/health.ts`                                       | Backs the `status` relation in the API catalog.                                                                                                                                                               |
+| API catalog (RFC 9727) | `public/.well-known/api-catalog`                                | Extensionless, so `_headers` sets `application/linkset+json`.                                                                                                                                                 |
+| OpenAPI                | `public/openapi.json`                                           | Describes `/api/feed`, `/api/health` and `/mcp`.                                                                                                                                                              |
+| MCP server card        | `public/.well-known/mcp/server-card.json`                       | Must match the tools in `functions/mcp.ts` when they change.                                                                                                                                                  |
+| ARD manifest           | `public/.well-known/ai-catalog.json`                            | Also advertised via `Agentmap:` in `robots.txt` and `<link rel="ai-catalog">` in `Layout`.                                                                                                                    |
+| Skills index           | `public/.well-known/agent-skills/index.json`                    | **Generated** by `scripts/generate-agent-skills.mjs` during `pnpm build`; edit the `SKILL.md` files, never the index.                                                                                         |
+| auth.md / PRM          | `public/auth.md`, `public/.well-known/oauth-protected-resource` | The site issues no tokens, so `authorization_servers` is empty by design. Do not invent an issuer.                                                                                                            |
+| WebMCP                 | `src/components/AgentTools/AgentTools.astro`                    | Registers browser tools on load when `document.modelContext` exists; no-ops otherwise.                                                                                                                        |
+
+`pnpm test` runs `scripts/test-agent-endpoints.mjs`, which drives all three
+Functions directly (16 checks). Keep it green when changing agent surfaces.

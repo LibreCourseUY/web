@@ -1,6 +1,6 @@
 {
-  "resource": "https://librecourse.uy/api",
-  "resource_name": "LibreCourseUY public catalogue API",
+  "resource": "https://librecourse.uy",
+  "resource_name": "LibreCourseUY public website and catalogue API",
   "authorization_servers": [],
   "bearer_methods_supported": [],
   "scopes_supported": [],
