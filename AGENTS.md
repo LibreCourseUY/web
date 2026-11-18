@@ -59,6 +59,15 @@ src/
 - **seoslug** generates Open Graph, Twitter card, canonical, robots, and JSON-LD metadata per route into `src/data/seo-manifest.json`; `Layout` renders it via `src/components/Seo/Seo.astro`.
 - **llms.txt / llms-full.txt** are generated into `dist/` by `scripts/generate-llms.mjs`, which runs as part of `pnpm build`.
 
+## Git rules
+
+- `main` is protected by a rule requiring **verified signatures**: an unsigned
+  commit is rejected with `GH013 ... Commits must have verified signatures`.
+  Commit with `git commit -s -S` (DCO + GPG) and check `git log -1 --format='%G?'`
+  returns `G` before pushing.
+- Direct pushes to `main` are accepted when signed; CI (docker deploy +
+  Cloudflare Pages) runs on every push.
+
 ## Toolchain Quirks
 
 - `prettier-plugin-astro` is required for `.astro` formatting, it will not format `.astro` files without being listed in `.prettierrc` plugins.
