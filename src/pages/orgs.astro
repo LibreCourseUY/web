@@ -38,17 +38,19 @@ const orgsHtml = orgs.length ? orgsGridHtml(orgs, 'en') : '';
         <Text variant="p" class="text-muted">
           Being listed is not an endorsement and it does not transfer ownership. If you maintain
           projects and want them discoverable, open a pull request against the
-          <Anchor href="/projects/">project catalogue</Anchor> with the organisation name, URL and a short
-          description. Each organisation keeps its own contribution rules, so read the repository's <code
-            >CONTRIBUTING.md</code
-          > before sending a change.
+          <Anchor href="/projects/" className="text-base underline underline-offset-4"
+            >project catalogue</Anchor
+          > with the organisation name, URL and a short description. Each organisation keeps its own contribution
+          rules, so read the repository's <code>CONTRIBUTING.md</code> before sending a change.
         </Text>
         <Text variant="p" class="text-muted">
           Organisations appear here once they have at least one project in the catalogue. If a
           project moves to a different owner, or an organisation stops maintaining it, the entry is
           updated or removed rather than left to drift — a stale directory is worse than a short
           one. Found something out of date? Mention it in
-          <Anchor href={communityLinks.discord}>Discord</Anchor> or send the fix as a pull request.
+          <Anchor href={communityLinks.discord} className="text-base underline underline-offset-4"
+            >Discord</Anchor
+          > or send the fix as a pull request.
         </Text>
       </div>
 

@@ -39,16 +39,20 @@ const orgsHtml = orgs.length ? orgsGridHtml(orgs, 'es') : '';
         <Text variant="p" class="text-muted">
           Aparecer en la lista no es un respaldo ni transfiere la propiedad. Si mantenés proyectos y
           querés que sean visibles, abrí un pull request contra el
-          <Anchor href="/es/projects/">catálogo de proyectos</Anchor> con el nombre de la organización,
-          su URL y una descripción breve. Cada organización conserva sus reglas de contribución, así que
-          leé el <code>CONTRIBUTING.md</code> del repositorio antes de enviar un cambio.
+          <Anchor href="/es/projects/" className="text-base underline underline-offset-4"
+            >catálogo de proyectos</Anchor
+          > con el nombre de la organización, su URL y una descripción breve. Cada organización conserva
+          sus reglas de contribución, así que leé el <code>CONTRIBUTING.md</code> del repositorio antes
+          de enviar un cambio.
         </Text>
         <Text variant="p" class="text-muted">
           Las organizaciones aparecen acá cuando tienen al menos un proyecto en el catálogo. Si un
           proyecto cambia de dueño, o una organización deja de mantenerlo, la entrada se actualiza o
           se elimina en lugar de quedar desactualizada: un directorio viejo es peor que uno corto.
           ¿Encontraste algo desactualizado? Comentalo en
-          <Anchor href={communityLinks.discord}>Discord</Anchor> o mandá la corrección como pull request.
+          <Anchor href={communityLinks.discord} className="text-base underline underline-offset-4"
+            >Discord</Anchor
+          > o mandá la corrección como pull request.
         </Text>
       </div>
 

@@ -18,7 +18,7 @@ const current = pathname ? normalize(pathname) : null;
 const isActive = (href: string) => {
   const path = normalize(href);
   if (path === '/docs') return current === '/dco' || current?.startsWith('/docs');
-  if (path === '/projects') return current === '/orgs' || current === path;
+  if (path === '/projects') return current === path;
   return current === path;
 };
 
@@ -33,6 +33,7 @@ const route: { name: string; href: string; external?: boolean }[] = [
   { name: t.nav.home, href: at('/') },
   { name: t.nav.learn, href: at('/learn/') },
   { name: t.nav.projects, href: at('/projects/') },
+  { name: t.nav.orgs, href: at('/orgs/') },
   { name: t.nav.showcase, href: at('/showcase/') },
   { name: t.nav.activity, href: communityLinks.activity, external: true },
   { name: t.nav.docs, href: at('/docs/') },
