@@ -10,6 +10,19 @@ const seoManifest = JSON.parse(
   readFileSync(new URL('./src/data/seo-manifest.json', import.meta.url), 'utf8'),
 );
 
+function newestContentDate() {
+  let newest = 0;
+  for (const entry of Object.values(seoManifest)) {
+    const schema = entry?.schema_jsonld;
+    const nodes = Array.isArray(schema) ? schema : (schema?.['@graph'] ?? (schema ? [schema] : []));
+    for (const node of nodes) {
+      const stamp = node && typeof node === 'object' ? Date.parse(node.dateModified) : NaN;
+      if (Number.isFinite(stamp) && stamp > newest) newest = stamp;
+    }
+  }
+  return newest ? new Date(newest) : undefined;
+}
+
 function lastmodFor(pageUrl) {
   const pathname = new URL(pageUrl).pathname;
   const entry =
@@ -22,7 +35,8 @@ function lastmodFor(pageUrl) {
       if (!Number.isNaN(date.valueOf())) return date;
     }
   }
-  return undefined;
+  // Pages without their own date inherit the most recent content change.
+  return newestContentDate();
 }
 
 export default defineConfig({
