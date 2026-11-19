@@ -13,17 +13,11 @@ const links = [
   { name: 'Docs', href: '/docs/' },
   { name: 'Projects', href: '/projects/' },
 ];
-
-const linksEs = [
-  { name: 'Inicio', href: '/es/' },
-  { name: 'Documentación', href: '/es/docs/' },
-  { name: 'Proyectos', href: '/es/projects/' },
-];
 ---
 
 <Layout
-  title="Page not found / Página no encontrada — LibreCourseUY"
-  description="The page you are looking for does not exist or was moved. La página que buscás no existe o fue movida."
+  title="Page not found | LibreCourseUY"
+  description="The page you are looking for does not exist or was moved."
   noindex
 >
   <main class="flex min-h-screen flex-col items-start justify-center">
@@ -36,9 +30,6 @@ const linksEs = [
           <Text variant="h1">Page not found</Text>
           <Text variant="p" className="text-emphasis/70">
             The page you are looking for does not exist or was moved.
-          </Text>
-          <Text variant="p" className="text-emphasis/70" lang="es">
-            La página que buscás no existe o fue movida.
           </Text>
         </div>
 
@@ -54,23 +45,7 @@ const linksEs = [
               links.map((item) => (
                 <Anchor
                   href={item.href}
-                  className="text-base flex items-center justify-center border border-emphasis/60 p-6 text-center text-emphasis/80 hover:border-emphasis hover:text-emphasis"
-                >
-                  <span class="text-lg font-bold">{item.name}</span>
-                </Anchor>
-              ))
-            }
-          </div>
-        </div>
-
-        <div class="space-y-4" lang="es">
-          <Text variant="p">O probá con alguna de estas:</Text>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {
-              linksEs.map((item) => (
-                <Anchor
-                  href={item.href}
-                  className="text-base flex items-center justify-center border border-emphasis/60 p-6 text-center text-emphasis/80 hover:border-emphasis hover:text-emphasis"
+                  className="flex items-center justify-center border border-emphasis/60 p-6 text-center text-emphasis/80 hover:border-emphasis hover:text-emphasis"
                 >
                   <span class="text-lg font-bold">{item.name}</span>
                 </Anchor>

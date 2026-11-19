@@ -86,52 +86,6 @@ ROUTES: dict[str, dict] = {
         "entity_type": "page",
         "breadcrumbs": [("Home", "/"), ("Organizations", "/orgs/")],
     },
-    # Spanish tree. Breadcrumb labels are translated; URLs keep the /es prefix.
-    "/es/": {"entity_type": "home"},
-    "/es/learn/": {
-        "entity_type": "other",
-        "author": SITE_NAME,
-        "breadcrumbs": [("Inicio", "/es/"), ("Aprender", "/es/learn/")],
-    },
-    "/es/contribute/": {
-        "entity_type": "other",
-        "author": SITE_NAME,
-        "breadcrumbs": [("Inicio", "/es/"), ("Contribuir", "/es/contribute/")],
-    },
-    "/es/projects/": {
-        "entity_type": "taxonomy",
-        "breadcrumbs": [("Inicio", "/es/"), ("Proyectos", "/es/projects/")],
-    },
-    "/es/about/": {
-        "entity_type": "other",
-        "author": SITE_NAME,
-        "breadcrumbs": [("Inicio", "/es/"), ("Acerca", "/es/about/")],
-    },
-    "/es/showcase/": {
-        "entity_type": "taxonomy",
-        "breadcrumbs": [("Inicio", "/es/"), ("Productos", "/es/showcase/")],
-    },
-    "/es/orgs/": {
-        "entity_type": "page",
-        "breadcrumbs": [("Inicio", "/es/"), ("Organizaciones", "/es/orgs/")],
-    },
-    "/es/docs/": {
-        "entity_type": "taxonomy",
-        "breadcrumbs": [("Inicio", "/es/"), ("Documentación", "/es/docs/")],
-    },
-    "/es/docs/gpg-signature/": {
-        "entity_type": "post",
-        "author": SITE_NAME,
-        "breadcrumbs": [
-            ("Inicio", "/es/"),
-            ("Documentación", "/es/docs/"),
-            ("Firma GPG", "/es/docs/gpg-signature/"),
-        ],
-    },
-    "/es/dco/": {
-        "entity_type": "page",
-        "breadcrumbs": [("Inicio", "/es/"), ("DCO", "/es/dco/")],
-    },
 }
 
 HOME_SOCIAL = ["https://github.com/LibreCourseUY"]
@@ -316,7 +270,7 @@ def main() -> int:
                     for name, url in meta.get("breadcrumbs", [])
                 ]
                 or None,
-                faq_items=faq_items(filepath) if route in ("/", "/es/") else None,
+                faq_items=faq_items(filepath) if route == "/" else None,
             )
 
             if not props.get("description"):

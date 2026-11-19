@@ -1,4 +1,4 @@
-import { isAwesomeFeed, type AwesomeFeed } from './awesome.ts';
+import { isAwesomeFeed, type AwesomeFeed } from '@/lib/awesome';
 
 const CACHE_KEY = 'awesome-feed';
 export const AWESOME_FEED_URL = import.meta.env.PUBLIC_AWESOME_FEED_URL || '/api/feed';

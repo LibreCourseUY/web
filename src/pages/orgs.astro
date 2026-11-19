@@ -9,7 +9,7 @@ import { orgsGridHtml } from '@/lib/catalogue-render';
 // Prerender the organisations so the page has content without JS.
 const feed = await fetchCatalogueForBuild();
 const orgs = feed?.orgs ?? [];
-const orgsHtml = orgs.length ? orgsGridHtml(orgs, 'en') : '';
+const orgsHtml = orgs.length ? orgsGridHtml(orgs) : '';
 ---
 
 <Layout
@@ -100,7 +100,7 @@ const orgsHtml = orgs.length ? orgsGridHtml(orgs, 'en') : '';
       return;
     }
 
-    grid.innerHTML = orgsGridHtml(feed.orgs ?? [], 'en');
+    grid.innerHTML = orgsGridHtml(feed.orgs ?? []);
     app.removeAttribute('hidden');
   }
 

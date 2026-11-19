@@ -1,3 +1,15 @@
+# The Spanish tree was retired on 19/11/26; keep old links working.
+/es/about/* /about/ 301
+/es/contribute/* /contribute/ 301
+/es/dco/* /dco/ 301
+/es/docs/gpg-signature/* /docs/gpg-signature/ 301
+/es/docs/* /docs/ 301
+/es/learn/* /learn/ 301
+/es/orgs/* /orgs/ 301
+/es/projects/* /projects/ 301
+/es/showcase/* /showcase/ 301
+/es/* / 301
+
 # Review URLs of the redesign, before it became the main site.
 /new_index.html / 301
 /new_index / 301

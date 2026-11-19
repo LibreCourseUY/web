@@ -11,8 +11,6 @@ import Seo from '@/components/Seo/Seo.astro';
 import Footer from '@/components/Footer/Footer.astro';
 import AwesomePrefetch from '@/components/AwesomePrefetch/AwesomePrefetch.astro';
 import AgentTools from '@/components/AgentTools/AgentTools.astro';
-// i18n
-import { HTML_LANG, langFromPath, localizePath } from '@/i18n/config';
 // Utils
 // Styles
 import '@/styles/globals.css';
@@ -25,15 +23,10 @@ export interface Props {
 
 const { title, description, noindex = false } = Astro.props;
 const awesomeFeedUrl = import.meta.env.PUBLIC_AWESOME_FEED_URL ?? '';
-
-const pathname = Astro.url.pathname;
-const lang = langFromPath(pathname);
-const canonicalPath = localizePath(pathname, lang);
-const absolute = (path: string) => new URL(path, Astro.site ?? Astro.url.origin).toString();
 ---
 
 <!doctype html>
-<html lang={HTML_LANG[lang]} class="scroll-smooth">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -47,9 +40,6 @@ const absolute = (path: string) => new URL(path, Astro.site ?? Astro.url.origin)
     <link rel="ai-catalog" href="/.well-known/ai-catalog.json" type="application/json" />
     <link rel="api-catalog" href="/.well-known/api-catalog" type="application/linkset+json" />
     <link rel="mcp-server-card" href="/.well-known/mcp/server-card.json" type="application/json" />
-    <link rel="alternate" hreflang="en" href={absolute(localizePath(canonicalPath, 'en'))} />
-    <link rel="alternate" hreflang="es" href={absolute(localizePath(canonicalPath, 'es'))} />
-    <link rel="alternate" hreflang="x-default" href={absolute(localizePath(canonicalPath, 'en'))} />
     <script is:inline>
       (function () {
         document.documentElement.classList.add('js');
@@ -87,7 +77,6 @@ const absolute = (path: string) => new URL(path, Astro.site ?? Astro.url.origin)
       fallbackTitle={title}
       fallbackDescription={description}
       noindex={noindex}
-      lang={lang}
     />
   </head>
   <body class="bg-background font-sans text-emphasis antialiased max-w-[100vw] overflow-x-hidden">
