@@ -3,33 +3,64 @@ import Anchor from '@/components/Anchor/Anchor.astro';
 import { communityLinks } from '@/data/community';
 
 const year = new Date().getFullYear();
+const groups = [
+  {
+    id: 'footer-site',
+    title: 'Site',
+    links: [
+      { label: 'About', href: '/about/' },
+      { label: 'Projects', href: '/projects/' },
+      { label: 'Organizations', href: '/orgs/' },
+      { label: 'Docs', href: '/docs/' },
+      { label: 'Contribute', href: '/contribute/' },
+    ],
+  },
+  {
+    id: 'footer-community',
+    title: 'Community',
+    links: [
+      { label: 'GitHub', href: communityLinks.github },
+      { label: 'Discord', href: communityLinks.discord },
+      { label: 'Instagram', href: communityLinks.instagram },
+      { label: 'r/LibreCourseUY', href: communityLinks.reddit },
+      { label: 'r/VibeCodingUY', href: communityLinks.redditVibeCoding },
+      { label: 'r/ClaudeCodeUY', href: communityLinks.redditClaudeCode },
+      { label: 'IRC', href: communityLinks.irc },
+    ],
+  },
+];
 ---
 
-<footer
-  class="min-h-64 pb-12 flex flex-col justify-end gap-2 sm:flex-row sm:items-end sm:gap-x-12 lg:gap-x-8"
->
-  <span class="text-emphasis/60">Libre<span>Course</span>UY</span>
-  <div class="flex flex-col gap-2">
-    <nav aria-label="Footer" class="flex flex-wrap gap-x-4 gap-y-1 text-sm">
-      <Anchor href="/about/" className="hover:text-emphasis">About</Anchor>
-      <Anchor href="/projects/" className="hover:text-emphasis">Projects</Anchor>
-      <Anchor href="/orgs/" className="hover:text-emphasis">Organizations</Anchor>
-      <Anchor href="/docs/" className="hover:text-emphasis">Docs</Anchor>
-      <Anchor href="/contribute/" className="hover:text-emphasis">Contribute</Anchor>
-    </nav>
-    <nav aria-label="Community" class="flex flex-wrap gap-x-4 gap-y-1 text-sm">
-      <Anchor href={communityLinks.github} className="hover:text-emphasis">GitHub</Anchor>
-      <Anchor href={communityLinks.discord} className="hover:text-emphasis">Discord</Anchor>
-      <Anchor href={communityLinks.instagram} className="hover:text-emphasis">Instagram</Anchor>
-      <Anchor href={communityLinks.reddit} className="hover:text-emphasis">r/LibreCourseUY</Anchor>
-      <Anchor href={communityLinks.redditVibeCoding} className="hover:text-emphasis"
-        >r/VibeCodingUY</Anchor
-      >
-      <Anchor href={communityLinks.redditClaudeCode} className="hover:text-emphasis"
-        >r/ClaudeCodeUY</Anchor
-      >
-      <Anchor href={communityLinks.irc} className="hover:text-emphasis">IRC</Anchor>
-    </nav>
+<footer class="border-t border-line py-8 md:py-10">
+  <div
+    class="grid grid-cols-[2fr_3fr] gap-x-4 gap-y-6 md:grid-cols-1 xl:grid-cols-[2fr_3fr] xl:gap-x-10"
+  >
+    {
+      groups.map(({ id, title, links }) => (
+        <nav aria-labelledby={id} class="min-w-0">
+          <h2 id={id} class="text-base font-bold text-emphasis">
+            {title}
+          </h2>
+          <ul class="mt-2 flex flex-col items-start gap-x-4 gap-y-1 text-sm md:flex-row md:flex-wrap">
+            {links.map(({ label, href }) => (
+              <li>
+                <Anchor
+                  href={href}
+                  className="flex min-h-7 min-w-7 items-center hover:text-emphasis"
+                >
+                  {label}
+                </Anchor>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      ))
+    }
   </div>
-  <span class="lg:shrink-0 lg:whitespace-nowrap">© {year} | Open Source Education</span>
+  <div
+    class="mt-6 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-t border-line pt-4"
+  >
+    <span class="text-base font-bold tracking-tight text-emphasis">LibreCourseUY</span>
+    <span class="text-sm text-muted">© {year} | Open Source Education</span>
+  </div>
 </footer>
