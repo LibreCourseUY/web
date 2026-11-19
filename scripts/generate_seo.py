@@ -88,7 +88,11 @@ ROUTES: dict[str, dict] = {
     },
 }
 
-HOME_SOCIAL = ["https://github.com/LibreCourseUY"]
+HOME_SOCIAL = [
+    "https://github.com/LibreCourseUY",
+    "https://www.instagram.com/librecourseuy/",
+    "https://www.reddit.com/r/LibreCourseUY/",
+]
 
 LAYOUT_RE = re.compile(r"<Layout\b(?P<attrs>.*?)>", re.DOTALL)
 ATTR_RE = re.compile(r'(\w+)="([^"]*)"')

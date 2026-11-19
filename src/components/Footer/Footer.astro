@@ -1,17 +1,35 @@
 ---
 import Anchor from '@/components/Anchor/Anchor.astro';
+import { communityLinks } from '@/data/community';
 
 const year = new Date().getFullYear();
 ---
 
-<footer class="min-h-64 pb-12 flex flex-col justify-end gap-2 sm:flex-row sm:items-end sm:gap-x-12">
+<footer
+  class="min-h-64 pb-12 flex flex-col justify-end gap-2 sm:flex-row sm:items-end sm:gap-x-12 lg:gap-x-8"
+>
   <span class="text-emphasis/60">Libre<span>Course</span>UY</span>
-  <nav aria-label="Footer" class="flex flex-wrap gap-x-4 gap-y-1 text-sm">
-    <Anchor href="/about/" className="hover:text-emphasis">About</Anchor>
-    <Anchor href="/projects/" className="hover:text-emphasis">Projects</Anchor>
-    <Anchor href="/orgs/" className="hover:text-emphasis">Organizations</Anchor>
-    <Anchor href="/docs/" className="hover:text-emphasis">Docs</Anchor>
-    <Anchor href="/contribute/" className="hover:text-emphasis">Contribute</Anchor>
-  </nav>
-  <span>© {year} | Open Source Education</span>
+  <div class="flex flex-col gap-2">
+    <nav aria-label="Footer" class="flex flex-wrap gap-x-4 gap-y-1 text-sm">
+      <Anchor href="/about/" className="hover:text-emphasis">About</Anchor>
+      <Anchor href="/projects/" className="hover:text-emphasis">Projects</Anchor>
+      <Anchor href="/orgs/" className="hover:text-emphasis">Organizations</Anchor>
+      <Anchor href="/docs/" className="hover:text-emphasis">Docs</Anchor>
+      <Anchor href="/contribute/" className="hover:text-emphasis">Contribute</Anchor>
+    </nav>
+    <nav aria-label="Community" class="flex flex-wrap gap-x-4 gap-y-1 text-sm">
+      <Anchor href={communityLinks.github} className="hover:text-emphasis">GitHub</Anchor>
+      <Anchor href={communityLinks.discord} className="hover:text-emphasis">Discord</Anchor>
+      <Anchor href={communityLinks.instagram} className="hover:text-emphasis">Instagram</Anchor>
+      <Anchor href={communityLinks.reddit} className="hover:text-emphasis">r/LibreCourseUY</Anchor>
+      <Anchor href={communityLinks.redditVibeCoding} className="hover:text-emphasis"
+        >r/VibeCodingUY</Anchor
+      >
+      <Anchor href={communityLinks.redditClaudeCode} className="hover:text-emphasis"
+        >r/ClaudeCodeUY</Anchor
+      >
+      <Anchor href={communityLinks.irc} className="hover:text-emphasis">IRC</Anchor>
+    </nav>
+  </div>
+  <span class="lg:shrink-0 lg:whitespace-nowrap">© {year} | Open Source Education</span>
 </footer>

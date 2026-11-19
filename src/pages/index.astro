@@ -411,6 +411,36 @@ const activityLinks = [
                   server
                 </span>
               </ListItem>
+              <ListItem
+                className="border-b border-line p-6 flex flex-row justify-start items-center gap-6"
+              >
+                <span class="mr-3 text-sm">{String(3).padStart(2, '0')}</span>
+                <span>
+                  Follow us on
+                  <Anchor href={communityLinks.instagram}>Instagram</Anchor>
+                </span>
+              </ListItem>
+              <ListItem
+                className="border-b border-line p-6 flex flex-row justify-start items-center gap-6"
+              >
+                <span class="mr-3 text-sm">{String(4).padStart(2, '0')}</span>
+                <span>
+                  Talk on Reddit:
+                  <Anchor href={communityLinks.reddit}>r/LibreCourseUY</Anchor>,
+                  <Anchor href={communityLinks.redditVibeCoding}>r/VibeCodingUY</Anchor> and
+                  <Anchor href={communityLinks.redditClaudeCode}>r/ClaudeCodeUY</Anchor>
+                </span>
+              </ListItem>
+              <ListItem
+                className="border-b border-line p-6 flex flex-row justify-start items-center gap-6"
+              >
+                <span class="mr-3 text-sm">{String(5).padStart(2, '0')}</span>
+                <span>
+                  Chat on IRC:
+                  <Anchor href={communityLinks.irc}>#LibreCourseUY</Anchor>
+                  on irc.libera.chat
+                </span>
+              </ListItem>
             </List>
           </Collapse>
           <Collapse question="How does project ownership work?">

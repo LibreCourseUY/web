@@ -351,7 +351,9 @@
           "url": "https://librecourse.uy/",
           "logo": "https://librecourse.uy/icon.png",
           "sameAs": [
-            "https://github.com/LibreCourseUY"
+            "https://github.com/LibreCourseUY",
+            "https://www.instagram.com/librecourseuy/",
+            "https://www.reddit.com/r/LibreCourseUY/"
           ]
         },
         {
@@ -423,7 +425,7 @@
               "name": "Where can I find LibreCourseUY?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Contribute on GitHub Join on our Discord server"
+                "text": "Contribute on GitHub Join on our Discord server Follow us on Instagram Talk on Reddit: r/LibreCourseUY , r/VibeCodingUY and r/ClaudeCodeUY Chat on IRC: #LibreCourseUY on irc.libera.chat"
               }
             },
             {
@@ -544,7 +546,7 @@
         "description": "Organizations maintaining and governing projects in the LibreCourseUY ecosystem: who they are, what they maintain, and where their source lives.",
         "image": "https://librecourse.uy/og.jpg",
         "datePublished": "2026-10-10",
-        "dateModified": "2026-11-18",
+        "dateModified": "2026-11-19",
         "publisher": {
           "@type": "Organization",
           "name": "LibreCourseUY",
@@ -604,7 +606,7 @@
         "description": "Browse open source and community projects from LibreCourseUY: filter by category, language, licence and whether maintainers are open to contributions.",
         "image": "https://librecourse.uy/og.jpg",
         "datePublished": "2026-06-18",
-        "dateModified": "2026-11-18",
+        "dateModified": "2026-11-19",
         "publisher": {
           "@type": "Organization",
           "name": "LibreCourseUY",
