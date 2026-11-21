@@ -39,29 +39,30 @@ export const historyMoments: HistoryMoment[] = [
     date: '2025-08-09',
     title: 'FastCRUD in flight',
     caption:
-      'The FastCRUD documentation was open on a laptop on the flight from Mercedes to Montevideo.',
+      'Reading the docs for Igor Benav’s FastCRUD from the back seat of a plane, somewhere between Mercedes and Montevideo.',
     image: fastcrud,
     alt: 'An open laptop behind the pilot of a small plane, with the horizon visible through the window.',
   },
   {
     date: '2026-01-15',
     title: 'Our first asado',
-    caption:
-      'The first LibreCourseUY barbecue brought the group together for this photo after dark.',
+    caption: 'Nine of us at our first asado.',
     image: asado,
     alt: 'Nine people gathered outdoors for a group selfie at night.',
   },
   {
     date: '2026-05-22',
     title: 'Digital sovereignty in Brasília',
-    caption: 'Our friends at PopSolutions stopped for a photo outside Brazil’s National Congress.',
+    caption:
+      'Our friends from PopSolutions outside Brazil’s National Congress. Their cooperative advocates for free software that Brazilian public institutions can run and audit themselves.',
     image: popsolutions,
     alt: 'Two people in front of the twin towers and opposing domes of the National Congress.',
   },
   {
     date: '2026-06-09',
     title: 'Dinner with Carlos and Igor',
-    caption: 'Carlos and Igor shared a meal the day before their photo at the Sapari stand.',
+    caption:
+      'Carlos Planchón and Igor Benav at dinner the night before Igor demoed Sapari, his browser-based video editor, at Web Summit Rio.',
     image: dinner,
     alt: 'Two people at a restaurant table with plates and glasses set for dinner.',
   },
@@ -77,7 +78,7 @@ export const historyMoments: HistoryMoment[] = [
     date: '2026-07-24',
     title: 'The Uruguayan cédula in OpenSC',
     caption:
-      'OpenSC merged work by Carlos Planchón and Nicolás Gutierrez that lets people use Uruguay’s electronic identity card with a contact reader.',
+      'OpenSC merged work by Carlos Planchón and Nicolás Gutiérrez that lets people use Uruguay’s electronic identity card with a contact reader.',
     image: cedula,
     alt: 'The merged OpenSC pull request adding support for the Uruguayan national identity card.',
     source: {
@@ -109,10 +110,10 @@ export const historyMoments: HistoryMoment[] = [
     alt: 'A phone screen displaying the Arch Linux logo and terminal output above its on-screen keyboard.',
   },
   {
-    date: '2026-10-17',
+    date: '2026-10-15',
     title: 'TrustSight in BleepingComputer',
     caption:
-      'This clipping comes from an October 15 report on malicious Arch Linux packages. It describes how Emiliano Gandini Outeda spotted suspicious packages with TrustSight.',
+      'Emiliano Gandini Outeda’s tool TrustSight flagged malicious packages in the Arch User Repository. BleepingComputer covered his findings on October 15.',
     image: trustsight,
     alt: 'An article excerpt naming Emiliano Gandini Outeda and linking to his open source security tool TrustSight.',
     source: {
@@ -124,7 +125,7 @@ export const historyMoments: HistoryMoment[] = [
     date: '2026-10-26',
     title: 'Out in the field',
     caption:
-      'Franco Feijó shared the view from the cab of a farm machine, with the field ahead and a map beside the wheel.',
+      'Franco Feijó shared this view from the cab of a John Deere sprayer. He built MenchoBot so farm crews could log machine hours and fuel use over WhatsApp.',
     image: fieldwork,
     alt: 'A hand on the steering wheel of a farm machine, a map on the console and open fields beyond the windshield.',
   },
@@ -132,7 +133,7 @@ export const historyMoments: HistoryMoment[] = [
     date: '2026-10-29',
     title: 'The cédula goes contactless',
     caption:
-      'Nicolás Gutierrez followed up on the July contribution. OpenSC merged his PACE support for using the Uruguayan identity card with a contactless reader.',
+      'Nicolás Gutiérrez followed up on the July contribution. OpenSC merged his PACE support for using the Uruguayan identity card with a contactless reader.',
     image: contactless,
     alt: 'The merged OpenSC pull request for contactless PACE support in the Uruguayan card driver.',
     source: {
