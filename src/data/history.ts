@@ -50,6 +50,11 @@ export const historyMoments: HistoryMoment[] = [
     alt: 'Nine people gathered outdoors for a group selfie at night.',
   },
   {
+    date: '2026-02-28',
+    title: 'We adopted the name LibreCourseUY',
+    caption: 'As our community took shape, we decided to give it a name.',
+  },
+  {
     date: '2026-03-16',
     title: 'Our first talk at Piso Verde',
     caption:
