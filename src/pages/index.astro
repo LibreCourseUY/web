@@ -13,6 +13,7 @@ import Layout from '@/layouts/Layout.astro';
 // Utils
 import { communityLinks } from '@/data/community';
 import { showcaseNotice, showcaseProducts } from '@/data/showcase';
+import { historyMoments } from '@/data/history';
 // Assets
 import heroIcon from '@/assets/lcuy_logo.svg';
 import heroImg from '@/assets/ascii-hero.png';
@@ -24,6 +25,17 @@ const aboutList = [
   'Open tools, open curriculum, open processes.',
   '<strong class="block">Growing the next generation </strong>of open source contributors in Latin America.',
 ];
+
+const storyHighlights = [
+  'Our first asado',
+  'Our first talk at Piso Verde',
+  'Sapari at Web Summit Rio',
+].map((title) => {
+  const moment = historyMoments.find((item) => item.title === title);
+  if (!moment?.image) throw new Error(`Missing history photo: ${title}`);
+  return { ...moment, image: moment.image, alt: moment.alt };
+});
+const storyDateFormat = new Intl.DateTimeFormat('en', { dateStyle: 'long', timeZone: 'UTC' });
 
 const activityLinks = [
   {
@@ -195,6 +207,47 @@ const activityLinks = [
           </Anchor>
         </div>
       </div>
+    </section>
+    <section id="story" class="w-full space-y-8 border-t border-line py-16 md:py-24">
+      <div class="max-w-3xl space-y-4">
+        <Text variant="h2">Our story in pictures</Text>
+        <Text variant="p" className="text-muted">
+          A glimpse of the people, friendships and moments behind LibreCourseUY.
+        </Text>
+      </div>
+      <ul class="grid grid-cols-1 gap-6 md:grid-cols-3">
+        {
+          storyHighlights.map((moment) => (
+            <li class="min-w-0">
+              <a href="/history/" class="group block space-y-3">
+                <Image
+                  src={moment.image}
+                  alt={moment.alt}
+                  width={480}
+                  widths={[320, 480, 640, 960]}
+                  sizes="(min-width: 768px) 33vw, calc(100vw - 3rem)"
+                  loading="lazy"
+                  class="aspect-4/3 w-full border border-line object-cover"
+                />
+                <span class="block font-mono text-sm font-bold text-emphasis-secondary">
+                  <time datetime={moment.date}>
+                    {storyDateFormat.format(new Date(moment.date))}
+                  </time>
+                </span>
+                <span class="block text-lg leading-snug font-bold group-hover:underline group-hover:underline-offset-4">
+                  {moment.title}
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <Anchor
+        href="/history/"
+        className="inline-flex items-center gap-2 border border-line px-4 py-3 text-sm font-bold text-emphasis hover:border-emphasis-secondary hover:text-emphasis-secondary"
+      >
+        Explore our story <span aria-hidden="true">→</span>
+      </Anchor>
     </section>
     <section id="showcase" class="w-full space-y-8 border-t border-line py-16 md:py-24">
       <div class="max-w-3xl space-y-4">
