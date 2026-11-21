@@ -2,6 +2,7 @@ export const communityLinks = {
   discord: '/join/',
   github: 'https://github.com/LibreCourseUY',
   instagram: 'https://www.instagram.com/librecourseuy/',
+  linkedin: 'https://www.linkedin.com/company/librecourseuy',
   reddit: 'https://www.reddit.com/r/LibreCourseUY/',
   redditVibeCoding: 'https://www.reddit.com/r/VibeCodingUY/',
   redditClaudeCode: 'https://www.reddit.com/r/ClaudeCodeUY/',

@@ -96,6 +96,7 @@ ROUTES: dict[str, dict] = {
 HOME_SOCIAL = [
     "https://github.com/LibreCourseUY",
     "https://www.instagram.com/librecourseuy/",
+    "https://www.linkedin.com/company/librecourseuy",
     "https://www.reddit.com/r/LibreCourseUY/",
 ]
 
