@@ -66,7 +66,7 @@ export const historyMoments: HistoryMoment[] = [
     date: '2026-04-18',
     title: 'The first codenight',
     caption:
-      'We opened a Discord call that Saturday night for anyone who wanted to bring a project, ask for help, or just listen in. More than thirty people dropped by over eight and a half hours. Four stayed from start to finish.',
+      'We opened a Discord call that Saturday night for anyone who wanted to bring a project, ask for help, or just listen in. More than thirty people dropped by over eight and a half hours. Four stayed from start to finish. What began that night became a weekly tradition: we’ve continued meeting every Saturday at 6:00 p.m. (UTC−3) ever since.',
   },
   {
     date: '2026-05-22',
