@@ -1,0 +1,68 @@
+---
+import { Image } from 'astro:assets';
+import Anchor from '@/components/Anchor/Anchor.astro';
+import Text from '@/components/Text/Text.astro';
+import { historyMoments } from '@/data/history';
+import Layout from '@/layouts/Layout.astro';
+
+const dateFormat = new Intl.DateTimeFormat('en', { dateStyle: 'long', timeZone: 'UTC' });
+---
+
+<Layout
+  title="Our story in pictures — LibreCourseUY"
+  description="Meet the people behind LibreCourseUY in photos and screenshots, from early open source contributions to the first asado and the Uruguayan cédula in OpenSC."
+>
+  <main class="mx-auto max-w-5xl py-12 md:py-16">
+    <header class="max-w-3xl space-y-3">
+      <Text variant="h1">Our story in pictures</Text>
+      <Text variant="p" className="text-muted">
+        Members and friends of LibreCourseUY kept these photos and screenshots of their projects,
+        travels and time together.
+      </Text>
+    </header>
+
+    <ol role="list" class="mt-10 ml-1 border-l border-line md:mt-14">
+      {
+        historyMoments.map((moment, index) => (
+          <li class="relative pb-12 pl-6 last:pb-0 before:absolute before:top-1.5 before:-left-[4.5px] before:size-2 before:bg-emphasis-secondary md:pb-16 md:pl-10">
+            <figure class="grid items-start gap-4 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] md:gap-10">
+              <figcaption class="space-y-2">
+                <time
+                  datetime={moment.date}
+                  class="block font-mono text-sm font-bold text-emphasis-secondary"
+                >
+                  {dateFormat.format(new Date(moment.date))}
+                </time>
+                <Text variant="h2" className="text-2xl leading-tight font-bold lg:text-3xl">
+                  {moment.title}
+                </Text>
+                <p class="max-w-prose leading-relaxed text-muted">{moment.caption}</p>
+                {moment.source && (
+                  <Anchor
+                    href={moment.source.href}
+                    className="inline-block text-sm underline underline-offset-4"
+                  >
+                    {moment.source.label}
+                  </Anchor>
+                )}
+              </figcaption>
+              <a href={moment.image.src} class="block max-w-full cursor-zoom-in justify-self-start">
+                <Image
+                  src={moment.image}
+                  alt={moment.alt}
+                  width={Math.min(moment.image.width, 640)}
+                  widths={[320, 480, 640, 960, 1280]}
+                  sizes="(min-width: 1200px) 36rem, (min-width: 768px) 48vw, calc(100vw - 4.75rem)"
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                  class="block h-auto max-h-[32rem] w-auto"
+                  style={{ maxWidth: `min(100%, ${moment.image.width}px)` }}
+                />
+                <span class="sr-only"> (view full size)</span>
+              </a>
+            </figure>
+          </li>
+        ))
+      }
+    </ol>
+  </main>
+</Layout>

@@ -160,7 +160,7 @@
         "description": "LibreCourseUY Developer Certificate of Origin (DCO), certifying contributions by signing off commits.",
         "image": "https://librecourse.uy/og.jpg",
         "datePublished": "2026-10-05",
-        "dateModified": "2026-11-16",
+        "dateModified": "2026-11-19",
         "publisher": {
           "@type": "Organization",
           "name": "LibreCourseUY",
@@ -312,6 +312,68 @@
             "position": 2,
             "name": "Docs",
             "item": "https://librecourse.uy/docs/"
+          }
+        ]
+      }
+    ]
+  },
+  "/history/": {
+    "title": "Our story in pictures — LibreCourseUY",
+    "canonical": "https://librecourse.uy/history/",
+    "robots": "index,follow,max-snippet:-1,max-image-preview:large",
+    "og": {
+      "type": "website",
+      "title": "Our story in pictures — LibreCourseUY",
+      "description": "Meet the people behind LibreCourseUY in photos and screenshots, from early open source contributions to the first asado and the Uruguayan cédula in OpenSC.",
+      "url": "https://librecourse.uy/history/",
+      "image": "https://librecourse.uy/og.jpg",
+      "image:width": 1200,
+      "image:height": 630,
+      "image:alt": "LibreCourseUY",
+      "site_name": "LibreCourseUY",
+      "locale": "en_US"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "Our story in pictures — LibreCourseUY",
+      "description": "Meet the people behind LibreCourseUY in photos and screenshots, from early open source contributions to the first asado and the Uruguayan cédula in OpenSC.",
+      "image": "https://librecourse.uy/og.jpg",
+      "image:alt": "LibreCourseUY"
+    },
+    "description": "Meet the people behind LibreCourseUY in photos and screenshots, from early open source contributions to the first asado and the Uruguayan cédula in OpenSC.",
+    "schema_jsonld": [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Our story in pictures — LibreCourseUY",
+        "url": "https://librecourse.uy/history/",
+        "description": "Meet the people behind LibreCourseUY in photos and screenshots, from early open source contributions to the first asado and the Uruguayan cédula in OpenSC.",
+        "image": "https://librecourse.uy/og.jpg",
+        "author": {
+          "@type": "Person",
+          "name": "LibreCourseUY"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "LibreCourseUY",
+          "logo": "https://librecourse.uy/icon.png"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://librecourse.uy/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Our story in pictures",
+            "item": "https://librecourse.uy/history/"
           }
         ]
       }
