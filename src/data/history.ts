@@ -14,14 +14,12 @@ import trustsight from '@/assets/history/trustsight-press.jpg';
 import fieldwork from '@/assets/history/franco-fieldwork.jpg';
 import contactless from '@/assets/history/opensc-contactless.jpg';
 
-interface HistoryMoment {
+type HistoryMoment = {
   date: string;
   title: string;
   caption: string;
-  image: ImageMetadata;
-  alt: string;
   source?: { label: string; href: string };
-}
+} & ({ image: ImageMetadata; alt: string } | { image?: undefined; alt?: undefined });
 
 export const historyMoments: HistoryMoment[] = [
   {
@@ -58,6 +56,12 @@ export const historyMoments: HistoryMoment[] = [
       'There were 32 of us at the Facultad de Ingeniería in Montevideo for Emiliano Gandini’s introduction to open source. Some stayed afterward to ask questions. After midnight, Emiliano shared the recording in the group chat for anyone who couldn’t make it.',
     image: firstTalk,
     alt: 'Emiliano Gandini holds a marker in front of two whiteboards filled with hand-drawn diagrams and notes on UNIX, GCC, and GNU/Linux.',
+  },
+  {
+    date: '2026-04-18',
+    title: 'The first codenight',
+    caption:
+      'We opened a Discord call that Saturday night for anyone who wanted to bring a project, ask for help, or just listen in. More than thirty people dropped by over eight and a half hours. Four stayed from start to finish.',
   },
   {
     date: '2026-05-22',
