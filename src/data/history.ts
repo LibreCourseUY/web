@@ -13,6 +13,7 @@ import arch from '@/assets/history/arch-phone.jpg';
 import trustsight from '@/assets/history/trustsight-press.jpg';
 import fieldwork from '@/assets/history/franco-fieldwork.jpg';
 import contactless from '@/assets/history/opensc-contactless.jpg';
+import firmauy from '@/assets/history/firmauy-desktop.png';
 
 type HistoryMoment = {
   date: string;
@@ -167,6 +168,18 @@ export const historyMoments: HistoryMoment[] = [
     source: {
       label: 'Visit MenchoBot',
       href: 'https://menchobot.com/',
+    },
+  },
+  {
+    date: '2026-11-21',
+    title: 'FirmaUY Desktop is released',
+    caption:
+      'Carlos A. Planchón released the first public alpha of FirmaUY Desktop for Windows and Linux. The app lets people sign and verify documents with Uruguay’s electronic identity card from their own computer.',
+    image: firmauy,
+    alt: 'The FirmaUY website showing its first public Desktop release and a download button.',
+    source: {
+      label: 'Visit FirmaUY',
+      href: 'https://firmauy.com/',
     },
   },
 ].sort((first, second) => first.date.localeCompare(second.date));
