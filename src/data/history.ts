@@ -80,7 +80,7 @@ export const historyMoments: HistoryMoment[] = [
     date: '2026-06-09',
     title: 'Dinner with Carlos and Igor',
     caption:
-      'Carlos A. Planchón and Igor Benav at dinner the night before Igor demoed Sapari, his browser-based video editor, at Web Summit Rio.',
+      'Carlos A. Planchón and Igor Benav at dinner in Rio de Janeiro, the night before Igor demoed Sapari, his browser-based video editor, at Web Summit Rio.',
     image: dinner,
     alt: 'Two people at a restaurant table with plates and glasses set for dinner.',
   },
