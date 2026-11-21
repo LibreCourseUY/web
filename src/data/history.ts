@@ -2,6 +2,7 @@ import type { ImageMetadata } from 'astro';
 import browserUse from '@/assets/history/browser-use-hooks.png';
 import fastcrud from '@/assets/history/fastcrud-flight.jpg';
 import asado from '@/assets/history/first-asado.jpg';
+import firstTalk from '@/assets/history/first-talk.jpg';
 import popsolutions from '@/assets/history/popsolutions-brasilia.jpg';
 import dinner from '@/assets/history/carlos-and-igor.jpg';
 import sapari from '@/assets/history/sapari-web-summit.jpg';
@@ -49,6 +50,14 @@ export const historyMoments: HistoryMoment[] = [
     caption: 'Nine of us at our first asado.',
     image: asado,
     alt: 'Nine people gathered outdoors for a group selfie at night.',
+  },
+  {
+    date: '2026-03-16',
+    title: 'Our first talk at Piso Verde',
+    caption:
+      'There were 32 of us at the Facultad de Ingeniería in Montevideo for Emiliano Gandini’s introduction to open source. Some stayed afterward to ask questions. After midnight, Emiliano shared the recording in the group chat for anyone who couldn’t make it.',
+    image: firstTalk,
+    alt: 'Emiliano Gandini holds a marker in front of two whiteboards filled with hand-drawn diagrams and notes on UNIX, GCC, and GNU/Linux.',
   },
   {
     date: '2026-05-22',
