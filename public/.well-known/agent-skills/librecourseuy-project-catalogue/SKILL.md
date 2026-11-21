@@ -56,7 +56,7 @@ For contribution mechanics (sign-off, GPG, pull requests) use the
 
 ## How to search
 
-1. Fetch the feed once, then filter locally — do not poll it per query.
+1. Fetch the feed once, then filter locally - do not poll it per query.
 2. Match `query` against `name`, `description`, `tags`, `category` and
    `maintainers`, case-insensitively.
 3. Filter on `category`, `language`, `commercial` or `open_to_contributions` as

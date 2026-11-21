@@ -26,7 +26,7 @@ export const historyMoments: HistoryMoment[] = [
     date: '2025-03-27',
     title: 'A contribution to Browser Use',
     caption:
-      'Browser Use merged Carlos Planchón’s hooks so developers could run their own code before and after each step of a browser agent.',
+      'Browser Use merged Carlos A. Planchón’s hooks so developers could run their own code before and after each step of a browser agent.',
     image: browserUse,
     alt: 'The Browser Use pull request for pre- and post-step hooks marked as merged on GitHub.',
     source: {
@@ -80,7 +80,7 @@ export const historyMoments: HistoryMoment[] = [
     date: '2026-06-09',
     title: 'Dinner with Carlos and Igor',
     caption:
-      'Carlos Planchón and Igor Benav at dinner the night before Igor demoed Sapari, his browser-based video editor, at Web Summit Rio.',
+      'Carlos A. Planchón and Igor Benav at dinner the night before Igor demoed Sapari, his browser-based video editor, at Web Summit Rio.',
     image: dinner,
     alt: 'Two people at a restaurant table with plates and glasses set for dinner.',
   },
@@ -96,7 +96,7 @@ export const historyMoments: HistoryMoment[] = [
     date: '2026-07-24',
     title: 'The Uruguayan cédula in OpenSC',
     caption:
-      'OpenSC merged work by Carlos Planchón and Nicolás Gutiérrez that lets people use Uruguay’s electronic identity card with a contact reader.',
+      'OpenSC merged work by Carlos A. Planchón and Nicolás Gutiérrez that lets people use Uruguay’s electronic identity card with a contact reader.',
     image: cedula,
     alt: 'The merged OpenSC pull request adding support for the Uruguayan national identity card.',
     source: {
@@ -115,7 +115,7 @@ export const historyMoments: HistoryMoment[] = [
     date: '2026-09-24',
     title: 'Finding a street corner with Wi-Fi',
     caption:
-      'Carlos Planchón’s Enodia positioning system placed him at the corner of Carlos María Solari and José Pedro Varela using nearby Wi-Fi networks.',
+      'Carlos A. Planchón’s Enodia positioning system placed him at the corner of Carlos María Solari and José Pedro Varela using nearby Wi-Fi networks.',
     image: enodia,
     alt: 'A dot on a street map beside a readout of the Wi-Fi networks detected on a walk.',
   },
@@ -131,9 +131,9 @@ export const historyMoments: HistoryMoment[] = [
     date: '2026-10-15',
     title: 'TrustSight in BleepingComputer',
     caption:
-      'Emiliano Gandini Outeda’s tool TrustSight flagged malicious packages in the Arch User Repository. BleepingComputer covered his findings on October 15.',
+      'Emiliano Gandini’s tool TrustSight flagged malicious packages in the Arch User Repository. BleepingComputer covered his findings on October 15.',
     image: trustsight,
-    alt: 'An article excerpt naming Emiliano Gandini Outeda and linking to his open source security tool TrustSight.',
+    alt: 'An article excerpt naming Emiliano Gandini and linking to his open source security tool TrustSight.',
     source: {
       label: 'Read the BleepingComputer article',
       href: 'https://www.bleepingcomputer.com/news/security/fake-arch-linux-packages-push-malware-with-root-privileges/',

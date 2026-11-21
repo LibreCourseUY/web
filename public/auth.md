@@ -1,4 +1,4 @@
-# auth.md — LibreCourseUY agent authentication
+# auth.md - LibreCourseUY agent authentication
 
 LibreCourseUY publishes a public, read-only catalogue of the projects built by its
 community. There is **no OAuth or OpenID Connect authorization server** for
@@ -19,7 +19,7 @@ contribution. Human-facing pages stay the default; agents may request
 | `GET /api/feed`, `GET /api/health` | HTTPS              | No                                                               |
 | `GET /.well-known/*`               | HTTPS              | No                                                               |
 | `POST /mcp` (MCP tools)            | HTTPS              | No                                                               |
-| `POST /join` (Discord invite)      | HTTPS form         | No token, but **human-only** — protected by Cloudflare Turnstile |
+| `POST /join` (Discord invite)      | HTTPS form         | No token, but **human-only** - protected by Cloudflare Turnstile |
 | Contributing code or docs          | Git over HTTPS/SSH | GitHub account, commits signed off (DCO) and GPG-signed          |
 
 Agents MUST NOT attempt to solve or bypass the Turnstile challenge on `/join`;

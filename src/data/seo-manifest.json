@@ -1,11 +1,11 @@
 {
   "/about/": {
-    "title": "About LibreCourseUY — Non-Profit FOSS Community in Uruguay",
+    "title": "About LibreCourseUY - Non-Profit FOSS Community in Uruguay",
     "canonical": "https://librecourse.uy/about/",
     "robots": "index,follow,max-snippet:-1,max-image-preview:large",
     "og": {
       "type": "website",
-      "title": "About LibreCourseUY — Non-Profit FOSS Community in Uruguay",
+      "title": "About LibreCourseUY - Non-Profit FOSS Community in Uruguay",
       "description": "LibreCourseUY is a non-profit free and open source community in Uruguay. How we are organized, who owns the projects, and how to take part.",
       "url": "https://librecourse.uy/about/",
       "image": "https://librecourse.uy/og.jpg",
@@ -17,7 +17,7 @@
     },
     "twitter": {
       "card": "summary_large_image",
-      "title": "About LibreCourseUY — Non-Profit FOSS Community in Uruguay",
+      "title": "About LibreCourseUY - Non-Profit FOSS Community in Uruguay",
       "description": "LibreCourseUY is a non-profit free and open source community in Uruguay. How we are organized, who owns the projects, and how to take part.",
       "image": "https://librecourse.uy/og.jpg",
       "image:alt": "LibreCourseUY"
@@ -27,12 +27,12 @@
       {
         "@context": "https://schema.org",
         "@type": "WebPage",
-        "name": "About LibreCourseUY — Non-Profit FOSS Community in Uruguay",
+        "name": "About LibreCourseUY - Non-Profit FOSS Community in Uruguay",
         "url": "https://librecourse.uy/about/",
         "description": "LibreCourseUY is a non-profit free and open source community in Uruguay. How we are organized, who owns the projects, and how to take part.",
         "image": "https://librecourse.uy/og.jpg",
         "datePublished": "2026-11-18",
-        "dateModified": "2026-11-18",
+        "dateModified": "2026-11-21",
         "author": {
           "@type": "Person",
           "name": "LibreCourseUY"
@@ -64,12 +64,12 @@
     ]
   },
   "/contribute/": {
-    "title": "Make Your First Open Source Contribution — LibreCourseUY",
+    "title": "Make Your First Open Source Contribution - LibreCourseUY",
     "canonical": "https://librecourse.uy/contribute/",
     "robots": "index,follow,max-snippet:-1,max-image-preview:large",
     "og": {
       "type": "website",
-      "title": "Make Your First Open Source Contribution — LibreCourseUY",
+      "title": "Make Your First Open Source Contribution - LibreCourseUY",
       "description": "Make your first open source contribution with LibreCourseUY. Choose a project, find a task on Gitsion and prepare your tools with community support.",
       "url": "https://librecourse.uy/contribute/",
       "image": "https://librecourse.uy/og.jpg",
@@ -81,7 +81,7 @@
     },
     "twitter": {
       "card": "summary_large_image",
-      "title": "Make Your First Open Source Contribution — LibreCourseUY",
+      "title": "Make Your First Open Source Contribution - LibreCourseUY",
       "description": "Make your first open source contribution with LibreCourseUY. Choose a project, find a task on Gitsion and prepare your tools with community support.",
       "image": "https://librecourse.uy/og.jpg",
       "image:alt": "LibreCourseUY"
@@ -91,7 +91,7 @@
       {
         "@context": "https://schema.org",
         "@type": "WebPage",
-        "name": "Make Your First Open Source Contribution — LibreCourseUY",
+        "name": "Make Your First Open Source Contribution - LibreCourseUY",
         "url": "https://librecourse.uy/contribute/",
         "description": "Make your first open source contribution with LibreCourseUY. Choose a project, find a task on Gitsion and prepare your tools with community support.",
         "image": "https://librecourse.uy/og.jpg",
@@ -258,12 +258,12 @@
     ]
   },
   "/docs/": {
-    "title": "Contributor Docs: Git, GPG and GitHub — LibreCourseUY",
+    "title": "Contributor Docs: Git, GPG and GitHub - LibreCourseUY",
     "canonical": "https://librecourse.uy/docs/",
     "robots": "index,follow,max-snippet:-1,max-image-preview:large",
     "og": {
       "type": "website",
-      "title": "Contributor Docs: Git, GPG and GitHub — LibreCourseUY",
+      "title": "Contributor Docs: Git, GPG and GitHub - LibreCourseUY",
       "description": "Contribution guides, Git and GitHub resources, technical references and developer tools for the LibreCourseUY community.",
       "url": "https://librecourse.uy/docs/",
       "image": "https://librecourse.uy/og.jpg",
@@ -275,7 +275,7 @@
     },
     "twitter": {
       "card": "summary_large_image",
-      "title": "Contributor Docs: Git, GPG and GitHub — LibreCourseUY",
+      "title": "Contributor Docs: Git, GPG and GitHub - LibreCourseUY",
       "description": "Contribution guides, Git and GitHub resources, technical references and developer tools for the LibreCourseUY community.",
       "image": "https://librecourse.uy/og.jpg",
       "image:alt": "LibreCourseUY"
@@ -285,7 +285,7 @@
       {
         "@context": "https://schema.org",
         "@type": "CollectionPage",
-        "name": "Contributor Docs: Git, GPG and GitHub — LibreCourseUY",
+        "name": "Contributor Docs: Git, GPG and GitHub - LibreCourseUY",
         "url": "https://librecourse.uy/docs/",
         "description": "Contribution guides, Git and GitHub resources, technical references and developer tools for the LibreCourseUY community.",
         "image": "https://librecourse.uy/og.jpg",
@@ -318,12 +318,12 @@
     ]
   },
   "/history/": {
-    "title": "Our story in pictures — LibreCourseUY",
+    "title": "Our story in pictures - LibreCourseUY",
     "canonical": "https://librecourse.uy/history/",
     "robots": "index,follow,max-snippet:-1,max-image-preview:large",
     "og": {
       "type": "website",
-      "title": "Our story in pictures — LibreCourseUY",
+      "title": "Our story in pictures - LibreCourseUY",
       "description": "Meet the people behind LibreCourseUY in photos and screenshots, from early open source contributions to the first asado and the Uruguayan cédula in OpenSC.",
       "url": "https://librecourse.uy/history/",
       "image": "https://librecourse.uy/og.jpg",
@@ -335,7 +335,7 @@
     },
     "twitter": {
       "card": "summary_large_image",
-      "title": "Our story in pictures — LibreCourseUY",
+      "title": "Our story in pictures - LibreCourseUY",
       "description": "Meet the people behind LibreCourseUY in photos and screenshots, from early open source contributions to the first asado and the Uruguayan cédula in OpenSC.",
       "image": "https://librecourse.uy/og.jpg",
       "image:alt": "LibreCourseUY"
@@ -345,10 +345,12 @@
       {
         "@context": "https://schema.org",
         "@type": "WebPage",
-        "name": "Our story in pictures — LibreCourseUY",
+        "name": "Our story in pictures - LibreCourseUY",
         "url": "https://librecourse.uy/history/",
         "description": "Meet the people behind LibreCourseUY in photos and screenshots, from early open source contributions to the first asado and the Uruguayan cédula in OpenSC.",
         "image": "https://librecourse.uy/og.jpg",
+        "datePublished": "2026-11-21",
+        "dateModified": "2026-11-21",
         "author": {
           "@type": "Person",
           "name": "LibreCourseUY"
@@ -380,12 +382,12 @@
     ]
   },
   "/": {
-    "title": "LibreCourseUY — Free FOSS Community in Uruguay",
+    "title": "LibreCourseUY - Free FOSS Community in Uruguay",
     "canonical": "https://librecourse.uy/",
     "robots": "index,follow,max-snippet:-1,max-image-preview:large",
     "og": {
       "type": "website",
-      "title": "LibreCourseUY — Free FOSS Community in Uruguay",
+      "title": "LibreCourseUY - Free FOSS Community in Uruguay",
       "description": "Join a non-profit FOSS community from Uruguay. Discover projects, learn together and make your first open source contribution.",
       "url": "https://librecourse.uy/",
       "image": "https://librecourse.uy/og.jpg",
@@ -397,7 +399,7 @@
     },
     "twitter": {
       "card": "summary_large_image",
-      "title": "LibreCourseUY — Free FOSS Community in Uruguay",
+      "title": "LibreCourseUY - Free FOSS Community in Uruguay",
       "description": "Join a non-profit FOSS community from Uruguay. Discover projects, learn together and make your first open source contribution.",
       "image": "https://librecourse.uy/og.jpg",
       "image:alt": "LibreCourseUY"
@@ -492,6 +494,14 @@
             },
             {
               "@type": "Question",
+              "name": "Who runs LibreCourseUY?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "LibreCourseUY is a volunteer-run, non-profit community with no formal hierarchy. Carlos A. Planchón and Emiliano Gandini coordinate it and make the final decisions. See how we are organized on the About page."
+              }
+            },
+            {
+              "@type": "Question",
               "name": "How does project ownership work?",
               "acceptedAnswer": {
                 "@type": "Answer",
@@ -503,7 +513,7 @@
               "name": "Can I bring a private or commercial project?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Yes. You can bring projects with private or commercial components. Collaboration organized through LibreCourseUY must happen on the open-source parts of those projects. The private part remains yours. Commercial or proprietary work, including paid development, employment, consulting, equity arrangements or work under NDA, must be agreed independently between the members involved. LibreCourseUY is not a party to those agreements."
+                "text": "Yes. You can bring projects with private or commercial components. Collaboration organized through LibreCourseUY must happen on the open source parts of those projects. The private part remains yours. Commercial or proprietary work, including paid development, employment, consulting, equity arrangements or work under NDA, must be agreed independently between the members involved. LibreCourseUY is not a party to those agreements."
               }
             }
           ]
@@ -512,12 +522,12 @@
     }
   },
   "/learn/": {
-    "title": "Learn Programming by Contributing — LibreCourseUY",
+    "title": "Learn Programming by Contributing - LibreCourseUY",
     "canonical": "https://librecourse.uy/learn/",
     "robots": "index,follow,max-snippet:-1,max-image-preview:large",
     "og": {
       "type": "website",
-      "title": "Learn Programming by Contributing — LibreCourseUY",
+      "title": "Learn Programming by Contributing - LibreCourseUY",
       "description": "Learn programming through real projects, community support, courses and practice exercises with LibreCourseUY.",
       "url": "https://librecourse.uy/learn/",
       "image": "https://librecourse.uy/og.jpg",
@@ -529,7 +539,7 @@
     },
     "twitter": {
       "card": "summary_large_image",
-      "title": "Learn Programming by Contributing — LibreCourseUY",
+      "title": "Learn Programming by Contributing - LibreCourseUY",
       "description": "Learn programming through real projects, community support, courses and practice exercises with LibreCourseUY.",
       "image": "https://librecourse.uy/og.jpg",
       "image:alt": "LibreCourseUY"
@@ -539,7 +549,7 @@
       {
         "@context": "https://schema.org",
         "@type": "WebPage",
-        "name": "Learn Programming by Contributing — LibreCourseUY",
+        "name": "Learn Programming by Contributing - LibreCourseUY",
         "url": "https://librecourse.uy/learn/",
         "description": "Learn programming through real projects, community support, courses and practice exercises with LibreCourseUY.",
         "image": "https://librecourse.uy/og.jpg",
@@ -576,12 +586,12 @@
     ]
   },
   "/orgs/": {
-    "title": "Open Source Organizations — LibreCourseUY",
+    "title": "Open Source Organizations - LibreCourseUY",
     "canonical": "https://librecourse.uy/orgs/",
     "robots": "index,follow,max-snippet:-1,max-image-preview:large",
     "og": {
       "type": "website",
-      "title": "Open Source Organizations — LibreCourseUY",
+      "title": "Open Source Organizations - LibreCourseUY",
       "description": "Organizations maintaining and governing projects in the LibreCourseUY ecosystem: who they are, what they maintain, and where their source lives.",
       "url": "https://librecourse.uy/orgs/",
       "image": "https://librecourse.uy/og.jpg",
@@ -593,7 +603,7 @@
     },
     "twitter": {
       "card": "summary_large_image",
-      "title": "Open Source Organizations — LibreCourseUY",
+      "title": "Open Source Organizations - LibreCourseUY",
       "description": "Organizations maintaining and governing projects in the LibreCourseUY ecosystem: who they are, what they maintain, and where their source lives.",
       "image": "https://librecourse.uy/og.jpg",
       "image:alt": "LibreCourseUY"
@@ -603,7 +613,7 @@
       {
         "@context": "https://schema.org",
         "@type": "WebPage",
-        "name": "Open Source Organizations — LibreCourseUY",
+        "name": "Open Source Organizations - LibreCourseUY",
         "url": "https://librecourse.uy/orgs/",
         "description": "Organizations maintaining and governing projects in the LibreCourseUY ecosystem: who they are, what they maintain, and where their source lives.",
         "image": "https://librecourse.uy/og.jpg",
@@ -636,12 +646,12 @@
     ]
   },
   "/projects/": {
-    "title": "Open Source Projects from Uruguay — LibreCourseUY",
+    "title": "Open Source Projects from Uruguay - LibreCourseUY",
     "canonical": "https://librecourse.uy/projects/",
     "robots": "index,follow,max-snippet:-1,max-image-preview:large",
     "og": {
       "type": "website",
-      "title": "Open Source Projects from Uruguay — LibreCourseUY",
+      "title": "Open Source Projects from Uruguay - LibreCourseUY",
       "description": "Browse open source and community projects from LibreCourseUY: filter by category, language, licence and whether maintainers are open to contributions.",
       "url": "https://librecourse.uy/projects/",
       "image": "https://librecourse.uy/og.jpg",
@@ -653,7 +663,7 @@
     },
     "twitter": {
       "card": "summary_large_image",
-      "title": "Open Source Projects from Uruguay — LibreCourseUY",
+      "title": "Open Source Projects from Uruguay - LibreCourseUY",
       "description": "Browse open source and community projects from LibreCourseUY: filter by category, language, licence and whether maintainers are open to contributions.",
       "image": "https://librecourse.uy/og.jpg",
       "image:alt": "LibreCourseUY"
@@ -663,7 +673,7 @@
       {
         "@context": "https://schema.org",
         "@type": "CollectionPage",
-        "name": "Open Source Projects from Uruguay — LibreCourseUY",
+        "name": "Open Source Projects from Uruguay - LibreCourseUY",
         "url": "https://librecourse.uy/projects/",
         "description": "Browse open source and community projects from LibreCourseUY: filter by category, language, licence and whether maintainers are open to contributions.",
         "image": "https://librecourse.uy/og.jpg",
@@ -696,12 +706,12 @@
     ]
   },
   "/showcase/": {
-    "title": "Products Built by Our Members — LibreCourseUY",
+    "title": "Products Built by Our Members - LibreCourseUY",
     "canonical": "https://librecourse.uy/showcase/",
     "robots": "index,follow,max-snippet:-1,max-image-preview:large",
     "og": {
       "type": "website",
-      "title": "Products Built by Our Members — LibreCourseUY",
+      "title": "Products Built by Our Members - LibreCourseUY",
       "description": "Discover independent products built by members of the LibreCourseUY community and propose your own product through a pull request.",
       "url": "https://librecourse.uy/showcase/",
       "image": "https://librecourse.uy/og.jpg",
@@ -713,7 +723,7 @@
     },
     "twitter": {
       "card": "summary_large_image",
-      "title": "Products Built by Our Members — LibreCourseUY",
+      "title": "Products Built by Our Members - LibreCourseUY",
       "description": "Discover independent products built by members of the LibreCourseUY community and propose your own product through a pull request.",
       "image": "https://librecourse.uy/og.jpg",
       "image:alt": "LibreCourseUY"
@@ -723,7 +733,7 @@
       {
         "@context": "https://schema.org",
         "@type": "CollectionPage",
-        "name": "Products Built by Our Members — LibreCourseUY",
+        "name": "Products Built by Our Members - LibreCourseUY",
         "url": "https://librecourse.uy/showcase/",
         "description": "Discover independent products built by members of the LibreCourseUY community and propose your own product through a pull request.",
         "image": "https://librecourse.uy/og.jpg",

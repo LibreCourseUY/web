@@ -6,15 +6,15 @@ import { communityLinks } from '@/data/community';
 ---
 
 <Layout
-  title="About LibreCourseUY — Non-Profit FOSS Community in Uruguay"
+  title="About LibreCourseUY - Non-Profit FOSS Community in Uruguay"
   description="LibreCourseUY is a non-profit free and open source community in Uruguay. How we are organized, who owns the projects, and how to take part."
 >
   <main class="flex min-h-screen flex-col items-start justify-start gap-12 py-16">
     <section class="w-full space-y-4">
       <Text variant="h1">About LibreCourseUY</Text>
       <Text variant="p" class="max-w-3xl text-muted">
-        LibreCourseUY is a non-profit community based in Uruguay that helps programmers — from
-        complete beginners to seasoned maintainers — contribute to free and open source software. We
+        LibreCourseUY is a non-profit community based in Uruguay that helps programmers - from
+        complete beginners to seasoned maintainers - contribute to free and open source software. We
         do it through real projects: no tutorials in isolation, no imaginary codebases.
       </Text>
       <Anchor href="/history/" className="inline-block underline underline-offset-4">
@@ -46,8 +46,8 @@ import { communityLinks } from '@/data/community';
       <Text variant="h2">Why we exist</Text>
       <Text variant="p" class="max-w-3xl text-muted">
         Most people who want to contribute to open source do not lack motivation; they lack a first
-        task they can finish. Tutorials end before the interesting part — the review, the rebase,
-        the maintainer asking for a change — and without that part there is no contribution and no
+        task they can finish. Tutorials end before the interesting part - the review, the rebase,
+        the maintainer asking for a change - and without that part there is no contribution and no
         confidence. We built LibreCourseUY around the opposite order: join a real project, take a
         small issue, ship it with help, then take something bigger.
       </Text>
@@ -59,20 +59,41 @@ import { communityLinks } from '@/data/community';
       </Text>
     </section>
 
-    <section class="w-full space-y-4">
+    <section id="how-we-are-organized" class="w-full scroll-mt-24 space-y-4">
       <Text variant="h2">How we are organized</Text>
       <Text variant="p" class="max-w-3xl text-muted">
-        LibreCourseUY is not a company and does not claim ownership of members' work. Project owners
-        keep ownership and governance of their projects; collaboration that happens through the
-        community applies to the open source parts only. Private and commercial work stays private
-        and commercial, and any arrangement around it is agreed directly between the people involved
-        — the community is not a party to it.
+        LibreCourseUY is an independent, volunteer-run, non-profit community. We don't have a
+        president, elected board, or formal hierarchy.
+      </Text>
+      <Text variant="p" class="max-w-3xl text-muted">
+        The community is coordinated by
+        <strong class="text-emphasis">Carlos A. Planchón and Emiliano Gandini</strong>, who are
+        responsible for its overall direction and final decisions.
+      </Text>
+      <Text variant="p" class="max-w-3xl text-muted">
+        Members are encouraged to take initiative: propose activities, organize meetups, share their
+        projects, contribute to others' work, and help shape the community through their
+        participation.
+      </Text>
+      <Text variant="p" class="max-w-3xl text-muted">
+        Projects remain under the control of their respective authors. Being part of LibreCourseUY
+        doesn't mean giving up ownership or independence. LibreCourseUY is not a company and does
+        not claim ownership of members' work; collaboration that happens through the community
+        applies to the open source parts only. Private and commercial work stays private and
+        commercial, and any arrangement around it is agreed directly between the people involved -
+        the community is not a party to it.
       </Text>
       <Text variant="p" class="max-w-3xl text-muted">
         Contributions follow the rules of each repository: every commit carries a
         <Anchor href="/dco/" className="text-base underline underline-offset-4">DCO sign-off</Anchor
         > and a GPG signature, and messages follow Conventional Commits. There is no membership fee, no
         contract and no gatekeeping beyond that.
+      </Text>
+      <Text variant="p" class="max-w-3xl text-muted">
+        <strong class="text-emphasis"
+          >We keep coordination simple so people can focus on what matters: building things,
+          learning, experimenting, and helping each other.</strong
+        >
       </Text>
     </section>
 
