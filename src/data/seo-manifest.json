@@ -382,12 +382,12 @@
     ]
   },
   "/": {
-    "title": "LibreCourseUY - Free FOSS Community in Uruguay",
+    "title": "LibreCourseUY - Non-Profit FOSS Community in Uruguay",
     "canonical": "https://librecourse.uy/",
     "robots": "index,follow,max-snippet:-1,max-image-preview:large",
     "og": {
       "type": "website",
-      "title": "LibreCourseUY - Free FOSS Community in Uruguay",
+      "title": "LibreCourseUY - Non-Profit FOSS Community in Uruguay",
       "description": "Join a non-profit FOSS community from Uruguay. Discover projects, learn together and make your first open source contribution.",
       "url": "https://librecourse.uy/",
       "image": "https://librecourse.uy/og.jpg",
@@ -399,7 +399,7 @@
     },
     "twitter": {
       "card": "summary_large_image",
-      "title": "LibreCourseUY - Free FOSS Community in Uruguay",
+      "title": "LibreCourseUY - Non-Profit FOSS Community in Uruguay",
       "description": "Join a non-profit FOSS community from Uruguay. Discover projects, learn together and make your first open source contribution.",
       "image": "https://librecourse.uy/og.jpg",
       "image:alt": "LibreCourseUY"
