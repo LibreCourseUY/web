@@ -38,7 +38,7 @@ export const historyMoments: HistoryMoment[] = [
     date: '2025-08-09',
     title: 'FastCRUD in flight',
     caption:
-      'Reading the docs for Igor Benav’s FastCRUD from the back seat of a plane, somewhere between Mercedes and Montevideo.',
+      'Carlos A. Planchón reading the docs for Igor Benav’s FastCRUD from the back seat of a plane, somewhere between Mercedes and Montevideo.',
     image: fastcrud,
     alt: 'An open laptop behind the pilot of a small plane, with the horizon visible through the window.',
   },
