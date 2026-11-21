@@ -159,4 +159,14 @@ export const historyMoments: HistoryMoment[] = [
       href: 'https://github.com/OpenSC/OpenSC/pull/3805',
     },
   },
+  {
+    date: '2026-11-16',
+    title: 'MenchoBot’s first commercial deployment',
+    caption:
+      'Franco Feijó deployed MenchoBot at a Uruguayan farm, marking the application’s first commercial installation. The system helps manage farm operations through WhatsApp, including recording machinery fuel consumption.',
+    source: {
+      label: 'Visit MenchoBot',
+      href: 'https://menchobot.com/',
+    },
+  },
 ].sort((first, second) => first.date.localeCompare(second.date));
